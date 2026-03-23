@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 454844e4799548e1b7fd09e387b863a0, type: 3}
+  m_Name: Hit Impact Effect - Pixel Explosion Impact
+  m_EditorClassIdentifier: 
+  spawnObjectEffects:
+  - {fileID: 11400000, guid: a8051430eb9c5e24d9a9f1df87e05317, type: 2}
+  playAudioEffects:
+  - clip: {fileID: 8300000, guid: c6f721ecf24ce4145b8c7e919a8ba3d2, type: 3}
+    volume: 0.45
+    loop: 0
+    isFrequentSound: 0

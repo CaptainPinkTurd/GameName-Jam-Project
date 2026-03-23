@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5234879484b9a19418a1b7af5912684a, type: 3}
+  m_Name: Zombie
+  m_EditorClassIdentifier: 
+  unitName: Zombie
+  defaultKnockbackConfig: {fileID: 11400000, guid: bbf2be3098a89934db12885104475a28, type: 2}
+  attackConfig: {fileID: 11400000, guid: f9f1aa7eb7e93964e9dbaf10d97cbece, type: 2}
+  skills:
+  - {fileID: 11400000, guid: c827e173ba26c6043a7cadd614e7a1ff, type: 2}
+  idleMoveSpeedMultiplier: 0.25
+  idleLocationRadius: 4
+  moveHorizontally: 1
+  moveVertically: 0
+  aiUpdateInterval: 0.1
+  acceleration: 8
+  angularSpeed: 0
+  areaMask: -1
+  avoidancePriority: 50
+  baseOffset: 0.875
+  height: 1.75
+  obstacleAvoidanceType: 1
+  radius: 0.45
+  speed: 3.5
+  stoppingDistance: 0.25
+  updateRotation: 0
+  updateUpAxis: 0

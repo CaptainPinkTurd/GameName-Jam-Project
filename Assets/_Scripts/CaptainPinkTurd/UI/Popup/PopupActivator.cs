@@ -1,0 +1,79 @@
+using CaptainPinkTurd.Core.Attributes;
+using CaptainPinkTurd.Core.Enum;
+using CaptainPinkTurd.Managers;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
+
+namespace CaptainPinkTurd.UI.Popup
+{
+    public class PopupActivator : MonoBehaviour
+    {
+        [Header("Popup Activator Properties")]
+        [SerializeField] private PopupIdentifier popupId;
+        [SerializeField] private EPopupShowBehaviour behaviour;
+        
+        [Header("Input Conditionals")]
+        [SerializeField] private bool useInputShortcut;
+        [ShowIf(nameof(useInputShortcut))]
+        [SerializeField] private InputActionReference inputAction;
+        
+        [Header("Popup Events")]
+        [SerializeField] private UnityEvent onPopupShow;
+        [SerializeField] private UnityEvent onPopupClose;
+        
+        private PopupManager popupManager;
+        private bool isPopupActive;
+
+        private void OnEnable()
+        {
+            if (!useInputShortcut || !inputAction) return;
+            
+            inputAction.action.Enable();
+            inputAction.action.performed += PopupTrigger;
+        }
+
+        private void OnDisable()
+        {
+            if (!useInputShortcut || !inputAction) return;
+
+            inputAction.action.performed -= PopupTrigger;
+            inputAction.action.Disable();
+        }
+
+        private void Start()
+        {
+            popupManager = PopupManager.Instance;
+        }
+
+        public void ShowPopup()
+        {
+            if(!popupManager.CanTriggerPopup) return;
+            
+            isPopupActive = true;
+            popupManager.ShowPopup(popupId, behaviour);
+            onPopupShow.Invoke();
+        }
+
+        public void ClosePopup()
+        {
+            if(!popupManager.CanTriggerPopup) return;
+            
+            isPopupActive = false;
+            popupManager.CloseLastPopup();
+            onPopupClose.Invoke();
+        }
+        
+        private void PopupTrigger(InputAction.CallbackContext obj)
+        {
+            if (isPopupActive)
+            {
+                ClosePopup();
+            }
+            else
+            {
+                ShowPopup();
+            }
+        }
+    }
+}

@@ -1,0 +1,63 @@
+using UnityEngine;
+
+namespace CaptainPinkTurd.Core.Extensions
+{
+    public static class Vector3Extensions 
+    {
+        public static Vector3 GetInverseVector(this Vector3 vector, bool flipX = false, bool flipY = false,
+            bool flipZ = false)
+        {
+            if(flipX) vector.x *= -1;
+            if(flipY) vector.y *= -1;
+            if(flipZ) vector.z *= -1;
+            
+            return vector;
+        }
+        /// <summary>
+        /// Sets any x y z values of a Vector3
+        /// </summary>
+        public static Vector3 With(this Vector3 vector, float? x = null, float? y = null, float? z = null) 
+        {
+            return new Vector3(x ?? vector.x, y ?? vector.y, z ?? vector.z);
+        }
+        
+        public static Vector3 MultiplyFloat(this Vector3 vector, 
+            float multiplier, bool multiplyX = true, bool multiplyY = true, bool multiplyZ = true)
+        {
+            return new Vector3(multiplyX ? vector.x * multiplier : vector.x, 
+                multiplyY ? vector.y * multiplier : vector.y, 
+                multiplyZ ? vector.z * multiplier : vector.z);
+        }
+        public static Vector3 MultiplyVector(this Vector3 vector, Vector3 multiplier)
+        {
+            return new Vector3(vector.x * multiplier.x, vector.y * multiplier.y, vector.z * multiplier.z);
+        }
+        /// <summary>
+        /// Adds to any x y z values of a Vector3
+        /// </summary>
+        public static Vector3 Add(this Vector3 vector, float x = 0, float y = 0, float z = 0) 
+        {
+            return new Vector3(vector.x + x, vector.y + y, vector.z + z);
+        }
+        
+        /// <summary>
+        /// Returns a Boolean indicating whether the current Vector3 is in a given range from another Vector3
+        /// </summary>
+        /// <param name="current">The current Vector3 position</param>
+        /// <param name="target">The Vector3 position to compare against</param>
+        /// <param name="range">The range value to compare against</param>
+        /// <returns>True if the current Vector3 is in the given range from the target Vector3, false otherwise</returns>
+        public static bool InRangeOf(this Vector3 current, Vector3 target, float range) 
+        {
+            return (current - target).sqrMagnitude <= range * range;
+        }
+        public static Quaternion ToRotation2D(this Vector3 direction, float zOffsetDegrees = 0)
+        {
+            if (direction.sqrMagnitude < Mathf.Epsilon)
+                return Quaternion.identity;
+
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            return Quaternion.Euler(0f, 0f, angle + zOffsetDegrees);
+        }
+    }
+}

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3af66a699e2ec4942b08d4d327eef87a, type: 3}
+  m_Name: Normal Spawn Settings
+  m_EditorClassIdentifier: 
+  enemiesType:
+  - {fileID: 4951879520235407641, guid: bcde633fbdfb3be4395ca92ce9fa424f, type: 3}
+  - {fileID: 990370563253217240, guid: 702e8002189ed424c825eea4c1d3483a, type: 3}
+  enemySpawnChanceByCount:
+  - value: 1
+  - value: 1
+  - value: 0.635
+  - value: 0.624
+  - value: 0.472
+  - value: 0.294
+  - value: 0.3
+  numberToSpawnByCount: 02000000020000000200000002000000010000000100000001000000
+  turnWaitForSpawnByCount: 000000000000000000000000010000000100000001000000

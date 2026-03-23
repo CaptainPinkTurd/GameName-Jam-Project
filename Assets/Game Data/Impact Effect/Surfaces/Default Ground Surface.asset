@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4dfa246da334d79a00488bc6371e0a7, type: 3}
+  m_Name: Default Ground Surface
+  m_EditorClassIdentifier: 
+  impactTypeEffects:
+  - impactType: {fileID: 11400000, guid: da20da27d490bcc4f8b3c09ada4615f5, type: 2}
+    surfaceEffect: {fileID: 11400000, guid: eed2c78128693d94c8b21f2a8debc138, type: 2}
+  - impactType: {fileID: 11400000, guid: 67d0e9f301c0f2044ab4a97a27d9e63f, type: 2}
+    surfaceEffect: {fileID: 11400000, guid: 037ef9760d3df0d4c9da02c03530e062, type: 2}
+  - impactType: {fileID: 11400000, guid: 9facc3cc00ce1dd4798171b0f632003d, type: 2}
+    surfaceEffect: {fileID: 11400000, guid: b33fb3209402a82479422f830c2dbf97, type: 2}

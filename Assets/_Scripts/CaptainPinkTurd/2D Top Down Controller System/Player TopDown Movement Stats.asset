@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 304e45cd1aaa4c5999577451b76b105f, type: 3}
+  m_Name: Player TopDown Movement Stats
+  m_EditorClassIdentifier: NewAssembly::CaptainPinkTurd.TopDownController2D.PlayerTopDownMovementStats
+  walkSpeed: 5.5
+  runSpeed: 10
+  smoothMovement: 0
+  smoothTime: 0.08
+  canDash: 0
+  dashSpeed: 25
+  dashDuration: 0.25
+  dashCooldown: 0.5
+  dashInputThreshold: 0.15

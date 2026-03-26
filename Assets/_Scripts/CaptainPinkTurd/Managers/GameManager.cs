@@ -2,6 +2,7 @@ using CaptainPinkTurd.Core;
 using UnityEngine;
 using CaptainPinkTurd.Core.DesignPattern.Singleton;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 #if UNITY_EDITOR
@@ -19,13 +20,25 @@ namespace CaptainPinkTurd.Managers
         
         private float oldTimeScale;
 
-        private void OnEnable()
+        protected override void Awake()
         {
-            OnGameOver.Subscribe(OnGameOverEvents);
+            base.Awake();
+            
+            switchDimensionAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/j");
         }
 
+        private void OnEnable()
+        {
+            switchDimensionAction.Enable();
+            switchDimensionAction.performed += DimensionSwitch;
+            
+            OnGameOver.Subscribe(OnGameOverEvents);
+        }
         private void OnDisable()
         {
+            switchDimensionAction.performed -= DimensionSwitch;
+            switchDimensionAction.Disable();
+            
             OnGameOver.Unsubscribe(OnGameOverEvents);
         }
 
@@ -64,11 +77,12 @@ namespace CaptainPinkTurd.Managers
 
         #region GAME SPECIFIC REGION
 
-        public GameEvent OnGunShoot = new GameEvent(); //in case more events in the future
-        public void OnGunShootEvents()
+        private InputAction switchDimensionAction;
+        private bool isLightDimension;
+        private void DimensionSwitch(InputAction.CallbackContext obj)
         {
-            Time.timeScale = 1;
-            OnGunShoot.Raise();
+            isLightDimension = !isLightDimension;
+            Camera.main.backgroundColor = isLightDimension ? Color.white : Color.black;
         }
 
         #endregion

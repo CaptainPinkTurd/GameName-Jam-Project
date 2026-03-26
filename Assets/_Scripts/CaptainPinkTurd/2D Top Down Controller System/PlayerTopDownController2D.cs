@@ -58,6 +58,10 @@ namespace CaptainPinkTurd.TopDownController2D
             UpdateMovement();
         }
 
+        //Movement is meant to be disabled when something else is active in the scene (like perhaps Dialogue box or a cutscene)
+        //hence why we're setting it with not toggle
+        public void ToggleMovement(bool toggle) => enabled = !toggle;
+        
         #region Movement
         private void UpdateMovement()
         {

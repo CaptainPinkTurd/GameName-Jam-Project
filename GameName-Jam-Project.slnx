@@ -1,13 +1,17 @@
 ﻿<Solution>
   <Project Path="EffectSystem.csproj" />
   <Project Path="UI.csproj" />
+  <Project Path="VHierarchy.csproj" />
   <Project Path="Core.csproj" />
   <Project Path="UnitSystem.csproj" />
   <Project Path="VFolders.csproj" />
   <Project Path="SpawnSystem.csproj" />
   <Project Path="AnimationSystem.csproj" />
+  <Project Path="NewAssembly.csproj" />
+  <Project Path="InteractionSystem.csproj" />
   <Project Path="InputSystem.csproj" />
   <Project Path="CursorSystem.csproj" />
+  <Project Path="RPGSystem.csproj" />
   <Project Path="AudioSystem.csproj" />
   <Project Path="DOTween.Modules.csproj" />
   <Project Path="HighScoreSystem.csproj" />

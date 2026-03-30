@@ -1,5 +1,5 @@
+using CaptainPinkTurd.Game;
 using CaptainPinkTurd.ImprovedTimers;
-using CaptainPinkTurd.Managers;
 using CaptainPinkTurd.UI.TextUI;
 using TMPro;
 using UnityEngine;

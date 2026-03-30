@@ -1,10 +1,8 @@
-using System;
-using CaptainPinkTurd.Core.Enum;
 using CaptainPinkTurd.Core.Extensions;
 using CaptainPinkTurd.Core.Struct;
+using CaptainPinkTurd.Game;
 using CaptainPinkTurd.HighScoreSystem.Data;
 using CaptainPinkTurd.HighScoreSystem.Storage;
-using CaptainPinkTurd.Managers;
 using CaptainPinkTurd.UI;
 using CaptainPinkTurd.UI.TextUI;
 using CaptainPinkTurd.UI.TimerDisplayers;

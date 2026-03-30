@@ -122,8 +122,8 @@ MonoBehaviour:
       isIconRecursive: 0
       isColorRecursive: 1
     - iconNameOrGuid: 
-      colorIndex: 5
+      colorIndex: 3
       isIconRecursive: 0
-      isColorRecursive: 1
+      isColorRecursive: 0
   bookmarks:
   - guid: c829c65ada4e94246a317fd46d0f04f2

@@ -1,7 +1,7 @@
 using CaptainPinkTurd.Core.DesignPattern.SOAP.Events;
 using CaptainPinkTurd.Core.Extensions;
 using CaptainPinkTurd.Core.Struct;
-using CaptainPinkTurd.Managers;
+using CaptainPinkTurd.Game;
 using UnityEngine;
 
 namespace CaptainPinkTurd.UnitSystem

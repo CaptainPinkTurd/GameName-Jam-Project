@@ -1,6 +1,5 @@
 using CaptainPinkTurd.Core.Attributes;
 using CaptainPinkTurd.Core.Enum;
-using CaptainPinkTurd.Managers;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;

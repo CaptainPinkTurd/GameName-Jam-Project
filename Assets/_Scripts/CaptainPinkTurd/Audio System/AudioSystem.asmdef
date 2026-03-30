@@ -2,9 +2,7 @@
     "name": "AudioSystem",
     "rootNamespace": "CaptainPinkTurd.AudioSystem",
     "references": [
-        "GUID:b4f69e43ae184c54095e72ea68941dd8",
-        "GUID:4379980e305684f4bbea58f0a9e24506",
-        "GUID:43aa4c0ecf728254aa645ccc48be9e8f"
+        "GUID:4379980e305684f4bbea58f0a9e24506"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

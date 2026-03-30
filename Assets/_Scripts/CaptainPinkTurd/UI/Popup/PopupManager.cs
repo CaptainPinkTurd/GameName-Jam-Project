@@ -4,9 +4,9 @@ using UnityEngine;
 using CaptainPinkTurd.Core.DesignPattern.Singleton;
 using CaptainPinkTurd.Core.Enum;
 using CaptainPinkTurd.Core.Extensions;
-using CaptainPinkTurd.UI.Popup;
+using CaptainPinkTurd.Game;
 
-namespace CaptainPinkTurd.Managers
+namespace CaptainPinkTurd.UI.Popup
 {
     public class PopupManager : Singleton<PopupManager>
     {

@@ -5,15 +5,15 @@ using UnityEngine;
 
 namespace CaptainPinkTurd.TopDownController2D.Modifier
 {
-    public abstract class PlayerControllerValueModifier : AbstractValueModifier<PlayerTopDownController2D>
+    public abstract class PlayerControllerValueModifier : AbstractValueModifier<PlayerFreeMovementTopDownController2D>
     {
-        public abstract override void Modify(PlayerTopDownController2D player);
+        public abstract override void Modify(PlayerFreeMovementTopDownController2D player);
         public override void Modify(object target)
         {
             switch (target)
             {
                 case GameObject targetGo:
-                    if (targetGo.TryGetComponentInHierarchy(out PlayerTopDownController2D topdownController))
+                    if (targetGo.TryGetComponentInHierarchy(out PlayerFreeMovementTopDownController2D topdownController))
                     {
                         Modify(topdownController);
                     }

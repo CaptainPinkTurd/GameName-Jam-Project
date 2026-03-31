@@ -6,7 +6,7 @@ using UnityEngine;
 namespace CaptainPinkTurd.TopDownController2D
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    public class PlayerTopDownController2D : MonoBehaviour
+    public class PlayerFreeMovementTopDownController2D : MonoBehaviour
     {
         [Header("References")]
         [SerializeField] private PlayerTopDownMovementStats moveStats; 

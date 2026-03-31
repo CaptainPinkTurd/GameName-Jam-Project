@@ -59,5 +59,27 @@ namespace CaptainPinkTurd.Core.Extensions
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             return Quaternion.Euler(0f, 0f, angle + zOffsetDegrees);
         }
+        
+        //Cardinal directions means 4-way direction
+        public static Vector3 ToCardinalNormalized(this Vector3 dir)
+        {
+            if (dir == Vector3.zero) return Vector3.zero;
+            
+            dir.y = 0f;
+
+            return Mathf.Abs(dir.x) > Mathf.Abs(dir.z) ? 
+                new Vector3(Mathf.Sign(dir.x), 0f, 0f) : 
+                new Vector3(0f, 0f, Mathf.Sign(dir.z));
+        }
+        public static Vector2 ToCardinalNormalized2D(this Vector3 dir)
+        {
+            if (dir == Vector3.zero) return Vector3.zero;
+            
+            dir.z = 0f;
+
+            return Mathf.Abs(dir.x) > Mathf.Abs(dir.y) ? 
+                new Vector2(Mathf.Sign(dir.x), 0f) : 
+                new Vector2(0f, Mathf.Sign(dir.y));
+        }
     }
 }

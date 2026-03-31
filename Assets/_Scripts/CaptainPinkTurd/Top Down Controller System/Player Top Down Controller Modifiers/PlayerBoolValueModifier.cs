@@ -8,7 +8,7 @@ namespace CaptainPinkTurd.TopDownController2D.Modifier
     {
         [Header("Bool Value Modifier Configuration")]
         [SerializeField] private bool value = true;
-        public override void Modify(PlayerTopDownController2D player)
+        public override void Modify(PlayerFreeMovementTopDownController2D player)
         {
             try
             {

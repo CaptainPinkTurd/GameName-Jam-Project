@@ -9,7 +9,7 @@ namespace CaptainPinkTurd.TopDownController2D.Modifier
         [Header("Float Value Modifier Configuration")]
         [SerializeField] private float amount = 1.2f;
         
-        public override void Modify(PlayerTopDownController2D player)
+        public override void Modify(PlayerFreeMovementTopDownController2D player)
         {
             try
             {

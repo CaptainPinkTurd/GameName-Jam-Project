@@ -2,13 +2,14 @@ using CaptainPinkTurd.AudioSystem;
 using CaptainPinkTurd.Core;
 using CaptainPinkTurd.Core.DesignPattern;
 using CaptainPinkTurd.Core.Enum;
+using CaptainPinkTurd.UI.Components;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace CaptainPinkTurd.UI.CombatUI
+namespace CaptainPinkTurd.UI.Dropdown
 {
-    public class ActionDropdownButton : ButtonDropdownBase
+    public class ActionDropdownButton : ButtonBase
     {
         [Header("Action Dropdown Button Properties")]
         [SerializeField] private Image leftIcon;
@@ -31,7 +32,7 @@ namespace CaptainPinkTurd.UI.CombatUI
             isInactive = isOnCooldown;
             actionText.color = isOnCooldown ? textOnCooldownColor : Color.white;
         }
-        internal override void ButtonHoverEvent(bool isHovering, bool playSfx = true)
+        public override void ButtonHoverEvent(bool isHovering, bool playSfx = true)
         {
             if (isInactive) return;
             
@@ -56,7 +57,7 @@ namespace CaptainPinkTurd.UI.CombatUI
             rightIcon.gameObject.SetActive(isHovering);
             actionText.color = isHovering ? textSelectedColor : Color.white;
         }
-        internal override void OnButtonClickEvent()
+        public override void OnButtonClickEvent()
         {
             if (isInactive) return;
             

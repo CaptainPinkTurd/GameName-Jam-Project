@@ -3,15 +3,15 @@ using CaptainPinkTurd.Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace CaptainPinkTurd.UI
+namespace CaptainPinkTurd.UI.Components
 {
-    public abstract class ButtonDropdownBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+    public abstract class ButtonBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
         [Header("Button Dropdown Base Properties")]
         [SerializeField] protected SoundData hoverSfx;
         [SerializeField] protected SoundData buttonClickSfx;
         
-        internal GameEvent<ButtonDropdownBase> onButtonHover = new GameEvent<ButtonDropdownBase>();
+        internal GameEvent<ButtonBase> onButtonHover = new GameEvent<ButtonBase>();
         internal bool isInactive;
 
         protected bool turnOffHoverStateWhenExit = true;
@@ -35,7 +35,7 @@ namespace CaptainPinkTurd.UI
         {
             OnButtonClickEvent();
         }
-        internal abstract void OnButtonClickEvent();
-        internal abstract void ButtonHoverEvent(bool isHovering, bool playSfx = true);
+        public abstract void OnButtonClickEvent();
+        public abstract void ButtonHoverEvent(bool isHovering, bool playSfx = true);
     }
 }

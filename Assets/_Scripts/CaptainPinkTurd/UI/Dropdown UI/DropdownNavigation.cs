@@ -1,26 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using CaptainPinkTurd.Core.Enum;
+using CaptainPinkTurd.Input;
+using CaptainPinkTurd.UI.Components;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace CaptainPinkTurd.UI
+namespace CaptainPinkTurd.UI.Dropdown
 {
     public class DropdownNavigation : MonoBehaviour //keep this class mono so we could use coroutine for scroll in here
     {
-        [SerializeField] private InputActionReference navigationAction;
         [SerializeField] private float navigationHoldDelayTime = 0.2f;
         
-        private readonly List<ButtonDropdownBase> buttons = new List<ButtonDropdownBase>();
+        private readonly List<ButtonBase> buttons = new List<ButtonBase>();
         
-        private InputAction spaceBarAction;
-        private ButtonDropdownBase currentButton;
+        private InputSystemActions playerInputs;
+        private ButtonBase currentButton;
         private int currentIndex = 0;
         private bool isNavigating = false;
 
         private void Awake()
         {
-            spaceBarAction = new InputAction(type: InputActionType.Button, binding: "<Keyboard>/space");
+            playerInputs = new InputSystemActions();
+        }
+        
+        private void OnDisable()
+        {
+            DisableInput();
         }
 
         public void ReverseButtonsList()
@@ -29,7 +35,7 @@ namespace CaptainPinkTurd.UI
             currentIndex = buttons.Count - currentIndex - 1;
         }
         
-        internal void AddNewButton(ButtonDropdownBase button)
+        internal void AddNewButton(ButtonBase button)
         {
             buttons.Add(button);
             button.onButtonHover.Subscribe(OnExternalNavigationChange);
@@ -49,29 +55,24 @@ namespace CaptainPinkTurd.UI
         {
             RemoveOldButtons();
             
-            navigationAction.action.Enable();
-            navigationAction.action.started += OnNavigationStarted;
-            navigationAction.action.canceled += OnNavigationCanceled;
+            playerInputs.Enable();
+            playerInputs.Player.Move.started += OnNavigationStarted;
+            playerInputs.Player.Move.canceled += OnNavigationCanceled;
             
-            spaceBarAction.Enable();
-            spaceBarAction.performed += SpaceBarActionOnPerformed;
+            // spaceBarAction.Enable();
+            // spaceBarAction.performed += SpaceBarActionOnPerformed;
         }
 
         public void DisableInput()
         {
             currentIndex = 0;
             
-            navigationAction.action.started -= OnNavigationStarted;
-            navigationAction.action.canceled -= OnNavigationCanceled;
-            navigationAction.action.Disable();
+            playerInputs.Player.Move.started -= OnNavigationStarted;
+            playerInputs.Player.Move.canceled -= OnNavigationCanceled;
+            playerInputs.Disable();
             
-            spaceBarAction.performed -= SpaceBarActionOnPerformed;
-            spaceBarAction.Disable();
-        }
-
-        private void OnDisable()
-        {
-            DisableInput();
+            // spaceBarAction.performed -= SpaceBarActionOnPerformed;
+            // spaceBarAction.Disable();
         }
 
         internal void SetCurrentNavigation(EInputDirection inputDirection)
@@ -154,7 +155,7 @@ namespace CaptainPinkTurd.UI
             buttons[currentIndex].OnButtonClickEvent();
         }
 
-        private void OnExternalNavigationChange(ButtonDropdownBase newButton)
+        private void OnExternalNavigationChange(ButtonBase newButton)
         {
             if (!currentButton || currentButton == newButton) return;
             

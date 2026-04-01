@@ -3,6 +3,7 @@ using CaptainPinkTurd.Core.DesignPattern;
 using CaptainPinkTurd.Core.Enum;
 using CaptainPinkTurd.Core.Extensions;
 using CaptainPinkTurd.Core.Utilities;
+using CaptainPinkTurd.UI.Dropdown;
 using UnityEngine;
 
 namespace CaptainPinkTurd.UI.CombatUI

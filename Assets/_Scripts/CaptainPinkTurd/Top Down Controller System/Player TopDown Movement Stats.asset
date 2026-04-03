@@ -17,7 +17,30 @@ MonoBehaviour:
   smoothMovement: 0
   smoothTime: 0.08
   canDash: 0
-  dashSpeed: 25
-  dashDuration: 0.25
+  dashSpeed: 30
+  dashDuration: 0.15
   dashCooldown: 0.5
   dashInputThreshold: 0.15
+  dashSfx:
+    clip: {fileID: 8300000, guid: 8e9580cb8531abe498e173a556f67e84, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+    frequentSound: 0
+    mute: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    spread: 0
+    minDistance: 1
+    maxDistance: 500
+    ignoreListenerVolume: 0
+    ignoreListenerPause: 0
+    rolloffMode: 0

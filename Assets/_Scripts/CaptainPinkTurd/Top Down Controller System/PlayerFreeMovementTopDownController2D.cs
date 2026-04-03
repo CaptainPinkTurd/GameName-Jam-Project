@@ -1,3 +1,4 @@
+using CaptainPinkTurd.AudioSystem;
 using CaptainPinkTurd.Core.DesignPattern.SOAP.Variables;
 using CaptainPinkTurd.Core.Utils;
 using CaptainPinkTurd.Input;
@@ -9,9 +10,10 @@ namespace CaptainPinkTurd.TopDownController2D
     public class PlayerFreeMovementTopDownController2D : MonoBehaviour
     {
         [Header("References")]
-        [SerializeField] private PlayerTopDownMovementStats moveStats; 
+        [SerializeField] private PlayerTopDownMovementStats referenceMoveStats; 
         [SerializeField] private Vector2VariableSO movementInput;
         
+        private PlayerTopDownMovementStats runtimeMoveStats;
         private InputSystemActions playerInputs;
         private Rigidbody2D rb;
         private Vector2 smoothedMovementInput;
@@ -25,21 +27,26 @@ namespace CaptainPinkTurd.TopDownController2D
             playerInputs = new InputSystemActions();
             rb = GetComponent<Rigidbody2D>();
 
-            // Create a runtime clone of movement stats
-            var runtimeMoveStats = ScriptableObject.CreateInstance<PlayerTopDownMovementStats>();
-            TypeUtils.CopyValues(moveStats, runtimeMoveStats);
+            GenerateRuntimeMoveStats();
+        }
 
-            moveStats = runtimeMoveStats; //avoid using the original asset 
+        private void GenerateRuntimeMoveStats()
+        {
+            // Create a runtime clone of movement stats
+            runtimeMoveStats = ScriptableObject.CreateInstance<PlayerTopDownMovementStats>();
+            TypeUtils.CopyValues(referenceMoveStats, runtimeMoveStats);
         }
 
         private void OnEnable()
         {
             playerInputs.Enable();
+            referenceMoveStats.OnValueChange.Subscribe(GenerateRuntimeMoveStats);
         }
 
         private void OnDisable()
         {
             playerInputs.Disable();
+            referenceMoveStats.OnValueChange.Unsubscribe(GenerateRuntimeMoveStats);
         }
 
         private void Update()
@@ -65,13 +72,13 @@ namespace CaptainPinkTurd.TopDownController2D
         #region Movement
         private void UpdateMovement()
         {
-            if (moveStats.smoothMovement)
+            if (runtimeMoveStats.smoothMovement)
             {
                 smoothedMovementInput = Vector2.SmoothDamp(
                     smoothedMovementInput,
                     movementInput.Value,
                     ref movementSmoothVelocity,
-                    moveStats.smoothTime
+                    runtimeMoveStats.smoothTime
                 );
             }
             else
@@ -80,8 +87,8 @@ namespace CaptainPinkTurd.TopDownController2D
             }
 
             float speed = playerInputs.Player.Run.IsPressed()
-                ? moveStats.runSpeed
-                : moveStats.walkSpeed;
+                ? runtimeMoveStats.runSpeed
+                : runtimeMoveStats.walkSpeed;
 
             rb.linearVelocity = smoothedMovementInput * speed;
         }
@@ -90,7 +97,7 @@ namespace CaptainPinkTurd.TopDownController2D
         #region Dash
         private void DashCheck()
         {
-            if (!playerInputs.Player.Dash.WasPressedThisFrame() || dashOnCooldown || !moveStats.canDash)
+            if (!playerInputs.Player.Dash.WasPressedThisFrame() || dashOnCooldown || !runtimeMoveStats.canDash)
                 return;
 
             StartDash();
@@ -100,21 +107,23 @@ namespace CaptainPinkTurd.TopDownController2D
         {
             isDashing = true;
 
+            SoundManager.Instance.CreateSoundBuilder().WithPosition(transform.position).WithRandomPitch()
+                .Play(runtimeMoveStats.dashSfx);
+
             // Direction input handling
-            Vector2 dashDir = movementInput.Value.sqrMagnitude < moveStats.dashInputThreshold *
-                              moveStats.dashInputThreshold
+            Vector2 dashDir = movementInput.Value.sqrMagnitude < runtimeMoveStats.dashInputThreshold *
+                              runtimeMoveStats.dashInputThreshold
                 ? Vector2.zero
                 : movementInput.Value.normalized;
 
             // running increases dash speed and reduces dash duration
             float dashSpeedMultiplier = playerInputs.Player.Run.IsPressed()
-                ? moveStats.runSpeed / moveStats.walkSpeed
+                ? runtimeMoveStats.runSpeed / runtimeMoveStats.walkSpeed
                 : 1f;
 
-            rb.linearVelocity = dashDir * (moveStats.dashSpeed * dashSpeedMultiplier);
+            rb.linearVelocity = dashDir * (runtimeMoveStats.dashSpeed * dashSpeedMultiplier);
 
-            StartCoroutine(CoroutineUtils.WaitForSeconds(
-                moveStats.dashDuration / dashSpeedMultiplier,
+            StartCoroutine(CoroutineUtils.WaitForSeconds( runtimeMoveStats.dashDuration / dashSpeedMultiplier,
                 EndDash
             ));
         }
@@ -125,7 +134,7 @@ namespace CaptainPinkTurd.TopDownController2D
             dashOnCooldown = true;
 
             StartCoroutine(CoroutineUtils.WaitForSeconds(
-                moveStats.dashCooldown,
+                runtimeMoveStats.dashCooldown,
                 () => dashOnCooldown = false
             ));
         }

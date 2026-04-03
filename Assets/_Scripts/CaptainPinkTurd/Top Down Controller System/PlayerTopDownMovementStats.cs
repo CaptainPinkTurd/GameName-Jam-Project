@@ -1,10 +1,13 @@
+using CaptainPinkTurd.AudioSystem;
+using CaptainPinkTurd.Core;
 using CaptainPinkTurd.Core.Attributes;
+using CaptainPinkTurd.Core.SO;
 using UnityEngine;
 
 namespace CaptainPinkTurd.TopDownController2D
 {
     [CreateAssetMenu(fileName = "PlayerTopDownMovementStats", menuName = "Scriptable Objects/Player Movement Stats/Topdown")]
-    public class PlayerTopDownMovementStats : ScriptableObject
+    public class PlayerTopDownMovementStats : RuntimeScriptableObject
     {
         [Header("Speed Configuration")]
         [Range(0.1f, 50f)] public float walkSpeed = 8f;
@@ -33,11 +36,22 @@ namespace CaptainPinkTurd.TopDownController2D
         [Tooltip("Minimum input magnitude needed to dash.")]
         [ShowIf(nameof(canDash))]
         [Range(0f, 1f)] public float dashInputThreshold = 0.15f;
+        [ShowIf(nameof(canDash))] 
+        public SoundData dashSfx;
+
+        internal GameEvent OnValueChange;
         
         private void OnValidate()
         {
             // Prevent running from being slower than walking
             if (runSpeed < walkSpeed) runSpeed = walkSpeed;
+
+            OnValueChange?.Raise();
+        }
+
+        protected override void OnReset()
+        {
+            OnValueChange = new GameEvent();
         }
     }
 }

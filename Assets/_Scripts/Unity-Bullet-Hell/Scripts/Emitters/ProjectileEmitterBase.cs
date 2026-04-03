@@ -36,7 +36,8 @@ namespace BulletHell
         public bool BounceOffSurfaces = true;        
         public bool CullProjectilesOutsideCameraBounds = true;
         public bool IsFixedTimestep = true;
-        [ConditionalField(nameof(IsFixedTimestep)), Range(0.01f, 0.02f)] public float FixedTimestepRate = 0.01f;      
+        [ConditionalField(nameof(IsFixedTimestep)), Range(0.01f, 0.02f)] public float FixedTimestepRate = 0.01f;
+        public bool ClearAllProjectilesOnDisable = true;
 
         [Foldout("Outline", true)]
         public bool DrawOutlines;
@@ -93,6 +94,10 @@ namespace BulletHell
             if (!ProjectilePrefab) ProjectilePrefab = ProjectileManager.Instance.GetProjectilePrefab(0);
         }
 
+        void OnDisable()
+        {
+            if(ClearAllProjectilesOnDisable) ClearAllProjectiles();
+        }
         public void Initialize(int size)
         {
             Projectiles = new Pool<ProjectileData>(size);
@@ -316,11 +321,5 @@ namespace BulletHell
 
             ActiveProjectileIndexesPosition = 0;
         }
-        
-        void OnDisable()
-        {
-            ClearAllProjectiles();
-        }
-
     }
 }

@@ -290,7 +290,7 @@ namespace BulletHell
                         if (EmittersArray[n].ProjectilePrefab.Outline)
                             ProjectileTypeCounters[EmittersArray[n].ProjectilePrefab.Outline.Index].ActiveProjectiles += EmittersArray[n].ActiveOutlineCount;
                     }
-                    else
+                    else if(EmittersArray[n].ClearAllProjectilesOnDisable)
                     {
                         // if the gameobject was disabled then clear all projectiles from this emitter
                         EmittersArray[n].ClearAllProjectiles();

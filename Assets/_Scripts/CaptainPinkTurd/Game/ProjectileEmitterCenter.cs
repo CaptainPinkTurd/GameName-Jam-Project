@@ -1,6 +1,8 @@
-using System;
 using CaptainPinkTurd.AudioSystem;
+using CaptainPinkTurd.Core.DesignPattern.SOAP.Events;
 using CaptainPinkTurd.Core.Extensions;
+using CaptainPinkTurd.Core.Interfaces;
+using CaptainPinkTurd.Core.Utilities;
 using UnityEngine;
 
 namespace CaptainPinkTurd.Game
@@ -8,10 +10,15 @@ namespace CaptainPinkTurd.Game
     [RequireComponent(typeof(Collider2D))]
     public class ProjectileEmitterCenter : MonoBehaviour
     {
-        [SerializeField] private LayerMask deactivateLayers;
-        [SerializeField] private SoundData deactivateSfx;
+        [SerializeField] private int maxHealth = 3;
+        [SerializeField] private float knockbackForce = 10f;
+        [SerializeField] private float hitStopDuration = 0.2f;
+        [SerializeField] private LayerMask damageDealerLayers;
+        [SerializeField] private SoundData damagedSfx;
+        [SerializeField] private VoidEvent OnDamagedTaken;
         
         private Collider2D coll;
+        private int currentHealth;
 
         private void Awake()
         {
@@ -19,13 +26,34 @@ namespace CaptainPinkTurd.Game
             coll.isTrigger = true;
         }
 
+        private void OnEnable()
+        {
+            currentHealth = maxHealth;
+        }
+
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (!deactivateLayers.Contains(other.gameObject.layer)) return;
+            if (!damageDealerLayers.Contains(other.gameObject.layer)) return;
+            
+            if(other.gameObject.TryGetComponentInHierarchy(out IDamageable damageable))
+            {
+                var knockbackDir = (other.transform.position - transform.position).normalized;
+                damageable.WithKnockback(knockbackDir * knockbackForce, 0);
+            }
             
             SoundManager.Instance.CreateSoundBuilder()
-                .WithPosition(transform.position).WithRandomPitch().Play(deactivateSfx);
-            gameObject.SetActive(false);
+                .WithPosition(transform.position).WithRandomPitch().Play(damagedSfx);
+            currentHealth--;
+            
+            HitStop.Stop(this, hitStopDuration, () =>
+            {
+                OnDamagedTaken.Raise();
+            
+                if (currentHealth <= 0)
+                {
+                    gameObject.SetActive(false);
+                }
+            });
         }
     }
 }

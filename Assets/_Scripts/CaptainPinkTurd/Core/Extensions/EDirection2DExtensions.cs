@@ -32,5 +32,22 @@ namespace CaptainPinkTurd.Core.Extensions
 
             return result;
         }
+        public static EDirection2D GetOpposite(this EDirection2D direction)
+        {
+            switch (direction)
+            {
+                case EDirection2D.Up: return EDirection2D.Down;
+                case EDirection2D.Down: return EDirection2D.Up;
+                case EDirection2D.Left: return EDirection2D.Right;
+                case EDirection2D.Right: return EDirection2D.Left;
+
+                case EDirection2D.TopLeft: return EDirection2D.BottomRight;
+                case EDirection2D.TopRight: return EDirection2D.BottomLeft;
+                case EDirection2D.BottomLeft: return EDirection2D.TopRight;
+                case EDirection2D.BottomRight: return EDirection2D.TopLeft;
+
+                default: return EDirection2D.None;
+            }
+        }
     }
 }

@@ -18,7 +18,8 @@ namespace CaptainPinkTurd.TopDownController2D
         private Rigidbody2D rb;
         private Vector2 smoothedMovementInput;
         private Vector2 movementSmoothVelocity;
-
+        private Vector2 externalVelocity = Vector2.zero;
+        
         private bool isDashing;
         private bool dashOnCooldown;
 
@@ -60,16 +61,20 @@ namespace CaptainPinkTurd.TopDownController2D
 
         private void FixedUpdate()
         {
-            if (isDashing) return;
-
-            UpdateMovement();
+            if (!isDashing)
+            {
+                UpdateMovement();
+            }
+            
+            externalVelocity = Vector2.Lerp(externalVelocity, Vector2.zero, 10f * Time.fixedDeltaTime);
         }
 
-        //Movement is meant to be disabled when something else is active in the scene (like perhaps Dialogue box or a cutscene)
+        #region Movement
+        
+        //Movement is meant to be disabled when something else is active in the scene (like perhaps Dialogue box, knockback or a cutscene)
         //hence why we're setting it with not toggle
         public void ToggleMovement(bool toggle) => enabled = !toggle;
         
-        #region Movement
         private void UpdateMovement()
         {
             if (runtimeMoveStats.smoothMovement)
@@ -90,8 +95,11 @@ namespace CaptainPinkTurd.TopDownController2D
                 ? runtimeMoveStats.runSpeed
                 : runtimeMoveStats.walkSpeed;
 
-            rb.linearVelocity = smoothedMovementInput * speed;
+            rb.linearVelocity = smoothedMovementInput * speed + externalVelocity;
         }
+
+        public void AddExternalVelocity(Vector2 velocity) => externalVelocity += velocity;
+        
         #endregion
 
         #region Dash

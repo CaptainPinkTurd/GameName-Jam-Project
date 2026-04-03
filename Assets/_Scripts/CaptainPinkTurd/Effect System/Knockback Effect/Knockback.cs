@@ -1,4 +1,5 @@
 using System.Collections;
+using CaptainPinkTurd.Core;
 using UnityEngine;
 
 namespace CaptainPinkTurd.EffectSystem.KnockbackEffect
@@ -8,10 +9,11 @@ namespace CaptainPinkTurd.EffectSystem.KnockbackEffect
         private KnockbackConfig knockbackConfig;
         private readonly Rigidbody2D rb;
 
-        public bool IsBeingKnockedBack { get; private set; }
+        public GameEvent<bool> OnKnockback;
         public Knockback(Rigidbody2D rb)
         {
             this.rb = rb;
+            OnKnockback = new GameEvent<bool>();
         }
         // ReSharper disable once ParameterHidesMember
         public IEnumerator KnockbackAction(KnockbackConfig knockbackConfig, Vector2 hitForce,
@@ -19,7 +21,7 @@ namespace CaptainPinkTurd.EffectSystem.KnockbackEffect
         {
             this.knockbackConfig = knockbackConfig;
             
-            IsBeingKnockedBack = true;
+            OnKnockback.Raise(true);
 
             Vector2 constForce = knockbackConfig.constantForceDirection * constantForce;
 
@@ -54,7 +56,7 @@ namespace CaptainPinkTurd.EffectSystem.KnockbackEffect
             }
 
             rb.linearVelocity = Vector2.zero;
-            IsBeingKnockedBack = false;
+            OnKnockback.Raise(false);
         }
     }
 }

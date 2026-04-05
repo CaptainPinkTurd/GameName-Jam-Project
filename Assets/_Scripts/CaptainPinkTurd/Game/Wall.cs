@@ -1,4 +1,6 @@
 using CaptainPinkTurd.Core.Extensions;
+using CaptainPinkTurd.Core.Interfaces;
+using CaptainPinkTurd.Core.Struct;
 using CaptainPinkTurd.TopDownController2D;
 using UnityEngine;
 
@@ -17,17 +19,19 @@ namespace CaptainPinkTurd.Game
         [SerializeField] private float speed;
         [SerializeField] private Transform endPoint;
         [SerializeField] private EWallBehaviour behaviour;
+        [SerializeField] private bool moveOnStart;
 
         [Header("Collision")]
         [SerializeField] private LayerMask targetPlayerLayer;
         [SerializeField] private LayerMask blockingLayer;
 
         private Rigidbody2D rb;
-
+        private GameObject player;
         private Vector3 startPoint;
         private Vector3 currentTarget;
 
-        private bool isMoving = true;
+        private bool isMoving;
+        private bool hasFinishedMoving;
         
         private void Awake()
         {
@@ -35,6 +39,10 @@ namespace CaptainPinkTurd.Game
 
             startPoint = transform.position;
             currentTarget = endPoint ? endPoint.position : startPoint;
+        }
+        private void Start()
+        {
+            isMoving = moveOnStart;
         }
 
         private void FixedUpdate()
@@ -67,7 +75,7 @@ namespace CaptainPinkTurd.Game
                     SwapTarget();
                     break;
                 case EWallBehaviour.Stop:
-                    isMoving = false;
+                    OnMovingStop();
                     break;
             }
         }
@@ -78,6 +86,17 @@ namespace CaptainPinkTurd.Game
             currentTarget = (Vector2)currentTarget == (Vector2)endPoint.position ? startPoint : endPoint.position;
         }
 
+        private void OnMovingStop()
+        {
+            isMoving = false;
+            hasFinishedMoving = true;
+        }
+        private void CheckIfPlayerIsCrushed()
+        {
+            if (!player || !player.TryGetComponentInHierarchy(out IDamageable damageable)) return;
+            
+            damageable.TakeDamage(new SDamageData(damageable.MaxHealth, gameObject));
+        }
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (!blockingLayer.Contains(other.gameObject.layer)) return;
@@ -85,21 +104,43 @@ namespace CaptainPinkTurd.Game
             switch (behaviour)
             {
                 case EWallBehaviour.Stop:
-                    isMoving = false;
+                    OnMovingStop();
                     break;
                 case EWallBehaviour.Loop:
                     SwapTarget();
                     break;
             }
+
+            CheckIfPlayerIsCrushed();
         }
 
         private void OnCollisionStay2D(Collision2D other)
         {
             if (!targetPlayerLayer.Contains(other.gameObject.layer)) return;
-            if (!other.gameObject.TryGetComponentInHierarchy(out PlayerFreeMovementTopDownController2D playerController)) return;
+            player = other.gameObject;
+            
+            if (!isMoving || !player.TryGetComponentInHierarchy(out PlayerFreeMovementTopDownController2D playerController)) return;
 
             Vector2 pushDir = GetMoveDirection();
-            playerController.AddExternalVelocity(pushDir * speed);
+            Vector2 dirToPlayer = ((Vector2)player.transform.position - rb.position).normalized;
+
+            if (Vector2.Dot(pushDir, dirToPlayer) <= 0) return;
+            
+            playerController.AddExternalVelocity(pushDir);
+        }
+
+        private void OnCollisionExit2D(Collision2D other)
+        {
+            if (!targetPlayerLayer.Contains(other.gameObject.layer) && player != other.gameObject) return;
+            
+            player = null;
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (!targetPlayerLayer.Contains(other.gameObject.layer) || moveOnStart || hasFinishedMoving) return;
+            
+            isMoving = true;
         }
     }
 }

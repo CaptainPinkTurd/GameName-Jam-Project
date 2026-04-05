@@ -16,6 +16,7 @@ namespace CaptainPinkTurd.Game
         [SerializeField] private LayerMask damageDealerLayers;
         [SerializeField] private SoundData damagedSfx;
         [SerializeField] private VoidEvent OnDamagedTaken;
+        [SerializeField] private ShockwaveScreen impactShockwavePrefab;
         
         private Collider2D coll;
         private int currentHealth;
@@ -43,6 +44,8 @@ namespace CaptainPinkTurd.Game
             
             SoundManager.Instance.CreateSoundBuilder()
                 .WithPosition(transform.position).WithRandomPitch().Play(damagedSfx);
+            ObjectPoolManager.Instance.SpawnObject(impactShockwavePrefab.gameObject, transform.position, 
+                Quaternion.identity, ObjectPoolManager.PoolType.GameObject);
             currentHealth--;
             
             HitStop.Stop(this, hitStopDuration, () =>

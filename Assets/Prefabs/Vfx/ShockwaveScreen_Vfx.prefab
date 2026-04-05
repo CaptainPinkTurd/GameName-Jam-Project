@@ -104,4 +104,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91eae9bed67aac74ea2a92195116d071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Core::CaptainPinkTurd.Core.Utilities.ShockwaveScreen
-  shockWaveTime: 1.25
+  shockWaveTime: 0.75

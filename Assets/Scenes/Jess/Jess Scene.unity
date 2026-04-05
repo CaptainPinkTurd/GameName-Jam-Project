@@ -568,7 +568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91eae9bed67aac74ea2a92195116d071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShockWaveManager
-  _shockWaveTime: 1.25
+  shockWaveTime: 1.25
 --- !u!1 &1925807914
 GameObject:
   m_ObjectHideFlags: 0

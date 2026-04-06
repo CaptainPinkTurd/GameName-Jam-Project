@@ -13,7 +13,8 @@ namespace CaptainPinkTurd.UnitSystem
     {
         [Header("Player Unit Properties")]
         [SerializeField] private VoidEvent onPlayerDamaged;
-        [SerializeField] private SerializeKeyValuePair<EDimension, PlayerStateInfo>[] playerStates;
+        [SerializeField] private SerializeKeyValuePair<EColor, PlayerStateInfo>[] playerStates;
+        [SerializeField] private GameObject currentModel;
 
         private SpriteRenderer spriteRenderer;
 
@@ -24,11 +25,13 @@ namespace CaptainPinkTurd.UnitSystem
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
-        public void OnDimensionChangeEvents(EDimension dimension)
+        public void OnColorChangeEvents(EColor color)
         {
-            if(playerStates.TryGetValue(dimension, out var playerState))
+            if(playerStates.TryGetValue(color, out var playerState))
             {
-                spriteRenderer.sprite = playerState.sprite;
+                currentModel?.SetActive(false);
+                currentModel = playerState.model;
+                currentModel.SetActive(true);
 
                 gameObject.layer = playerState.layerValue;
                 foreach (Transform child in transform)
@@ -38,7 +41,7 @@ namespace CaptainPinkTurd.UnitSystem
             }
             else
             {
-                Debug.LogError($"Player State for dimension {dimension} not found");
+                Debug.LogError($"Player State for dimension {color} not found");
             }
         }
 
@@ -67,7 +70,7 @@ namespace CaptainPinkTurd.UnitSystem
     [Serializable]
     public struct PlayerStateInfo
     {
-        public Sprite sprite;
+        public GameObject model;
         public int layerValue;
     }
 }

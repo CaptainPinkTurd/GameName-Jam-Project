@@ -185,7 +185,7 @@ namespace CaptainPinkTurd.EffectSystem.ImpactEffect
                         spawnObj = ObjectPoolManager.Instance.SpawnObject(spawnObjectEffect.prefab.gameObject, 
                             hitPoint + hitNormal * .001f, spawnObjectEffect.canRotate 
                             ? Quaternion.LookRotation(hitNormal) : Quaternion.identity
-                            , ObjectPoolManager.PoolType.ParticleSystem);
+                            , ObjectPoolManager.PoolType.VFX);
                     }
                     
                     if (spawnObjectEffect.randomizeRotation)

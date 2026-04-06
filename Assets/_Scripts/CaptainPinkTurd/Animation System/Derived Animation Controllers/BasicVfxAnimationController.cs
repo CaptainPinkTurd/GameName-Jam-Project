@@ -3,9 +3,10 @@ using UnityEngine;
 
 namespace CaptainPinkTurd.AnimationSystem
 {
-    public class HurtVfxAnimation : AnimationControllerBase
+    public class BasicVfxAnimationController : AnimationControllerBase
     {
-        [SerializeField] private AnimationClip hurtVfxAnimation;
+        [Header("Vfx Animation Controller Configs")]
+        [SerializeField] private AnimationClip vfxAnimation;
         [SerializeField] private bool disableSpriteRenderer;
         [SerializeField] private bool spawnFromPool;
         
@@ -28,7 +29,7 @@ namespace CaptainPinkTurd.AnimationSystem
         public void SetHurtVfxAnimation()
         {
             spriteRenderer.enabled = true;
-            PlayAnimation(Animator.StringToHash(hurtVfxAnimation.name), onAnimationEnd: () =>
+            PlayAnimation(Animator.StringToHash(vfxAnimation.name), onAnimationEnd: () =>
             {
                 if(disableSpriteRenderer) spriteRenderer.enabled = false;
                 if(spawnFromPool) ObjectPoolManager.Instance.ReturnObjectToPool(gameObject);

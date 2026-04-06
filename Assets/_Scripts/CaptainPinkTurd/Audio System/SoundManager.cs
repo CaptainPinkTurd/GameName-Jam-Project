@@ -17,8 +17,10 @@ namespace CaptainPinkTurd.AudioSystem
         readonly List<SoundEmitter> activeSoundEmitters = new();
         public readonly LinkedList<SoundEmitter> FrequentSoundEmitters = new();
 
-        void Start()
+        protected override void Awake()
         {
+            base.Awake();
+            
             InitializePool();
         }
 

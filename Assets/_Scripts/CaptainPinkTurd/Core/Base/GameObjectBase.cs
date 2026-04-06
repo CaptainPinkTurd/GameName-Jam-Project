@@ -1,6 +1,5 @@
 using CaptainPinkTurd.Core.CustomDataStructure;
 using CaptainPinkTurd.Core.Enum;
-using CaptainPinkTurd.Core.Utilities;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,6 +11,7 @@ namespace CaptainPinkTurd.Core.Base
         [SerializeField] private UnityEvent onAwakeEvents;
         [SerializeField] private SerializeKeyValuePair<EPriority, UnityEvent> onEnableEvents;
         [SerializeField] private SerializeKeyValuePair<EPriority, UnityEvent> onDisableEvents;
+        [SerializeField] private UnityEvent onStartEvents;
         
         public GameEvent OnEnableEvents = new GameEvent();
         [Tooltip("Remember to manually clear this before you subscribe")]
@@ -32,6 +32,11 @@ namespace CaptainPinkTurd.Core.Base
         protected virtual void OnDisable()
         {
             OnDisableEvents.Raise();
+        }
+
+        protected virtual void Start()
+        {
+            onStartEvents.Invoke();
         }
     }
 }

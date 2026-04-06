@@ -1,3 +1,4 @@
+using System;
 using CaptainPinkTurd.AnimationSystem;
 using CaptainPinkTurd.Core.Attributes;
 using CaptainPinkTurd.Core.CustomDataStructure;
@@ -5,6 +6,8 @@ using CaptainPinkTurd.Core.DesignPattern.SOAP.Variables;
 using CaptainPinkTurd.Core.Enum;
 using CaptainPinkTurd.Core.Extensions;
 using UnityEngine;
+using ZLinq;
+using Random = UnityEngine.Random;
 using Vector2 = UnityEngine.Vector2;
 
 namespace CaptainPinkTurd.RPG
@@ -13,7 +16,9 @@ namespace CaptainPinkTurd.RPG
     {
         [Header("Player Animation Clips")] 
         [SerializeField] private SerializeKeyValuePair<EDirection2D, AnimationClip>[] idleAnimationClips; 
-        [SerializeField] private SerializeKeyValuePair<EDirection2D, AnimationClip>[] walkAnimationClips; 
+        [SerializeField] private SerializeKeyValuePair<EDirection2D, AnimationClip>[] walkAnimationClips;
+        [Tooltip("The direction specify to flip the player sprite if there is any")]
+        [SerializeField] private EDirection2D[] spriteFlipDirections; 
         
         [Header("Input Events")]
         [SerializeField] private Vector2VariableSO currentMovementInput;
@@ -24,16 +29,24 @@ namespace CaptainPinkTurd.RPG
         
         public override int DefaultAnimationHash { get; set; }
 
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            //instead of Subscribe and Unsubscribe in OnEnable and OnDisable
+            //we're doing this here to ensure that the event is constantly being called to update our playerCurrentDirectionState all the time
+            currentMovementInput.OnValueChanged += OnMovementInputChangeEvent;
+        }
+
         protected override void OnEnable()
         {
             base.OnEnable();
             
-            currentMovementInput.OnValueChanged += OnMovementInputChangeEvent;
+            OnMovementInputChangeEvent(currentMovementInput.Value);
         }
-        protected override void OnDisable()
+
+        private void OnDestroy()
         {
-            base.OnDisable();
-            
             currentMovementInput.OnValueChanged -= OnMovementInputChangeEvent;
         }
 
@@ -71,6 +84,7 @@ namespace CaptainPinkTurd.RPG
                 break;
             }
 
+            CheckForSpriteFlip();
             if (input == Vector2.zero)
             {
                 SetPlayerIdleAnimation();
@@ -80,6 +94,14 @@ namespace CaptainPinkTurd.RPG
                 SetPlayerWalkAnimation();
             }
         }
+
+        private void CheckForSpriteFlip()
+        {
+            var spriteFlip = spriteFlipDirections.AsValueEnumerable().Contains(playerCurrentDirectionState);
+            
+            spriteRenderer.flipX = spriteFlip;
+        }
+
         private void SetPlayerIdleAnimation()
         {
             if (idleAnimationClips.TryGetValue(playerCurrentDirectionState, out var idleAnim))
@@ -89,7 +111,7 @@ namespace CaptainPinkTurd.RPG
             }
             else
             {
-                Debug.LogError("Idle animation not found for direction: " + playerCurrentDirectionState);
+                Debug.LogWarning("Idle animation not found for direction: " + playerCurrentDirectionState);
             }
         }
         private void SetPlayerWalkAnimation()
@@ -101,7 +123,7 @@ namespace CaptainPinkTurd.RPG
             }
             else
             {
-                Debug.LogError("Walk animation not found for direction: " + playerCurrentDirectionState);
+                Debug.LogWarning("Walk animation not found for direction: " + playerCurrentDirectionState);
             }
         }
     }

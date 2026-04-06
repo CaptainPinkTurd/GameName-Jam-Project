@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1392230877552907708}
   - component: {fileID: 8841699598713729355}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ProjectileWithShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

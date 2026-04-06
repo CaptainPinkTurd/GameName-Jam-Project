@@ -3,7 +3,6 @@
     "rootNamespace": "CaptainPinkTurd.AnimationSystem",
     "references": [
         "GUID:4379980e305684f4bbea58f0a9e24506",
-        "GUID:43aa4c0ecf728254aa645ccc48be9e8f",
         "GUID:91d419664d8c89c4b8871250445a9bf5",
         "GUID:68095ea3c6785fb4b8d30267c6aa893e"
     ],

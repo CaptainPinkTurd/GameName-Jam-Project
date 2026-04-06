@@ -1,3 +1,4 @@
+using CaptainPinkTurd.Core.Enum;
 using CaptainPinkTurd.Core.Extensions;
 using CaptainPinkTurd.Core.Interfaces;
 using CaptainPinkTurd.Core.Struct;
@@ -17,8 +18,8 @@ namespace CaptainPinkTurd.Game
     {
         [Header("Movement")]
         [SerializeField] private float speed;
-        [SerializeField] private Transform endPoint;
         [SerializeField] private EWallBehaviour behaviour;
+        [SerializeField] private EDirection2D moveDirection; 
         [SerializeField] private bool moveOnStart;
 
         [Header("Collision")]
@@ -28,8 +29,7 @@ namespace CaptainPinkTurd.Game
         private Rigidbody2D rb;
         private GameObject player;
         private Vector3 startPoint;
-        private Vector3 currentTarget;
-
+        
         private bool isMoving;
         private bool hasFinishedMoving;
         
@@ -38,7 +38,6 @@ namespace CaptainPinkTurd.Game
             rb = GetComponent<Rigidbody2D>();
 
             startPoint = transform.position;
-            currentTarget = endPoint ? endPoint.position : startPoint;
         }
         private void Start()
         {
@@ -53,43 +52,42 @@ namespace CaptainPinkTurd.Game
             Vector2 newPos = rb.position + moveDir * (speed * Time.fixedDeltaTime);
 
             rb.MovePosition(newPos);
-
-            CheckReachedTarget();
         }
 
         private Vector2 GetMoveDirection()
         {
-            Vector2 toTarget = (currentTarget - (Vector3)rb.position).normalized;
-            return toTarget;
-        }
-
-        private void CheckReachedTarget()
-        {
-            float distance = Vector2.Distance(rb.position, currentTarget);
-            
-            if (distance >= 0.05f) return;
-            
-            switch (behaviour)
-            {
-                case EWallBehaviour.Loop:
-                    SwapTarget();
-                    break;
-                case EWallBehaviour.Stop:
-                    OnMovingStop();
-                    break;
-            }
+            return moveDirection.ToVector2();
         }
 
         private void SwapTarget()
         {
             // Toggle between start and end
-            currentTarget = (Vector2)currentTarget == (Vector2)endPoint.position ? startPoint : endPoint.position;
+            //currentTarget = (Vector2)currentTarget == (Vector2)endPoint.position ? startPoint : endPoint.position;
         }
 
         private void OnMovingStop()
         {
             isMoving = false;
             hasFinishedMoving = true;
+            
+            var x = transform.localPosition.x;
+            var y = transform.localPosition.y;
+            var signX = Mathf.Sign(x);
+            var signY = Mathf.Sign(y);
+            
+            switch (moveDirection)
+            {
+                case EDirection2D.Left:
+                case EDirection2D.Right:
+                    x = Mathf.FloorToInt(Mathf.Abs(x)) * signX;
+                    break;
+                case EDirection2D.Up:
+                case EDirection2D.Down:
+                    y = Mathf.FloorToInt(Mathf.Abs(y)) * signY;
+                    break;
+            }
+            
+            transform.localPosition = new Vector3(x, y, 0);
         }
         private void CheckIfPlayerIsCrushed()
         {
@@ -99,7 +97,8 @@ namespace CaptainPinkTurd.Game
         }
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (!blockingLayer.Contains(other.gameObject.layer)) return;
+            if (!blockingLayer.Contains(other.gameObject.layer) || !isMoving) return;
+            Debug.Log($"Collision with {other.gameObject.name}");
 
             switch (behaviour)
             {

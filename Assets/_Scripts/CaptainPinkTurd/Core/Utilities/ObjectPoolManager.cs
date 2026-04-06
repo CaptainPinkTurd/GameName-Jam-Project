@@ -9,14 +9,14 @@ namespace CaptainPinkTurd.Core.Utilities
         private List<PooledObjectInfo> objectPools = new List<PooledObjectInfo>();
         private GameObject objectPoolEmptyHolder;
         private GameObject gameObjectEmpty;
-        private GameObject particleSystemEmpty;
+        private GameObject vfxEmpty;
         private GameObject unitEmpty;
         private GameObject collectableEmpty;
         private GameObject popupTextEmpty;
         
         public enum PoolType
         {
-            ParticleSystem,
+            VFX,
             GameObject,
             Unit,
             Collectable,
@@ -37,8 +37,8 @@ namespace CaptainPinkTurd.Core.Utilities
             gameObjectEmpty = new GameObject("GameObjects");
             gameObjectEmpty.transform.SetParent(objectPoolEmptyHolder.transform);
             
-            particleSystemEmpty = new GameObject("Particle Systems");
-            particleSystemEmpty.transform.SetParent(objectPoolEmptyHolder.transform);
+            vfxEmpty = new GameObject("VFXs");
+            vfxEmpty.transform.SetParent(objectPoolEmptyHolder.transform);
             
             unitEmpty = new GameObject("Units");
             unitEmpty.transform.SetParent(objectPoolEmptyHolder.transform);
@@ -186,8 +186,8 @@ namespace CaptainPinkTurd.Core.Utilities
             {
                 case PoolType.GameObject:
                     return gameObjectEmpty;
-                case PoolType.ParticleSystem:
-                    return particleSystemEmpty; 
+                case PoolType.VFX:
+                    return vfxEmpty; 
                 case PoolType.Unit:
                     return unitEmpty;   
                 case PoolType.Collectable:

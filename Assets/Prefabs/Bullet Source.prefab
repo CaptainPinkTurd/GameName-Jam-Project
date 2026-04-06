@@ -1,5 +1,157 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &810843469824088516
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7896525174868960853}
+  - component: {fileID: 1819079855417741543}
+  m_Layer: 0
+  m_Name: Projectile Source
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7896525174868960853
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810843469824088516}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6128480423557230193}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1819079855417741543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810843469824088516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2bc4bb09dfa0bc4aa26ec6beb158f09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProjectilePrefab: {fileID: 8841699598713729355, guid: 0f551be8e27b097479e5473b72406f5b, type: 3}
+  Scale: 0.5
+  Color:
+    serializedVersion: 2
+    key0: {r: 0.9450981, g: 0.30588236, b: 0.32156864, a: 1}
+    key1: {r: 0.58431375, g: 0.87843144, b: 0.8000001, a: 1}
+    key2: {r: 0.039215505, g: 0.039215505, b: 0.039215505, a: 1}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 32112
+    ctime1: 33423
+    ctime2: 33423
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 65535
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 1
+    m_ColorSpace: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  TimeToLive: 10
+  CoolOffTime: 0.25
+  AutoFire: 1
+  Direction: {x: -1, y: 0}
+  Speed: 10
+  MaxSpeed: 50
+  RotationSpeed: 5
+  CollisionDetection: 1
+  BounceOffSurfaces: 0
+  CullProjectilesOutsideCameraBounds: 1
+  IsFixedTimestep: 1
+  FixedTimestepRate: 0.01
+  ClearAllProjectilesOnDisable: 0
+  DrawOutlines: 1
+  OutlineSize: 0.1
+  OutlineColor:
+    serializedVersion: 2
+    key0: {r: 0.58431375, g: 0.87843144, b: 0.8000001, a: 1}
+    key1: {r: 0.9450981, g: 0.30588236, b: 0.32156864, a: 1}
+    key2: {r: 0.91039276, g: 1, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 32112
+    ctime1: 33423
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 1
+    m_ColorSpace: -1
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  Damage: 1
+  DamageableMasks:
+  - Value:
+      serializedVersion: 2
+      m_Bits: 65
+    Key: {r: 0.58431375, g: 0.87843144, b: 0.8000001, a: 1}
+  - Value:
+      serializedVersion: 2
+      m_Bits: 129
+    Key: {r: 0.9450981, g: 0.30588236, b: 0.32156864, a: 1}
+  ImpactType: {fileID: 11400000, guid: da20da27d490bcc4f8b3c09ada4615f5, type: 2}
+  Gravity: {x: 0, y: 0}
+  BounceAbsorbtionY: 0
+  BounceAbsorbtionX: 0
+  Acceleration: 10
+  UseColorPulse: 1
+  PulseSpeed: 2.5
+  UseStaticPulse: 1
+  GroupCount: 8
+  GroupSpacing: 1
+  SpokeCount: 1
+  SpokeSpacing: 8.9
+  MirrorPairRotation: 1
+  PairGroupDirection: 1
+  UseFollowTarget: 1
+  Target: {fileID: 0}
+  FollowTargetType: 0
+  FollowIntensity: 1
+  UseOutlineColorPulse: 1
+  OutlinePulseSpeed: 2.5
+  UseOutlineStaticPulse: 1
 --- !u!1 &4054407043497097032
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,10 +162,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6128480423557230193}
   - component: {fileID: 4242670431143135332}
-  - component: {fileID: 8865505207833526517}
-  - component: {fileID: 7378249813361684381}
-  - component: {fileID: 3090797194335962797}
-  - component: {fileID: 7635704402938076438}
+  - component: {fileID: 6140797716355370710}
+  - component: {fileID: 2297502924798621319}
+  - component: {fileID: 977134063565342598}
+  - component: {fileID: 8729577052288307070}
   m_Layer: 0
   m_Name: Bullet Source
   m_TagString: Untagged
@@ -34,6 +186,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7896525174868960853}
   - {fileID: 5609773993801557305}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -86,8 +239,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: e88ed972d9ad48841a259bc4b103eae0, type: 3}
-  m_Color: {r: 1, g: 0.32156864, b: 0.4666667, a: 1}
+  m_Sprite: {fileID: 3834412671844895448, guid: 8e15af905e652054da853af51c4081c3, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -96,7 +249,29 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &8865505207833526517
+--- !u!95 &6140797716355370710
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4054407043497097032}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: -8208590294825090645, guid: 8e15af905e652054da853af51c4081c3, type: 3}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2297502924798621319
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,119 +280,120 @@ MonoBehaviour:
   m_GameObject: {fileID: 4054407043497097032}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2bc4bb09dfa0bc4aa26ec6beb158f09, type: 3}
+  m_Script: {fileID: 11500000, guid: 29e5c1b9b9e4422b924106618fea4911, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  ProjectilePrefab: {fileID: 8841699598713729355, guid: 0f551be8e27b097479e5473b72406f5b, type: 3}
-  Scale: 0.5
-  Color:
+  m_EditorClassIdentifier: Game::CaptainPinkTurd.Game.Turret
+  onAwakeEvents:
+    m_PersistentCalls:
+      m_Calls: []
+  onEnableEvents:
+    Value:
+      m_PersistentCalls:
+        m_Calls: []
+    Key: 0
+  onDisableEvents:
+    Value:
+      m_PersistentCalls:
+        m_Calls: []
+    Key: 0
+  onStartEvents:
+    m_PersistentCalls:
+      m_Calls: []
+  projectileEmitter: {fileID: 1819079855417741543}
+  startUpSfx:
+    clip: {fileID: 8300000, guid: daffd0ef6ba17d2469f8543b31b166c3, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+    frequentSound: 0
+    mute: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    spread: 0
+    minDistance: 1
+    maxDistance: 500
+    ignoreListenerVolume: 0
+    ignoreListenerPause: 0
+    rolloffMode: 0
+  idleAnimationClip: {fileID: -3100369314251171874, guid: 8e15af905e652054da853af51c4081c3, type: 3}
+  spawnAnimationClip: {fileID: 457796991906702257, guid: 8e15af905e652054da853af51c4081c3, type: 3}
+--- !u!114 &977134063565342598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4054407043497097032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fefa3e39037d495c9b12b2a34cb68960, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game::CaptainPinkTurd.Game.ProjectileEmitterCenter
+  maxHealth: 3
+  knockbackForce: 40
+  damageDealerLayers:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 0, g: 0, b: 0, a: 1}
-    key2: {r: 0.039215505, g: 0.039215505, b: 0.039215505, a: 1}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 32112
-    ctime1: 33423
-    ctime2: 33423
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 65535
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 1
-    m_ColorSpace: 0
-    m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
-  TimeToLive: 10
-  CoolOffTime: 0.25
-  AutoFire: 1
-  Direction: {x: -1, y: 0}
-  Speed: 10
-  MaxSpeed: 50
-  RotationSpeed: 5
-  CollisionDetection: 1
-  BounceOffSurfaces: 1
-  CullProjectilesOutsideCameraBounds: 1
-  IsFixedTimestep: 1
-  FixedTimestepRate: 0.01
-  ClearAllProjectilesOnDisable: 0
-  DrawOutlines: 1
-  OutlineSize: 0.1
-  OutlineColor:
-    serializedVersion: 2
-    key0: {r: 0, g: 0, b: 0, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
-    key2: {r: 0.91039276, g: 1, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 32112
-    ctime1: 33423
-    ctime2: 65535
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 1
-    m_ColorSpace: -1
-    m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
-  Damage: 1
-  DamageableMasks:
-  - Value:
-      serializedVersion: 2
-      m_Bits: 65
-    Key: {r: 0, g: 0, b: 0, a: 1}
-  - Value:
-      serializedVersion: 2
-      m_Bits: 129
-    Key: {r: 1, g: 1, b: 1, a: 1}
-  ImpactType: {fileID: 11400000, guid: da20da27d490bcc4f8b3c09ada4615f5, type: 2}
-  Gravity: {x: 0, y: 0}
-  BounceAbsorbtionY: 0
-  BounceAbsorbtionX: 0
-  Acceleration: 10
-  UseColorPulse: 1
-  PulseSpeed: 2.5
-  UseStaticPulse: 1
-  GroupCount: 8
-  GroupSpacing: 1
-  SpokeCount: 1
-  SpokeSpacing: 8.9
-  MirrorPairRotation: 1
-  PairGroupDirection: 1
-  UseFollowTarget: 1
-  Target: {fileID: 0}
-  FollowTargetType: 0
-  FollowIntensity: 1
-  UseOutlineColorPulse: 1
-  OutlinePulseSpeed: 2.5
-  UseOutlineStaticPulse: 1
---- !u!58 &7378249813361684381
-CircleCollider2D:
+    m_Bits: 192
+  hitStopDuration: 0.2
+  impactShockwavePrefab: {fileID: 6386854355507245172, guid: ddf39c5a02e34294bbbf17bc54ca2410, type: 3}
+  explosionVfx: {fileID: 8568515182452555486, guid: 15ac99202f515cc48a44d70e6f90e965, type: 3}
+  OnDamagedTaken: {fileID: 11400000, guid: d144196b9b862134b9a1422e54f18482, type: 2}
+  damagedSfx:
+    clip: {fileID: 8300000, guid: 53e976d48b2d6584d97c91ae2cc488e9, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+    frequentSound: 0
+    mute: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    spread: 0
+    minDistance: 1
+    maxDistance: 500
+    ignoreListenerVolume: 0
+    ignoreListenerPause: 0
+    rolloffMode: 0
+  explodedSfx:
+    clip: {fileID: 8300000, guid: c6f721ecf24ce4145b8c7e919a8ba3d2, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+    frequentSound: 0
+    mute: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    spread: 0
+    minDistance: 1
+    maxDistance: 500
+    ignoreListenerVolume: 0
+    ignoreListenerPause: 0
+    rolloffMode: 0
+--- !u!61 &8729577052288307070
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -250,69 +426,18 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
---- !u!114 &3090797194335962797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4054407043497097032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fefa3e39037d495c9b12b2a34cb68960, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Game::CaptainPinkTurd.Game.ProjectileEmitterCenter
-  maxHealth: 3
-  knockbackForce: 20
-  hitStopDuration: 0.2
-  damageDealerLayers:
-    serializedVersion: 2
-    m_Bits: 192
-  damagedSfx:
-    clip: {fileID: 8300000, guid: 53e976d48b2d6584d97c91ae2cc488e9, type: 3}
-    mixerGroup: {fileID: 0}
-    loop: 0
-    playOnAwake: 0
-    frequentSound: 0
-    mute: 0
-    bypassEffects: 0
-    bypassListenerEffects: 0
-    bypassReverbZones: 0
-    priority: 128
-    volume: 1
-    pitch: 1
-    panStereo: 0
-    spatialBlend: 0
-    reverbZoneMix: 1
-    dopplerLevel: 1
-    spread: 0
-    minDistance: 1
-    maxDistance: 500
-    ignoreListenerVolume: 0
-    ignoreListenerPause: 0
-    rolloffMode: 0
-  OnDamagedTaken: {fileID: 11400000, guid: d144196b9b862134b9a1422e54f18482, type: 2}
-  impactShockwavePrefab: {fileID: 6386854355507245172, guid: ddf39c5a02e34294bbbf17bc54ca2410, type: 3}
---- !u!114 &7635704402938076438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4054407043497097032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33aabe1a2dec93349b06e6e5dc51bc06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PathCreation.Examples.PathFollower
-  pathCreator: {fileID: 0}
-  endOfPathInstruction: 0
-  speed: 5
-  initialDistanceTravelledOffset: 25
-  rotateAlongPath: 0
-  distanceTravelled: 0
+  m_Offset: {x: -0.000000059604645, y: 0.4375}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.50000006, y: 0.30555558}
+    oldSize: {x: 1.375, y: 2.25}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.375, y: 2.25}
+  m_EdgeRadius: 0
 --- !u!1 &7841909400200098324
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,7 +486,7 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8865505207833526517}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BulletHell.ProjectileEmitterAdvanced, BulletHell
         m_MethodName: ClearAllProjectiles
         m_Mode: 1

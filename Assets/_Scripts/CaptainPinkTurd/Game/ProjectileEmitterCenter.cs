@@ -1,3 +1,4 @@
+using CaptainPinkTurd.AnimationSystem;
 using CaptainPinkTurd.AudioSystem;
 using CaptainPinkTurd.Core.DesignPattern.SOAP.Events;
 using CaptainPinkTurd.Core.Extensions;
@@ -10,13 +11,20 @@ namespace CaptainPinkTurd.Game
     [RequireComponent(typeof(Collider2D))]
     public class ProjectileEmitterCenter : MonoBehaviour
     {
+        [Header("Projectile Center Configs")]
         [SerializeField] private int maxHealth = 3;
         [SerializeField] private float knockbackForce = 10f;
-        [SerializeField] private float hitStopDuration = 0.2f;
         [SerializeField] private LayerMask damageDealerLayers;
-        [SerializeField] private SoundData damagedSfx;
-        [SerializeField] private VoidEvent OnDamagedTaken;
+        
+        [Header("Impact Configs")]
+        [SerializeField] private float hitStopDuration = 0.2f;
         [SerializeField] private ShockwaveScreen impactShockwavePrefab;
+        [SerializeField] private BasicVfxAnimationController explosionVfx;
+        [SerializeField] private VoidEvent OnDamagedTaken;
+        
+        [Header("SFXs")]
+        [SerializeField] private SoundData damagedSfx;
+        [SerializeField] private SoundData explodedSfx;
         
         private Collider2D coll;
         private int currentHealth;
@@ -51,11 +59,14 @@ namespace CaptainPinkTurd.Game
             HitStop.Stop(this, hitStopDuration, () =>
             {
                 OnDamagedTaken.Raise();
-            
-                if (currentHealth <= 0)
-                {
-                    gameObject.SetActive(false);
-                }
+
+                if (currentHealth > 0) return;
+                
+                SoundManager.Instance.CreateSoundBuilder()
+                    .WithPosition(transform.position).WithRandomPitch().Play(explodedSfx);
+                ObjectPoolManager.Instance.SpawnObject(explosionVfx.gameObject, transform.position, Quaternion.identity,
+                    ObjectPoolManager.PoolType.VFX);
+                gameObject.SetActive(false);
             });
         }
     }

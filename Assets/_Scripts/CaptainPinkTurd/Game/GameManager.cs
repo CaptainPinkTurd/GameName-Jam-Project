@@ -22,9 +22,9 @@ namespace CaptainPinkTurd.Game
         [SerializeField] private UnityEvent onGameOver;
         
         [Header("Game Specific Variables")]
-        [SerializeField] private EDimensionEvent onDimensionChange;
+        [SerializeField] private EColorEvent onDimensionChange;
         [SerializeField] private SoundData dimensionSwitchSfx;
-        [SerializeField, ReadOnly] private EDimension currentDimension;
+        [SerializeField, ReadOnly] private EColor currentDimension;
             
         public GameEvent OnGameOver = new GameEvent();
 
@@ -39,7 +39,7 @@ namespace CaptainPinkTurd.Game
 
         private void Start()
         {
-            currentDimension = EDimension.Light;
+            currentDimension = EColor.Red;
             onDimensionChange.Raise(currentDimension);
         }
 
@@ -97,7 +97,7 @@ namespace CaptainPinkTurd.Game
         private bool isLightDimension;
         private void DimensionSwitch(InputAction.CallbackContext obj)
         {
-            currentDimension = currentDimension == EDimension.Light ? EDimension.Dark : EDimension.Light;
+            currentDimension = currentDimension == EColor.Red ? EColor.Blue : EColor.Red;
             SoundManager.Instance.CreateSoundBuilder().WithRandomPitch().Play(dimensionSwitchSfx);
             
             onDimensionChange.Raise(currentDimension);

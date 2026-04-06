@@ -27,7 +27,7 @@ namespace CaptainPinkTurd.AudioSystem
 
         public void Play(SoundData soundData) 
         {
-            if (soundData == null) 
+            if (soundData == null || !soundData.clip) 
             {
                 Debug.LogError("SoundData is null");
                 return;

@@ -33728,7 +33728,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 860899254}
         m_TargetAssemblyTypeName: CaptainPinkTurd.UnitSystem.PlayerUnit, UnitSystem
-        m_MethodName: OnDimensionChangeEvents
+        m_MethodName: OnColorChangeEvents
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

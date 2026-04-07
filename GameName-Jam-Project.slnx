@@ -9,11 +9,11 @@
   <Project Path="SpawnSystem.csproj" />
   <Project Path="AnimationSystem.csproj" />
   <Project Path="BulletHell.csproj" />
-  <Project Path="Game.csproj" />
   <Project Path="RPGSystem.csproj" />
   <Project Path="InteractionSystem.csproj" />
   <Project Path="InputSystem.csproj" />
   <Project Path="NewAssembly.csproj" />
+  <Project Path="Game.csproj" />
   <Project Path="CursorSystem.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="AudioSystem.csproj" />

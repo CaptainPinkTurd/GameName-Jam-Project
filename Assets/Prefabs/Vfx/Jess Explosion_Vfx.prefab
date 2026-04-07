@@ -140,6 +140,32 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
     Key: 0
+  onStartEvents:
+    m_PersistentCalls:
+      m_Calls: []
   vfxAnimation: {fileID: -3101584929684044008, guid: c0995a800589cf048b9151d7f73c5bbb, type: 3}
   disableSpriteRenderer: 1
   spawnFromPool: 1
+  vfxSfx:
+    clip: {fileID: 8300000, guid: e8bb5ad39bf7d8043a9e85682d0e23ad, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+    frequentSound: 0
+    mute: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    spread: 0
+    minDistance: 1
+    maxDistance: 500
+    ignoreListenerVolume: 0
+    ignoreListenerPause: 0
+    rolloffMode: 0

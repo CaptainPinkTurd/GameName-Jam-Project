@@ -1133,7 +1133,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!1 &215898554
 GameObject:
   m_ObjectHideFlags: 0
@@ -1605,7 +1605,7 @@ Transform:
   m_GameObject: {fileID: 419894775}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0000047683716, y: -5.0000014, z: -10}
+  m_LocalPosition: {x: 0, y: -5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2113,6 +2113,7 @@ GameObject:
   - component: {fileID: 597583524}
   - component: {fileID: 597583526}
   - component: {fileID: 597583525}
+  - component: {fileID: 597583527}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -30311,6 +30312,29 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &597583527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597583523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d2bfa70358549b2b763e86fdbf02df2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: RPGSystem::CaptainPinkTurd.RPG.TilemapFootstep
+  footstepDataByTile:
+  - Value:
+    - {fileID: 8300000, guid: 2509a2645901a914e873bb84c0b6a9e2, type: 3}
+    - {fileID: 8300000, guid: 40acc219ea89f9744824a5a0f02e58fc, type: 3}
+    - {fileID: 8300000, guid: c8167928b6f2afb4fa813837e4039a3a, type: 3}
+    - {fileID: 8300000, guid: 385f607647334c049a0e6706ff117071, type: 3}
+    - {fileID: 8300000, guid: 131f0079c62a1b047911b86d2d93e6aa, type: 3}
+    - {fileID: 8300000, guid: 9d7e7dd44d9ed66479b6a15322e5c26e, type: 3}
+    Key: {fileID: 11400000, guid: 810a9fd59fb8ca0458982aaad1a5dd7e, type: 2}
+  playerPosition: {fileID: 11400000, guid: 248e153abaa18f04cbb09ca24ff80b9b, type: 2}
+  footstepInterval: 0.4
 --- !u!1 &613879006
 GameObject:
   m_ObjectHideFlags: 0
@@ -33263,6 +33287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: NewAssembly::CaptainPinkTurd.TopDownController2D.PlayerFreeMovementTopDownController2D
   referenceMoveStats: {fileID: 11400000, guid: 5d10a3b50aa317c44a7659a06488188e, type: 2}
   movementInput: {fileID: 11400000, guid: 8c16d940aae91804b838e76399cff9f1, type: 2}
+  playerPosition: {fileID: 11400000, guid: 248e153abaa18f04cbb09ca24ff80b9b, type: 2}
 --- !u!114 &860899253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34826,7 +34851,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1251166020}
   - component: {fileID: 1251166021}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Player Sprite Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34892,7 +34917,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.25, y: 4.25}
+  m_Size: {x: 3, y: 4.7}
   m_EdgeRadius: 0
 --- !u!1 &1384243819
 GameObject:
@@ -47041,7 +47066,7 @@ Transform:
   m_GameObject: {fileID: 1605926864}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0000047683716, y: -5.0000014, z: -10}
+  m_LocalPosition: {x: 0, y: -5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -48352,9 +48377,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1758174980}
     m_Modifications:
+    - target: {fileID: 2116068834337822216, guid: d7d60994812a9364fbdba00003c7232d, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480241029066540474, guid: d7d60994812a9364fbdba00003c7232d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2850262848399454693, guid: d7d60994812a9364fbdba00003c7232d, type: 3}
       propertyPath: m_Name
       value: Blue Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 2850262848399454693, guid: d7d60994812a9364fbdba00003c7232d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8076568082924486313, guid: d7d60994812a9364fbdba00003c7232d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -48416,6 +48453,10 @@ PrefabInstance:
     - target: {fileID: 4054407043497097032, guid: 6fec9d3036bb47542b95fefb7133b457, type: 3}
       propertyPath: m_Name
       value: Turret
+      objectReference: {fileID: 0}
+    - target: {fileID: 4054407043497097032, guid: 6fec9d3036bb47542b95fefb7133b457, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6128480423557230193, guid: 6fec9d3036bb47542b95fefb7133b457, type: 3}
       propertyPath: m_LocalPosition.x

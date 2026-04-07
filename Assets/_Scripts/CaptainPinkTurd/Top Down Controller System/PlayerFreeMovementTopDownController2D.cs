@@ -12,6 +12,7 @@ namespace CaptainPinkTurd.TopDownController2D
         [Header("References")]
         [SerializeField] private PlayerTopDownMovementStats referenceMoveStats; 
         [SerializeField] private Vector2VariableSO movementInput;
+        [SerializeField] private Vector3VariableSO playerPosition;
         
         private PlayerTopDownMovementStats runtimeMoveStats;
         private InputSystemActions playerInputs;
@@ -57,6 +58,8 @@ namespace CaptainPinkTurd.TopDownController2D
             movementInput.Value = playerInputs.Player.Move.ReadValue<Vector2>();
 
             DashCheck();
+            
+            playerPosition.Value = transform.position;
         }
 
         private void FixedUpdate()

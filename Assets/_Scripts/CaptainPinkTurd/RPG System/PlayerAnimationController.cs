@@ -1,4 +1,3 @@
-using System;
 using CaptainPinkTurd.AnimationSystem;
 using CaptainPinkTurd.Core.Attributes;
 using CaptainPinkTurd.Core.CustomDataStructure;

@@ -1,3 +1,4 @@
+using CaptainPinkTurd.AudioSystem;
 using CaptainPinkTurd.Core.Utilities;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace CaptainPinkTurd.AnimationSystem
         [SerializeField] private AnimationClip vfxAnimation;
         [SerializeField] private bool disableSpriteRenderer;
         [SerializeField] private bool spawnFromPool;
+        [SerializeField] private SoundData vfxSfx; 
         
         public override int DefaultAnimationHash { get; set; }
         
@@ -29,6 +31,8 @@ namespace CaptainPinkTurd.AnimationSystem
         public void SetHurtVfxAnimation()
         {
             spriteRenderer.enabled = true;
+            
+            SoundManager.Instance.CreateSoundBuilder().WithPosition(transform.position).WithRandomPitch().Play(vfxSfx);
             PlayAnimation(Animator.StringToHash(vfxAnimation.name), onAnimationEnd: () =>
             {
                 if(disableSpriteRenderer) spriteRenderer.enabled = false;

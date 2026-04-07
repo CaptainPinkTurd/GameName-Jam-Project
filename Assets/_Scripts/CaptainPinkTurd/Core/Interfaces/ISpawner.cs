@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace CaptainPinkTurd.Core.Interfaces
@@ -6,8 +7,8 @@ namespace CaptainPinkTurd.Core.Interfaces
     {
         int CurrentActiveObjects { get; }
         void SetSpawnableState(bool value);
-        void SpawnObjects(int amount);
+        IEnumerator SpawnObjects(int amount);
         void DespawnObject(GameObject obj);
-        void DespawnObjects();
+        void DespawnAllObjects();
     }
 }

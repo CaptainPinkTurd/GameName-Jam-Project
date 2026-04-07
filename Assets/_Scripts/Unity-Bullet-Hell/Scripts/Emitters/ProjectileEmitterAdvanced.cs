@@ -19,7 +19,7 @@ namespace BulletHell
 
         [Foldout("Appearance", true)]
         [SerializeField] public bool UseColorPulse;
-        [ConditionalField(nameof(UseColorPulse)), SerializeField] protected float PulseSpeed;
+        [ConditionalField(nameof(UseColorPulse)), SerializeField] public float PulseSpeed;
         [ConditionalField(nameof(UseColorPulse)), SerializeField] protected bool UseStaticPulse;
 
         [Foldout("Spokes", true)]

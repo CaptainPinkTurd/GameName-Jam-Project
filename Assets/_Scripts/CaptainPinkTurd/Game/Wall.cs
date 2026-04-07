@@ -4,6 +4,7 @@ using CaptainPinkTurd.Core.Interfaces;
 using CaptainPinkTurd.Core.Struct;
 using CaptainPinkTurd.TopDownController2D;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace CaptainPinkTurd.Game
 {
@@ -29,6 +30,7 @@ namespace CaptainPinkTurd.Game
         private Rigidbody2D rb;
         private GameObject player;
         private Vector3 startPoint;
+        private SortingGroup bottomWallSortingGroup;
         
         private bool isMoving;
         private bool hasFinishedMoving;
@@ -36,6 +38,8 @@ namespace CaptainPinkTurd.Game
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
+            bottomWallSortingGroup = GetComponentInChildren<SortingGroup>();
+            bottomWallSortingGroup.enabled = false;
 
             startPoint = transform.position;
         }
@@ -98,7 +102,7 @@ namespace CaptainPinkTurd.Game
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (!blockingLayer.Contains(other.gameObject.layer) || !isMoving) return;
-            Debug.Log($"Collision with {other.gameObject.name}");
+            //Debug.Log($"Collision with {other.gameObject.name}");
 
             switch (behaviour)
             {
@@ -140,6 +144,7 @@ namespace CaptainPinkTurd.Game
             if (!targetPlayerLayer.Contains(other.gameObject.layer) || moveOnStart || hasFinishedMoving) return;
             
             isMoving = true;
+            bottomWallSortingGroup.enabled = true;
         }
     }
 }

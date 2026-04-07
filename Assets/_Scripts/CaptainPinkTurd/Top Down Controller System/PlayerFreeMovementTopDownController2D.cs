@@ -59,6 +59,8 @@ namespace CaptainPinkTurd.TopDownController2D
 
             DashCheck();
             
+            if (movementInput.Value == Vector2.zero) return;
+            
             playerPosition.Value = transform.position;
         }
 

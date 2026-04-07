@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Wave 1
   m_EditorClassIdentifier: 
   enemiesInWave:
-  - {fileID: 3080954748377526058, guid: 5f07ededadd3b0944951de183ca7ef40, type: 3}
+  - {fileID: 2297502924798621319, guid: 6fec9d3036bb47542b95fefb7133b457, type: 3}
   numberToSpawn: 1

@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using CaptainPinkTurd.Core;
 using CaptainPinkTurd.Core.Attributes;
 using CaptainPinkTurd.Core.Base;
 using CaptainPinkTurd.Core.Enum;
@@ -25,8 +27,10 @@ namespace CaptainPinkTurd.SpawnSystem.Procedural
         [SerializeField] private LootDropTableGameObjectProfile[] lootDropTableProfiles;
         [SerializeField, ReadOnly] private int chosenLootDropIndex;
         [SerializeField] private LayerMask blockingMask;
+        [SerializeField] private float spawnDelay = .5f;
         [SerializeField] private bool spawnOnStart = true;
-        [SerializeField] private int numberOfObjectsToSpawn = 3; //this seems redundant, might need to remove in the future
+        [ShowIf(nameof(spawnOnStart))]
+        [SerializeField] private int numberOfObjectsToSpawn = 3; 
         
         [Header("Respawn Config")]
         [SerializeField] private bool respawnOnInterval;
@@ -36,6 +40,7 @@ namespace CaptainPinkTurd.SpawnSystem.Procedural
         public Vector2 RegionCenter => (Vector2)transform.position + regionSize * 0.5f;
         public List<GameObject> SpawnedObjects { get; private set; } = new List<GameObject>();
         public int CurrentActiveObjects => SpawnedObjects.Count;
+        public GameEvent OnObjectDespawn { get; private set; } = new GameEvent();
         
         private bool spawnable = true;
         
@@ -69,7 +74,7 @@ namespace CaptainPinkTurd.SpawnSystem.Procedural
             if (!spawnOnStart) return;
 
             spawnable = true;
-            SpawnObjects(numberOfObjectsToSpawn);
+            StartCoroutine(SpawnObjects(numberOfObjectsToSpawn));
         }
 
         public void SetSpawnableState(bool spawnable) => this.spawnable = spawnable;
@@ -80,12 +85,12 @@ namespace CaptainPinkTurd.SpawnSystem.Procedural
             
             spawnable = true;
             StartCoroutine(CoroutineUtils.WaitForCondition(() => !Camera.main.IsRegionInView(RegionCenter, regionSize),
-                () => SpawnObjects(numberOfObjectsToSpawn)));
+                () => StartCoroutine(SpawnObjects(numberOfObjectsToSpawn))));
         }
 
-        public void SpawnObjects(int amount)
+        public IEnumerator SpawnObjects(int amount)
         {
-            if (!spawnable) return;
+            if (!spawnable) yield return null;
             
             spawnable = false;
             
@@ -127,10 +132,13 @@ namespace CaptainPinkTurd.SpawnSystem.Procedural
                     goBase.OnDisableEvents.Subscribe(() =>
                     {
                         SpawnedObjects.Remove(spawnedObject);
+                        OnObjectDespawn.Raise();
                     }, EPriority.Medium, false);
                 }
                 
                 SpawnedObjects.Add(spawnedObject);
+                
+                yield return new WaitForSeconds(spawnDelay);
             }
         }
 
@@ -138,9 +146,10 @@ namespace CaptainPinkTurd.SpawnSystem.Procedural
         {
             ObjectPoolManager.Instance.ReturnObjectToPool(obj);
             SpawnedObjects.Remove(obj);
+            OnObjectDespawn.Raise();
         }
 
-        public void DespawnObjects()
+        public void DespawnAllObjects()
         {
             if(!gameObject.scene.isLoaded) return;
             
@@ -148,6 +157,7 @@ namespace CaptainPinkTurd.SpawnSystem.Procedural
             foreach (var spawnedObject in tempObjects)
             {
                 ObjectPoolManager.Instance.ReturnObjectToPool(spawnedObject);
+                OnObjectDespawn.Raise();
             }
             SpawnedObjects.Clear();
         }

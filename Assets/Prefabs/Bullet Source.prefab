@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 2297502924798621319}
   - component: {fileID: 977134063565342598}
   - component: {fileID: 8729577052288307070}
+  - component: {fileID: 3495797987509185962}
   m_Layer: 0
   m_Name: Bullet Source
   m_TagString: Untagged
@@ -369,29 +370,6 @@ MonoBehaviour:
     ignoreListenerVolume: 0
     ignoreListenerPause: 0
     rolloffMode: 0
-  explodedSfx:
-    clip: {fileID: 8300000, guid: c6f721ecf24ce4145b8c7e919a8ba3d2, type: 3}
-    mixerGroup: {fileID: 0}
-    loop: 0
-    playOnAwake: 0
-    frequentSound: 0
-    mute: 0
-    bypassEffects: 0
-    bypassListenerEffects: 0
-    bypassReverbZones: 0
-    priority: 128
-    volume: 1
-    pitch: 1
-    panStereo: 0
-    spatialBlend: 0
-    reverbZoneMix: 1
-    dopplerLevel: 1
-    spread: 0
-    minDistance: 1
-    maxDistance: 500
-    ignoreListenerVolume: 0
-    ignoreListenerPause: 0
-    rolloffMode: 0
 --- !u!61 &8729577052288307070
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -438,6 +416,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.375, y: 2.25}
   m_EdgeRadius: 0
+--- !u!210 &3495797987509185962
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4054407043497097032}
+  m_Enabled: 1
+  m_SortingLayerID: 1542678865
+  m_SortingLayer: -3
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0
 --- !u!1 &7841909400200098324
 GameObject:
   m_ObjectHideFlags: 0

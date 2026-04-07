@@ -1619,7 +1619,7 @@ Transform:
   m_GameObject: {fileID: 419894775}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.24, y: -4.81, z: -10}
+  m_LocalPosition: {x: 1.78, y: -5.15, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -33244,7 +33244,7 @@ Transform:
   m_GameObject: {fileID: 860899243}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.24, y: -4.81, z: 0}
+  m_LocalPosition: {x: 1.78, y: -5.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -34111,6 +34111,7 @@ GameObject:
   - component: {fileID: 1137775444}
   - component: {fileID: 1137775442}
   - component: {fileID: 1137775441}
+  - component: {fileID: 1137775446}
   m_Layer: 0
   m_Name: Moving Wall Ignore Collision
   m_TagString: Untagged
@@ -35012,6 +35013,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!210 &1137775446
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1137775439}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0
 --- !u!1 &1157547465
 GameObject:
   m_ObjectHideFlags: 0
@@ -47596,7 +47610,7 @@ Transform:
   m_GameObject: {fileID: 1605926864}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.24000001, y: -4.81, z: -10}
+  m_LocalPosition: {x: 1.78, y: -5.15, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -49129,7 +49143,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 391243868622236357, guid: 862ffd48f68efec41a9f59e64c01ffbe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19.36
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 391243868622236357, guid: 862ffd48f68efec41a9f59e64c01ffbe, type: 3}
       propertyPath: m_LocalPosition.y

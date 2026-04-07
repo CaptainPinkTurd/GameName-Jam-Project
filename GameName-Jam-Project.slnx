@@ -20,8 +20,8 @@
   <Project Path="DOTween.Modules.csproj" />
   <Project Path="SceneArchitectureSystem.csproj" />
   <Project Path="HighScoreSystem.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
   <Project Path="PathCreator.csproj" />
   <Project Path="ImprovedTimers.csproj" />
   <Project Path="SequenceSystem.csproj" />
-  <Project Path="Assembly-CSharp.csproj" />
 </Solution>

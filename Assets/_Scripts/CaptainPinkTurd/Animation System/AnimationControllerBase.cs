@@ -37,6 +37,8 @@ namespace CaptainPinkTurd.AnimationSystem
         public void PlayAnimation(int animationHash, float midEventTimer = 0f, 
             Action onMidAnimation = null, Action onAnimationEnd = null, bool playInReverse = false, bool isClamp = false)
         {
+            if (!gameObject.activeInHierarchy || !gameObject.activeSelf) return;
+            
             if (playInReverse)
             {
                 var clip = GetAnimationClip(animationHash); // You must implement this
@@ -54,12 +56,15 @@ namespace CaptainPinkTurd.AnimationSystem
                 timer.OnMidTimer += onMidAnimation;
                 timer.OnTimerStop += () =>
                 {
-                    onAnimationEnd?.Invoke();
                     graph.Destroy();
                     animator.Rebind(); // Reset animator state
                     animator.Update(0f); // Force immediate update
-                    if(!isClamp && !isAnimationPaused) animator.CrossFade(DefaultAnimationHash, crossfadeTime, 0, 0f);
+                    if (!isClamp && !isAnimationPaused)
+                    {
+                        animator.CrossFade(DefaultAnimationHash, crossfadeTime, 0, 0f);
+                    }
                     timer.Dispose();
+                    onAnimationEnd?.Invoke(); //this order matter
                 };
                 timer.Start();
             }
@@ -70,9 +75,12 @@ namespace CaptainPinkTurd.AnimationSystem
                 timer.OnMidTimer += onMidAnimation;
                 timer.OnTimerStop += () =>
                 {
-                    onAnimationEnd?.Invoke();
-                    if(!isClamp && !isAnimationPaused) animator.CrossFade(DefaultAnimationHash, crossfadeTime);
+                    if (!isClamp && !isAnimationPaused)
+                    {
+                        animator.CrossFade(DefaultAnimationHash, crossfadeTime);
+                    }
                     timer.Dispose();
+                    onAnimationEnd?.Invoke(); //this order matter
                 };
                 timer.Start();
             }

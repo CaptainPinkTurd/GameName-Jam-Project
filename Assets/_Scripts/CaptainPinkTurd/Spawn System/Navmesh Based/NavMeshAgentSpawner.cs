@@ -1,7 +1,7 @@
 using System.Collections;
 using CaptainPinkTurd.Core.Utilities;
+using CaptainPinkTurd.Game.Enemy;
 using CaptainPinkTurd.SpawnSystem.LootDropSystem;
-using CaptainPinkTurd.UnitSystem;
 using UnityEngine;
 using UnityEngine.AI;
 

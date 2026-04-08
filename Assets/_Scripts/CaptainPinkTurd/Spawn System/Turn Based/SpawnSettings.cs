@@ -1,4 +1,4 @@
-using CaptainPinkTurd.UnitSystem;
+using CaptainPinkTurd.Game.Enemy;
 using UnityEngine;
 
 #if UNITY_EDITOR

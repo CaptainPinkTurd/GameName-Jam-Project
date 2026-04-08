@@ -36,6 +36,14 @@ namespace CaptainPinkTurd.UI.LayoutUI
             
             ObjectPoolManager.Instance.ReturnObjectToPool(layoutElement);
         }
+
+        public void RemoveLayoutElements(int elementCount)
+        {
+            for (int i = 0; i < elementCount; i++)
+            {
+                RemoveLayoutElement();
+            }
+        }
         public void RemoveLayoutElement(GameObject element)
         {
             if (!CurrentLayoutElements.Contains(element)) return;

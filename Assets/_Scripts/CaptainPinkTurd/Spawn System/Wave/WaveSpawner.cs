@@ -1,3 +1,5 @@
+using CaptainPinkTurd.Core.Attributes;
+using CaptainPinkTurd.Core.DesignPattern.SOAP.Events;
 using CaptainPinkTurd.SpawnSystem.Procedural;
 using UnityEngine;
 
@@ -7,6 +9,10 @@ namespace CaptainPinkTurd.SpawnSystem.Wave
     public class WaveSpawner : MonoBehaviour
     {
         [SerializeField] private int[] numberToSpawnEachWave;
+        [SerializeField] private bool loopToFirstWave = true;
+
+        [ShowIf(nameof(loopToFirstWave), false)]
+        [SerializeField] private VoidEvent onLastWaveEnd;
         
         private ProceduralObjectSpawner proceduralSpawner;
         private float timeBetweenSpawns;
@@ -39,9 +45,15 @@ namespace CaptainPinkTurd.SpawnSystem.Wave
         {
             if (proceduralSpawner.CurrentActiveObjects > 0) return;
             
-            waveIndex = (waveIndex + 1) % numberToSpawnEachWave.Length;
-
-            Spawn();
+            if(waveIndex == numberToSpawnEachWave.Length - 1 && !loopToFirstWave)
+            {
+                onLastWaveEnd.Raise();
+            }
+            else
+            {
+                waveIndex = (waveIndex + 1) % numberToSpawnEachWave.Length;
+                Spawn();
+            }
         }
     }
 }

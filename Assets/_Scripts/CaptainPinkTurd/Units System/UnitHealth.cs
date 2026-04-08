@@ -45,14 +45,8 @@ namespace CaptainPinkTurd.UnitSystem
         public bool IsInvincibilityFrameOn { get; private set; }
         public int CurrentHealth { get => currentHealth; private set => currentHealth = value; }
         public int MaxHealth { get => maxHealth; private set => maxHealth = value; }
-        public GameEvent<SDamageData> OnTakeDamage { get; private set; }
-        public GameEvent<SDamageData> OnDeath { get; private set; }
-        
-        private void Awake()
-        {
-            OnTakeDamage = new GameEvent<SDamageData>();
-            OnDeath = new GameEvent<SDamageData>();
-        }
+        public GameEvent<SDamageData> OnTakeDamage { get; private set; } = new GameEvent<SDamageData>();
+        public GameEvent<SDamageData> OnDeath { get; private set; } = new GameEvent<SDamageData>();
 
         private void OnEnable()
         {

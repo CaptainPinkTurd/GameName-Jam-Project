@@ -1,4 +1,3 @@
-using CaptainPinkTurd.Game;
 using CaptainPinkTurd.ImprovedTimers;
 using CaptainPinkTurd.UI.TextUI;
 using TMPro;
@@ -24,7 +23,7 @@ namespace CaptainPinkTurd.UI.TimerDisplayers
         protected virtual void OnEnable()
         {
             timer.Start();
-            GameManager.Instance.OnGameOver.Subscribe(StopTimer);
+            //GameManager.Instance.OnGameOver.Subscribe(StopTimer);
         }
 
         protected virtual void OnDisable()
@@ -32,7 +31,7 @@ namespace CaptainPinkTurd.UI.TimerDisplayers
             timer.Stop();
             
             if(!gameObject.scene.isLoaded) return;
-            GameManager.Instance.OnGameOver.Unsubscribe(StopTimer);
+            //GameManager.Instance.OnGameOver.Unsubscribe(StopTimer);
         }
 
         private void Update()

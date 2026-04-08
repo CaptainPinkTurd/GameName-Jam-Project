@@ -4,10 +4,11 @@ using CaptainPinkTurd.Core.DesignPattern.SOAP.Events;
 using CaptainPinkTurd.Core.Enum;
 using CaptainPinkTurd.Core.Extensions;
 using CaptainPinkTurd.Core.Struct;
-using CaptainPinkTurd.Game;
+using CaptainPinkTurd.Game.Enemy;
+using CaptainPinkTurd.UnitSystem;
 using UnityEngine;
 
-namespace CaptainPinkTurd.UnitSystem
+namespace CaptainPinkTurd.Game.Player
 {
     public class PlayerUnit : UnitBase
     {
@@ -15,7 +16,7 @@ namespace CaptainPinkTurd.UnitSystem
         [SerializeField] private VoidEvent onPlayerDamaged;
         [SerializeField] private SerializeKeyValuePair<EColor, PlayerStateInfo>[] playerStates;
         [SerializeField] private GameObject currentModel;
-
+        
         private SpriteRenderer spriteRenderer;
 
         protected override void Awake()
@@ -45,12 +46,12 @@ namespace CaptainPinkTurd.UnitSystem
             }
         }
 
-        internal override void OnDamaged(SDamageData damageData)
+        public override void OnDamaged(SDamageData damageData)
         {
             onPlayerDamaged.Raise();
         }
 
-        internal override void OnDeath(SDamageData damageData)
+        public override void OnDeath(SDamageData damageData)
         {
             StopAllCoroutines();
             

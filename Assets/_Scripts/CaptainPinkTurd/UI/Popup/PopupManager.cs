@@ -4,7 +4,6 @@ using UnityEngine;
 using CaptainPinkTurd.Core.DesignPattern.Singleton;
 using CaptainPinkTurd.Core.Enum;
 using CaptainPinkTurd.Core.Extensions;
-using CaptainPinkTurd.Game;
 
 namespace CaptainPinkTurd.UI.Popup
 {
@@ -31,13 +30,13 @@ namespace CaptainPinkTurd.UI.Popup
         }
         private void OnEnable()
         {
-            GameManager.Instance.OnGameOver.Subscribe(OnGameOverEvents, EPriority.VeryLow);
+            //GameManager.Instance.OnGameOver.Subscribe(OnGameOverEvents, EPriority.VeryLow);
         }
         private void OnDisable()
         {
             if (!gameObject.scene.isLoaded) return;
             
-            GameManager.Instance.OnGameOver.Unsubscribe(OnGameOverEvents);
+            //GameManager.Instance.OnGameOver.Unsubscribe(OnGameOverEvents);
         }
         private void OnGameOverEvents()
         {

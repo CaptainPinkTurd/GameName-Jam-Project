@@ -4,6 +4,16 @@ namespace CaptainPinkTurd.Scene.Manager
 {
     public class LevelManager : MonoBehaviour
     {
+        [SerializeField] private int nextLevel;
+
+        public void NextLevel()
+        {
+            SceneController.Instance
+                .NewTransition()
+                .Load(SceneDatabase.Slots.SessionContent, $"{SceneDatabase.Scenes.Level} {nextLevel}", true)
+                .WithOverlay()
+                .Perform();
+        }
         public void EndSession()
         {
             SceneController.Instance

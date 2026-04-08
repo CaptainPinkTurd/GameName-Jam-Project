@@ -11,7 +11,7 @@ namespace CaptainPinkTurd.UnitSystem
     public abstract class UnitBase : GameObjectBase
     {
         [Header("Unit Base Config")] 
-        [SerializeField][InlineScriptableObject] internal UnitInfo unitInfo;
+        [SerializeField][InlineScriptableObject] public UnitInfo unitInfo;
         [SerializeField] internal UnitHealth unitHealth;
         [SerializeField] private BoolEvent onKnockback; 
 
@@ -48,7 +48,7 @@ namespace CaptainPinkTurd.UnitSystem
         {
             onKnockback.Raise(isKnockback);
         }
-        internal abstract void OnDamaged(SDamageData damageData);
-        internal abstract void OnDeath(SDamageData damageData);
+        public abstract void OnDamaged(SDamageData damageData);
+        public abstract void OnDeath(SDamageData damageData);
     }
 }

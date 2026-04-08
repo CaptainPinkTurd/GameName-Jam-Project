@@ -1,6 +1,6 @@
 using CaptainPinkTurd.Core.Struct;
 
-namespace CaptainPinkTurd.UnitSystem
+namespace CaptainPinkTurd.Game.Enemy
 {
     public class DummyUnit : EnemyUnitBase
     {
@@ -9,7 +9,7 @@ namespace CaptainPinkTurd.UnitSystem
             
         }
 
-        internal override void OnDeath(SDamageData damageData)
+        public override void OnDeath(SDamageData damageData)
         {
             base.OnDeath(damageData);
             

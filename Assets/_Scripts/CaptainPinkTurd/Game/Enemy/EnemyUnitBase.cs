@@ -1,13 +1,14 @@
-using System.Collections.Generic;
 using CaptainPinkTurd.Core.DesignPattern;
 using CaptainPinkTurd.Core.DesignPattern.SOAP.Events;
 using CaptainPinkTurd.Core.Extensions;
 using CaptainPinkTurd.Core.Struct;
 using CaptainPinkTurd.Core.Utilities;
+using CaptainPinkTurd.Game.Player;
 using CaptainPinkTurd.UI;
+using CaptainPinkTurd.UnitSystem;
 using UnityEngine;
 
-namespace CaptainPinkTurd.UnitSystem
+namespace CaptainPinkTurd.Game.Enemy
 {
     public abstract class EnemyUnitBase : UnitBase
     {
@@ -67,12 +68,12 @@ namespace CaptainPinkTurd.UnitSystem
             Target = null;
         }
 
-        internal override void OnDamaged(SDamageData damageData)
+        public override void OnDamaged(SDamageData damageData)
         {
             onEnemyDamaged.Raise();
         }
 
-        internal override void OnDeath(SDamageData damageData)
+        public override void OnDeath(SDamageData damageData)
         {
             StopAllCoroutines();
 

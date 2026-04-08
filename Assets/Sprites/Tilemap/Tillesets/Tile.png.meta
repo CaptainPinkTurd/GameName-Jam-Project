@@ -288,7 +288,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tile_1
+      name: 1
       rect:
         serializedVersion: 2
         x: 16
@@ -310,7 +310,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tile_2
+      name: 2
       rect:
         serializedVersion: 2
         x: 32
@@ -376,7 +376,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tile_5
+      name: 3
       rect:
         serializedVersion: 2
         x: 80
@@ -398,7 +398,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tile_6
+      name: 10
       rect:
         serializedVersion: 2
         x: 112
@@ -728,7 +728,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tile_21
+      name: 11
       rect:
         serializedVersion: 2
         x: 112
@@ -1256,7 +1256,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tile_45
+      name: 4
       rect:
         serializedVersion: 2
         x: 16
@@ -1278,7 +1278,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tile_46
+      name: 5
       rect:
         serializedVersion: 2
         x: 32
@@ -1344,7 +1344,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tile_49
+      name: 6
       rect:
         serializedVersion: 2
         x: 80
@@ -1586,7 +1586,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tile_60
+      name: 7
       rect:
         serializedVersion: 2
         x: 16
@@ -1608,7 +1608,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tile_61
+      name: 8
       rect:
         serializedVersion: 2
         x: 32
@@ -1674,7 +1674,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tile_64
+      name: 9
       rect:
         serializedVersion: 2
         x: 80
@@ -1718,7 +1718,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tile_66
+      name: 12
       rect:
         serializedVersion: 2
         x: 112
@@ -2378,7 +2378,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tile_96
+      name: 13
       rect:
         serializedVersion: 2
         x: 16
@@ -2400,7 +2400,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tile_97
+      name: 14
       rect:
         serializedVersion: 2
         x: 32
@@ -2466,7 +2466,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tile_100
+      name: 15
       rect:
         serializedVersion: 2
         x: 80
@@ -5561,10 +5561,23 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":2,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
+      1: 9046047427341356226
+      10: 4280891998608119737
+      11: -725975062686601681
+      12: -384593314
+      13: -1740833069
+      14: 1278208020
+      15: 479690898
+      2: -3938865984922550181
+      3: -7237844759737453513
+      4: -1257057618504266051
+      5: -5847239047431838765
+      6: 1738381236663462924
+      7: 1839629175
+      8: -575604033
+      9: -309601573
       Tile_0: -9163426285224168042
-      Tile_1: 9046047427341356226
       Tile_10: 3426138664691223504
-      Tile_100: 479690898
       Tile_101: -1529517697
       Tile_102: -1978235044
       Tile_103: 1238189542
@@ -5673,7 +5686,6 @@ TextureImporter:
       Tile_197: -1175939259
       Tile_198: -1352137694
       Tile_199: -460176448
-      Tile_2: -3938865984922550181
       Tile_20: 4409537238421840551
       Tile_200: -241273508
       Tile_201: -302521537
@@ -5685,7 +5697,6 @@ TextureImporter:
       Tile_207: -2135317029
       Tile_208: 641606572
       Tile_209: -779743932
-      Tile_21: -725975062686601681
       Tile_210: 633183278
       Tile_211: 1144141162
       Tile_212: 1379837668
@@ -5741,12 +5752,8 @@ TextureImporter:
       Tile_42: -1486680364512509939
       Tile_43: -5504842313667123701
       Tile_44: -1413347996266015342
-      Tile_45: -1257057618504266051
-      Tile_46: -5847239047431838765
       Tile_47: -3576961533262574926
       Tile_48: 7741809829129282474
-      Tile_49: 1738381236663462924
-      Tile_5: -7237844759737453513
       Tile_50: -1476986682008961990
       Tile_51: 6773580706452124538
       Tile_52: -2054583424
@@ -5757,14 +5764,9 @@ TextureImporter:
       Tile_57: 406758922
       Tile_58: 2048916513
       Tile_59: 2132255347
-      Tile_6: 4280891998608119737
-      Tile_60: 1839629175
-      Tile_61: -575604033
       Tile_62: 1882453987
       Tile_63: -1236784353
-      Tile_64: -309601573
       Tile_65: 1326531818
-      Tile_66: -384593314
       Tile_67: 1411094284
       Tile_68: -1696564965
       Tile_69: -911171893
@@ -5797,8 +5799,6 @@ TextureImporter:
       Tile_93: -2144332374
       Tile_94: -1943116644
       Tile_95: -1360495051
-      Tile_96: -1740833069
-      Tile_97: 1278208020
       Tile_98: -903961670
       Tile_99: -1499654466
   mipmapLimitGroupName: 

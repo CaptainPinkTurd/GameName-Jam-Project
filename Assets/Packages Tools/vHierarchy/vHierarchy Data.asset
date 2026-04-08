@@ -590,6 +590,9 @@ MonoBehaviour:
       globalObjectIdString: GlobalObjectId_V1-2-40fe46b68cd1a594f9e442311d0385c4-1090727510-0
   - _go: {fileID: 0}
     globalId:
+      globalObjectIdString: GlobalObjectId_V1-2-40fe46b68cd1a594f9e442311d0385c4-970551222-0
+  - _go: {fileID: 0}
+    globalId:
       globalObjectIdString: GlobalObjectId_V1-2-c2341d5d3a0077742b6d4280d8a5b0b7-197916426-0
   - _go: {fileID: 0}
     globalId:

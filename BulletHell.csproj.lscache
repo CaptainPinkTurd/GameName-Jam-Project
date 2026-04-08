@@ -368,6 +368,7 @@ Library/ScriptAssemblies/
  UnityEditor.UI.dll
  UnityEngine.UI.dll
 Temp/bin/Debug/
+ AudioSystem.dll
  Core.dll
  EffectSystem.dll
 

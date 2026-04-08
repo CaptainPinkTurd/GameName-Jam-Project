@@ -15,5 +15,10 @@ namespace CaptainPinkTurd.Scene.Manager
                 .WithOverlay()
                 .Perform();
         }
+
+        public void QuitGame()
+        {
+            Application.Quit();
+        }
     }
 }

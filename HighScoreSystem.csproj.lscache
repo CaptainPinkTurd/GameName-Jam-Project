@@ -364,9 +364,18 @@ Library/ScriptAssemblies/
  UnityEditor.UI.dll
  UnityEngine.UI.dll
 Temp/bin/Debug/
+ AnimationSystem.dll
+ AudioSystem.dll
+ BulletHell.dll
  Core.dll
+ DOTween.Modules.dll
+ EffectSystem.dll
  Game.dll
+ ImprovedTimers.dll
+ InputSystem.dll
+ NewAssembly.dll
  UI.dll
+ UnitSystem.dll
 
 [analyzerReferences]
 ../../../../Program Files/Unity/Hub/Editor/6000.3.10f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/

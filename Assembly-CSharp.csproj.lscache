@@ -52,16 +52,17 @@ TemporaryDependencyNodeTargetIdentifier=netstandard2.1
 /warnaserror+:NU1605
 
 [sourceFiles]
-Assets/_Scripts/
- Jess/Hover_Effect.cs
- PathCreator/Examples/Scripts/
-  CylinderMeshCreator.cs
-  GeneratePathExample.cs
-  PathFollower.cs
-  PathPlacer.cs
-  PathSceneTool.cs
-  PathSpawner.cs
-  RoadMeshCreator.cs
+Assets/_Scripts/Jess/
+ Button_Manager.cs
+ Hover_Effect.cs
+Assets/_Scripts/PathCreator/Examples/Scripts/
+ CylinderMeshCreator.cs
+ GeneratePathExample.cs
+ PathFollower.cs
+ PathPlacer.cs
+ PathSceneTool.cs
+ PathSpawner.cs
+ RoadMeshCreator.cs
 Temp/obj/Assembly-CSharp/.NETStandard,Version=v2.1.AssemblyAttributes.cs
 
 [metadataReferences]

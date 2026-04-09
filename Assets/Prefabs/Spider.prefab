@@ -304,9 +304,8 @@ MonoBehaviour:
       m_Calls: []
   maxHealth: 3
   knockbackForce: 30
-  damageDealerLayers:
-    serializedVersion: 2
-    m_Bits: 192
+  scorePopup: {fileID: 2206898398476630954, guid: 7c1beffc9e5c0194bbb9929cd72f8604, type: 3}
+  scoreTextTargetHeight: 2.25
   advancedEmitter: {fileID: 7339542877474813584}
   projectileColorChangeIntervalMin: 2.5
   projectileColorChangeIntervalMax: 5

@@ -1,21 +1,25 @@
 using BulletHell;
 using CaptainPinkTurd.AnimationSystem;
 using CaptainPinkTurd.AudioSystem;
+using CaptainPinkTurd.Core;
 using CaptainPinkTurd.Core.DesignPattern.SOAP.Events;
 using CaptainPinkTurd.Core.Extensions;
 using CaptainPinkTurd.Core.Interfaces;
+using CaptainPinkTurd.Core.Struct;
 using CaptainPinkTurd.Core.Utilities;
+using CaptainPinkTurd.UI.Popup;
 using UnityEngine;
 
 namespace CaptainPinkTurd.Game
 {
     [RequireComponent(typeof(Collider2D))]
-    public abstract class ProjectileEmitterCenter : AnimationControllerBase
+    public abstract class ProjectileEmitterCenter : AnimationControllerBase, IDamageable
     {
         [Header("Projectile Center Configs")]
         [SerializeField] private int maxHealth = 3;
         [SerializeField] private float knockbackForce = 10f;
-        [SerializeField] private LayerMask damageDealerLayers;
+        [SerializeField] private PopupText scorePopup;
+        [SerializeField] private float scoreTextTargetHeight = 1.5f;
         
         [Header("Projectile Emitter Configs")]
         [SerializeField] protected ProjectileEmitterAdvanced advancedEmitter;
@@ -32,7 +36,11 @@ namespace CaptainPinkTurd.Game
         [SerializeField] private SoundData damagedSfx;
         
         public Collider2D Coll { get; private set; }
-        private int currentHealth;
+        
+        public int CurrentHealth { get; private set; }
+        public int MaxHealth => maxHealth;
+        public GameEvent<SDamageData> OnTakeDamage { get; } = new GameEvent<SDamageData>();
+        public GameEvent<SDamageData> OnDeath { get; } = new GameEvent<SDamageData>();
 
         public override int DefaultAnimationHash { get; set; }
 
@@ -48,7 +56,7 @@ namespace CaptainPinkTurd.Game
         {
             base.OnEnable();
             
-            currentHealth = maxHealth;
+            CurrentHealth = maxHealth;
 
             ProjectileEmitterSetup();
         }
@@ -59,14 +67,12 @@ namespace CaptainPinkTurd.Game
             advancedEmitter.OutlinePulseSpeed = advancedEmitter.PulseSpeed;
             
         }
-
-        private void OnTriggerEnter2D(Collider2D other)
+        
+        public void TakeDamage(SDamageData damageData)
         {
-            if (!damageDealerLayers.Contains(other.gameObject.layer) || !enabled) return;
-            
-            if(other.gameObject.TryGetComponentInHierarchy(out IDamageable damageable))
+            if(damageData.Source.TryGetComponentInHierarchy(out IDamageable damageable))
             {
-                var knockbackDir = (other.transform.position - transform.position).normalized;
+                var knockbackDir = (damageData.Source.transform.position - transform.position).normalized;
                 damageable.WithKnockback(knockbackDir * knockbackForce, 0);
             }
             
@@ -74,18 +80,20 @@ namespace CaptainPinkTurd.Game
                 .WithPosition(transform.position).WithRandomPitch().Play(damagedSfx);
             ObjectPoolManager.Instance.SpawnObject(impactShockwavePrefab.gameObject, transform.position, 
                 Quaternion.identity, ObjectPoolManager.PoolType.GameObject);
-            currentHealth--;
+            CurrentHealth -= damageData.Amount;
             
             HitStop.Stop(this, hitStopDuration, () =>
             {
                 OnDamagedTaken.Raise();
 
-                if (currentHealth > 0) return;
+                if (CurrentHealth > 0) return;
                 
+                scorePopup.InitializeText("100", transform.position, scoreTextTargetHeight);
                 ObjectPoolManager.Instance.SpawnObject(explosionVfx.gameObject, transform.position, Quaternion.identity,
                     ObjectPoolManager.PoolType.VFX);
                 gameObject.SetActive(false);
             });
         }
+        public Transform GetTransform() => transform;
     }
 }

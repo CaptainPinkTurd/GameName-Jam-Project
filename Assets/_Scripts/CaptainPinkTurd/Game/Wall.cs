@@ -26,6 +26,7 @@ namespace CaptainPinkTurd.Game
         [Header("Collision")]
         [SerializeField] private LayerMask targetPlayerLayer;
         [SerializeField] private LayerMask blockingLayer;
+        [SerializeField] private LayerMask instantKillLayers;
 
         private Rigidbody2D rb;
         private GameObject player;
@@ -141,6 +142,12 @@ namespace CaptainPinkTurd.Game
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            if (instantKillLayers.Contains(other.gameObject.layer) && 
+                other.gameObject.TryGetComponentInHierarchy(out IDamageable damageable))
+            {
+                damageable.TakeDamage(new SDamageData(damageable.MaxHealth, gameObject));
+            }
+            
             if (!targetPlayerLayer.Contains(other.gameObject.layer) || moveOnStart || hasFinishedMoving) return;
             
             isMoving = true;

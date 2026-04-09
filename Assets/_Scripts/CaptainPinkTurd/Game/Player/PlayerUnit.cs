@@ -1,8 +1,10 @@
 using System;
+using CaptainPinkTurd.AnimationSystem;
 using CaptainPinkTurd.Core.CustomDataStructure;
 using CaptainPinkTurd.Core.DesignPattern.SOAP.Events;
 using CaptainPinkTurd.Core.Enum;
 using CaptainPinkTurd.Core.Extensions;
+using CaptainPinkTurd.Core.Interfaces;
 using CaptainPinkTurd.Core.Struct;
 using CaptainPinkTurd.Game.Enemy;
 using CaptainPinkTurd.UnitSystem;
@@ -15,6 +17,8 @@ namespace CaptainPinkTurd.Game.Player
         [Header("Player Unit Properties")]
         [SerializeField] private VoidEvent onPlayerDamaged;
         [SerializeField] private SerializeKeyValuePair<EColor, PlayerStateInfo>[] playerStates;
+        [SerializeField] private LayerMask enemyLayers;
+        [SerializeField] private BasicVfxAnimationController colorSwitchVfx;
         
         public void OnColorChangeEvents(EColor color)
         {
@@ -24,6 +28,7 @@ namespace CaptainPinkTurd.Game.Player
                 {
                     state.Value.model.SetActive(false);
                 }
+                colorSwitchVfx.gameObject.SetActive(true);
                 playerState.model.SetActive(true);
 
                 gameObject.layer = playerState.layerValue;
@@ -57,6 +62,14 @@ namespace CaptainPinkTurd.Game.Player
             
             //order matter for this one cause the game over popup needs to be enabled first to get the high score
             GameManager.Instance.OnGameOver.Raise(); 
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (!enemyLayers.Contains(other.gameObject.layer)) return;
+            if (!other.gameObject.TryGetComponentInHierarchy(out IDamageable enemyDamageable)) return;
+            
+            enemyDamageable.TakeDamage(new SDamageData(1, gameObject));
         }
     }
 

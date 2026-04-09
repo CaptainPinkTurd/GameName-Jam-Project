@@ -34,8 +34,15 @@ namespace CaptainPinkTurd.AudioSystem
             }
             
             if (!soundManager.CanPlaySound(soundData)) return;
-            
+
             SoundEmitter soundEmitter = soundManager.Get();
+            
+            if (!soundEmitter)
+            {
+                Debug.LogError("No sound emitters available");
+                return;
+            }
+            
             soundEmitter.Initialize(soundData);
             soundEmitter.transform.position = position;
             soundEmitter.transform.parent = soundManager.transform;

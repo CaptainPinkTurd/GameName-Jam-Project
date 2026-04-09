@@ -104,6 +104,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -236,7 +237,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &5829466071897134553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,7 +271,10 @@ MonoBehaviour:
   images:
   - {fileID: 8076647962427580261}
   - {fileID: 6025072091183606562}
-  heightOffsetMultiplier: 0.75
+  popupTime: 0.25
+  popupEaseType: 1
+  fadeOutTime: 0.5
+  fadeOutEaseType: 14
 --- !u!1 &4866319352331940878
 GameObject:
   m_ObjectHideFlags: 0

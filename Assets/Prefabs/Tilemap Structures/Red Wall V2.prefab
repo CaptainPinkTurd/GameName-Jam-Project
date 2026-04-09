@@ -283,7 +283,10 @@ MonoBehaviour:
     m_Bits: 128
   blockingLayer:
     serializedVersion: 2
-    m_Bits: 513
+    m_Bits: 1
+  instantKillLayers:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!19719996 &6474979262805058745
 TilemapCollider2D:
   m_ObjectHideFlags: 0

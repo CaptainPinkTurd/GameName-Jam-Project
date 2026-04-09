@@ -8,7 +8,6 @@ namespace CaptainPinkTurd.AnimationSystem
     {
         [Header("Vfx Animation Controller Configs")]
         [SerializeField] private AnimationClip vfxAnimation;
-        [SerializeField] private bool disableSpriteRenderer;
         [SerializeField] private bool spawnFromPool;
         [SerializeField] private SoundData vfxSfx; 
         
@@ -16,7 +15,7 @@ namespace CaptainPinkTurd.AnimationSystem
         
         protected override void OnEnable()
         {
-            OnEnableEvents.Subscribe(SetHurtVfxAnimation);
+            OnEnableEvents.Subscribe(PlayVfxAnimation);
             
             base.OnEnable();
         }
@@ -25,18 +24,23 @@ namespace CaptainPinkTurd.AnimationSystem
         {
             base.OnDisable();
             
-            OnEnableEvents.Unsubscribe(SetHurtVfxAnimation);
+            OnEnableEvents.Unsubscribe(PlayVfxAnimation);
         }
 
-        public void SetHurtVfxAnimation()
+        private void PlayVfxAnimation()
         {
-            spriteRenderer.enabled = true;
-            
-            SoundManager.Instance.CreateSoundBuilder().WithPosition(transform.position).WithRandomPitch().Play(vfxSfx);
+            SoundManager.Instance.CreateSoundBuilder()
+                .WithPosition(transform.position).WithRandomPitch().Play(vfxSfx);
             PlayAnimation(Animator.StringToHash(vfxAnimation.name), onAnimationEnd: () =>
             {
-                if(disableSpriteRenderer) spriteRenderer.enabled = false;
-                if(spawnFromPool) ObjectPoolManager.Instance.ReturnObjectToPool(gameObject);
+                if(spawnFromPool)
+                {
+                    ObjectPoolManager.Instance.ReturnObjectToPool(gameObject);
+                }
+                else
+                {
+                    gameObject.SetActive(false);
+                }
             });
         }
     }

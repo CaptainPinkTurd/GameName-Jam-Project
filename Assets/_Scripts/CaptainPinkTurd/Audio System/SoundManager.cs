@@ -46,9 +46,9 @@ namespace CaptainPinkTurd.AudioSystem
             return true;
         }
 
-        public SoundEmitter Get() 
+        public SoundEmitter Get()
         {
-            return soundEmitterPool.Get();
+            return soundEmitterPool?.Get();
         }
 
         public void ReturnToPool(SoundEmitter soundEmitter) 

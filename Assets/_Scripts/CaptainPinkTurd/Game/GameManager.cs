@@ -26,7 +26,6 @@ namespace CaptainPinkTurd.Game
         
         [Header("Game Specific Variables")]
         [SerializeField] private EColorEvent onDimensionChange;
-        [SerializeField] private SoundData dimensionSwitchSfx;
         [SerializeField, ReadOnly] private EColor currentDimension;
             
         public GameEvent OnGameOver = new GameEvent();
@@ -103,8 +102,6 @@ namespace CaptainPinkTurd.Game
         private void DimensionSwitch(InputAction.CallbackContext obj)
         {
             currentDimension = currentDimension == EColor.Red ? EColor.Blue : EColor.Red;
-            SoundManager.Instance.CreateSoundBuilder().WithRandomPitch().Play(dimensionSwitchSfx);
-            
             onDimensionChange.Raise(currentDimension);
         }
 

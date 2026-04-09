@@ -66,7 +66,6 @@ Assets/_Scripts/CaptainPinkTurd/Game/
   PlayerHealthUI.cs
   PlayerUnit.cs
   PlayerUnitInfo.cs
- ProjectileEmitterCenter.cs
  Turret.cs
  Wall.cs
 Temp/obj/Game/.NETStandard,Version=v2.1.AssemblyAttributes.cs

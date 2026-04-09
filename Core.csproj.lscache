@@ -138,6 +138,7 @@ Assets/_Scripts/CaptainPinkTurd/Core/
   EModifierTypeExtensions.cs
   FloatExtensions.cs
   GameObjectExtensions.cs
+  GradientExtensions.cs
   LayerMaskExtensions.cs
   ListExtensions.cs
   MathfExtension.cs

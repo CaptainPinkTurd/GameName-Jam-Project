@@ -718,19 +718,7 @@ MonoBehaviour:
     Key: 0
   onStartEvents:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5256482818957638276}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   idleAnimationClips:
   - Value: {fileID: -1331522051837801268, guid: ac5806b678f6f6a458eee1abd902fc1c, type: 3}
     Key: 2
@@ -903,7 +891,6 @@ MonoBehaviour:
       model: {fileID: 5256482818957638276}
       layerValue: 7
     Key: 1
-  currentModel: {fileID: 2770929056912956708}
 --- !u!114 &713105100355585551
 MonoBehaviour:
   m_ObjectHideFlags: 0

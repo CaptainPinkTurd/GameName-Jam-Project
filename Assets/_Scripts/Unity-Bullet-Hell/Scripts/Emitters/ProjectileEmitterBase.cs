@@ -47,7 +47,7 @@ namespace BulletHell
         [Foldout("Modifiers", true)]
         [Header("Projectile Damage")]
         public int Damage = 1;
-        public SerializeKeyValuePair<Color, LayerMask>[] DamageableMasks;
+        public SerializeKeyValuePair<Color32, LayerMask>[] DamageableMasks;
         public ImpactType ImpactType;
         
         [Header("Projectile Physics")]

@@ -56,6 +56,8 @@ namespace CaptainPinkTurd.Game
         private void ProjectileEmitterSetup()
         {
             advancedEmitter.PulseSpeed = Random.Range(projectileColorChangeIntervalMin, projectileColorChangeIntervalMax);
+            advancedEmitter.OutlinePulseSpeed = advancedEmitter.PulseSpeed;
+            
         }
 
         private void OnTriggerEnter2D(Collider2D other)

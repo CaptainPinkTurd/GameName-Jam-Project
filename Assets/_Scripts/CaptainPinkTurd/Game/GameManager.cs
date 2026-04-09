@@ -5,6 +5,9 @@ using UnityEngine;
 using CaptainPinkTurd.Core.DesignPattern.Singleton;
 using CaptainPinkTurd.Core.DesignPattern.SOAP.Events;
 using CaptainPinkTurd.Core.Enum;
+using CaptainPinkTurd.Core.Interfaces;
+using CaptainPinkTurd.Core.Struct;
+using CaptainPinkTurd.Game.Player;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -94,6 +97,8 @@ namespace CaptainPinkTurd.Game
         #region GAME SPECIFIC REGION
 
         private InputAction switchDimensionAction;
+        private PlayerUnit playerUnit;
+        private int playerCurrentHealth;
         private bool isLightDimension;
         private void DimensionSwitch(InputAction.CallbackContext obj)
         {
@@ -101,6 +106,27 @@ namespace CaptainPinkTurd.Game
             SoundManager.Instance.CreateSoundBuilder().WithRandomPitch().Play(dimensionSwitchSfx);
             
             onDimensionChange.Raise(currentDimension);
+        }
+
+        public void OnLevelSceneLoaded()
+        {
+            onDimensionChange.Raise(currentDimension);
+            
+            playerUnit = FindAnyObjectByType<PlayerUnit>();
+
+            if (!playerUnit || !playerUnit.TryGetComponent(out IDamageable playerDamageable)) return;
+            
+            playerDamageable = playerUnit.GetComponent<IDamageable>();
+            
+            playerUnit.OnDisableEvents.Subscribe(() =>
+            {
+                playerCurrentHealth = playerDamageable.CurrentHealth;
+            }, rememberListener: false);
+
+            if (playerCurrentHealth <= 0) return;
+            
+            var damageHasTaken = Mathf.Abs(playerCurrentHealth - playerDamageable.CurrentHealth);
+            playerDamageable.TakeDamage(new SDamageData(damageHasTaken, gameObject));
         }
 
         #endregion

@@ -461,6 +461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8557525f4d7e43f595b5054f922463c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: SceneArchitectureSystem::CaptainPinkTurd.Scene.SceneController
+  onSceneLoaded: {fileID: 11400000, guid: f615d61eb7793464cad5a31655f65fbb, type: 2}
   loadingOverlay: {fileID: 629850893}
 --- !u!1 &1052389563
 GameObject:
@@ -491,7 +492,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1515708464}
   m_Father: {fileID: 1182088842}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1052389565
@@ -512,7 +514,7 @@ MonoBehaviour:
       m_Calls: []
   onDimensionChange: {fileID: 11400000, guid: 1b1203bc31818be4aad9cd3b7a101d03, type: 2}
   dimensionSwitchSfx:
-    clip: {fileID: 8300000, guid: 9cc2798c737cadb42978b62765ff3eab, type: 3}
+    clip: {fileID: 8300000, guid: 731aa8f5ba0fe394ca439d072bfc09dd, type: 3}
     mixerGroup: {fileID: 0}
     loop: 0
     playOnAwake: 0
@@ -957,6 +959,66 @@ MonoBehaviour:
     surface: {fileID: 11400000, guid: d02d4bf188a093944938ec11d76329c9, type: 2}
   defaultPoolSizes: 10
   defaultSurface: {fileID: 11400000, guid: d02d4bf188a093944938ec11d76329c9, type: 2}
+--- !u!1 &1515708463
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1515708464}
+  - component: {fileID: 1515708465}
+  m_Layer: 0
+  m_Name: Game Manager Event Listeners
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1515708464
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515708463}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1052389564}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1515708465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1515708463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb243ffb9c8644f0b92a742bb85ecf5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Core::CaptainPinkTurd.Core.DesignPattern.SOAP.Events.VoidEventListener
+  gameEvent: {fileID: 11400000, guid: f615d61eb7793464cad5a31655f65fbb, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1052389565}
+        m_TargetAssemblyTypeName: CaptainPinkTurd.Game.GameManager, Game
+        m_MethodName: OnLevelSceneLoaded
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1960456519
 GameObject:
   m_ObjectHideFlags: 0

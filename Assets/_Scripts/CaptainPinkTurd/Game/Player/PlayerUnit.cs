@@ -15,24 +15,16 @@ namespace CaptainPinkTurd.Game.Player
         [Header("Player Unit Properties")]
         [SerializeField] private VoidEvent onPlayerDamaged;
         [SerializeField] private SerializeKeyValuePair<EColor, PlayerStateInfo>[] playerStates;
-        [SerializeField] private GameObject currentModel;
         
-        private SpriteRenderer spriteRenderer;
-
-        protected override void Awake()
-        {
-            base.Awake();
-            
-            spriteRenderer = GetComponent<SpriteRenderer>();
-        }
-
         public void OnColorChangeEvents(EColor color)
         {
             if(playerStates.TryGetValue(color, out var playerState))
             {
-                currentModel?.SetActive(false);
-                currentModel = playerState.model;
-                currentModel.SetActive(true);
+                foreach (var state in playerStates)
+                {
+                    state.Value.model.SetActive(false);
+                }
+                playerState.model.SetActive(true);
 
                 gameObject.layer = playerState.layerValue;
                 foreach (Transform child in transform)

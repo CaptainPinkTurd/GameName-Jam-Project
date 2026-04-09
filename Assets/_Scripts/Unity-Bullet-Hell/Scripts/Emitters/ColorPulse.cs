@@ -4,7 +4,8 @@
     {
         private const float PULSE_TIME = 10;
         private float Time;
-        private bool PulseDown;
+        
+        public bool PulseDown { get; private set; }
 
         public float Fraction
         {
@@ -35,6 +36,5 @@
                 }
             }
         }
-
     }
 }

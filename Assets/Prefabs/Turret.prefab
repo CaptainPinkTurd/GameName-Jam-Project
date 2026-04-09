@@ -48,8 +48,8 @@ MonoBehaviour:
   Scale: 0.5
   Color:
     serializedVersion: 2
-    key0: {r: 0.9450981, g: 0.30588236, b: 0.32156864, a: 1}
-    key1: {r: 0.58431375, g: 0.87843144, b: 0.8000001, a: 1}
+    key0: {r: 0.94509804, g: 0.18901959, b: 0.20757373, a: 1}
+    key1: {r: 0.4392157, g: 0.8784314, b: 0.7613072, a: 1}
     key2: {r: 0.039215505, g: 0.039215505, b: 0.039215505, a: 1}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -93,8 +93,8 @@ MonoBehaviour:
   OutlineSize: 0.1
   OutlineColor:
     serializedVersion: 2
-    key0: {r: 0.58431375, g: 0.87843144, b: 0.8000001, a: 1}
-    key1: {r: 0.9450981, g: 0.30588236, b: 0.32156864, a: 1}
+    key0: {r: 0.43921572, g: 0.87843144, b: 0.7607844, a: 1}
+    key1: {r: 0.9450981, g: 0.18823531, b: 0.20784315, a: 1}
     key2: {r: 0.91039276, g: 1, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -126,11 +126,15 @@ MonoBehaviour:
   - Value:
       serializedVersion: 2
       m_Bits: 65
-    Key: {r: 0.58431375, g: 0.87843144, b: 0.8000001, a: 1}
+    Key:
+      serializedVersion: 2
+      rgba: 4290961520
   - Value:
       serializedVersion: 2
       m_Bits: 129
-    Key: {r: 0.9450981, g: 0.30588236, b: 0.32156864, a: 1}
+    Key:
+      serializedVersion: 2
+      rgba: 4281676017
   ImpactType: {fileID: 11400000, guid: da20da27d490bcc4f8b3c09ada4615f5, type: 2}
   Gravity: {x: 0, y: 0}
   BounceAbsorbtionY: 0

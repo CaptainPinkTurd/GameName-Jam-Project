@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using CaptainPinkTurd.Core.DesignPattern.Singleton;
+using CaptainPinkTurd.Core.DesignPattern.SOAP.Events;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,11 +10,27 @@ namespace CaptainPinkTurd.Scene
 {
     public class SceneController : Singleton<SceneController>
     {
+        [SerializeField] private VoidEvent onSceneLoaded;
         [SerializeField] private LoadingOverlay loadingOverlay;
 
         private Dictionary<string, string> loadedSceneBySlot = new();
         private bool isBusy = false;
-        
+
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+
+        private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
+        {
+            onSceneLoaded.Raise();
+        }
+
         //API
         public SceneTransitionPlan NewTransition()
         {

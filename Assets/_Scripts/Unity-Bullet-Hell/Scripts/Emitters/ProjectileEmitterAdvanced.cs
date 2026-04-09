@@ -19,7 +19,7 @@ namespace BulletHell
 
         [Foldout("Appearance", true)]
         [SerializeField] public bool UseColorPulse;
-        [ConditionalField(nameof(UseColorPulse)), SerializeField] public float PulseSpeed;
+        [ConditionalField(nameof(UseColorPulse)), SerializeField] internal float PulseSpeed;
         [ConditionalField(nameof(UseColorPulse)), SerializeField] protected bool UseStaticPulse;
 
         [Foldout("Spokes", true)]
@@ -38,7 +38,7 @@ namespace BulletHell
 
         [Foldout("Outline", true)]
         [SerializeField] protected bool UseOutlineColorPulse;
-        [ConditionalField(nameof(UseOutlineColorPulse)), SerializeField] protected float OutlinePulseSpeed;
+        [ConditionalField(nameof(UseOutlineColorPulse)), SerializeField] internal float OutlinePulseSpeed;
         [ConditionalField(nameof(UseOutlineColorPulse)), SerializeField] protected bool UseOutlineStaticPulse;
 
         private EmitterGroup[] Groups;
@@ -331,9 +331,14 @@ namespace BulletHell
                     // Update foreground and outline color data
                     UpdateProjectileColor(ref node.Item);
 
-                    if (!DamageableMasks.TryGetValue(node.Item.Color, out var mask))
+                    Color32 key = node.Item.Color;    
+                    if (!DamageableMasks.TryGetValue(key, out var mask))
                     {
-                        Debug.LogError("No damageable mask found for color: " + node.Item.Color);
+                        Debug.LogError($"No damageable mask found for color: {key} current color in damageable masks:");
+                        foreach (var damageableMask in DamageableMasks)
+                        {
+                            Debug.LogError($"Color: {damageableMask.Key}");                       
+                        }
                         return;                   
                     }
 

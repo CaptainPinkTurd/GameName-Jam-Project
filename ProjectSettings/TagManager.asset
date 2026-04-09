@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Outside map
+    uniqueID: 2401734473
+    locked: 0
   - name: Ground
     uniqueID: 2035754353
     locked: 0

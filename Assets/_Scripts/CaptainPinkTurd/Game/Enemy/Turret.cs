@@ -2,7 +2,7 @@ using CaptainPinkTurd.AudioSystem;
 using CaptainPinkTurd.Core.Utils;
 using UnityEngine;
 
-namespace CaptainPinkTurd.Game
+namespace CaptainPinkTurd.Game.Enemy
 {
     public class Turret : ProjectileEmitterCenter
     {

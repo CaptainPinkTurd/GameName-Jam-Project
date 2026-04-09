@@ -27513,6 +27513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a069ace532b4d334fad951419ac613d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: SceneArchitectureSystem::CaptainPinkTurd.Scene.Manager.MainMenuManager
+  initialLevel: 1
 --- !u!1 &2080685436
 GameObject:
   m_ObjectHideFlags: 0

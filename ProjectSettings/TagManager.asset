@@ -41,7 +41,10 @@ TagManager:
   - name: Ground
     uniqueID: 2035754353
     locked: 0
-  - name: Walk In Front
+  - name: Ground Decor
+    uniqueID: 3163287969
+    locked: 0
+  - name: Walk Front
     uniqueID: 2625842819
     locked: 0
   - name: Collision
@@ -53,7 +56,7 @@ TagManager:
   - name: Walk Behind
     uniqueID: 645738093
     locked: 0
-  - name: Decor
+  - name: Decoration
     uniqueID: 2022530973
     locked: 0
   - name: Default

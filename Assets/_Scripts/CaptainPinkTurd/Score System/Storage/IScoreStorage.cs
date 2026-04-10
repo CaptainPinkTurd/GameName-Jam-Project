@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using CaptainPinkTurd.Core.Enum;
-using CaptainPinkTurd.HighScoreSystem.Data;
+using CaptainPinkTurd.ScoreSystem.Data;
 
 namespace CaptainPinkTurd.Core.Interfaces
 {

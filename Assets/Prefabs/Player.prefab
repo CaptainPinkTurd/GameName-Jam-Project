@@ -144,7 +144,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   vfxAnimation: {fileID: 6951144708542005987, guid: 3a6bc966bdf25c947b806abf35e9d24f, type: 3}
-  disableGameObjectOnEnd: 1
   spawnFromPool: 0
   vfxSfx:
     clip: {fileID: 8300000, guid: 731aa8f5ba0fe394ca439d072bfc09dd, type: 3}
@@ -346,7 +345,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 448
+    m_Bits: 960
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

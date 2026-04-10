@@ -1,9 +1,9 @@
 using CaptainPinkTurd.Core.Enum;
 using UnityEngine;
 
-namespace CaptainPinkTurd.HighScoreSystem
+namespace CaptainPinkTurd.ScoreSystem
 {
-    [CreateAssetMenu(fileName = "LeaderboardConfig", menuName = "Scriptable Objects/High Scores/Leaderboard Config")]
+    [CreateAssetMenu(fileName = "LeaderboardConfig", menuName = "Scriptable Objects/Score System/Leaderboard Config")]
     public class LeaderboardConfig : ScriptableObject
     {
         public ELeaderboardId leaderboardId;

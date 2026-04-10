@@ -2,10 +2,10 @@ using System.Collections.Generic;
 using CaptainPinkTurd.Core.Enum;
 using CaptainPinkTurd.Core.Extensions;
 using CaptainPinkTurd.Core.Interfaces;
-using CaptainPinkTurd.HighScoreSystem.Data;
+using CaptainPinkTurd.ScoreSystem.Data;
 using UnityEngine;
 
-namespace CaptainPinkTurd.HighScoreSystem.Storage
+namespace CaptainPinkTurd.ScoreSystem.Storage
 {
     public class LocalScoreStorage : IScoreStorage
     {

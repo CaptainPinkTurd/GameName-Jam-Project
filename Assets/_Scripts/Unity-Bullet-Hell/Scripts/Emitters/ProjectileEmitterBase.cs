@@ -1,4 +1,5 @@
-﻿using CaptainPinkTurd.Core.CustomDataStructure;
+﻿using System;
+using CaptainPinkTurd.Core.CustomDataStructure;
 using CaptainPinkTurd.EffectSystem.ImpactEffect;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -77,10 +78,9 @@ namespace BulletHell
         protected int[] PreviousActiveProjectileIndexes;
         protected int ActiveProjectileIndexesPosition;
 
-        public void Awake()
+        public virtual void Awake()
         {
             Interval = CoolOffTime + 0.25f;      // Start with a delay to allow time for scene to load
-            Camera = Camera.main;
             
             ContactFilter = new ContactFilter2D
             {
@@ -92,6 +92,11 @@ namespace BulletHell
 
             // If projectile type is not set, use default
             if (!ProjectilePrefab) ProjectilePrefab = ProjectileManager.Instance.GetProjectilePrefab(0);
+        }
+
+        private void OnEnable()
+        {
+            Camera = Camera.main;
         }
 
         void OnDisable()
@@ -205,7 +210,6 @@ namespace BulletHell
 
         protected virtual void UpdateProjectiles(float tick)
         {
-
             ActiveProjectileCount = 0;
             ActiveOutlineCount = 0;
 

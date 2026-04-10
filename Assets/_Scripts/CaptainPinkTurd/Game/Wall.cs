@@ -140,7 +140,7 @@ namespace CaptainPinkTurd.Game
             player = null;
         }
 
-        private void OnTriggerEnter2D(Collider2D other)
+        private void OnTriggerEnter2D(Collider2D other) //wall could potentially call this twice because it have 2 colliders
         {
             if (instantKillLayers.Contains(other.gameObject.layer) && 
                 other.gameObject.TryGetComponentInHierarchy(out IDamageable damageable))

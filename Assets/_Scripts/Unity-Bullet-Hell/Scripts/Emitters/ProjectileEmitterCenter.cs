@@ -7,19 +7,22 @@ using CaptainPinkTurd.Core.Extensions;
 using CaptainPinkTurd.Core.Interfaces;
 using CaptainPinkTurd.Core.Struct;
 using CaptainPinkTurd.Core.Utilities;
+using CaptainPinkTurd.ScoreSystem;
 using CaptainPinkTurd.UI.Popup;
 using UnityEngine;
 
 namespace CaptainPinkTurd.Game
 {
     [RequireComponent(typeof(Collider2D))]
-    public abstract class ProjectileEmitterCenter : AnimationControllerBase, IDamageable
+    public abstract class ProjectileEmitterCenter : AnimationControllerBase, IDamageable, IScorable
     {
         [Header("Projectile Center Configs")]
         [SerializeField] private int maxHealth = 3;
         [SerializeField] private float knockbackForce = 10f;
         [SerializeField] private PopupText scorePopup;
         [SerializeField] private float scoreTextTargetHeight = 1.5f;
+        [SerializeField] private ScoreConfig scoreConfig;
+        [SerializeField] private bool spawnFromPool = true;
         
         [Header("Projectile Emitter Configs")]
         [SerializeField] protected ProjectileEmitterAdvanced advancedEmitter;
@@ -34,13 +37,16 @@ namespace CaptainPinkTurd.Game
         
         [Header("SFXs")]
         [SerializeField] private SoundData damagedSfx;
-        
+
+        private GameObject damageSource;
         public Collider2D Coll { get; private set; }
         
         public int CurrentHealth { get; private set; }
         public int MaxHealth => maxHealth;
         public GameEvent<SDamageData> OnTakeDamage { get; } = new GameEvent<SDamageData>();
         public GameEvent<SDamageData> OnDeath { get; } = new GameEvent<SDamageData>();
+
+        public ScoreConfig ScoreConfig => scoreConfig;
 
         public override int DefaultAnimationHash { get; set; }
 
@@ -70,6 +76,9 @@ namespace CaptainPinkTurd.Game
         
         public void TakeDamage(SDamageData damageData)
         {
+            if (damageSource) return;
+            
+            damageSource = damageData.Source;
             if(damageData.Source.TryGetComponentInHierarchy(out IDamageable damageable))
             {
                 var knockbackDir = (damageData.Source.transform.position - transform.position).normalized;
@@ -82,18 +91,30 @@ namespace CaptainPinkTurd.Game
                 Quaternion.identity, ObjectPoolManager.PoolType.GameObject);
             CurrentHealth -= damageData.Amount;
             
-            HitStop.Stop(this, hitStopDuration, () =>
+            HitStop.Stop(hitStopDuration, () =>
             {
+                damageSource = null;
                 OnDamagedTaken.Raise();
 
                 if (CurrentHealth > 0) return;
                 
-                scorePopup.InitializeText("100", transform.position, scoreTextTargetHeight);
+                ScoreManager.Instance.AddScore(this);
                 ObjectPoolManager.Instance.SpawnObject(explosionVfx.gameObject, transform.position, Quaternion.identity,
                     ObjectPoolManager.PoolType.VFX);
-                gameObject.SetActive(false);
+                if (spawnFromPool)
+                {
+                    ObjectPoolManager.Instance.ReturnObjectToPool(gameObject);
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
             });
         }
         public Transform GetTransform() => transform;
+        public void OnScored()
+        {
+            scorePopup.InitializeText(ScoreConfig.GetFinalScore().ToString(), transform.position, scoreTextTargetHeight);
+        }
     }
 }

@@ -1,4 +1,4 @@
-using CaptainPinkTurd.HighScoreSystem.Data;
+using CaptainPinkTurd.ScoreSystem.Data;
 
 namespace CaptainPinkTurd.Core.Interfaces
 {

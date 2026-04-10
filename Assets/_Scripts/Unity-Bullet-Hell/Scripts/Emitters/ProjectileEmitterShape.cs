@@ -10,11 +10,11 @@ namespace BulletHell
         public GameObject ShapeTemplate;
         private List<Vector3> TemplatePositions;
 
-        new void Awake()
+        public override void Awake()
         {
             base.Awake();
-
-            if (ShapeTemplate == null)
+            
+            if (!ShapeTemplate)
             {
                 ShapeTemplate = Resources.Load<GameObject>(@"ShapeTemplates\CircleShape");
             }

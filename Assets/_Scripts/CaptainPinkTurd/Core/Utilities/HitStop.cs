@@ -1,45 +1,90 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace CaptainPinkTurd.Core.Utilities
 {
     public static class HitStop
     {
-        public static bool IsWaiting => waiting;
-        
-        private static bool waiting;
+        public static bool IsWaiting => running;
+
+        private static bool running;
+        private static float remainingTime;
         private static float oldTimeScale;
 
-        public static void Stop(MonoBehaviour caller, float duration, Action onStopEnd = null)
+        // Queue all callbacks
+        private static Action pendingCallbacks;
+
+        private class HitStopRunner : MonoBehaviour { }
+
+        private static HitStopRunner runner;
+
+        private static void EnsureRunner()
         {
-            if (waiting)
+            if (runner) return;
+
+            var go = new GameObject("[HitStopRunner]");
+            runner = go.AddComponent<HitStopRunner>();
+            Object.DontDestroyOnLoad(go);
+        }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        private static void ResetStaticVariables()
+        {
+            running = false;
+            remainingTime = 0f;
+            pendingCallbacks = null;
+        }
+
+        public static void Stop(float duration, Action onStopEnd = null)
+        {
+            EnsureRunner();
+
+            // Always queue callback (even if already running)
+            if (onStopEnd != null)
             {
-                onStopEnd?.Invoke();
-                return;
+                pendingCallbacks -= onStopEnd; //prevent duplicates
+                pendingCallbacks += onStopEnd; 
             }
+            
+            // Stack duration
+            remainingTime = Mathf.Max(remainingTime, duration);
+
+            // If already running, return after extending remainingTime
+            if (running) return;
+            
+            running = true;
             oldTimeScale = Time.timeScale;
             Time.timeScale = 0.0f;
 
-            if (!caller.gameObject.activeSelf)
-            {
-                Debug.LogWarning("Attempted to stop a hit stop on an inactive object.");
-                Time.timeScale = oldTimeScale;
-                return;
-            }
-            
-            // Use the provided MonoBehaviour to start the coroutine.
-            caller.StartCoroutine(Wait(duration, onStopEnd));
+            runner.StartCoroutine(WaitLoop());
         }
 
-        private static IEnumerator Wait(float duration, Action onWaitEnd = null)
+        private static IEnumerator WaitLoop()
         {
-            waiting = true;
-            yield return new WaitForSecondsRealtime(duration);
-            
+            while (remainingTime > 0f)
+            {
+                remainingTime -= Time.unscaledDeltaTime;
+                yield return null;
+            }
+
             Time.timeScale = oldTimeScale;
-            onWaitEnd?.Invoke();
-            waiting = false;
+
+            // Execute ALL queued callbacks safely
+            try
+            {
+                pendingCallbacks?.Invoke();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"HitStop callback error: {e}");
+            }
+
+            // Reset state
+            pendingCallbacks = null;
+            remainingTime = 0f;
+            running = false;
         }
     }
 }

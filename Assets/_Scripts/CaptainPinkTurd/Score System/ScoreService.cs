@@ -1,16 +1,16 @@
 using System.Collections.Generic;
 using CaptainPinkTurd.Core.Enum;
 using CaptainPinkTurd.Core.Interfaces;
-using CaptainPinkTurd.HighScoreSystem.Data;
-using CaptainPinkTurd.HighScoreSystem.Rule;
+using CaptainPinkTurd.ScoreSystem.Data;
+using CaptainPinkTurd.ScoreSystem.Rule;
 
-namespace CaptainPinkTurd.HighScoreSystem
+namespace CaptainPinkTurd.ScoreSystem
 {
-    public class HighScoreService
+    public class ScoreService
     {
         private readonly IScoreStorage storage;
 
-        public HighScoreService(IScoreStorage storage)
+        public ScoreService(IScoreStorage storage)
         {
             this.storage = storage;
         }

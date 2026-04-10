@@ -1,4 +1,5 @@
-﻿using CaptainPinkTurd.Core.Extensions;
+﻿using System;
+using CaptainPinkTurd.Core.Extensions;
 using CaptainPinkTurd.Core.Interfaces;
 using CaptainPinkTurd.Core.Struct;
 using CaptainPinkTurd.EffectSystem.ImpactEffect;
@@ -46,10 +47,10 @@ namespace BulletHell
         private bool PreviousMirrorPairRotation = false;
         private bool PreviousPairGroupDirection = false;
 
-        public new void Awake()
+        public override void Awake()
         {
             base.Awake();
-
+            
             Groups = new EmitterGroup[10];
             RefreshGroups();
         }

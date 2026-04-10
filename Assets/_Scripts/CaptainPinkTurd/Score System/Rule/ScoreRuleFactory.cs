@@ -1,7 +1,7 @@
 using CaptainPinkTurd.Core.Enum;
 using CaptainPinkTurd.Core.Interfaces;
 
-namespace CaptainPinkTurd.HighScoreSystem.Rule
+namespace CaptainPinkTurd.ScoreSystem.Rule
 {
     public static class ScoreRuleFactory
     {

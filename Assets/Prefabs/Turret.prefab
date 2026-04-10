@@ -306,6 +306,8 @@ MonoBehaviour:
   knockbackForce: 40
   scorePopup: {fileID: 2206898398476630954, guid: 7c1beffc9e5c0194bbb9929cd72f8604, type: 3}
   scoreTextTargetHeight: 2.25
+  scoreConfig: {fileID: 11400000, guid: d86363200c0e5d14996bdcccd88f68f3, type: 2}
+  spawnFromPool: 1
   advancedEmitter: {fileID: 1819079855417741543}
   projectileColorChangeIntervalMin: 2
   projectileColorChangeIntervalMax: 5

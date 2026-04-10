@@ -25,6 +25,7 @@ namespace CaptainPinkTurd.Game.Enemy
         {
             base.Awake();
             
+            advancedEmitter.gameObject.SetActive(false);
             Coll.isTrigger = true;
             DefaultAnimationHash = Animator.StringToHash(idleAnimationClip.name);
         }
@@ -91,6 +92,8 @@ namespace CaptainPinkTurd.Game.Enemy
             distanceTravelled = initialDistanceTravelledOffset;
             
             pathCreator.pathUpdated += OnPathChanged;
+            
+            advancedEmitter.gameObject.SetActive(true);
         }
         
         // If the path changes during the game, update the distance travelled so that the follower's position on the new path

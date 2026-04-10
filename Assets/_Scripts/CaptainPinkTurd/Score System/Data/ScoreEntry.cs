@@ -1,6 +1,6 @@
 using CaptainPinkTurd.Core.Struct;
 
-namespace CaptainPinkTurd.HighScoreSystem.Data
+namespace CaptainPinkTurd.ScoreSystem.Data
 {
     [System.Serializable]
     public class ScoreEntry

@@ -1,7 +1,7 @@
 using CaptainPinkTurd.Core.Interfaces;
-using CaptainPinkTurd.HighScoreSystem.Data;
+using CaptainPinkTurd.ScoreSystem.Data;
 
-namespace CaptainPinkTurd.HighScoreSystem.Rule
+namespace CaptainPinkTurd.ScoreSystem.Rule
 {
     public class HighScoreRule : IScoreRule
     {

@@ -14,6 +14,7 @@ namespace CaptainPinkTurd.ScoreSystem
         [Header("Score Config")]
         [SerializeField] private LeaderboardConfig scoreLeaderboardConfig;
         [SerializeField] private StringEvent onScoreUpdate;
+        [SerializeField] private StringEvent onHighScoreUpdate;
 
         private ScoreService highScoreService;
         private string scoreText;
@@ -28,32 +29,12 @@ namespace CaptainPinkTurd.ScoreSystem
             scoreText = "000000";
         }
 
-        public void OnGameOverEvent()
-        {
-            FinalizeScores();
-        }
-
         public void AddScore(IScorable scorable)
         {
             int value = scorable.ScoreConfig.GetFinalScore();
             Score += value;
 
-            if (Score <= 999999)
-            {
-                scoreText = Score switch
-                {
-                    < 10 => "00000" + Score,
-                    < 100 => "0000" + Score,
-                    < 1000 => "000" + Score,
-                    < 10000 => "00" + Score,
-                    < 100000 => "0" + Score,
-                    _ => Score.ToString(CultureInfo.InvariantCulture)
-                };
-            }
-            else
-            {
-                scoreText = Score.ToString(CultureInfo.InvariantCulture);
-            }
+            scoreText = GetScoreDisplayText(Score);
 
             onScoreUpdate.Raise(scoreText);
             scorable.OnScored();
@@ -62,12 +43,43 @@ namespace CaptainPinkTurd.ScoreSystem
         {
             highScoreService.SubmitScore(scoreLeaderboardConfig, 
                 new ScoreEntry(scoreLeaderboardConfig.leaderboardId.ToKey(), "Player", new SScoreValue(Score)));
-            //scoreText.text = highScoreService.GetScores(scoreLeaderboardConfig)[0].Score.Value.ToString(CultureInfo.InvariantCulture);
+            
+            var currentHighScore = highScoreService.GetScores(scoreLeaderboardConfig)[0].Score.Value;
+            var highScoreText = GetScoreDisplayText((int)currentHighScore);
+            
+            onHighScoreUpdate.Raise(highScoreText);
         }
 
+        private string GetScoreDisplayText(int score)
+        {
+            string scoreText;
+            
+            if (score <= 999999)
+            {
+                scoreText = score switch
+                {
+                    < 10 => "00000" + score,
+                    < 100 => "0000" + score,
+                    < 1000 => "000" + score,
+                    < 10000 => "00" + score,
+                    < 100000 => "0" + score,
+                    _ => score.ToString(CultureInfo.InvariantCulture)
+                };
+            }
+            else
+            {
+                scoreText = score.ToString(CultureInfo.InvariantCulture);
+            }
+            
+            return scoreText;
+        }
         public void OnLevelSceneLoadedEvent()
         {
             onScoreUpdate.Raise(scoreText);
+        }
+        public void OnGameOverEvent()
+        {
+            FinalizeScores();
         }
     }
 }

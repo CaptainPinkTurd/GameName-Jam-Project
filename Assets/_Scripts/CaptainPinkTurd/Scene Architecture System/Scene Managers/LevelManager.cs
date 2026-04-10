@@ -1,3 +1,4 @@
+using CaptainPinkTurd.Core.DesignPattern.SOAP.Events;
 using UnityEngine;
 
 namespace CaptainPinkTurd.Scene.Manager
@@ -5,6 +6,7 @@ namespace CaptainPinkTurd.Scene.Manager
     public class LevelManager : MonoBehaviour
     {
         [SerializeField] private int nextLevel;
+        [SerializeField] private VoidEvent onRestart;
 
         public void NextLevel()
         {
@@ -13,6 +15,18 @@ namespace CaptainPinkTurd.Scene.Manager
                 .Load(SceneDatabase.Slots.SessionContent, $"{SceneDatabase.Scenes.Level} {nextLevel}", true)
                 .WithOverlay()
                 .Perform();
+        }
+
+        public void Restart()
+        {
+            SceneController.Instance
+                .NewTransition()
+                .Load(SceneDatabase.Slots.SessionContent, $"{SceneDatabase.Scenes.Level} {1}", true)
+                .WithOverlay()
+                .WithClearUnusedAssets()
+                .Perform();
+            
+            onRestart.Raise();
         }
         public void EndSession()
         {

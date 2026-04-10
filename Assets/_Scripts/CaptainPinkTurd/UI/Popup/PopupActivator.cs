@@ -24,6 +24,10 @@ namespace CaptainPinkTurd.UI.Popup
         private PopupManager popupManager;
         private bool isPopupActive;
 
+        private void Awake()
+        {
+            popupManager = GetComponentInParent<PopupManager>();
+        }
         private void OnEnable()
         {
             if (!useInputShortcut || !inputAction) return;
@@ -38,11 +42,6 @@ namespace CaptainPinkTurd.UI.Popup
 
             inputAction.action.performed -= PopupTrigger;
             inputAction.action.Disable();
-        }
-
-        private void Start()
-        {
-            popupManager = PopupManager.Instance;
         }
 
         public void ShowPopup()

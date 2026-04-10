@@ -1,13 +1,12 @@
 using System.Collections.Generic;
 using CaptainPinkTurd.Core.CustomDataStructure;
 using UnityEngine;
-using CaptainPinkTurd.Core.DesignPattern.Singleton;
 using CaptainPinkTurd.Core.Enum;
 using CaptainPinkTurd.Core.Extensions;
 
 namespace CaptainPinkTurd.UI.Popup
 {
-    public class PopupManager : Singleton<PopupManager>
+    public class PopupManager : MonoBehaviour
     {
         [SerializeField] private SerializeKeyValuePair<PopupIdentifier, GameObject>[] popupDictionary;
 
@@ -16,10 +15,8 @@ namespace CaptainPinkTurd.UI.Popup
         
         public bool CanTriggerPopup => canTriggerPopup;
 
-        protected override void Awake()
+        protected void Awake()
         {
-            base.Awake();
-
             canTriggerPopup = true;
             
             foreach (var popup in popupDictionary)
@@ -28,22 +25,12 @@ namespace CaptainPinkTurd.UI.Popup
                 popup.Value.SetActive(false);
             }
         }
-        private void OnEnable()
-        {
-            //GameManager.Instance.OnGameOver.Subscribe(OnGameOverEvents, EPriority.VeryLow);
-        }
-        private void OnDisable()
-        {
-            if (!gameObject.scene.isLoaded) return;
-            
-            //GameManager.Instance.OnGameOver.Unsubscribe(OnGameOverEvents);
-        }
         private void OnGameOverEvents()
         {
             canTriggerPopup = false;
         }
         
-        public void ShowPopup(PopupIdentifier popupId, EPopupShowBehaviour behaviour = EPopupShowBehaviour.KeepPrevious)
+        internal void ShowPopup(PopupIdentifier popupId, EPopupShowBehaviour behaviour = EPopupShowBehaviour.KeepPrevious)
         {
             if (!canTriggerPopup) return;
             

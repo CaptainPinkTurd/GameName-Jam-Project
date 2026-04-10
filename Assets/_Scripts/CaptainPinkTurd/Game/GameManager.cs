@@ -1,4 +1,3 @@
-using CaptainPinkTurd.AudioSystem;
 using CaptainPinkTurd.Core;
 using CaptainPinkTurd.Core.Attributes;
 using UnityEngine;
@@ -8,7 +7,6 @@ using CaptainPinkTurd.Core.Enum;
 using CaptainPinkTurd.Core.Interfaces;
 using CaptainPinkTurd.Core.Struct;
 using CaptainPinkTurd.Game.Player;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
@@ -22,7 +20,7 @@ namespace CaptainPinkTurd.Game
     {
         [Header("GameManager Properties")]
         [SerializeField] private float gameFastForwardSpeed = 2;
-        [SerializeField] private UnityEvent onGameOver;
+        [SerializeField] private VoidEvent onGameOver;
         
         [Header("Game Specific Variables")]
         [SerializeField] private EColorEvent onDimensionChange;
@@ -62,7 +60,7 @@ namespace CaptainPinkTurd.Game
 
         private void OnGameOverEvents()
         {
-            onGameOver.Invoke();
+            onGameOver.Raise();
         }
         public void SceneReset()
         {
@@ -124,6 +122,10 @@ namespace CaptainPinkTurd.Game
             
             var damageHasTaken = Mathf.Abs(playerCurrentHealth - playerDamageable.CurrentHealth);
             playerDamageable.TakeDamage(new SDamageData(damageHasTaken, gameObject));
+        }
+        public void OnGameRestartEvents()
+        {
+            currentDimension = EColor.Red;
         }
 
         #endregion

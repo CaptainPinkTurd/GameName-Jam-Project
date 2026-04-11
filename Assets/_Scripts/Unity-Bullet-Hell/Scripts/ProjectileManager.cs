@@ -113,7 +113,7 @@ namespace BulletHell
 
         // Only should be used in DEBUG mode when adding Emitters during runtime
         // This rebuilds the entire Emitters array -- If adding emitters at runtime you should use the AddEmitter method.
-        private void RefreshEmitters()
+        public void RefreshEmitters()
         {
             ProjectileEmitterBase[] emittersTemp = GameObject.FindObjectsOfType<ProjectileEmitterBase>();
 
@@ -227,6 +227,26 @@ namespace BulletHell
 
         }
 
+        // Call this from your Enemy's OnDisable() or OnDestroy() method
+        public void UnregisterEmitter(ProjectileEmitterBase emitter)
+        {
+            for (int n = 0; n < EmittersArray.Length; n++)
+            {
+                if (EmittersArray[n] != emitter) continue;
+                
+                // Clear all active bullets from the screen
+                EmittersArray[n].ClearAllProjectiles();
+            
+                // Deduct from the group tracking
+                ProjectileTypeCounters[emitter.ProjectilePrefab.Index].TotalGroups--;
+            
+                // Remove it from the array to free up the slot for a new enemy
+                EmittersArray[n] = null;
+                EmitterCount--;
+            
+                break;
+            }
+        }
         public ProjectilePrefab GetProjectilePrefab(int index)
         {
             return ProjectilePrefabs[index];
@@ -258,10 +278,7 @@ namespace BulletHell
 
             // Provides a simple way to update active Emitters if removing/adding them at runtime for debugging purposes
             // You should be using AddEmitter() if you want to add Emitters at runtime (See above comment).
-#if UNITY_EDITOR
-            RefreshEmitters();
-#endif
-
+            
             DrawEmitters();
             UpdateEmitters();               
         }
@@ -290,7 +307,7 @@ namespace BulletHell
                         if (EmittersArray[n].ProjectilePrefab.Outline)
                             ProjectileTypeCounters[EmittersArray[n].ProjectilePrefab.Outline.Index].ActiveProjectiles += EmittersArray[n].ActiveOutlineCount;
                     }
-                    else if(EmittersArray[n].ClearAllProjectilesOnDisable)
+                    else //if(EmittersArray[n].ClearAllProjectilesOnDisable)
                     {
                         // if the gameobject was disabled then clear all projectiles from this emitter
                         EmittersArray[n].ClearAllProjectiles();
@@ -318,7 +335,7 @@ namespace BulletHell
             {
                 total += ProjectileTypeCounters[n].ActiveProjectiles;
             }
-            //GUI.Label(new Rect(5, 5, 300, 20), "Projectiles: " + total.ToString());
+            GUI.Label(new Rect(5, 5, 300, 20), "Projectiles: " + total.ToString());
         }
 
         void OnApplicationQuit()

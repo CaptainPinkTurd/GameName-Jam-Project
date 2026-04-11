@@ -80,6 +80,9 @@ namespace CaptainPinkTurd.ScoreSystem
         public void OnGameOverEvent()
         {
             FinalizeScores();
+            
+            scoreText = "000000";
+            Score = 0;
         }
     }
 }

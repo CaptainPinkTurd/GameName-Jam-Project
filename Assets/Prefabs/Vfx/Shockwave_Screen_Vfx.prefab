@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3382274339157967462}
   - component: {fileID: 6386854355507245172}
   m_Layer: 0
-  m_Name: ShockwaveScreen_Vfx
+  m_Name: Shockwave_Screen_Vfx
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,3 +105,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Core::CaptainPinkTurd.Core.Utilities.ShockwaveScreen
   shockWaveTime: 0.75
+  shockwaveShader: {fileID: -6465566751694194690, guid: 28c16156b2f8ba64c971eb4f4628ff7d, type: 3}

@@ -40,8 +40,10 @@ namespace CaptainPinkTurd.UnitSystem
             Knockback.OnKnockback.Unsubscribe(OnKnockbackEvents);
         }
 
-        protected virtual void Start()
+        protected override void Start()
         {
+            base.Start();
+            
             unitHealth.OnDeath.Subscribe(OnDeath);
         }
         private void OnKnockbackEvents(bool isKnockback)

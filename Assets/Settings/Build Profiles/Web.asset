@@ -80,7 +80,7 @@ MonoBehaviour:
     - line: '|   mipStripping: 0'
     - line: '|   numberOfMipsStripped: 0'
     - line: '|   numberOfMipsStrippedPerMipmapLimitGroup: {}'
-    - line: '|   m_StackTraceTypes: 010000000100000001000000010000000100000001000000'
+    - line: '|   m_StackTraceTypes: 010000000200000001000000010000000200000001000000'
     - line: '|   iosShowActivityIndicatorOnLoading: -1'
     - line: '|   androidShowActivityIndicatorOnLoading: -1'
     - line: '|   iosUseCustomAppBackgroundBehavior: 0'
@@ -325,7 +325,11 @@ MonoBehaviour:
     - line: '|   - m_BuildTarget: WebGL'
     - line: '|     m_StaticBatching: 0'
     - line: '|     m_DynamicBatching: 0'
-    - line: '|   m_BuildTargetShaderSettings: []'
+    - line: '|   m_BuildTargetShaderSettings:'
+    - line: '|   - m_BuildTarget: WebGL'
+    - line: '|     m_ChunkSizeInMB: 16'
+    - line: '|     m_MaxChunks: 0'
+    - line: '|     m_OverrideDefaultSettings: 0'
     - line: '|   m_BuildTargetGraphicsJobs: []'
     - line: '|   m_BuildTargetGraphicsJobMode: []'
     - line: '|   m_BuildTargetGraphicsAPIs: []'
@@ -345,7 +349,10 @@ MonoBehaviour:
     - line: '|   m_BuildTargetGroupLightmapSettings: []'
     - line: '|   m_BuildTargetGroupLoadStoreDebugModeSettings: []'
     - line: '|   m_BuildTargetNormalMapEncoding: []'
-    - line: '|   m_BuildTargetDefaultTextureCompressionFormat: []'
+    - line: '|   m_BuildTargetDefaultTextureCompressionFormat:'
+    - line: '|   - serializedVersion: 3'
+    - line: '|     m_BuildTarget: WebGL'
+    - line: '|     m_Formats: 05000000'
     - line: '|   playModeTestRunnerEnabled: 0'
     - line: '|   runPlayModeTestAsEditModeTest: 0'
     - line: '|   actionOnDotNetUnhandledException: 1'
@@ -588,7 +595,7 @@ MonoBehaviour:
     - line: '|   webGLNameFilesAsHashes: 0'
     - line: '|   webGLShowDiagnostics: 0'
     - line: '|   webGLDataCaching: 1'
-    - line: '|   webGLDebugSymbols: 0'
+    - line: '|   webGLDebugSymbols: 1'
     - line: '|   webGLEmscriptenArgs: '
     - line: '|   webGLModulesDirectory: '
     - line: '|   webGLTemplate: APPLICATION:Default'
@@ -735,7 +742,7 @@ MonoBehaviour:
     - rid: 7228327116697763841
       type: {class: WebGLPlatformSettings, ns: UnityEditor.WebGL, asm: UnityEditor.WebGL.Extensions}
       data:
-        m_Development: 0
+        m_Development: 1
         m_ConnectProfiler: 0
         m_BuildWithDeepProfilingSupport: 0
         m_AllowDebugging: 0

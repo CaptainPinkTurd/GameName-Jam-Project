@@ -30,7 +30,8 @@ namespace CaptainPinkTurd.SpawnSystem.Procedural
         [SerializeField] private float spawnDelay = .5f;
         [SerializeField] private bool spawnOnStart = true;
         [ShowIf(nameof(spawnOnStart))]
-        [SerializeField] private int numberOfObjectsToSpawn = 3; 
+        [SerializeField] private int numberOfObjectsToSpawn = 3;
+        [SerializeField] private bool assignSpawnedObjectAsChild = true;
         
         [Header("Respawn Config")]
         [SerializeField] private bool respawnOnInterval;
@@ -120,10 +121,21 @@ namespace CaptainPinkTurd.SpawnSystem.Procedural
                 
                 if (spawnIndex >= points.Count) continue;
 
-                var spawnedObject = ObjectPoolManager.Instance.SpawnObject(selectedItem.item, points[spawnIndex],
-                    selectedItem.spawnRandomRotation
-                        ? Quaternion.Euler(0f, 0f, Random.Range(0f, 360f))
-                        : Quaternion.identity, ObjectPoolManager.PoolType.GameObject);
+                GameObject spawnedObject;
+                if (assignSpawnedObjectAsChild)
+                {
+                    spawnedObject = ObjectPoolManager.Instance.SpawnObject(selectedItem.item, transform);
+                    spawnedObject.transform.position = points[spawnIndex];
+                    spawnedObject.transform.rotation = selectedItem.spawnRandomRotation ?
+                        Quaternion.Euler(0f, 0f, Random.Range(0f, 360f)) : Quaternion.identity;
+                }
+                else
+                {
+                    spawnedObject = ObjectPoolManager.Instance.SpawnObject(selectedItem.item, points[spawnIndex],
+                        selectedItem.spawnRandomRotation
+                            ? Quaternion.Euler(0f, 0f, Random.Range(0f, 360f))
+                            : Quaternion.identity, ObjectPoolManager.PoolType.GameObject);
+                }
                 
                 //assign auto remove from list if it's GameObjectBase
                 if (spawnedObject.TryGetComponent<GameObjectBase>(out var goBase))

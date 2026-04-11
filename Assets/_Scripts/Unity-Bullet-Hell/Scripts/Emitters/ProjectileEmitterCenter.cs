@@ -88,7 +88,7 @@ namespace CaptainPinkTurd.Game
             SoundManager.Instance.CreateSoundBuilder()
                 .WithPosition(transform.position).WithRandomPitch().Play(damagedSfx);
             ObjectPoolManager.Instance.SpawnObject(impactShockwavePrefab.gameObject, transform.position, 
-                Quaternion.identity, ObjectPoolManager.PoolType.GameObject);
+                Quaternion.identity, ObjectPoolManager.PoolType.VFX);
             CurrentHealth -= damageData.Amount;
             
             HitStop.Stop(hitStopDuration, () =>

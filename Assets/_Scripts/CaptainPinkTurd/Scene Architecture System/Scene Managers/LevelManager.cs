@@ -19,17 +19,18 @@ namespace CaptainPinkTurd.Scene.Manager
 
         public void Restart()
         {
+            onRestart.Raise();
+            
             SceneController.Instance
                 .NewTransition()
                 .Load(SceneDatabase.Slots.SessionContent, $"{SceneDatabase.Scenes.Level} {1}", true)
                 .WithOverlay()
-                .WithClearUnusedAssets()
                 .Perform();
-            
-            onRestart.Raise();
         }
         public void EndSession()
         {
+            onRestart.Raise(); //putting this here cause the GameManager carry the player Unit hp 
+            
             SceneController.Instance
                 .NewTransition()
                 .Load(SceneDatabase.Slots.Menu, SceneDatabase.Scenes.MainMenu, true)

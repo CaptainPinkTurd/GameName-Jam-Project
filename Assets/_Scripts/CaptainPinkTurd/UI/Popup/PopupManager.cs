@@ -12,6 +12,7 @@ namespace CaptainPinkTurd.UI.Popup
 
         private readonly Stack<GameObject> popupInstances = new Stack<GameObject>();
         private bool canTriggerPopup = true;
+        private float oldTimeScale;
         
         public bool CanTriggerPopup => canTriggerPopup;
 
@@ -24,6 +25,8 @@ namespace CaptainPinkTurd.UI.Popup
                 if(popup.Key.initOnAwake) popup.Value.SetActive(true);   
                 popup.Value.SetActive(false);
             }
+
+            oldTimeScale = Time.timeScale;
         }
         private void OnGameOverEvents()
         {
@@ -83,6 +86,16 @@ namespace CaptainPinkTurd.UI.Popup
         public int GetInstancePopupCount()
         {
             return popupInstances.Count;
+        }
+        
+        public void SetTimeScale(float timeScale)
+        {
+            oldTimeScale = Time.timeScale;
+            Time.timeScale = timeScale;
+        }
+        public void ResetTimeScale()
+        {
+            Time.timeScale = oldTimeScale;
         }
     }
 }

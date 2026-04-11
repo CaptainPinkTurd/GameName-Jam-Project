@@ -5,7 +5,7 @@ namespace CaptainPinkTurd.Core.Utilities
 {
     public class ShockwaveScreen : MonoBehaviour
     {
-        [SerializeField] private float shockWaveTime = 1.25f;
+        [SerializeField] private float shockWaveTime = .75f;
     
         private Coroutine shockWaveCoroutine;
         private Material material;

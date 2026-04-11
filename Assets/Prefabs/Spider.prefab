@@ -85,7 +85,7 @@ MonoBehaviour:
   RotationSpeed: 10
   CollisionDetection: 1
   BounceOffSurfaces: 0
-  CullProjectilesOutsideCameraBounds: 1
+  CullProjectilesOutsideCameraBounds: 0
   IsFixedTimestep: 1
   FixedTimestepRate: 0.01
   ClearAllProjectilesOnDisable: 0
@@ -307,6 +307,7 @@ MonoBehaviour:
   scorePopup: {fileID: 2206898398476630954, guid: 7c1beffc9e5c0194bbb9929cd72f8604, type: 3}
   scoreTextTargetHeight: 2.25
   scoreConfig: {fileID: 11400000, guid: 4950b534e467ab94687c490b0fff3e80, type: 2}
+  spawnFromPool: 1
   advancedEmitter: {fileID: 7339542877474813584}
   projectileColorChangeIntervalMin: 2.5
   projectileColorChangeIntervalMax: 5

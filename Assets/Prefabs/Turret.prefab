@@ -85,7 +85,7 @@ MonoBehaviour:
   RotationSpeed: 10
   CollisionDetection: 1
   BounceOffSurfaces: 0
-  CullProjectilesOutsideCameraBounds: 1
+  CullProjectilesOutsideCameraBounds: 0
   IsFixedTimestep: 1
   FixedTimestepRate: 0.01
   ClearAllProjectilesOnDisable: 0

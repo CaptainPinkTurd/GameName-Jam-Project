@@ -111,8 +111,6 @@ namespace CaptainPinkTurd.Game
 
             if (!playerUnit || !playerUnit.TryGetComponent(out IDamageable playerDamageable)) return;
             
-            playerDamageable = playerUnit.GetComponent<IDamageable>();
-            
             playerUnit.OnDisableEvents.Subscribe(() =>
             {
                 playerCurrentHealth = playerDamageable.CurrentHealth;
@@ -126,6 +124,11 @@ namespace CaptainPinkTurd.Game
         public void OnGameRestartEvents()
         {
             currentDimension = EColor.Red;
+            
+            if (!playerUnit || !playerUnit.TryGetComponent(out IDamageable playerDamageable)) return;
+            
+            playerUnit.OnDisableEvents.Clear();
+            playerCurrentHealth = playerDamageable.MaxHealth;
         }
 
         #endregion

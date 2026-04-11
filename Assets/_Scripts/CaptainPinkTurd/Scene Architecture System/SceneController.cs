@@ -46,6 +46,8 @@ namespace CaptainPinkTurd.Scene
                 return null;
             }
 
+            //in case the time scale is currently 0, and the scene needs to transit right away like the pause menu
+            Time.timeScale = 1; 
             isBusy = true;
             return StartCoroutine(ChangeSceneRoutine(plan));
         }

@@ -15,17 +15,17 @@ primary
 lastDtbSucceeded
 
 [properties]
-AssemblyName=InteractionSystem
+AssemblyName=ScoreSystem
 CommandLineArgsForDesignTimeEvaluation=-langversion:9.0 -define:UNITY_6000_3_10;UNITY_6000_3;UNITY_6000;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;UNITY_2023_1_OR_NEWER;UNITY_2023_2_OR_NEWER;UNITY_2023_3_OR_NEWER;UNITY_6000_0_OR_NEWER;UNITY_6000_1_OR_NEWER;UNITY_6000_2_OR_NEWER;UNITY_6000_3_OR_NEWER;UNITY_INCLUDE_TESTS;ENABLE_AUDIO;ENABLE_CLOTH;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_UNITY_CONSENT;ENABLE_UNITY_CLOUD_IDENTIFIERS;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_ENGINE_CODE_STRIPPING;ENABLE_ONSCREEN_KEYBOARD;ENABLE_MANAGED_UNITYTLS;RENDER_SOFTWARE_CURSOR;ENABLE_MARSHALLING_TESTS;ENABLE_VIDEO;ENABLE_NAVIGATION_OFFMESHLINK_TO_NAVMESHLINK;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;TEXTCORE_1_0_OR_NEWER;EDITOR_ONLY_NAVMESH_BUILDER_DEPRECATED;PLATFORM_WEBGL;UNITY_WEBGL;UNITY_WEBGL_API;UNITY_DISABLE_WEB_VERIFICATION;UNITY_GFX_USE_PLATFORM_VSYNC;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_SPATIALTRACKING;ENABLE_MONO;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;TEXTCORE_TEXT_ENGINE_1_5_OR_NEWER;TEXTCORE_FONT_ENGINE_1_6_OR_NEWER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER
 CompilerGeneratedFilesOutputPath=
 MaxSupportedLangVersion=8.0
-ProjectAssetsFile=<PATH>Temp/obj/InteractionSystem/project.assets.json
-RootNamespace=CaptainPinkTurd.Interaction
+ProjectAssetsFile=<PATH>Temp/obj/ScoreSystem/project.assets.json
+RootNamespace=CaptainPinkTurd.HighScoreSystem
 RunAnalyzers=
 RunAnalyzersDuringLiveAnalysis=
 SolutionPath=<PATH>GameName-Jam-Project.slnx
 TargetFrameworkIdentifier=.NETStandard
-TargetPath=<PATH>Temp/bin/Debug/InteractionSystem.dll
+TargetPath=<PATH>Temp/bin/Debug/ScoreSystem.dll
 TargetRefPath=
 TemporaryDependencyNodeTargetIdentifier=netstandard2.1
 
@@ -43,7 +43,7 @@ TemporaryDependencyNodeTargetIdentifier=netstandard2.1
 /debug:portable
 /filealign:512
 /optimize-
-/out:Temp\obj\InteractionSystem\InteractionSystem.dll
+/out:Temp\obj\ScoreSystem\ScoreSystem.dll
 /target:library
 /warnaserror-
 /utf8output
@@ -52,8 +52,27 @@ TemporaryDependencyNodeTargetIdentifier=netstandard2.1
 /warnaserror+:NU1605
 
 [sourceFiles]
-Assets/_Scripts/CaptainPinkTurd/Interaction System/InteractionDetector2D.cs
-Temp/obj/InteractionSystem/.NETStandard,Version=v2.1.AssemblyAttributes.cs
+Assets/_Scripts/CaptainPinkTurd/Score System/Data/
+ ELeaderboardId.cs
+ ScoreEntry.cs
+ SScoreValue.cs
+Assets/_Scripts/CaptainPinkTurd/Score System/
+ IScorable.cs
+ LeaderboardConfig.cs
+ Rule/
+  EScoreRuleType.cs
+  HighScoreRule.cs
+  IScoreRule.cs
+  LowScoreRule.cs
+  ScoreRuleFactory.cs
+ ScoreConfig.cs
+ ScoreManager.cs
+ ScoreService.cs
+ Storage/
+  IScoreStorage.cs
+  LocalScoreStorage.cs
+ Utilities/LeaderboardIdExtensions.cs
+Temp/obj/ScoreSystem/.NETStandard,Version=v2.1.AssemblyAttributes.cs
 
 [metadataReferences]
 ../../../../Program Files/Unity/Hub/Editor/6000.3.10f1/Editor/Data/Managed/
@@ -341,12 +360,12 @@ Library/PackageCache/
   Editor/VisualScripting.Core/EditorAssetResources/Unity.VisualScripting.TextureAssets.dll
   Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll
 Library/ScriptAssemblies/
- Unity.InputSystem.dll
+ Unity.TextMeshPro.dll
  UnityEditor.UI.dll
  UnityEngine.UI.dll
 Temp/bin/Debug/
  Core.dll
- InputSystem.dll
+ UI.dll
 
 [analyzerReferences]
 ../../../../Program Files/Unity/Hub/Editor/6000.3.10f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/
@@ -356,4 +375,4 @@ Temp/bin/Debug/
 ../../../../Users/mrder/.vscode/extensions/visualstudiotoolsforunity.vstuc-1.2.1/Analyzers/Microsoft.Unity.Analyzers.dll
 
 [analyzerConfigFiles]
-Temp/obj/InteractionSystem/InteractionSystem.GeneratedMSBuildEditorConfig.editorconfig
+Temp/obj/ScoreSystem/ScoreSystem.GeneratedMSBuildEditorConfig.editorconfig

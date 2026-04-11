@@ -1,8 +1,11 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using CaptainPinkTurd.AudioSystem;
 
-public class Hover_Effect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class Hover_Effect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    public SoundData hover;
+    public SoundData click;
     public float sizeMultipler = 1.2f;
     public float speed = 10f;
 
@@ -20,11 +23,30 @@ public class Hover_Effect : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
+        // Hover
+        SoundManager.Instance
+            .CreateSoundBuilder()
+            .WithPosition(transform.position)
+            .WithRandomPitch()
+            .Play(hover);
+                
         transform.localScale = origScale * sizeMultipler;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        // Un-Hover
         transform.localScale = origScale;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        // Click
+        SoundManager.Instance
+            .CreateSoundBuilder()
+            .WithPosition(transform.position)
+            .WithRandomPitch()
+            .Play(click);
+
     }
 }

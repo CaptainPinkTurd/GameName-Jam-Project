@@ -1125,6 +1125,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896fe15c6f328fd48b840c4e24af59ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hover_Effect
+  hover:
+    clip: {fileID: 8300000, guid: ed7d688985046d24d81b9ae2270fd5c0, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+    frequentSound: 0
+    mute: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 4
+    spatialBlend: 6
+    reverbZoneMix: 3
+    dopplerLevel: 7
+    spread: 12
+    minDistance: 3
+    maxDistance: 500
+    ignoreListenerVolume: 0
+    ignoreListenerPause: 0
+    rolloffMode: 0
+  click:
+    clip: {fileID: 8300000, guid: df6fa4d947d9377458ccbeb711d3c4d7, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+    frequentSound: 0
+    mute: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 3
+    spatialBlend: 5
+    reverbZoneMix: 6
+    dopplerLevel: 3
+    spread: 6
+    minDistance: 2
+    maxDistance: 500
+    ignoreListenerVolume: 0
+    ignoreListenerPause: 0
+    rolloffMode: 0
   sizeMultipler: 1.2
   speed: 10
 --- !u!1 &394446087
@@ -6450,6 +6496,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896fe15c6f328fd48b840c4e24af59ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hover_Effect
+  hover:
+    clip: {fileID: 8300000, guid: ed7d688985046d24d81b9ae2270fd5c0, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+    frequentSound: 0
+    mute: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 4
+    spatialBlend: 6
+    reverbZoneMix: 3
+    dopplerLevel: 7
+    spread: 12
+    minDistance: 3
+    maxDistance: 500
+    ignoreListenerVolume: 0
+    ignoreListenerPause: 0
+    rolloffMode: 0
+  click:
+    clip: {fileID: 8300000, guid: df6fa4d947d9377458ccbeb711d3c4d7, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+    frequentSound: 0
+    mute: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 3
+    spatialBlend: 5
+    reverbZoneMix: 6
+    dopplerLevel: 3
+    spread: 6
+    minDistance: 2
+    maxDistance: 500
+    ignoreListenerVolume: 0
+    ignoreListenerPause: 0
+    rolloffMode: 0
   sizeMultipler: 1.2
   speed: 10
 --- !u!1 &613879006
@@ -25282,6 +25374,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896fe15c6f328fd48b840c4e24af59ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hover_Effect
+  hover:
+    clip: {fileID: 8300000, guid: ed7d688985046d24d81b9ae2270fd5c0, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+    frequentSound: 0
+    mute: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 4
+    spatialBlend: 6
+    reverbZoneMix: 3
+    dopplerLevel: 7
+    spread: 12
+    minDistance: 3
+    maxDistance: 500
+    ignoreListenerVolume: 0
+    ignoreListenerPause: 0
+    rolloffMode: 0
+  click:
+    clip: {fileID: 8300000, guid: df6fa4d947d9377458ccbeb711d3c4d7, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+    frequentSound: 0
+    mute: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 3
+    spatialBlend: 5
+    reverbZoneMix: 6
+    dopplerLevel: 3
+    spread: 6
+    minDistance: 2
+    maxDistance: 500
+    ignoreListenerVolume: 0
+    ignoreListenerPause: 0
+    rolloffMode: 0
   sizeMultipler: 1.2
   speed: 10
 --- !u!1 &997659211
@@ -26600,6 +26738,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1936185137}
+  - {fileID: 1237217119}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1202578693
@@ -26638,6 +26777,68 @@ RectTransform:
   m_AnchoredPosition: {x: 27.83, y: 0}
   m_SizeDelta: {x: 55.66, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &1237217118
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1182088842}
+    m_Modifications:
+    - target: {fileID: 1252588384276964680, guid: 418b1b4e049424545b07b6d46ec21490, type: 3}
+      propertyPath: m_Name
+      value: Sound Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5955229132549719881, guid: 418b1b4e049424545b07b6d46ec21490, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.04439
+      objectReference: {fileID: 0}
+    - target: {fileID: 5955229132549719881, guid: 418b1b4e049424545b07b6d46ec21490, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.71438
+      objectReference: {fileID: 0}
+    - target: {fileID: 5955229132549719881, guid: 418b1b4e049424545b07b6d46ec21490, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5955229132549719881, guid: 418b1b4e049424545b07b6d46ec21490, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5955229132549719881, guid: 418b1b4e049424545b07b6d46ec21490, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5955229132549719881, guid: 418b1b4e049424545b07b6d46ec21490, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5955229132549719881, guid: 418b1b4e049424545b07b6d46ec21490, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5955229132549719881, guid: 418b1b4e049424545b07b6d46ec21490, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5955229132549719881, guid: 418b1b4e049424545b07b6d46ec21490, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5955229132549719881, guid: 418b1b4e049424545b07b6d46ec21490, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 418b1b4e049424545b07b6d46ec21490, type: 3}
+--- !u!4 &1237217119 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5955229132549719881, guid: 418b1b4e049424545b07b6d46ec21490, type: 3}
+  m_PrefabInstance: {fileID: 1237217118}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1267080845
 GameObject:
   m_ObjectHideFlags: 0
@@ -27378,6 +27579,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896fe15c6f328fd48b840c4e24af59ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hover_Effect
+  hover:
+    clip: {fileID: 8300000, guid: ed7d688985046d24d81b9ae2270fd5c0, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+    frequentSound: 0
+    mute: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 4
+    spatialBlend: 6
+    reverbZoneMix: 3
+    dopplerLevel: 7
+    spread: 12
+    minDistance: 3
+    maxDistance: 500
+    ignoreListenerVolume: 0
+    ignoreListenerPause: 0
+    rolloffMode: 0
+  click:
+    clip: {fileID: 8300000, guid: df6fa4d947d9377458ccbeb711d3c4d7, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+    frequentSound: 0
+    mute: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 3
+    spatialBlend: 5
+    reverbZoneMix: 6
+    dopplerLevel: 3
+    spread: 6
+    minDistance: 2
+    maxDistance: 500
+    ignoreListenerVolume: 0
+    ignoreListenerPause: 0
+    rolloffMode: 0
   sizeMultipler: 1.2
   speed: 10
 --- !u!1001 &1497719708
@@ -27624,6 +27871,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896fe15c6f328fd48b840c4e24af59ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hover_Effect
+  hover:
+    clip: {fileID: 8300000, guid: ed7d688985046d24d81b9ae2270fd5c0, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+    frequentSound: 0
+    mute: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 4
+    spatialBlend: 6
+    reverbZoneMix: 3
+    dopplerLevel: 7
+    spread: 12
+    minDistance: 3
+    maxDistance: 500
+    ignoreListenerVolume: 0
+    ignoreListenerPause: 0
+    rolloffMode: 0
+  click:
+    clip: {fileID: 8300000, guid: df6fa4d947d9377458ccbeb711d3c4d7, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+    frequentSound: 0
+    mute: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 3
+    spatialBlend: 5
+    reverbZoneMix: 6
+    dopplerLevel: 3
+    spread: 6
+    minDistance: 2
+    maxDistance: 500
+    ignoreListenerVolume: 0
+    ignoreListenerPause: 0
+    rolloffMode: 0
   sizeMultipler: 1.2
   speed: 10
 --- !u!1 &1569483624
@@ -27795,6 +28088,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896fe15c6f328fd48b840c4e24af59ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hover_Effect
+  hover:
+    clip: {fileID: 8300000, guid: ed7d688985046d24d81b9ae2270fd5c0, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+    frequentSound: 0
+    mute: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 4
+    spatialBlend: 6
+    reverbZoneMix: 3
+    dopplerLevel: 7
+    spread: 12
+    minDistance: 3
+    maxDistance: 500
+    ignoreListenerVolume: 0
+    ignoreListenerPause: 0
+    rolloffMode: 0
+  click:
+    clip: {fileID: 8300000, guid: df6fa4d947d9377458ccbeb711d3c4d7, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+    frequentSound: 0
+    mute: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 3
+    spatialBlend: 5
+    reverbZoneMix: 6
+    dopplerLevel: 3
+    spread: 6
+    minDistance: 2
+    maxDistance: 500
+    ignoreListenerVolume: 0
+    ignoreListenerPause: 0
+    rolloffMode: 0
   sizeMultipler: 1.2
   speed: 10
 --- !u!1 &1576719801
@@ -29826,6 +30165,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896fe15c6f328fd48b840c4e24af59ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hover_Effect
+  hover:
+    clip: {fileID: 8300000, guid: ed7d688985046d24d81b9ae2270fd5c0, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+    frequentSound: 0
+    mute: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 4
+    spatialBlend: 6
+    reverbZoneMix: 3
+    dopplerLevel: 7
+    spread: 12
+    minDistance: 3
+    maxDistance: 500
+    ignoreListenerVolume: 0
+    ignoreListenerPause: 0
+    rolloffMode: 0
+  click:
+    clip: {fileID: 8300000, guid: df6fa4d947d9377458ccbeb711d3c4d7, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+    frequentSound: 0
+    mute: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 3
+    spatialBlend: 5
+    reverbZoneMix: 6
+    dopplerLevel: 3
+    spread: 6
+    minDistance: 2
+    maxDistance: 500
+    ignoreListenerVolume: 0
+    ignoreListenerPause: 0
+    rolloffMode: 0
   sizeMultipler: 1.2
   speed: 10
 --- !u!1001 &1913937235

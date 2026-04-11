@@ -3,6 +3,7 @@
   <Project Path="VHierarchy.csproj" />
   <Project Path="PathCreatorEditor.csproj" />
   <Project Path="Core.csproj" />
+  <Project Path="ScoreSystem.csproj" />
   <Project Path="UI.csproj" />
   <Project Path="VFolders.csproj" />
   <Project Path="SpawnSystem.csproj" />
@@ -19,7 +20,6 @@
   <Project Path="AudioSystem.csproj" />
   <Project Path="DOTween.Modules.csproj" />
   <Project Path="SceneArchitectureSystem.csproj" />
-  <Project Path="HighScoreSystem.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="PathCreator.csproj" />
   <Project Path="ImprovedTimers.csproj" />

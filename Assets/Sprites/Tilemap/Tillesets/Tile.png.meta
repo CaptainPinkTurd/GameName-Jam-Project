@@ -262,6 +262,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -5545,6 +5558,182 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Tile_1
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 083684e9a5a9a9b4b89e57df76bbf6da
+      internalID: -17462750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile_2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5554adfe2a6a3794db30b95090b77738
+      internalID: -2127890709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile_5
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 448
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d18a78998a0ba124b995fd8ff7974962
+      internalID: 1657514033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile_6
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 448
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 047e6404e8b0ff34b83f81a331094f53
+      internalID: 1498799946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile_21
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 416
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14ef073224f398547957b8fb2fe4d522
+      internalID: 1060589494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile_45
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 416
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8c67423f595e19469004a3cf5ca5d05
+      internalID: 563673698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile_46
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 400
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7c6d91891bf7ba4588f13aae438e3d3
+      internalID: -924289616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tile_49
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 400
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ec5a5873bec964428c70297b220ab76
+      internalID: 742238277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -5577,6 +5766,7 @@ TextureImporter:
       8: -575604033
       9: -309601573
       Tile_0: -9163426285224168042
+      Tile_1: -17462750
       Tile_10: 3426138664691223504
       Tile_101: -1529517697
       Tile_102: -1978235044
@@ -5686,6 +5876,7 @@ TextureImporter:
       Tile_197: -1175939259
       Tile_198: -1352137694
       Tile_199: -460176448
+      Tile_2: -2127890709
       Tile_20: 4409537238421840551
       Tile_200: -241273508
       Tile_201: -302521537
@@ -5697,6 +5888,7 @@ TextureImporter:
       Tile_207: -2135317029
       Tile_208: 641606572
       Tile_209: -779743932
+      Tile_21: 1060589494
       Tile_210: 633183278
       Tile_211: 1144141162
       Tile_212: 1379837668
@@ -5752,8 +5944,12 @@ TextureImporter:
       Tile_42: -1486680364512509939
       Tile_43: -5504842313667123701
       Tile_44: -1413347996266015342
+      Tile_45: 563673698
+      Tile_46: -924289616
       Tile_47: -3576961533262574926
       Tile_48: 7741809829129282474
+      Tile_49: 742238277
+      Tile_5: 1657514033
       Tile_50: -1476986682008961990
       Tile_51: 6773580706452124538
       Tile_52: -2054583424
@@ -5764,6 +5960,7 @@ TextureImporter:
       Tile_57: 406758922
       Tile_58: 2048916513
       Tile_59: 2132255347
+      Tile_6: 1498799946
       Tile_62: 1882453987
       Tile_63: -1236784353
       Tile_65: 1326531818

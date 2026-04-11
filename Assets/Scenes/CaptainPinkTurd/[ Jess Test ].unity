@@ -46021,6 +46021,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 98134892}
     m_Modifications:
+    - target: {fileID: 1390145771438765162, guid: b06d3d7c6bfac7f4d82ec4554f876711, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 49
+      objectReference: {fileID: 0}
     - target: {fileID: 5366872220226560942, guid: b06d3d7c6bfac7f4d82ec4554f876711, type: 3}
       propertyPath: m_Name
       value: Pause Popup

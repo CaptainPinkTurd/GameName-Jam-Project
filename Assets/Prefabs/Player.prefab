@@ -1042,6 +1042,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   colorSwitchVfx: {fileID: 300991733349106856}
+  explosionVfx: {fileID: 8568515182452555486, guid: 15ac99202f515cc48a44d70e6f90e965, type: 3}
 --- !u!114 &713105100355585551
 MonoBehaviour:
   m_ObjectHideFlags: 0

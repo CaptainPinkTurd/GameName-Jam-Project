@@ -27,6 +27,7 @@ namespace CaptainPinkTurd.SpawnSystem.Wave
 
         private void OnEnable()
         {
+            currentWave = 0;
             proceduralSpawner.OnObjectDespawn.Subscribe(WaveIncrement);
         }
         private void OnDisable()
@@ -54,7 +55,7 @@ namespace CaptainPinkTurd.SpawnSystem.Wave
             }
             else
             {
-                currentWave = (currentWave + 1) % numberOfWaves;
+                currentWave = (currentWave + 1) % (numberOfWaves + 1); //need to offset or else wave will automatically restart when reach the final wave
                 Spawn();
             }
         }

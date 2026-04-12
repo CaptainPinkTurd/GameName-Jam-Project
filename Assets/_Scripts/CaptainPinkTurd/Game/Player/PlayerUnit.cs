@@ -6,6 +6,8 @@ using CaptainPinkTurd.Core.Enum;
 using CaptainPinkTurd.Core.Extensions;
 using CaptainPinkTurd.Core.Interfaces;
 using CaptainPinkTurd.Core.Struct;
+using CaptainPinkTurd.Core.Utilities;
+using CaptainPinkTurd.Core.Utils;
 using CaptainPinkTurd.Game.Enemy;
 using CaptainPinkTurd.UnitSystem;
 using UnityEngine;
@@ -19,6 +21,8 @@ namespace CaptainPinkTurd.Game.Player
         [SerializeField] private SerializeKeyValuePair<EColor, PlayerStateInfo>[] playerStates;
         [SerializeField] private LayerMask enemyLayers;
         [SerializeField] private BasicVfxAnimationController colorSwitchVfx;
+        [SerializeField] private BasicVfxAnimationController explosionVfx;
+        [SerializeField] private float delayOnDeath = 1f;
         
         public void OnColorChangeEvents(EColor color)
         {
@@ -52,6 +56,9 @@ namespace CaptainPinkTurd.Game.Player
         {
             StopAllCoroutines();
             
+            ObjectPoolManager.Instance.SpawnObject(explosionVfx.gameObject, transform.position, Quaternion.identity,
+                ObjectPoolManager.PoolType.VFX);
+            
             var source = damageData.Source;
             if (source.TryGetComponentInHierarchy(out EnemyUnitBase enemyUnit))
             {
@@ -61,7 +68,8 @@ namespace CaptainPinkTurd.Game.Player
             gameObject.SetActive(false);
             
             //order matter for this one cause the game over popup needs to be enabled first to get the high score
-            GameManager.Instance.OnGameOver.Raise(); 
+            GameManager.Instance.StartCoroutine(CoroutineUtils.WaitForSeconds(delayOnDeath,
+                GameManager.Instance.OnGameOver.Raise));
         }
 
         private void OnTriggerEnter2D(Collider2D other)

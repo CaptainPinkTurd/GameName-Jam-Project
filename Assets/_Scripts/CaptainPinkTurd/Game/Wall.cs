@@ -25,16 +25,18 @@ namespace CaptainPinkTurd.Game
         [SerializeField] private bool moveOnStart;
 
         [Header("Collision")]
-        [SerializeField] private Collider2D collisionCollider;
+        [SerializeField] private Collider2D[] collisionColliders;
         [SerializeField] private LayerMask targetPlayerLayer;
         [SerializeField] private LayerMask ignorePlayerLayer;
         [SerializeField] private LayerMask blockingLayer;
         [SerializeField] private LayerMask instantKillLayers;
+        
+        [Header("Sorting Groups")]
+        [SerializeField] private SortingGroup[] wallSortingGroups;
 
         private Rigidbody2D rb;
         private GameObject player;
         private Vector3 startPoint;
-        private SortingGroup bottomWallSortingGroup;
         
         private bool isMoving;
         private bool isBacktrack;
@@ -42,10 +44,9 @@ namespace CaptainPinkTurd.Game
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
-            collisionCollider.excludeLayers = collisionCollider.excludeLayers.RemoveMask(ignorePlayerLayer);
+            ExcludeCollisionOnIgnoredLayerMask(false);
             
-            bottomWallSortingGroup = GetComponentInChildren<SortingGroup>();
-            bottomWallSortingGroup.enabled = false;
+            EnableSortingGroups(false);
 
             startPoint = transform.position;
         }
@@ -72,8 +73,24 @@ namespace CaptainPinkTurd.Game
             CheckIfPlayerIsCrushed();
             OnMovingStop();
             
-            bottomWallSortingGroup.enabled = false;
+            EnableSortingGroups(false);
             rb.position = startPoint;
+        }
+        private void ExcludeCollisionOnIgnoredLayerMask(bool exclude)
+        {
+            foreach(var collisionCollider in collisionColliders)
+            {
+                collisionCollider.excludeLayers = exclude ?
+                    collisionCollider.excludeLayers.AddMask(ignorePlayerLayer) : 
+                    collisionCollider.excludeLayers.RemoveMask(ignorePlayerLayer);
+            }
+        }
+        private void EnableSortingGroups(bool enable)
+        {
+            foreach (var sortingGroup in wallSortingGroups)
+            {
+                sortingGroup.enabled = enable;
+            }
         }
 
         private Vector2 GetMoveDirection()
@@ -104,7 +121,7 @@ namespace CaptainPinkTurd.Game
             isMoving = false;
             moveDirection = moveDirection.GetOpposite();
             isBacktrack = !isBacktrack;
-            collisionCollider.excludeLayers = collisionCollider.excludeLayers.RemoveMask(ignorePlayerLayer); 
+            ExcludeCollisionOnIgnoredLayerMask(false);
         }
         private void CheckIfPlayerIsCrushed()
         {
@@ -154,9 +171,9 @@ namespace CaptainPinkTurd.Game
             
             if (!targetPlayerLayer.Contains(other.gameObject.layer) || moveOnStart || isMoving) return;
             
-            collisionCollider.excludeLayers = collisionCollider.excludeLayers.AddMask(ignorePlayerLayer); 
+            ExcludeCollisionOnIgnoredLayerMask(true);
             isMoving = true;
-            bottomWallSortingGroup.enabled = true;
+            EnableSortingGroups(true);
         }
     }
 }

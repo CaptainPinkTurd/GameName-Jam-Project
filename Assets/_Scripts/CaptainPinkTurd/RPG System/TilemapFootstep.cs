@@ -56,7 +56,7 @@ namespace CaptainPinkTurd.RPG
                 int randomIndex = UnityEngine.Random.Range(0, footstepSounds.Count);
                 soundData.clip = footstepSounds[randomIndex];
                 SoundManager.Instance.CreateSoundBuilder()
-                    .WithPosition(position).WithRandomPitch().Play(soundData);
+                    .WithPosition(position).WithRandomPitch(.25f, .5f).Play(soundData);
             }
             else
             {

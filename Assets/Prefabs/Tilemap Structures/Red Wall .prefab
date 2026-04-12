@@ -79,8 +79,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: -1669124477
-  m_SortingLayer: -5
+  m_SortingLayerID: 645738093
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -1049495325, guid: 92d8671186e6f0344bd15b2cca900f8d, type: 3}
@@ -402,7 +402,9 @@ MonoBehaviour:
   - Value: 1
     Key: 4
   moveOnStart: 0
-  collisionCollider: {fileID: 488884105275720733}
+  collisionColliders:
+  - {fileID: 488884105275720733}
+  - {fileID: 3036985859712096223}
   targetPlayerLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -415,6 +417,8 @@ MonoBehaviour:
   instantKillLayers:
     serializedVersion: 2
     m_Bits: 512
+  wallSortingGroups:
+  - {fileID: 5238581342726832588}
 --- !u!19719996 &488884105275720733
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -524,5 +528,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 5, y: 4.85}
+  m_Size: {x: 5, y: 4.5}
   m_EdgeRadius: 0

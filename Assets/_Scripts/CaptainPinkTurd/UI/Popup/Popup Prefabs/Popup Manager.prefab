@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 7295888900358801379}
   - component: {fileID: 6606747064070202644}
   m_Layer: 0
-  m_Name: Pause Menu  Activator
+  m_Name: Pause Menu Activator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

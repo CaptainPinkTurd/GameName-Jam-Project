@@ -8,7 +8,9 @@ namespace CaptainPinkTurd.SpawnSystem.Wave
     [RequireComponent(typeof(ProceduralObjectSpawner))]
     public class WaveSpawner : MonoBehaviour
     {
-        [SerializeField] private int[] numberToSpawnEachWave;
+        [SerializeField] private int numberOfWaves = 3;
+        [SerializeField][Range(1, 10)] private int minSpawnNumber = 1;
+        [SerializeField][Range(1, 10)] private int maxSpawnNumber = 3;
         [SerializeField] private bool loopToFirstWave = true;
 
         [ShowIf(nameof(loopToFirstWave), false)]
@@ -16,7 +18,7 @@ namespace CaptainPinkTurd.SpawnSystem.Wave
         
         private ProceduralObjectSpawner proceduralSpawner;
         private float timeBetweenSpawns;
-        private int waveIndex = -1;
+        private int currentWave;
 
         private void Awake()
         {
@@ -38,20 +40,21 @@ namespace CaptainPinkTurd.SpawnSystem.Wave
         
         private void Spawn()
         {
-            StartCoroutine(proceduralSpawner.SpawnObjects(numberToSpawnEachWave[waveIndex]));
+            int numberToSpawn = Random.Range(minSpawnNumber, maxSpawnNumber + 1);
+            StartCoroutine(proceduralSpawner.SpawnObjects(numberToSpawn));
         }
 
         private void WaveIncrement()
         {
             if (proceduralSpawner.CurrentActiveObjects > 0) return;
             
-            if(waveIndex == numberToSpawnEachWave.Length - 1 && !loopToFirstWave)
+            if(currentWave == numberOfWaves && !loopToFirstWave)
             {
                 onLastWaveEnd.Raise();
             }
             else
             {
-                waveIndex = (waveIndex + 1) % numberToSpawnEachWave.Length;
+                currentWave = (currentWave + 1) % numberOfWaves;
                 Spawn();
             }
         }

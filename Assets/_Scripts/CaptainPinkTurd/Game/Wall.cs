@@ -1,3 +1,4 @@
+using CaptainPinkTurd.Core.CustomDataStructure;
 using CaptainPinkTurd.Core.Enum;
 using CaptainPinkTurd.Core.Extensions;
 using CaptainPinkTurd.Core.Interfaces;
@@ -8,10 +9,10 @@ using UnityEngine.Rendering;
 
 namespace CaptainPinkTurd.Game
 {
-    public enum EWallBehaviour
+    public enum RoundUpType
     {
-        Loop,
-        Stop
+        Ceil,
+        Floor
     }
 
     [RequireComponent(typeof(Rigidbody2D))]
@@ -19,12 +20,14 @@ namespace CaptainPinkTurd.Game
     {
         [Header("Movement")]
         [SerializeField] private float speed;
-        [SerializeField] private EWallBehaviour behaviour;
         [SerializeField] private EDirection2D moveDirection; 
+        [SerializeField] private SerializeKeyValuePair<EDirection2D, RoundUpType>[] roundUpTypeOnStopForDirections;
         [SerializeField] private bool moveOnStart;
 
         [Header("Collision")]
+        [SerializeField] private Collider2D collisionCollider;
         [SerializeField] private LayerMask targetPlayerLayer;
+        [SerializeField] private LayerMask ignorePlayerLayer;
         [SerializeField] private LayerMask blockingLayer;
         [SerializeField] private LayerMask instantKillLayers;
 
@@ -34,11 +37,13 @@ namespace CaptainPinkTurd.Game
         private SortingGroup bottomWallSortingGroup;
         
         private bool isMoving;
-        private bool hasFinishedMoving;
+        private bool isBacktrack;
         
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
+            collisionCollider.excludeLayers = collisionCollider.excludeLayers.RemoveMask(ignorePlayerLayer);
+            
             bottomWallSortingGroup = GetComponentInChildren<SortingGroup>();
             bottomWallSortingGroup.enabled = false;
 
@@ -57,42 +62,49 @@ namespace CaptainPinkTurd.Game
             Vector2 newPos = rb.position + moveDir * (speed * Time.fixedDeltaTime);
 
             rb.MovePosition(newPos);
+
+            if (!isBacktrack) return;
+
+            var distanceToStart = Vector3.Distance(rb.position, startPoint);
+
+            if (distanceToStart > 0.5f) return;
+            
+            CheckIfPlayerIsCrushed();
+            OnMovingStop();
+            
+            bottomWallSortingGroup.enabled = false;
+            rb.position = startPoint;
         }
 
         private Vector2 GetMoveDirection()
         {
             return moveDirection.ToVector2();
         }
-
-        private void SwapTarget()
-        {
-            // Toggle between start and end
-            //currentTarget = (Vector2)currentTarget == (Vector2)endPoint.position ? startPoint : endPoint.position;
-        }
-
+        
         private void OnMovingStop()
         {
-            isMoving = false;
-            hasFinishedMoving = true;
-            
             var x = transform.localPosition.x;
             var y = transform.localPosition.y;
-            var signX = Mathf.Sign(x);
-            var signY = Mathf.Sign(y);
-            
-            switch (moveDirection)
+
+            if (roundUpTypeOnStopForDirections.TryGetValue(moveDirection, out var roundUpType))
             {
-                case EDirection2D.Left:
-                case EDirection2D.Right:
-                    x = Mathf.FloorToInt(Mathf.Abs(x)) * signX;
-                    break;
-                case EDirection2D.Up:
-                case EDirection2D.Down:
-                    y = Mathf.FloorToInt(Mathf.Abs(y)) * signY;
-                    break;
+                switch (roundUpType)
+                {
+                    case RoundUpType.Ceil:
+                        x = Mathf.CeilToInt(x);
+                        break;
+                    case RoundUpType.Floor:
+                        x = Mathf.FloorToInt(x);
+                        break;
+                }
             }
             
             transform.localPosition = new Vector3(x, y, 0);
+            
+            isMoving = false;
+            moveDirection = moveDirection.GetOpposite();
+            isBacktrack = !isBacktrack;
+            collisionCollider.excludeLayers = collisionCollider.excludeLayers.RemoveMask(ignorePlayerLayer); 
         }
         private void CheckIfPlayerIsCrushed()
         {
@@ -105,15 +117,7 @@ namespace CaptainPinkTurd.Game
             if (!blockingLayer.Contains(other.gameObject.layer) || !isMoving) return;
             //Debug.Log($"Collision with {other.gameObject.name}");
 
-            switch (behaviour)
-            {
-                case EWallBehaviour.Stop:
-                    OnMovingStop();
-                    break;
-                case EWallBehaviour.Loop:
-                    SwapTarget();
-                    break;
-            }
+            OnMovingStop();
 
             CheckIfPlayerIsCrushed();
         }
@@ -140,7 +144,7 @@ namespace CaptainPinkTurd.Game
             player = null;
         }
 
-        private void OnTriggerEnter2D(Collider2D other) //wall could potentially call this twice because it have 2 colliders
+        private void OnTriggerStay2D(Collider2D other) //wall could potentially call this twice because it have 2 colliders
         {
             if (instantKillLayers.Contains(other.gameObject.layer) && 
                 other.gameObject.TryGetComponentInHierarchy(out IDamageable damageable))
@@ -148,8 +152,9 @@ namespace CaptainPinkTurd.Game
                 damageable.TakeDamage(new SDamageData(damageable.MaxHealth, gameObject));
             }
             
-            if (!targetPlayerLayer.Contains(other.gameObject.layer) || moveOnStart || hasFinishedMoving) return;
+            if (!targetPlayerLayer.Contains(other.gameObject.layer) || moveOnStart || isMoving) return;
             
+            collisionCollider.excludeLayers = collisionCollider.excludeLayers.AddMask(ignorePlayerLayer); 
             isMoving = true;
             bottomWallSortingGroup.enabled = true;
         }

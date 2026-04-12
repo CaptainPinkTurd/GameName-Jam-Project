@@ -1065,7 +1065,7 @@ MonoBehaviour:
   damageTextPopupPrefab: {fileID: 0}
   damageTextTargetHeight: 0
   hurtSfx:
-    clip: {fileID: 8300000, guid: 89f877c2f18969e418dfe311dd451b3f, type: 3}
+    clip: {fileID: 8300000, guid: 6a3759cb8871ea6408e259982bc0e01a, type: 3}
     mixerGroup: {fileID: 0}
     loop: 0
     playOnAwake: 0

@@ -45,6 +45,24 @@ namespace CaptainPinkTurd.Core.Extensions
         }
         
         /// <summary>
+        /// Adds an entire LayerMask to this LayerMask.
+        /// </summary>
+        public static LayerMask AddMask(this LayerMask mask, LayerMask maskToAdd)
+        {
+            mask.value |= maskToAdd.value;
+            return mask;
+        }
+
+        /// <summary>
+        /// Removes an entire LayerMask from this LayerMask.
+        /// </summary>
+        public static LayerMask RemoveMask(this LayerMask mask, LayerMask maskToRemove)
+        {
+            mask.value &= ~maskToRemove.value;
+            return mask;
+        }
+        
+        /// <summary>
         /// Toggles the layer index in the mask.
         /// Example:
         ///     mask = mask.ToggleLayer(LayerMask.NameToLayer("Walls"));

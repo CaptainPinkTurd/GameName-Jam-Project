@@ -6,7 +6,10 @@ namespace CaptainPinkTurd.AudioSystem
     {
         private readonly SoundManager soundManager;
         private Vector3 position = Vector3.zero;
+        
         private bool randomPitch;
+        private float minPitch;
+        private float maxPitch;
 
         public SoundBuilder(SoundManager soundManager) 
         {
@@ -19,8 +22,10 @@ namespace CaptainPinkTurd.AudioSystem
             return this;
         }
 
-        public SoundBuilder WithRandomPitch() 
+        public SoundBuilder WithRandomPitch(float min = -0.05f, float max = 0.05f) 
         {
+            minPitch = min;
+            maxPitch = max;
             this.randomPitch = true;
             return this;
         }
@@ -49,7 +54,7 @@ namespace CaptainPinkTurd.AudioSystem
 
             if (randomPitch) 
             {
-                soundEmitter.WithRandomPitch();
+                soundEmitter.WithRandomPitch(minPitch, maxPitch);
             }
 
             if (soundData.frequentSound) 

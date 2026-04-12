@@ -5,11 +5,13 @@ namespace CaptainPinkTurd.Scene.Manager
 {
     public class LevelManager : MonoBehaviour
     {
-        [SerializeField] private int nextLevel;
+        [SerializeField] private LevelData levelData;
         [SerializeField] private VoidEvent onRestart;
 
         public void NextLevel()
         {
+            int nextLevel = Random.Range(1, levelData.totalLevelInGame + 1);
+            
             SceneController.Instance
                 .NewTransition()
                 .Load(SceneDatabase.Slots.SessionContent, $"{SceneDatabase.Scenes.Level} {nextLevel}", true)
@@ -21,9 +23,11 @@ namespace CaptainPinkTurd.Scene.Manager
         {
             onRestart.Raise();
             
+            int restartLevel = Random.Range(1, levelData.totalLevelInGame + 1);
+            
             SceneController.Instance
                 .NewTransition()
-                .Load(SceneDatabase.Slots.SessionContent, $"{SceneDatabase.Scenes.Level} {1}", true)
+                .Load(SceneDatabase.Slots.SessionContent, $"{SceneDatabase.Scenes.Level} {restartLevel}", true)
                 .WithOverlay()
                 .Perform();
         }

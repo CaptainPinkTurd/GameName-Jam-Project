@@ -11,8 +11,11 @@ namespace CaptainPinkTurd.AudioSystem
         public SoundData Data { get; private set; }
         public LinkedListNode<SoundEmitter> Node { get; set; }
 
-        AudioSource audioSource;
-        Coroutine playingCoroutine;
+        private AudioSource audioSource;
+        private Coroutine playingCoroutine;
+
+        private float minPitch;
+        private float maxPitch;
 
         void Awake() {
             audioSource = gameObject.GetOrAdd<AudioSource>();
@@ -79,7 +82,9 @@ namespace CaptainPinkTurd.AudioSystem
 
         public void WithRandomPitch(float min = -0.05f, float max = 0.05f) 
         {
-            audioSource.pitch += Random.Range(min, max);
+            minPitch = min;
+            maxPitch = max;
+            audioSource.pitch += Random.Range(minPitch, maxPitch);
         }
     }
 }

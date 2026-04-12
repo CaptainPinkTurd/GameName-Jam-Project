@@ -33135,7 +33135,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd7c842a739d6f4eb3b3fc847cd392c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: SpawnSystem::CaptainPinkTurd.SpawnSystem.Wave.WaveSpawner
-  numberToSpawnEachWave: 0100000002000000030000000400000005000000
+  numberOfWaves: 3
+  minSpawnNumber: 1
+  maxSpawnNumber: 3
   loopToFirstWave: 1
   onLastWaveEnd: {fileID: 11400000, guid: 7eae4cb6914e62742a10dbe42a6f610f, type: 2}
 --- !u!114 &1242917821
@@ -46619,7 +46621,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 391243868622236357, guid: 862ffd48f68efec41a9f59e64c01ffbe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 391243868622236357, guid: 862ffd48f68efec41a9f59e64c01ffbe, type: 3}
       propertyPath: m_LocalPosition.y

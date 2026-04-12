@@ -1,0 +1,10 @@
+using UnityEngine;
+
+namespace CaptainPinkTurd.Scene.Manager
+{
+    [CreateAssetMenu(fileName = "Level Data", menuName = "Game/Level/Level Data")]
+    public class LevelData : ScriptableObject
+    {
+        public int totalLevelInGame = 6;
+    }
+}

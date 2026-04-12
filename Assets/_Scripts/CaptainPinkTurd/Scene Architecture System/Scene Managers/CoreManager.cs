@@ -1,3 +1,5 @@
+using CaptainPinkTurd.AudioSystem;
+using CaptainPinkTurd.Core.Utils;
 using UnityEngine;
 
 namespace CaptainPinkTurd.Scene.Manager
@@ -8,10 +10,14 @@ namespace CaptainPinkTurd.Scene.Manager
         {
             //Core Setup for the game
             //Load everything like SoundManager, Save System,...
-            SceneController.Instance
-                .NewTransition()
-                .Load(SceneDatabase.Slots.Menu, SceneDatabase.Scenes.MainMenu)
-                .Perform();
+            StartCoroutine(CoroutineUtils.WaitForCondition(() => SoundManager.Instance.didAwake,
+                () =>
+                {
+                    SceneController.Instance
+                        .NewTransition()
+                        .Load(SceneDatabase.Slots.Menu, SceneDatabase.Scenes.MainMenu)
+                        .Perform();
+                }));
         }
     }
 }

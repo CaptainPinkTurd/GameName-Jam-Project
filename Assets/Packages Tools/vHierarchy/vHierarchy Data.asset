@@ -32,6 +32,8 @@ MonoBehaviour:
     - 292353edb76c36f4f8a103aaa268af33
     - 6b5b66429c30182408d9187b6702a27f
     - c1c9ac3fc4e587e4eaffaaa42db9a44a
+    - d8da1ac7ce82547459ea895615b01ce7
+    - 88733b1553510d8409a42ee15eba5910
     values:
     - goDatas_byGlobalId:
         keys:
@@ -1167,6 +1169,52 @@ MonoBehaviour:
           iconNameOrGuid: Prefab Icon
           isIconRecursive: 0
           isColorRecursive: 0
+    - goDatas_byGlobalId:
+        keys:
+        - globalObjectIdString: GlobalObjectId_V1-2-d8da1ac7ce82547459ea895615b01ce7-1727938692-0
+        - globalObjectIdString: GlobalObjectId_V1-2-d8da1ac7ce82547459ea895615b01ce7-2080685436-0
+        - globalObjectIdString: GlobalObjectId_V1-2-d8da1ac7ce82547459ea895615b01ce7-1182088841-0
+        - globalObjectIdString: GlobalObjectId_V1-2-d8da1ac7ce82547459ea895615b01ce7-1157547465-0
+        values:
+        - colorIndex: 2
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 1
+        - colorIndex: 5
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 1
+        - colorIndex: 6
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 1
+        - colorIndex: 7
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 1
+    - goDatas_byGlobalId:
+        keys:
+        - globalObjectIdString: GlobalObjectId_V1-2-88733b1553510d8409a42ee15eba5910-1727938692-0
+        - globalObjectIdString: GlobalObjectId_V1-2-88733b1553510d8409a42ee15eba5910-2080685436-0
+        - globalObjectIdString: GlobalObjectId_V1-2-88733b1553510d8409a42ee15eba5910-1182088841-0
+        - globalObjectIdString: GlobalObjectId_V1-2-88733b1553510d8409a42ee15eba5910-1157547465-0
+        values:
+        - colorIndex: 2
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 5
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 6
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 7
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
   bookmarks:
   - _go: {fileID: 0}
     globalId:
@@ -1191,6 +1239,4 @@ MonoBehaviour:
       globalObjectIdString: GlobalObjectId_V1-2-c2341d5d3a0077742b6d4280d8a5b0b7-1893404357-0
   bookmarkedScenePaths:
   - Assets/Scenes/CaptainPinkTurd/Gameplay Test Scene.unity
-  - Assets/Scenes/CaptainPinkTurd/Level 1.unity
-  - Assets/Scenes/CaptainPinkTurd/Level 2.unity
   - Assets/Scenes/CaptainPinkTurd/MainMenu.unity

@@ -95,7 +95,7 @@ namespace BulletHell
 
         private void OnEnable()
         {
-            ProjectileManager.RefreshEmitters();
+            ProjectileManager.RegisterEmitter(this);
             Camera = Camera.main;
         }
 

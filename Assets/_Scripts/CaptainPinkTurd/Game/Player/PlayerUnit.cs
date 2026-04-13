@@ -1,4 +1,5 @@
 using System;
+using BulletHell;
 using CaptainPinkTurd.AnimationSystem;
 using CaptainPinkTurd.Core.CustomDataStructure;
 using CaptainPinkTurd.Core.DesignPattern.SOAP.Events;
@@ -14,6 +15,7 @@ using UnityEngine;
 
 namespace CaptainPinkTurd.Game.Player
 {
+    [RequireComponent(typeof(Target))]
     public class PlayerUnit : UnitBase
     {
         [Header("Player Unit Properties")]

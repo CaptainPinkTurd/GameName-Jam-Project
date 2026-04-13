@@ -1,4 +1,5 @@
 using CaptainPinkTurd.AudioSystem;
+using CaptainPinkTurd.BulletHell;
 using CaptainPinkTurd.Core.Utils;
 using UnityEngine;
 
@@ -13,8 +14,8 @@ namespace CaptainPinkTurd.Game.Enemy
         protected override void Awake()
         {
             base.Awake();
-            
-            advancedEmitter.gameObject.SetActive(false);
+
+            ToggleEmitter(false);
             DefaultAnimationHash = Animator.StringToHash(idleAnimationClip.name);
         }
 
@@ -33,7 +34,7 @@ namespace CaptainPinkTurd.Game.Enemy
                 onAnimationEnd: () =>
                 {
                     Coll.isTrigger = true;
-                    advancedEmitter.gameObject.SetActive(true);
+                    ToggleEmitter(true);
                 });
         }
 
@@ -41,7 +42,7 @@ namespace CaptainPinkTurd.Game.Enemy
         {
             base.OnDisable();
             
-            advancedEmitter.gameObject.SetActive(false);
+            ToggleEmitter(false);
         }
     }
 }

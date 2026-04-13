@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: SpawnSystem::CaptainPinkTurd.SpawnSystem.Wave.WaveSpawner
   numberOfWaves: 2
-  minSpawnNumber: 1
-  maxSpawnNumber: 3
+  minSpawnNumber: 2
+  maxSpawnNumber: 2
   loopToFirstWave: 0
   onLastWaveEnd: {fileID: 11400000, guid: 7eae4cb6914e62742a10dbe42a6f610f, type: 2}
 --- !u!114 &1854765574697341999

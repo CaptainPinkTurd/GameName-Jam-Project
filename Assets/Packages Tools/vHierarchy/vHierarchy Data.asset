@@ -195,12 +195,12 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-5786d324a650511438ae3e6db5ee13a6-1694511361-0
         - globalObjectIdString: GlobalObjectId_V1-2-5786d324a650511438ae3e6db5ee13a6-1516249911-0
         - globalObjectIdString: GlobalObjectId_V1-2-5786d324a650511438ae3e6db5ee13a6-1052389563-0
-        - globalObjectIdString: GlobalObjectId_V1-2-5786d324a650511438ae3e6db5ee13a6-348972318-0
         - globalObjectIdString: GlobalObjectId_V1-2-5786d324a650511438ae3e6db5ee13a6-1716422564-0
         - globalObjectIdString: GlobalObjectId_V1-2-5786d324a650511438ae3e6db5ee13a6-1411467361-0
         - globalObjectIdString: GlobalObjectId_V1-2-5786d324a650511438ae3e6db5ee13a6-1429123442-0
         - globalObjectIdString: GlobalObjectId_V1-2-5786d324a650511438ae3e6db5ee13a6-945786713-0
         - globalObjectIdString: GlobalObjectId_V1-2-5786d324a650511438ae3e6db5ee13a6-1548040087-0
+        - globalObjectIdString: GlobalObjectId_V1-2-5786d324a650511438ae3e6db5ee13a6-348972318-0
         values:
         - colorIndex: 0
           iconNameOrGuid: Camera Icon
@@ -239,10 +239,6 @@ MonoBehaviour:
           isIconRecursive: 0
           isColorRecursive: 0
         - colorIndex: 0
-          iconNameOrGuid: AudioSource Icon
-          isIconRecursive: 0
-          isColorRecursive: 0
-        - colorIndex: 0
           iconNameOrGuid: cs Script Icon
           isIconRecursive: 0
           isColorRecursive: 0
@@ -260,6 +256,10 @@ MonoBehaviour:
           isColorRecursive: 0
         - colorIndex: 0
           iconNameOrGuid: EventSystem Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: AudioSource Icon
           isIconRecursive: 0
           isColorRecursive: 0
     - goDatas_byGlobalId:
@@ -1239,4 +1239,3 @@ MonoBehaviour:
       globalObjectIdString: GlobalObjectId_V1-2-c2341d5d3a0077742b6d4280d8a5b0b7-1893404357-0
   bookmarkedScenePaths:
   - Assets/Scenes/CaptainPinkTurd/Gameplay Test Scene.unity
-  - Assets/Scenes/CaptainPinkTurd/MainMenu.unity

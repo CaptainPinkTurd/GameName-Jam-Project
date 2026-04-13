@@ -2,6 +2,7 @@ using BulletHell;
 using CaptainPinkTurd.AnimationSystem;
 using CaptainPinkTurd.AudioSystem;
 using CaptainPinkTurd.Core;
+using CaptainPinkTurd.Core.Attributes;
 using CaptainPinkTurd.Core.DesignPattern.SOAP.Events;
 using CaptainPinkTurd.Core.Extensions;
 using CaptainPinkTurd.Core.Interfaces;
@@ -11,7 +12,7 @@ using CaptainPinkTurd.ScoreSystem;
 using CaptainPinkTurd.UI.Popup;
 using UnityEngine;
 
-namespace CaptainPinkTurd.Game
+namespace CaptainPinkTurd.BulletHell
 {
     [RequireComponent(typeof(Collider2D))]
     public abstract class ProjectileEmitterCenter : AnimationControllerBase, IDamageable, IScorable
@@ -68,11 +69,25 @@ namespace CaptainPinkTurd.Game
             ProjectileEmitterSetup();
         }
 
+        protected void ToggleEmitter(bool on)
+        {
+            advancedEmitter.enabled = on;
+            advancedEmitter.AutoFire = on;
+        }
         private void ProjectileEmitterSetup()
         {
             advancedEmitter.PulseSpeed = Random.Range(projectileColorChangeIntervalMin, projectileColorChangeIntervalMax);
             advancedEmitter.OutlinePulseSpeed = advancedEmitter.PulseSpeed;
+
+            if (!advancedEmitter.UseFollowTarget) return;
             
+            var target = FindAnyObjectByType<Target>();
+            if (!target)
+            {
+                Debug.LogError("No target found in scene");
+                return;
+            }
+            advancedEmitter.Target = target.transform;
         }
         
         public void TakeDamage(SDamageData damageData)

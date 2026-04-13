@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce8cd5e9cb146ff81ef35a1ab377d78, type: 3}
+  m_Name: Enemy Loot Drop Profile 1
+  m_EditorClassIdentifier: 
+  itemDebugVisualize: 0
+  lootDropTable:
+    lootDropItems:
+    - item: {fileID: 8812076233993587592, guid: 1c76f62e9079df44b806518b32fb0f4f, type: 3}
+      probabilityWeight: 1
+      probabilityPercent: 50
+      placementRadius: 1.5
+      spawnRandomRotation: 0
+      gizmoColor: {r: 1, g: 0.054088086, b: 0, a: 1}
+    - item: {fileID: 7226157533494396228, guid: 324772248e9f8d44482902239e96c7e1, type: 3}
+      probabilityWeight: 1
+      probabilityPercent: 50
+      placementRadius: 1
+      spawnRandomRotation: 0
+      gizmoColor: {r: 1, g: 0.054088086, b: 0, a: 1}

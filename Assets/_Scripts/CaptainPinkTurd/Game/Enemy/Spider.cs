@@ -1,7 +1,7 @@
 using CaptainPinkTurd.AnimationSystem;
 using CaptainPinkTurd.AudioSystem;
+using CaptainPinkTurd.BulletHell;
 using CaptainPinkTurd.Core.Attributes;
-using CaptainPinkTurd.Core.Utilities;
 using PathCreation;
 using UnityEngine;
 
@@ -75,7 +75,7 @@ namespace CaptainPinkTurd.Game.Enemy
         private void ToggleSpider(bool on)
         {
             sr.enabled = on;
-            advancedEmitter.gameObject.SetActive(on);
+            ToggleEmitter(on);
             isRunning = on;
         }
         private void InitializePath()

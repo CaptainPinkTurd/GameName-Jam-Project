@@ -17,13 +17,37 @@ MonoBehaviour:
     lootDropItems:
     - item: {fileID: 4054407043497097032, guid: 6fec9d3036bb47542b95fefb7133b457, type: 3}
       probabilityWeight: 1
-      probabilityPercent: 50
+      probabilityPercent: 16.666666
       placementRadius: 1.5
       spawnRandomRotation: 0
       gizmoColor: {r: 0, g: 1, b: 0, a: 1}
+    - item: {fileID: 9036194906693391910, guid: bab6d3e55813704409128e8c08f80527, type: 3}
+      probabilityWeight: 1
+      probabilityPercent: 16.666666
+      placementRadius: 1.5
+      spawnRandomRotation: 0
+      gizmoColor: {r: 1, g: 0.054088086, b: 0, a: 1}
+    - item: {fileID: 8812076233993587592, guid: 1c76f62e9079df44b806518b32fb0f4f, type: 3}
+      probabilityWeight: 1
+      probabilityPercent: 16.666666
+      placementRadius: 1.5
+      spawnRandomRotation: 0
+      gizmoColor: {r: 1, g: 0.054088086, b: 0, a: 1}
     - item: {fileID: 4564287098680374756, guid: d0a2fe8aa72fd5f40a4550cfc55efed0, type: 3}
       probabilityWeight: 1
-      probabilityPercent: 50
+      probabilityPercent: 16.666666
+      placementRadius: 1
+      spawnRandomRotation: 0
+      gizmoColor: {r: 1, g: 0.054088086, b: 0, a: 1}
+    - item: {fileID: 164664851017951433, guid: 1a5c058768a5f304b8fdde62c35c9638, type: 3}
+      probabilityWeight: 1
+      probabilityPercent: 16.666666
+      placementRadius: 1
+      spawnRandomRotation: 0
+      gizmoColor: {r: 1, g: 0.054088086, b: 0, a: 1}
+    - item: {fileID: 7226157533494396228, guid: 324772248e9f8d44482902239e96c7e1, type: 3}
+      probabilityWeight: 1
+      probabilityPercent: 16.666666
       placementRadius: 1
       spawnRandomRotation: 0
       gizmoColor: {r: 1, g: 0.054088086, b: 0, a: 1}

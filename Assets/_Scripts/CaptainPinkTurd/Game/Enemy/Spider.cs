@@ -1,4 +1,7 @@
+using CaptainPinkTurd.AnimationSystem;
+using CaptainPinkTurd.AudioSystem;
 using CaptainPinkTurd.Core.Attributes;
+using CaptainPinkTurd.Core.Utilities;
 using PathCreation;
 using UnityEngine;
 
@@ -14,18 +17,21 @@ namespace CaptainPinkTurd.Game.Enemy
         [Header("Spider Animation Clips")]
         [SerializeField] private AnimationClip idleAnimationClip;
         [SerializeField] private AnimationClip moveAnimationClip;
+        [SerializeField] private BasicVfxAnimationController spawnVfx;
         
         private PathCreator pathCreator;
+        private SpriteRenderer sr;
         private readonly EndOfPathInstruction[] closedPathInstruction = { EndOfPathInstruction.Loop, EndOfPathInstruction.Reverse };
         private EndOfPathInstruction endOfPathInstruction;
         private float initialDistanceTravelledOffset;
         private bool runAnimationIsPlaying;
+        private bool isRunning;
         
         protected override void Awake()
         {
             base.Awake();
             
-            advancedEmitter.gameObject.SetActive(false);
+            sr = GetComponent<SpriteRenderer>();
             Coll.isTrigger = true;
             DefaultAnimationHash = Animator.StringToHash(idleAnimationClip.name);
         }
@@ -33,7 +39,8 @@ namespace CaptainPinkTurd.Game.Enemy
         protected override void OnEnable()
         {
             base.OnEnable();
-
+            
+            ToggleSpider(false);
             InitializePath();
         }
 
@@ -47,7 +54,7 @@ namespace CaptainPinkTurd.Game.Enemy
 
         void Update()
         {
-            if (!pathCreator) return;
+            if (!pathCreator || !isRunning) return;
 
             if (!runAnimationIsPlaying)
             {
@@ -65,6 +72,12 @@ namespace CaptainPinkTurd.Game.Enemy
             }
         }
 
+        private void ToggleSpider(bool on)
+        {
+            sr.enabled = on;
+            advancedEmitter.gameObject.SetActive(on);
+            isRunning = on;
+        }
         private void InitializePath()
         {
             var paths = FindObjectsByType<PathCreator>(FindObjectsSortMode.None);
@@ -88,12 +101,17 @@ namespace CaptainPinkTurd.Game.Enemy
                 endOfPathInstruction = EndOfPathInstruction.Reverse;
             }
             
-            initialDistanceTravelledOffset = Random.Range(0f, pathCreator.path.length);
-            distanceTravelled = initialDistanceTravelledOffset;
-            
             pathCreator.pathUpdated += OnPathChanged;
             
-            advancedEmitter.gameObject.SetActive(true);
+            initialDistanceTravelledOffset = Random.Range(0f, pathCreator.path.length);
+            distanceTravelled = initialDistanceTravelledOffset;
+            transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
+            
+            //spawnVfx.OnAnimationEnd.Subscribe(() => ToggleSpider(true));
+            spawnVfx.gameObject.SetActive(true);
+            ToggleSpider(true);
+            SoundManager.Instance.CreateSoundBuilder()
+                .WithPosition(transform.position).WithRandomPitch().Play(startUpSfx);
         }
         
         // If the path changes during the game, update the distance travelled so that the follower's position on the new path

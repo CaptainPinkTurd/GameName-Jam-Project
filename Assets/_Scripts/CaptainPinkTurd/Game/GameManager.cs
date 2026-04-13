@@ -61,6 +61,7 @@ namespace CaptainPinkTurd.Game
         private void OnGameOverEvents()
         {
             onGameOver.Raise();
+            switchDimensionAction.Disable();
         }
         public void SceneReset()
         {
@@ -123,6 +124,7 @@ namespace CaptainPinkTurd.Game
         }
         public void OnGameRestartEvents()
         {
+            switchDimensionAction.Enable();
             currentDimension = EColor.Red;
             
             if (!playerUnit || !playerUnit.TryGetComponent(out IDamageable playerDamageable)) return;

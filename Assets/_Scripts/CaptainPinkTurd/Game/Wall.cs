@@ -1,3 +1,4 @@
+using CaptainPinkTurd.AudioSystem;
 using CaptainPinkTurd.Core.CustomDataStructure;
 using CaptainPinkTurd.Core.Enum;
 using CaptainPinkTurd.Core.Extensions;
@@ -23,6 +24,8 @@ namespace CaptainPinkTurd.Game
         [SerializeField] private EDirection2D moveDirection; 
         [SerializeField] private SerializeKeyValuePair<EDirection2D, RoundUpType>[] roundUpTypeOnStopForDirections;
         [SerializeField] private bool moveOnStart;
+        [SerializeField] private SoundData moveSfx;
+        [SerializeField] private SoundData crushSfx;
 
         [Header("Collision")]
         [SerializeField] private Collider2D[] collisionColliders;
@@ -40,6 +43,7 @@ namespace CaptainPinkTurd.Game
         
         private bool isMoving;
         private bool isBacktrack;
+        private bool isPlayingMoveSfx;
         
         private void Awake()
         {
@@ -59,6 +63,16 @@ namespace CaptainPinkTurd.Game
         {
             if (!isMoving) return;
 
+            if (!isPlayingMoveSfx)
+            {
+                isPlayingMoveSfx = true;
+                SoundManager.Instance.CreateSoundBuilder().WithPosition(rb.position).WithRandomPitch()
+                    .Play(moveSfx, () =>
+                    {
+                        isPlayingMoveSfx = false;
+                    });
+            }
+            
             Vector2 moveDir = GetMoveDirection();
             Vector2 newPos = rb.position + moveDir * (speed * Time.fixedDeltaTime);
 
@@ -127,6 +141,7 @@ namespace CaptainPinkTurd.Game
         {
             if (!player || !player.TryGetComponentInHierarchy(out IDamageable damageable)) return;
             
+            SoundManager.Instance.CreateSoundBuilder().WithPosition(rb.position).WithRandomPitch().Play(crushSfx);
             damageable.TakeDamage(new SDamageData(damageable.MaxHealth, gameObject));
         }
         private void OnCollisionEnter2D(Collision2D other)
@@ -164,8 +179,10 @@ namespace CaptainPinkTurd.Game
         private void OnTriggerStay2D(Collider2D other) //wall could potentially call this twice because it have 2 colliders
         {
             if (instantKillLayers.Contains(other.gameObject.layer) && 
-                other.gameObject.TryGetComponentInHierarchy(out IDamageable damageable))
+                other.gameObject.TryGetComponentInHierarchy(out IDamageable damageable) &&
+                isMoving)
             {
+                SoundManager.Instance.CreateSoundBuilder().WithPosition(rb.position).WithRandomPitch().Play(crushSfx);
                 damageable.TakeDamage(new SDamageData(damageable.MaxHealth, gameObject));
             }
             

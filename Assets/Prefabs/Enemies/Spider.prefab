@@ -88,7 +88,6 @@ MonoBehaviour:
   CullProjectilesOutsideCameraBounds: 0
   IsFixedTimestep: 1
   FixedTimestepRate: 0.01
-  ClearAllProjectilesOnDisable: 0
   DrawOutlines: 0
   OutlineSize: 0.1
   OutlineColor:
@@ -191,6 +190,7 @@ Transform:
   m_Children:
   - {fileID: 8373716535816573374}
   - {fileID: 5811194892015802404}
+  - {fileID: 6074064509284814186}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1884735473689770136
@@ -315,6 +315,29 @@ MonoBehaviour:
   impactShockwavePrefab: {fileID: 6386854355507245172, guid: ddf39c5a02e34294bbbf17bc54ca2410, type: 3}
   explosionVfx: {fileID: 8568515182452555486, guid: 15ac99202f515cc48a44d70e6f90e965, type: 3}
   OnDamagedTaken: {fileID: 11400000, guid: d144196b9b862134b9a1422e54f18482, type: 2}
+  startUpSfx:
+    clip: {fileID: 8300000, guid: ba33330282899784d9e78b52136a367d, type: 3}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+    frequentSound: 0
+    mute: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    spread: 0
+    minDistance: 1
+    maxDistance: 500
+    ignoreListenerVolume: 0
+    ignoreListenerPause: 0
+    rolloffMode: 0
   damagedSfx:
     clip: {fileID: 8300000, guid: 53e976d48b2d6584d97c91ae2cc488e9, type: 3}
     mixerGroup: {fileID: 0}
@@ -343,6 +366,7 @@ MonoBehaviour:
   distanceTravelled: 0
   idleAnimationClip: {fileID: -3100369314251171874, guid: 9b9e47e648e4ba5439c4a468d90fc289, type: 3}
   moveAnimationClip: {fileID: 5522812681064789136, guid: 9b9e47e648e4ba5439c4a468d90fc289, type: 3}
+  spawnVfx: {fileID: 3280562368088107363}
 --- !u!61 &1213967996921598584
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -449,3 +473,171 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &8967755178943769968
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6074064509284814186}
+  - component: {fileID: 2901818592861670327}
+  - component: {fileID: 3543028401413834525}
+  - component: {fileID: 3280562368088107363}
+  m_Layer: 0
+  m_Name: Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &6074064509284814186
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8967755178943769968}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1700598726544100804}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &2901818592861670327
+SpriteRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8967755178943769968}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_Sprite: {fileID: -120175656098321416, guid: 5341289bd4c8fde4bbc4152b801bd4d4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2.125, y: 3.5}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_SpriteSortPoint: 0
+--- !u!95 &3543028401413834525
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8967755178943769968}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 8892867944378045336, guid: 5341289bd4c8fde4bbc4152b801bd4d4, type: 3}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3280562368088107363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8967755178943769968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed4a65b101fde1e4198304d4a6ffa639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: AnimationSystem::CaptainPinkTurd.AnimationSystem.BasicVfxAnimationController
+  onAwakeEvents:
+    m_PersistentCalls:
+      m_Calls: []
+  onEnableEvents:
+    Value:
+      m_PersistentCalls:
+        m_Calls: []
+    Key: 0
+  onDisableEvents:
+    Value:
+      m_PersistentCalls:
+        m_Calls: []
+    Key: 0
+  onStartEvents:
+    m_PersistentCalls:
+      m_Calls: []
+  vfxAnimation: {fileID: 457796991906702257, guid: 5341289bd4c8fde4bbc4152b801bd4d4, type: 3}
+  spawnFromPool: 0
+  vfxSfx:
+    clip: {fileID: 0}
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+    frequentSound: 0
+    mute: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    spread: 0
+    minDistance: 1
+    maxDistance: 500
+    ignoreListenerVolume: 0
+    ignoreListenerPause: 0
+    rolloffMode: 0

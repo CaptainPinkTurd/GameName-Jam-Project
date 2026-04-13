@@ -80,10 +80,12 @@ namespace BulletHell
         public void Draw(int activeProjectileCount)
         {
             // Update our compute buffers with latest data 
-            TransformBuffer.SetData(TransformData, 0, 0, activeProjectileCount);
+            int safeDrawCount = Mathf.Min(activeProjectileCount, TransformData.Length);
+            
+            TransformBuffer.SetData(TransformData, 0, 0, safeDrawCount);
             if (!StaticColor)
-                ColorBuffer.SetData(ColorData, 0, 0, activeProjectileCount);
-            args[1] = (uint)activeProjectileCount;
+                ColorBuffer.SetData(ColorData, 0, 0, safeDrawCount);
+            args[1] = (uint)safeDrawCount;
             ArgsBuffer.SetData(args);
 
             // Instruct the GPU to draw

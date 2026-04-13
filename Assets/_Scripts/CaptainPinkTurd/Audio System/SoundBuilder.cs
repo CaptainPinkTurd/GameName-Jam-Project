@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace CaptainPinkTurd.AudioSystem
@@ -30,15 +31,15 @@ namespace CaptainPinkTurd.AudioSystem
             return this;
         }
 
-        public void Play(SoundData soundData) 
+        public void Play(SoundData soundData, Action onSoundEnd = null) 
         {
             if (soundData == null || !soundData.clip) 
             {
-                Debug.LogError("SoundData is null");
+                Debug.LogWarning("SoundData is null");
                 return;
             }
             
-            if (!soundManager.CanPlaySound(soundData)) return;
+            if (soundManager && !soundManager.CanPlaySound(soundData)) return;
 
             SoundEmitter soundEmitter = soundManager.Get();
             
@@ -62,6 +63,7 @@ namespace CaptainPinkTurd.AudioSystem
                 soundEmitter.Node = soundManager.FrequentSoundEmitters.AddLast(soundEmitter);
             }
             
+            soundEmitter.onSoundEnd = onSoundEnd;
             soundEmitter.Play();
         }
     }

@@ -1,4 +1,5 @@
 using CaptainPinkTurd.AudioSystem;
+using CaptainPinkTurd.Core;
 using CaptainPinkTurd.Core.Utilities;
 using UnityEngine;
 
@@ -9,8 +10,9 @@ namespace CaptainPinkTurd.AnimationSystem
         [Header("Vfx Animation Controller Configs")]
         [SerializeField] private AnimationClip vfxAnimation;
         [SerializeField] private bool spawnFromPool;
-        [SerializeField] private SoundData vfxSfx; 
-        
+        [SerializeField] private SoundData vfxSfx;
+
+        public GameEvent OnAnimationEnd = new GameEvent();
         public override int DefaultAnimationHash { get; set; }
         
         protected override void OnEnable()
@@ -29,10 +31,17 @@ namespace CaptainPinkTurd.AnimationSystem
 
         private void PlayVfxAnimation()
         {
-            SoundManager.Instance.CreateSoundBuilder()
-                .WithPosition(transform.position).WithRandomPitch().Play(vfxSfx);
+            if (vfxSfx.clip)
+            {
+                SoundManager.Instance.CreateSoundBuilder()
+                    .WithPosition(transform.position).WithRandomPitch().Play(vfxSfx);
+            }
+            
             PlayAnimation(Animator.StringToHash(vfxAnimation.name), onAnimationEnd: () =>
             {
+                OnAnimationEnd.Raise();
+                OnAnimationEnd.Clear();
+                
                 if(spawnFromPool)
                 {
                     ObjectPoolManager.Instance.ReturnObjectToPool(gameObject);

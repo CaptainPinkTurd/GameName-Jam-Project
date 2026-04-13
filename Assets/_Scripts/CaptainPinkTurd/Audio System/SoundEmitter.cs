@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using CaptainPinkTurd.Core.Extensions;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace CaptainPinkTurd.AudioSystem
 {
@@ -10,7 +12,10 @@ namespace CaptainPinkTurd.AudioSystem
     {
         public SoundData Data { get; private set; }
         public LinkedListNode<SoundEmitter> Node { get; set; }
+        public bool IsPlaying => audioSource.isPlaying;
 
+        internal Action onSoundEnd;
+        
         private AudioSource audioSource;
         private Coroutine playingCoroutine;
 
@@ -52,7 +57,8 @@ namespace CaptainPinkTurd.AudioSystem
             audioSource.rolloffMode = data.rolloffMode;
         }
 
-        public void Play() {
+        public void Play() 
+        {
             if (playingCoroutine != null) 
             {
                 StopCoroutine(playingCoroutine);
@@ -70,6 +76,9 @@ namespace CaptainPinkTurd.AudioSystem
 
         public void Stop() 
         {
+            onSoundEnd?.Invoke();
+            onSoundEnd = null;
+            
             if (playingCoroutine != null)
             {
                 StopCoroutine(playingCoroutine);

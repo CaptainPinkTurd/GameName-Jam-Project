@@ -6,9 +6,6 @@ namespace CaptainPinkTurd.Game.Enemy
 {
     public class Turret : ProjectileEmitterCenter
     {
-        [Header("Turret Configs")]
-        [SerializeField] private SoundData startUpSfx;
-        
         [Header("Turret Animations")]
         [SerializeField] private AnimationClip idleAnimationClip;
         [SerializeField] private AnimationClip spawnAnimationClip;

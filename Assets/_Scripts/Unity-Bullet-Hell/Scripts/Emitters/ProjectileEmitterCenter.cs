@@ -36,6 +36,7 @@ namespace CaptainPinkTurd.Game
         [SerializeField] private VoidEvent OnDamagedTaken;
         
         [Header("SFXs")]
+        [SerializeField] protected SoundData startUpSfx;
         [SerializeField] private SoundData damagedSfx;
 
         private GameObject damageSource;

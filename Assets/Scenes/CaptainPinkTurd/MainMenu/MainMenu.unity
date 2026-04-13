@@ -465,7 +465,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7843416716369364892, guid: 1f783a7b61839724e8ea21f650e62ccd, type: 3}
+  m_Sprite: {fileID: -273060469431498887, guid: 1f783a7b61839724e8ea21f650e62ccd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -28519,7 +28519,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -4532114073746202998, guid: 1f783a7b61839724e8ea21f650e62ccd, type: 3}
+  m_Sprite: {fileID: 7301787903208175943, guid: 1f783a7b61839724e8ea21f650e62ccd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -30043,7 +30043,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1652299931923453484, guid: 1f783a7b61839724e8ea21f650e62ccd, type: 3}
+  m_Sprite: {fileID: -5481780447360278658, guid: 1f783a7b61839724e8ea21f650e62ccd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -30418,7 +30418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: SceneArchitectureSystem::CaptainPinkTurd.Scene.Manager.MainMenuManager
   randomizedInitialLevel: 1
-  initialLevel: 5
+  initialLevel: 6
   levelData: {fileID: 11400000, guid: b94deda448ba1a34dab047a95af0cb66, type: 2}
 --- !u!1 &1968980263
 GameObject:

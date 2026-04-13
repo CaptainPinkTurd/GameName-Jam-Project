@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce8cd5e9cb146ff81ef35a1ab377d78, type: 3}
+  m_Name: Spider Only Profile
+  m_EditorClassIdentifier: 
+  itemDebugVisualize: 0
+  lootDropTable:
+    lootDropItems:
+    - item: {fileID: 4564287098680374756, guid: d0a2fe8aa72fd5f40a4550cfc55efed0, type: 3}
+      probabilityWeight: 1
+      probabilityPercent: 100
+      placementRadius: 1
+      spawnRandomRotation: 0
+      gizmoColor: {r: 1, g: 0.054088086, b: 0, a: 1}

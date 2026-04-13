@@ -1043,6 +1043,7 @@ MonoBehaviour:
     m_Bits: 512
   colorSwitchVfx: {fileID: 300991733349106856}
   explosionVfx: {fileID: 8568515182452555486, guid: 15ac99202f515cc48a44d70e6f90e965, type: 3}
+  delayOnDeath: 1
 --- !u!114 &713105100355585551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1066,7 +1067,7 @@ MonoBehaviour:
   damageTextPopupPrefab: {fileID: 0}
   damageTextTargetHeight: 0
   hurtSfx:
-    clip: {fileID: 8300000, guid: 6a3759cb8871ea6408e259982bc0e01a, type: 3}
+    clip: {fileID: 8300000, guid: 3496afc7b71bfd04bb922aca20cf07ee, type: 3}
     mixerGroup: {fileID: 0}
     loop: 0
     playOnAwake: 0
@@ -1089,7 +1090,7 @@ MonoBehaviour:
     ignoreListenerPause: 0
     rolloffMode: 0
   deathSfx:
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: cd57688dd5154084183f22967e690b6d, type: 3}
     mixerGroup: {fileID: 0}
     loop: 0
     playOnAwake: 0

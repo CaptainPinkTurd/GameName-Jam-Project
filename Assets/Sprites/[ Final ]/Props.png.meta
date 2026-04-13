@@ -522,7 +522,7 @@ TextureImporter:
         width: 29
         height: 23
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -531,6 +531,28 @@ TextureImporter:
       bones: []
       spriteID: 3d97b40594482ed4fb3b831f30727dca
       internalID: -1896444026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Props_17
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 191
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6877579728c023e449d8f8918d7b5de4
+      internalID: -3571088
       vertices: []
       indices: 
       edges: []
@@ -558,6 +580,7 @@ TextureImporter:
       Props_14: 1348196294
       Props_15: 1976580782
       Props_16: -1896444026
+      Props_17: -3571088
       Props_2: 7466427622202046938
       Props_3: 4489838820935638777
       Props_4: -1870876656750283219

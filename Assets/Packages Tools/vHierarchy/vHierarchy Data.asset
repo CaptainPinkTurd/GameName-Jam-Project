@@ -617,27 +617,28 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-c55f161fc1d337346b99df0f45aa6097-348972318-0
         - globalObjectIdString: GlobalObjectId_V1-2-c55f161fc1d337346b99df0f45aa6097-1716422564-0
         - globalObjectIdString: GlobalObjectId_V1-2-c55f161fc1d337346b99df0f45aa6097-1411467361-0
+        - globalObjectIdString: GlobalObjectId_V1-2-c55f161fc1d337346b99df0f45aa6097-6753622627740537954-0
         values:
         - colorIndex: 0
           iconNameOrGuid: Camera Icon
           isIconRecursive: 0
           isColorRecursive: 0
+        - colorIndex: 7
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 1
+        - colorIndex: 6
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 1
+        - colorIndex: 4
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 1
         - colorIndex: 2
           iconNameOrGuid: 
           isIconRecursive: 0
-          isColorRecursive: 0
-        - colorIndex: 5
-          iconNameOrGuid: 
-          isIconRecursive: 0
-          isColorRecursive: 0
-        - colorIndex: 3
-          iconNameOrGuid: 
-          isIconRecursive: 0
-          isColorRecursive: 0
-        - colorIndex: 8
-          iconNameOrGuid: 
-          isIconRecursive: 0
-          isColorRecursive: 0
+          isColorRecursive: 1
         - colorIndex: 0
           iconNameOrGuid: AvatarMask On Icon
           isIconRecursive: 0
@@ -666,6 +667,10 @@ MonoBehaviour:
           iconNameOrGuid: Prefab Icon
           isIconRecursive: 0
           isColorRecursive: 0
+        - colorIndex: 8
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 1
     - goDatas_byGlobalId:
         keys:
         - globalObjectIdString: GlobalObjectId_V1-2-5bd8052717eca4045b8570d23120800c-1605926864-0
@@ -1302,4 +1307,15 @@ MonoBehaviour:
     globalId:
       globalObjectIdString: GlobalObjectId_V1-2-c2341d5d3a0077742b6d4280d8a5b0b7-1893404357-0
   bookmarkedScenePaths:
+  - Assets/Scenes/CaptainPinkTurd/Bootstrap Scenes/Core.unity
+  - Assets/Scenes/CaptainPinkTurd/MainMenu/MainMenu.unity
   - Assets/Scenes/CaptainPinkTurd/Gameplay Test Scene.unity
+  - Assets/Scenes/CaptainPinkTurd/Tutorial Level/Level 1 Tutorial.unity
+  - Assets/Scenes/CaptainPinkTurd/Tutorial Level/Level 2 Tutorial.unity
+  - Assets/Scenes/CaptainPinkTurd/Tutorial Level/Level 3 Tutorial.unity
+  - Assets/Scenes/CaptainPinkTurd/Levels/Level 1.unity
+  - Assets/Scenes/CaptainPinkTurd/Levels/Level 2.unity
+  - Assets/Scenes/CaptainPinkTurd/Levels/Level 3.unity
+  - Assets/Scenes/CaptainPinkTurd/Levels/Level 4.unity
+  - Assets/Scenes/CaptainPinkTurd/Levels/Level 5.unity
+  - Assets/Scenes/CaptainPinkTurd/Levels/Level 6.unity

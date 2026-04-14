@@ -2,8 +2,9 @@ using BulletHell;
 using CaptainPinkTurd.AnimationSystem;
 using CaptainPinkTurd.AudioSystem;
 using CaptainPinkTurd.Core;
-using CaptainPinkTurd.Core.Attributes;
+using CaptainPinkTurd.Core.CustomDataStructure;
 using CaptainPinkTurd.Core.DesignPattern.SOAP.Events;
+using CaptainPinkTurd.Core.Enum;
 using CaptainPinkTurd.Core.Extensions;
 using CaptainPinkTurd.Core.Interfaces;
 using CaptainPinkTurd.Core.Struct;
@@ -29,6 +30,8 @@ namespace CaptainPinkTurd.BulletHell
         [SerializeField] protected ProjectileEmitterAdvanced advancedEmitter;
         [SerializeField] private float projectileColorChangeIntervalMin = 2.5f;
         [SerializeField] private float projectileColorChangeIntervalMax = 5f;
+        [SerializeField] private GameObject alertModel;
+        [SerializeField] private SerializeKeyValuePair<EColor, GameObject>[] colorAlertModels;
         
         [Header("Impact Configs")]
         [SerializeField] private float hitStopDuration = 0.2f;
@@ -39,6 +42,7 @@ namespace CaptainPinkTurd.BulletHell
         [Header("SFXs")]
         [SerializeField] protected SoundData startUpSfx;
         [SerializeField] private SoundData damagedSfx;
+        [SerializeField] private SoundData colorChangeAlertSfx;
 
         private GameObject damageSource;
         public Collider2D Coll { get; private set; }
@@ -64,9 +68,38 @@ namespace CaptainPinkTurd.BulletHell
         {
             base.OnEnable();
             
+            alertModel.SetActive(false);
+            advancedEmitter.OnProjectilePulseChangeAlert.Subscribe(OnProjectileColorChangeAlert);
+            advancedEmitter.OnProjectileColorPulseChange.Subscribe(OnColorChangeEvent);
+            
             CurrentHealth = maxHealth;
 
             ProjectileEmitterSetup();
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            
+            advancedEmitter.OnProjectilePulseChangeAlert.Unsubscribe(OnProjectileColorChangeAlert);
+            advancedEmitter.OnProjectileColorPulseChange.Unsubscribe(OnColorChangeEvent);
+        }
+
+        private void OnColorChangeEvent(EColor color)
+        {
+            alertModel.SetActive(false);
+            foreach (var colorModel in colorAlertModels)
+            {
+                colorModel.Value.SetActive(colorModel.Key == color);
+            }
+        }
+
+        private void OnProjectileColorChangeAlert()
+        {
+            alertModel.SetActive(true);
+            SoundManager.Instance.CreateSoundBuilder()
+                .WithPosition(transform.position).WithRandomPitch().Play(colorChangeAlertSfx,
+                    () => alertModel.SetActive(false));
         }
 
         protected void ToggleEmitter(bool on)

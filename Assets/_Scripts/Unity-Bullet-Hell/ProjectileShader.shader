@@ -5,12 +5,12 @@
     [MaterialToggle] PixelSnap ("Pixel snap", Float) = 0
     [PerRendererData] _AlphaTex ("External Alpha", 2D) = "white" {}
     [PerRendererData] _EnableExternalAlpha ("Enable External Alpha", Float) = 0
-	[PowerSlider(1.0)] _ZIndex("ZIndex", Range(0.01, 1)) = 0.01
+	[PowerSlider(1.0)] _ZIndex("ZIndex", Range(-1, 1)) = 0.01
   }
 
   SubShader {
     Tags {
-      "Queue"="Transparent"
+      "Queue"="Transparent-1"
       "IgnoreProjector"="True"
       "RenderType"="Transparent"
       "PreviewType"="Plane"

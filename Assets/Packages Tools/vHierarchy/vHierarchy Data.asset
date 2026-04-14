@@ -1341,6 +1341,7 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-67d9b71e9e2f45149a40c827d0ad1caf-2080685436-0
         - globalObjectIdString: GlobalObjectId_V1-2-67d9b71e9e2f45149a40c827d0ad1caf-1182088841-0
         - globalObjectIdString: GlobalObjectId_V1-2-67d9b71e9e2f45149a40c827d0ad1caf-1157547465-0
+        - globalObjectIdString: GlobalObjectId_V1-2-67d9b71e9e2f45149a40c827d0ad1caf-4560532499181982198-606326699
         values:
         - colorIndex: 8
           iconNameOrGuid: 
@@ -1358,6 +1359,10 @@ MonoBehaviour:
           iconNameOrGuid: 
           isIconRecursive: 0
           isColorRecursive: 0
+        - colorIndex: 8
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 1
   bookmarks:
   - _go: {fileID: 0}
     globalId:

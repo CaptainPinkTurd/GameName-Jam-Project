@@ -1,4 +1,6 @@
 ﻿using System;
+using CaptainPinkTurd.Core;
+using CaptainPinkTurd.Core.Enum;
 using CaptainPinkTurd.Core.Extensions;
 using CaptainPinkTurd.Core.Interfaces;
 using CaptainPinkTurd.Core.Struct;
@@ -22,6 +24,8 @@ namespace BulletHell
         [SerializeField] public bool UseColorPulse;
         [ConditionalField(nameof(UseColorPulse)), SerializeField] internal float PulseSpeed;
         [ConditionalField(nameof(UseColorPulse)), SerializeField] protected bool UseStaticPulse;
+        [SerializeField] private float leftSidePulseAlertStart;
+        [SerializeField] private float rightSidePulseAlertStart = 1f;
 
         [Foldout("Spokes", true)]
         [Range(1, 10), SerializeField] protected int GroupCount = 1;
@@ -43,9 +47,12 @@ namespace BulletHell
         [ConditionalField(nameof(UseOutlineColorPulse)), SerializeField] protected bool UseOutlineStaticPulse;
 
         private EmitterGroup[] Groups;
+        public GameEvent OnProjectilePulseChangeAlert = new GameEvent();
+        public GameEvent<EColor> OnProjectileColorPulseChange = new GameEvent<EColor>();
         private int LastGroupCountPoll = -1;
         private bool PreviousMirrorPairRotation = false;
         private bool PreviousPairGroupDirection = false;
+        private bool hasAlerted = false;
 
         public override void Awake()
         {
@@ -460,7 +467,30 @@ namespace BulletHell
             {
                 if (UseStaticPulse)
                 {
+                    if((StaticPulse.Fraction >= leftSidePulseAlertStart && StaticPulse.Fraction <= .5f && !StaticPulse.PulseDown ||
+                        StaticPulse.Fraction >= .5f && StaticPulse.Fraction <= rightSidePulseAlertStart && StaticPulse.PulseDown) &&
+                       !hasAlerted)
+                    {
+                        hasAlerted = true;
+                        OnProjectilePulseChangeAlert.Raise();
+                    }
+                    else if (StaticPulse.Fraction >= leftSidePulseAlertStart && StaticPulse.Fraction <= .5f && StaticPulse.PulseDown ||
+                             StaticPulse.Fraction >= .5f && StaticPulse.Fraction <= rightSidePulseAlertStart && !StaticPulse.PulseDown)
+                    {
+                        hasAlerted = false;
+                    }
+
                     data.Color = Color.Evaluate(StaticPulse.Fraction);
+
+                    switch (StaticPulse.Fraction)
+                    {
+                        case <= .5f when !hasAlerted:
+                            OnProjectileColorPulseChange.Raise(EColor.Red);
+                            break;
+                        case >= .5f when !hasAlerted:
+                            OnProjectileColorPulseChange.Raise(EColor.Blue);
+                            break;
+                    }
                 }
                 else
                 {

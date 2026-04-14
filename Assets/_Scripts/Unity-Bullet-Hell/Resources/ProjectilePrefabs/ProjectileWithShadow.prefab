@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1392230877552907710}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2799948, y: 1.5716133, z: 0.16089734}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Texture: {fileID: 0}
   Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
-  ZIndez: 0.03
+  ZIndez: -1
   PixelSnap: 1
   StaticColor: 0
   Color: {r: 0, g: 0, b: 0, a: 0}

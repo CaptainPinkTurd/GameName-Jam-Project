@@ -23,7 +23,7 @@ namespace CaptainPinkTurd.Game
         [SerializeField] private VoidEvent onGameOver;
         
         [Header("Game Specific Variables")]
-        [SerializeField] private EColorEvent onDimensionChange;
+        [SerializeField] private EnumColorEvent onDimensionChange;
         [SerializeField, ReadOnly] private EColor currentDimension;
             
         public GameEvent OnGameOver = new GameEvent();

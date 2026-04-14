@@ -1,5 +1,8 @@
+using System;
+using CaptainPinkTurd.AudioSystem;
 using CaptainPinkTurd.Core.Attributes;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace CaptainPinkTurd.Scene.Manager
 {
@@ -11,7 +14,14 @@ namespace CaptainPinkTurd.Scene.Manager
         [SerializeField] private int initialLevel = 1;
         [ShowIf(nameof(randomizedInitialLevel))]
         [SerializeField] private LevelData levelData;
-        
+
+        [SerializeField] private SoundData titleTheme;
+
+        private void Start()
+        {
+            SoundManager.Instance.CreateSoundBuilder().WithPosition(transform.position).Play(titleTheme);
+        }
+
         public void StartSession()
         {
             var level = randomizedInitialLevel ? Random.Range(1, levelData.totalLevelInGame + 1) : initialLevel;

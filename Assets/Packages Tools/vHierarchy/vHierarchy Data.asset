@@ -895,6 +895,9 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-eef5af1bd92476f448a20c740371119f-348972318-0
         - globalObjectIdString: GlobalObjectId_V1-2-eef5af1bd92476f448a20c740371119f-1716422564-0
         - globalObjectIdString: GlobalObjectId_V1-2-eef5af1bd92476f448a20c740371119f-1411467361-0
+        - globalObjectIdString: GlobalObjectId_V1-2-eef5af1bd92476f448a20c740371119f-4560532499181982198-428810796
+        - globalObjectIdString: GlobalObjectId_V1-2-eef5af1bd92476f448a20c740371119f-1151806850-0
+        - globalObjectIdString: GlobalObjectId_V1-2-eef5af1bd92476f448a20c740371119f-1681396624-0
         values:
         - colorIndex: 0
           iconNameOrGuid: Camera Icon
@@ -943,6 +946,18 @@ MonoBehaviour:
         - colorIndex: 0
           iconNameOrGuid: Prefab Icon
           isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 8
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 1
+        - colorIndex: 0
+          iconNameOrGuid: WheelCollider Icon
+          isIconRecursive: 1
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Light Icon
+          isIconRecursive: 1
           isColorRecursive: 0
     - goDatas_byGlobalId:
         keys:
@@ -1021,27 +1036,28 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-292353edb76c36f4f8a103aaa268af33-348972318-0
         - globalObjectIdString: GlobalObjectId_V1-2-292353edb76c36f4f8a103aaa268af33-1716422564-0
         - globalObjectIdString: GlobalObjectId_V1-2-292353edb76c36f4f8a103aaa268af33-1411467361-0
+        - globalObjectIdString: GlobalObjectId_V1-2-292353edb76c36f4f8a103aaa268af33-4560532499181982198-141435763
         values:
         - colorIndex: 0
           iconNameOrGuid: Camera Icon
           isIconRecursive: 0
           isColorRecursive: 0
-        - colorIndex: 2
+        - colorIndex: 7
           iconNameOrGuid: 
           isIconRecursive: 0
-          isColorRecursive: 0
+          isColorRecursive: 1
+        - colorIndex: 6
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 1
         - colorIndex: 5
           iconNameOrGuid: 
           isIconRecursive: 0
-          isColorRecursive: 0
-        - colorIndex: 3
+          isColorRecursive: 1
+        - colorIndex: 2
           iconNameOrGuid: 
           isIconRecursive: 0
-          isColorRecursive: 0
-        - colorIndex: 8
-          iconNameOrGuid: 
-          isIconRecursive: 0
-          isColorRecursive: 0
+          isColorRecursive: 1
         - colorIndex: 0
           iconNameOrGuid: AvatarMask On Icon
           isIconRecursive: 0
@@ -1070,6 +1086,10 @@ MonoBehaviour:
           iconNameOrGuid: Prefab Icon
           isIconRecursive: 0
           isColorRecursive: 0
+        - colorIndex: 8
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 1
     - goDatas_byGlobalId:
         keys:
         - globalObjectIdString: GlobalObjectId_V1-2-6b5b66429c30182408d9187b6702a27f-1605926864-0
@@ -1084,27 +1104,28 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-6b5b66429c30182408d9187b6702a27f-348972318-0
         - globalObjectIdString: GlobalObjectId_V1-2-6b5b66429c30182408d9187b6702a27f-1716422564-0
         - globalObjectIdString: GlobalObjectId_V1-2-6b5b66429c30182408d9187b6702a27f-1411467361-0
+        - globalObjectIdString: GlobalObjectId_V1-2-6b5b66429c30182408d9187b6702a27f-4560532499181982198-1682448120
         values:
         - colorIndex: 0
           iconNameOrGuid: Camera Icon
           isIconRecursive: 0
           isColorRecursive: 0
-        - colorIndex: 2
+        - colorIndex: 7
           iconNameOrGuid: 
           isIconRecursive: 0
-          isColorRecursive: 0
+          isColorRecursive: 1
+        - colorIndex: 6
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 1
         - colorIndex: 5
           iconNameOrGuid: 
           isIconRecursive: 0
-          isColorRecursive: 0
-        - colorIndex: 3
+          isColorRecursive: 1
+        - colorIndex: 2
           iconNameOrGuid: 
           isIconRecursive: 0
-          isColorRecursive: 0
-        - colorIndex: 8
-          iconNameOrGuid: 
-          isIconRecursive: 0
-          isColorRecursive: 0
+          isColorRecursive: 1
         - colorIndex: 0
           iconNameOrGuid: AvatarMask On Icon
           isIconRecursive: 0
@@ -1133,6 +1154,10 @@ MonoBehaviour:
           iconNameOrGuid: Prefab Icon
           isIconRecursive: 0
           isColorRecursive: 0
+        - colorIndex: 8
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 1
     - goDatas_byGlobalId:
         keys:
         - globalObjectIdString: GlobalObjectId_V1-2-c1c9ac3fc4e587e4eaffaaa42db9a44a-1605926864-0

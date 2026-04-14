@@ -1,4 +1,3 @@
-using System;
 using CaptainPinkTurd.AudioSystem;
 using CaptainPinkTurd.Core;
 using CaptainPinkTurd.Core.Attributes;
@@ -19,6 +18,7 @@ namespace CaptainPinkTurd.UnitSystem
         [SerializeField] private UnitBase unit;
         [SerializeField] private int maxHealth;
         [SerializeField] private float invincibilityFrameDuration;
+        [SerializeField] private bool invincibilityFrameAffectKnockback = true;
         [SerializeField] private ImpactType onDamageImpactType;
         
         [Header("Health Bar Configs")]
@@ -129,7 +129,7 @@ namespace CaptainPinkTurd.UnitSystem
 
         public IDamageable WithKnockback(Vector3 knockbackForce, float constantForce)
         {
-            if (!IsInvincibilityFrameOn)
+            if (!IsInvincibilityFrameOn || !invincibilityFrameAffectKnockback)
             {
                 StartCoroutine(unit.Knockback.KnockbackAction(unit.unitInfo.defaultKnockbackConfig,
                     knockbackForce, constantForce, Vector2.zero));

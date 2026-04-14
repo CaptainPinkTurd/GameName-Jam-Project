@@ -1,4 +1,3 @@
-using System;
 using CaptainPinkTurd.AnimationSystem;
 using CaptainPinkTurd.AudioSystem;
 using CaptainPinkTurd.Core.DesignPattern.SOAP.Events;
@@ -11,8 +10,9 @@ namespace CaptainPinkTurd.Game
     {
         [Header("Door Configs")] 
         [SerializeField] private LayerMask playerLayers;
-        [SerializeField] private SoundData openSfx;
         [SerializeField] private VoidEvent onDoorEnter;
+        [SerializeField] private SoundData openSfx;
+        [SerializeField] private SoundData enterSfx;
         
         [Header("Door Animations")]
         [SerializeField] private AnimationClip doorCloseAnimation;
@@ -48,6 +48,7 @@ namespace CaptainPinkTurd.Game
             if (!isOpen) return;
             if (!playerLayers.Contains(other.gameObject.layer)) return;
             
+            SoundManager.Instance.CreateSoundBuilder().WithPosition(transform.position).WithRandomPitch().Play(enterSfx);
             onDoorEnter.Raise();
         }
     }

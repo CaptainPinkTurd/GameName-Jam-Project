@@ -69,6 +69,8 @@ namespace CaptainPinkTurd.Game.Player
             
             gameObject.SetActive(false);
             
+            if (delayOnDeath < 0) return;
+            
             //order matter for this one cause the game over popup needs to be enabled first to get the high score
             GameManager.Instance.StartCoroutine(CoroutineUtils.WaitForSeconds(delayOnDeath,
                 GameManager.Instance.OnGameOver.Raise));

@@ -32,6 +32,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CaptainPinkTurd/Levels/Level 6.unity
     guid: 292353edb76c36f4f8a103aaa268af33
+  - enabled: 1
+    path: Assets/Scenes/CaptainPinkTurd/Tutorial Level/Level 1 Tutorial.unity
+    guid: d8da1ac7ce82547459ea895615b01ce7
+  - enabled: 1
+    path: Assets/Scenes/CaptainPinkTurd/Tutorial Level/Level 2 Tutorial.unity
+    guid: 67d9b71e9e2f45149a40c827d0ad1caf
+  - enabled: 1
+    path: Assets/Scenes/CaptainPinkTurd/Tutorial Level/Level 3 Tutorial.unity
+    guid: 88733b1553510d8409a42ee15eba5910
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

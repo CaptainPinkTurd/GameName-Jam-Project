@@ -1890,6 +1890,7 @@ GameObject:
   - component: {fileID: 1913445683}
   - component: {fileID: 1913445684}
   - component: {fileID: 1913445685}
+  - component: {fileID: 1913445686}
   m_Layer: 0
   m_Name: Score Manager Event Listeners
   m_TagString: Untagged
@@ -1953,6 +1954,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Core::CaptainPinkTurd.Core.DesignPattern.SOAP.Events.VoidEventListener
   gameEvent: {fileID: 11400000, guid: e6e878309ad7b6a438e5964a6b46dcea, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1548040089}
+        m_TargetAssemblyTypeName: CaptainPinkTurd.ScoreSystem.ScoreManager, ScoreSystem
+        m_MethodName: OnGameOverEvent
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1913445686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913445682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb243ffb9c8644f0b92a742bb85ecf5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Core::CaptainPinkTurd.Core.DesignPattern.SOAP.Events.VoidEventListener
+  gameEvent: {fileID: 11400000, guid: 3ec71fb60040c654482533b59d27fe85, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:

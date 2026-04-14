@@ -1,3 +1,4 @@
+using System;
 using CaptainPinkTurd.Core.Attributes;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -13,17 +14,40 @@ namespace CaptainPinkTurd.Scene.Manager
         [ShowIf(nameof(randomizedInitialLevel))]
         [SerializeField] private LevelData levelData;
 
+        private void OnEnable()
+        {
+            Cursor.visible = true;
+        }
+
+        private void OnDisable()
+        {
+            Cursor.visible = false;
+        }
+
         public void StartSession()
         {
-            var level = randomizedInitialLevel ? Random.Range(1, levelData.totalLevelInGame + 1) : initialLevel;
+            if (!levelData.hasDoneTutorial)
+            {
+                SceneController.Instance
+                    .NewTransition()
+                    .Load(SceneDatabase.Slots.Session, SceneDatabase.Scenes.Session)
+                    .Load(SceneDatabase.Slots.SessionContent, $"{SceneDatabase.Scenes.Level} 1 Tutorial", true)
+                    .Unload(SceneDatabase.Slots.Menu)
+                    .WithOverlay()
+                    .Perform();
+            }
+            else
+            {
+                var level = randomizedInitialLevel ? Random.Range(1, levelData.totalLevelInGame + 1) : initialLevel;
             
-            SceneController.Instance
-                .NewTransition()
-                .Load(SceneDatabase.Slots.Session, SceneDatabase.Scenes.Session)
-                .Load(SceneDatabase.Slots.SessionContent, $"{SceneDatabase.Scenes.Level} {level}", true)
-                .Unload(SceneDatabase.Slots.Menu)
-                .WithOverlay()
-                .Perform();
+                SceneController.Instance
+                    .NewTransition()
+                    .Load(SceneDatabase.Slots.Session, SceneDatabase.Scenes.Session)
+                    .Load(SceneDatabase.Slots.SessionContent, $"{SceneDatabase.Scenes.Level} {level}", true)
+                    .Unload(SceneDatabase.Slots.Menu)
+                    .WithOverlay()
+                    .Perform();
+            }
         }
 
         public void QuitGame()

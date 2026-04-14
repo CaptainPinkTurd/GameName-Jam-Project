@@ -147,6 +147,7 @@ MonoBehaviour:
   spawnFromPool: 0
   vfxSfx:
     clip: {fileID: 8300000, guid: 731aa8f5ba0fe394ca439d072bfc09dd, type: 3}
+    overrideMixerGroup: 0
     mixerGroup: {fileID: 0}
     loop: 0
     playOnAwake: 0
@@ -1061,6 +1062,7 @@ MonoBehaviour:
   unit: {fileID: 378778959457206378}
   maxHealth: 3
   invincibilityFrameDuration: 1
+  invincibilityFrameAffectKnockback: 0
   onDamageImpactType: {fileID: 11400000, guid: da20da27d490bcc4f8b3c09ada4615f5, type: 2}
   hasHealthBar: 0
   healthBar: {fileID: 0}
@@ -1070,6 +1072,7 @@ MonoBehaviour:
   damageTextTargetHeight: 0
   hurtSfx:
     clip: {fileID: 8300000, guid: 3496afc7b71bfd04bb922aca20cf07ee, type: 3}
+    overrideMixerGroup: 0
     mixerGroup: {fileID: 0}
     loop: 0
     playOnAwake: 0
@@ -1093,6 +1096,7 @@ MonoBehaviour:
     rolloffMode: 0
   deathSfx:
     clip: {fileID: 8300000, guid: cd57688dd5154084183f22967e690b6d, type: 3}
+    overrideMixerGroup: 0
     mixerGroup: {fileID: 0}
     loop: 0
     playOnAwake: 0

@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a45d2746e6b443bba3e91e1b74183b1f, type: 3}
   m_Name: Level Data
   m_EditorClassIdentifier: SceneArchitectureSystem::CaptainPinkTurd.Scene.Manager.LevelData
+  hasDoneTutorial: 0
   totalLevelInGame: 6

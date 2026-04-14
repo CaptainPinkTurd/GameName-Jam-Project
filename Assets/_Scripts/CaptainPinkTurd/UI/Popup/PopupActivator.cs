@@ -11,6 +11,8 @@ namespace CaptainPinkTurd.UI.Popup
         [Header("Popup Activator Properties")]
         [SerializeField] private PopupIdentifier popupId;
         [SerializeField] private EPopupShowBehaviour behaviour;
+        [SerializeField] private bool showCursorOnActive = true;
+        [SerializeField] private bool hideCursorOnInactive = true;
         
         [Header("Input Conditionals")]
         [SerializeField] private bool useInputShortcut;
@@ -46,7 +48,8 @@ namespace CaptainPinkTurd.UI.Popup
 
         public void ShowPopup()
         {
-            if(!popupManager.CanTriggerPopup) return;
+            if (!popupManager.CanTriggerPopup) return;
+            if (showCursorOnActive) Cursor.visible = true;
             
             isPopupActive = true;
             popupManager.ShowPopup(popupId, behaviour);
@@ -56,6 +59,7 @@ namespace CaptainPinkTurd.UI.Popup
         public void ClosePopup()
         {
             if(!popupManager.CanTriggerPopup) return;
+            Cursor.visible = !hideCursorOnInactive;
             
             isPopupActive = false;
             popupManager.CloseLastPopup();

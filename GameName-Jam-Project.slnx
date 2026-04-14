@@ -3,6 +3,7 @@
   <Project Path="VHierarchy.csproj" />
   <Project Path="PathCreatorEditor.csproj" />
   <Project Path="Core.csproj" />
+  <Project Path="AudioSystem.csproj" />
   <Project Path="ScoreSystem.csproj" />
   <Project Path="UI.csproj" />
   <Project Path="VFolders.csproj" />
@@ -16,7 +17,6 @@
   <Project Path="NewAssembly.csproj" />
   <Project Path="CursorSystem.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
-  <Project Path="AudioSystem.csproj" />
   <Project Path="Game.csproj" />
   <Project Path="DOTween.Modules.csproj" />
   <Project Path="SceneArchitectureSystem.csproj" />

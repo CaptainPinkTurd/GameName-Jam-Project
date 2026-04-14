@@ -70,14 +70,16 @@ namespace CaptainPinkTurd.AudioSystem
 
         void InitializePool() 
         {
-            soundEmitterPool = new ObjectPool<SoundEmitter>(
+            soundEmitterPool = new ObjectPool<SoundEmitter>
+            (
                 CreateSoundEmitter,
                 OnTakeFromPool,
                 OnReturnedToPool,
                 OnDestroyPoolObject,
                 collectionCheck,
                 defaultCapacity,
-                maxPoolSize);
+                maxPoolSize
+            );
         }
 
         SoundEmitter CreateSoundEmitter() 

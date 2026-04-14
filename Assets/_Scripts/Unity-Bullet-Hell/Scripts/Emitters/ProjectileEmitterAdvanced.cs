@@ -474,8 +474,7 @@ namespace BulletHell
                         hasAlerted = true;
                         OnProjectilePulseChangeAlert.Raise();
                     }
-                    else if (StaticPulse.Fraction >= leftSidePulseAlertStart && StaticPulse.Fraction <= .5f && StaticPulse.PulseDown ||
-                             StaticPulse.Fraction >= .5f && StaticPulse.Fraction <= rightSidePulseAlertStart && !StaticPulse.PulseDown)
+                    else if (StaticPulse is { Fraction: <= .5f, PulseDown: true } or { Fraction: >= .5f, PulseDown: false })
                     {
                         hasAlerted = false;
                     }

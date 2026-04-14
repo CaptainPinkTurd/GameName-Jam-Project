@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using CaptainPinkTurd.Core.Extensions;
 using UnityEngine;
+using UnityEngine.Audio;
 using Random = UnityEngine.Random;
 
 namespace CaptainPinkTurd.AudioSystem
@@ -26,11 +27,11 @@ namespace CaptainPinkTurd.AudioSystem
             audioSource = gameObject.GetOrAdd<AudioSource>();
         }
 
-        public void Initialize(SoundData data) 
+        public void Initialize(SoundData data, AudioMixerGroup mixerGroup) 
         {
             Data = data;
             audioSource.clip = data.clip;
-            audioSource.outputAudioMixerGroup = data.mixerGroup;
+            audioSource.outputAudioMixerGroup = data.overrideMixerGroup ? data.mixerGroup : mixerGroup;
             audioSource.loop = data.loop;
             audioSource.playOnAwake = data.playOnAwake;
             

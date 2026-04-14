@@ -1,3 +1,4 @@
+using CaptainPinkTurd.Core.Attributes;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -7,6 +8,8 @@ namespace CaptainPinkTurd.AudioSystem
     public class SoundData
     {
         public AudioClip clip;
+        public bool overrideMixerGroup;
+        [ShowIf(nameof(overrideMixerGroup))]
         public AudioMixerGroup mixerGroup;
         public bool loop;
         public bool playOnAwake;

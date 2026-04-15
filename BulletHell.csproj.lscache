@@ -371,7 +371,10 @@ Temp/bin/Debug/
  AnimationSystem.dll
  AudioSystem.dll
  Core.dll
+ DOTween.Modules.dll
  EffectSystem.dll
+ ImprovedTimers.dll
+ InputSystem.dll
  ScoreSystem.dll
  UI.dll
 

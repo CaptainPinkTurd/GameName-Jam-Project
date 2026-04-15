@@ -364,8 +364,12 @@ Temp/bin/Debug/
  BulletHell.dll
  Core.dll
  DOTween.Modules.dll
+ EffectSystem.dll
+ ImprovedTimers.dll
+ InputSystem.dll
  NewAssembly.dll
  PathCreator.dll
+ ScoreSystem.dll
  UI.dll
  UnitSystem.dll
 

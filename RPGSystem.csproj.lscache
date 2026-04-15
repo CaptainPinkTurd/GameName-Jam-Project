@@ -356,6 +356,9 @@ Temp/bin/Debug/
  AnimationSystem.dll
  AudioSystem.dll
  Core.dll
+ DOTween.Modules.dll
+ ImprovedTimers.dll
+ InputSystem.dll
  UI.dll
 
 [analyzerReferences]

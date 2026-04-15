@@ -364,7 +364,11 @@ Library/ScriptAssemblies/
  UnityEditor.UI.dll
  UnityEngine.UI.dll
 Temp/bin/Debug/
+ AudioSystem.dll
  Core.dll
+ DOTween.Modules.dll
+ ImprovedTimers.dll
+ InputSystem.dll
  UI.dll
 
 [analyzerReferences]

@@ -15,7 +15,7 @@ namespace CaptainPinkTurd.TopDownController2D
         [SerializeField] private Vector3VariableSO playerPosition;
         
         private PlayerTopDownMovementStats runtimeMoveStats;
-        private InputSystemActions playerInputs;
+        public InputSystemActions playerInputs;
         private Rigidbody2D rb;
         private Vector2 smoothedMovementInput;
         private Vector2 movementSmoothVelocity;

@@ -12463,6 +12463,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1727938693}
     m_Modifications:
+    - target: {fileID: 879004221266223198, guid: b5b6c98ee9920164dabf428375a7ef0d, type: 3}
+      propertyPath: EmissionModule.rateOverTime.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 945095204604766809, guid: b5b6c98ee9920164dabf428375a7ef0d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

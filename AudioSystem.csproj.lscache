@@ -54,11 +54,13 @@ TemporaryDependencyNodeTargetIdentifier=netstandard2.1
 [sourceFiles]
 Assets/_Scripts/CaptainPinkTurd/Audio System/
  AudioExtensions.cs
+ AudioManager.cs
  MusicManager.cs
  SoundBuilder.cs
  SoundData.cs
  SoundEmitter.cs
  SoundManager.cs
+ VolumeSlider.cs
 Temp/obj/AudioSystem/.NETStandard,Version=v2.1.AssemblyAttributes.cs
 
 [metadataReferences]

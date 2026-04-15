@@ -54,9 +54,6 @@ TemporaryDependencyNodeTargetIdentifier=netstandard2.1
 [sourceFiles]
 Assets/_Scripts/CaptainPinkTurd/Game/
  Door.cs
- EColor.cs
- EColorEvent.cs
- EColorEventListener.cs
  Enemy/
   DummyUnit.cs
   EnemyUnitBase.cs

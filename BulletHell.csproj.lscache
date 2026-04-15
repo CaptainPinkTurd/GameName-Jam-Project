@@ -64,6 +64,7 @@ Assets/_Scripts/Unity-Bullet-Hell/Scripts/
   ProjectileData.cs
   ProjectilePrefab.cs
   ProjectileType.cs
+  Target.cs
  Editor/EditorOverride.cs
  Emitters/
   ColorPulse.cs

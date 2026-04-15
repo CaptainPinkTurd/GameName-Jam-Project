@@ -78,12 +78,14 @@ Assets/_Scripts/CaptainPinkTurd/Core/
   Singleton.cs
  Design Patterns/SOAP/Scriptable Events/Event Listener Types/
   BoolEventListener.cs
+  EnumColorEventListener.cs
   FloatEventListener.cs
   IntEventListener.cs
   StringEventListener.cs
   VoidEventListener.cs
  Design Patterns/SOAP/Scriptable Events/Event Types/
   BoolEvent.cs
+  EnumColorEvent.cs
   FloatEvent.cs
   IntEvent.cs
   StringEvent.cs
@@ -110,6 +112,7 @@ Assets/_Scripts/CaptainPinkTurd/Core/
   ButtonAttributeEditor.cs
   InlineScriptableObjectDrawer.cs
   IntVariableDrawer.cs
+  PlayFromScene.cs
   SerializeInterfaceDrawer.cs
   ShowIfDrawer.cs
  Enums/Directions Enums/
@@ -117,6 +120,7 @@ Assets/_Scripts/CaptainPinkTurd/Core/
   ELocalDirection.cs
  Enums/
   EAnchorPresets.cs
+  EColor.cs
   EComparisonType.cs
   EConditionalLogic.cs
   EDamageType.cs

@@ -56,6 +56,7 @@ Assets/_Scripts/CaptainPinkTurd/Scene Architecture System/
  LoadingOverlay.cs
  Scene Managers/
   CoreManager.cs
+  LevelData.cs
   LevelManager.cs
   MainMenuManager.cs
  SceneController.cs
@@ -350,7 +351,9 @@ Library/PackageCache/
 Library/ScriptAssemblies/
  UnityEditor.UI.dll
  UnityEngine.UI.dll
-Temp/bin/Debug/Core.dll
+Temp/bin/Debug/
+ AudioSystem.dll
+ Core.dll
 
 [analyzerReferences]
 ../../../../Program Files/Unity/Hub/Editor/6000.3.10f1/Editor/Data/Tools/BuildPipeline/Unity.SourceGenerators/

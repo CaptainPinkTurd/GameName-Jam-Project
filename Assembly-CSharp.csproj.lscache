@@ -53,6 +53,7 @@ TemporaryDependencyNodeTargetIdentifier=netstandard2.1
 
 [sourceFiles]
 Assets/_Scripts/Jess/
+ Blink_Effect.cs
  Button_Manager.cs
  Hover_Effect.cs
 Assets/_Scripts/PathCreator/Examples/Scripts/

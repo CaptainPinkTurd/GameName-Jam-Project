@@ -8,6 +8,7 @@ using CaptainPinkTurd.Core.Utils;
 using CaptainPinkTurd.EffectSystem.ImpactEffect;
 using CaptainPinkTurd.UI.Popup;
 using CaptainPinkTurd.UI.SliderUI;
+using DG.Tweening;
 using UnityEngine;
 
 namespace CaptainPinkTurd.UnitSystem
@@ -48,6 +49,26 @@ namespace CaptainPinkTurd.UnitSystem
         public GameEvent<SDamageData> OnTakeDamage { get; private set; } = new GameEvent<SDamageData>();
         public GameEvent<SDamageData> OnDeath { get; private set; } = new GameEvent<SDamageData>();
 
+        /////////////////////////HIT EFFECT///////////////////////////////
+        [Header("Hit Effect")]
+        [SerializeField] private float _duration = 0.25f;
+        private int _hitEffectAmount = Shader.PropertyToID("_HitEffectAmount");
+        private SpriteRenderer[] _spriteRenderers;
+        private Material[] _materials;
+        private float _lerpAmount;
+        
+        private void Awake()
+        {
+            // Grab all SpriteRenderers from children (red / blue character)
+            _spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+
+            _materials = new Material[_spriteRenderers.Length];
+            for (int i = 0; i < _materials.Length; i++)
+            {
+                _materials[i] = _spriteRenderers[i].material;
+            }
+        }
+        /////////////////////////HIT EFFECT///////////////////////////////
         private void OnEnable()
         {
             OnTakeDamage.Subscribe(unit.OnDamaged);
@@ -78,6 +99,12 @@ namespace CaptainPinkTurd.UnitSystem
             //Debug.Log($"{gameObject.name} took {damageData.Amount} damage from {damageData.Source.name}");
             var tempHealth = CurrentHealth - damageData.Amount;
             CurrentHealth = Mathf.Clamp(tempHealth, 0, MaxHealth);
+
+            // Trigger hit effect when damage is taken
+            if (damageData.Amount > 0 )
+            {
+                PlayHitEffect();
+            }
 
             if (useDamageTextPopup)
             {
@@ -152,6 +179,42 @@ namespace CaptainPinkTurd.UnitSystem
             
             StartCoroutine(CoroutineUtils.WaitForSeconds(invincibilityFrameDuration, 
                 () => IsInvincibilityFrameOn = false));
+        }
+
+        /////////////////////////HIT EFFECT///////////////////////////////
+        public void PlayHitEffect()
+        {
+            _lerpAmount = 0f;
+            DOTween.To(GetLerpValue, SetLerpValue, 1f, _duration)
+                .SetEase(Ease.OutExpo)
+                .OnUpdate(OnLerpUpdate)
+                .OnComplete(OnLerpComplete);
+        }
+
+        private float GetLerpValue()
+        {
+            return _lerpAmount;
+        }
+
+        private void SetLerpValue(float newValue)
+        {
+            _lerpAmount = newValue;
+        }
+
+        private void OnLerpUpdate()
+        {
+            // Apply effect to all child materials
+            for (int i = 0; i < _materials.Length; i++)
+            {
+                _materials[i].SetFloat(_hitEffectAmount, GetLerpValue());
+            }
+        }
+
+        private void OnLerpComplete()
+        {
+            // Fade back down
+            DOTween.To(GetLerpValue, SetLerpValue, 0f, _duration)
+                .OnUpdate(OnLerpUpdate);
         }
     }
 }

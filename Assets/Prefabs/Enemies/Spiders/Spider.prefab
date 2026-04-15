@@ -170,6 +170,7 @@ GameObject:
   - component: {fileID: 3347509839525006545}
   - component: {fileID: 3956019577801177956}
   - component: {fileID: 1213967996921598584}
+  - component: {fileID: 4052646797813263742}
   m_Layer: 9
   m_Name: Spider
   m_TagString: Untagged
@@ -222,7 +223,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 3cf1d4dfa64c4d542a4613ddd616bd1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -323,7 +324,33 @@ MonoBehaviour:
   hitStopDuration: 0.2
   impactShockwavePrefab: {fileID: 6386854355507245172, guid: ddf39c5a02e34294bbbf17bc54ca2410, type: 3}
   explosionVfx: {fileID: 8568515182452555486, guid: 15ac99202f515cc48a44d70e6f90e965, type: 3}
-  OnDamagedTaken: {fileID: 11400000, guid: d144196b9b862134b9a1422e54f18482, type: 2}
+  OnDamagedTaken:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7339542877474813584}
+        m_TargetAssemblyTypeName: BulletHell.ProjectileEmitterAdvanced, BulletHell
+        m_MethodName: ClearAllProjectiles
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4052646797813263742}
+        m_TargetAssemblyTypeName: Hit_Effect, Assembly-CSharp
+        m_MethodName: PlayHitEffect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   startUpSfx:
     clip: {fileID: 8300000, guid: ba33330282899784d9e78b52136a367d, type: 3}
     overrideMixerGroup: 0
@@ -373,7 +400,7 @@ MonoBehaviour:
     ignoreListenerPause: 0
     rolloffMode: 0
   colorChangeAlertSfx:
-    clip: {fileID: 8300000, guid: 1883c6eb5bc12ae4fa75360ab186aaa7, type: 3}
+    clip: {fileID: 8300000, guid: 61abc559cf1b17946bc7835c5dd68a24, type: 3}
     overrideMixerGroup: 0
     mixerGroup: {fileID: 0}
     loop: 0
@@ -448,6 +475,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1.35}
   m_EdgeRadius: 0
+--- !u!114 &4052646797813263742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4564287098680374756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d917c6082fd03ff4794831c0195128de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Hit_Effect
+  _duration: 0.25
+  isPlayer: 0
 --- !u!1 &8494817208976530563
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,6 +540,18 @@ MonoBehaviour:
       - m_Target: {fileID: 7339542877474813584}
         m_TargetAssemblyTypeName: BulletHell.ProjectileEmitterAdvanced, BulletHell
         m_MethodName: ClearAllProjectiles
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4052646797813263742}
+        m_TargetAssemblyTypeName: Hit_Effect, Assembly-CSharp
+        m_MethodName: PlayHitEffect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

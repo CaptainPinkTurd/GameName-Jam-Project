@@ -12,6 +12,7 @@ using CaptainPinkTurd.Core.Utilities;
 using CaptainPinkTurd.ScoreSystem;
 using CaptainPinkTurd.UI.Popup;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace CaptainPinkTurd.BulletHell
 {
@@ -37,7 +38,7 @@ namespace CaptainPinkTurd.BulletHell
         [SerializeField] private float hitStopDuration = 0.2f;
         [SerializeField] private ShockwaveScreen impactShockwavePrefab;
         [SerializeField] private BasicVfxAnimationController explosionVfx;
-        [SerializeField] private VoidEvent OnDamagedTaken;
+        [SerializeField] private UnityEvent OnDamagedTaken;
         
         [Header("SFXs")]
         [SerializeField] protected SoundData startUpSfx;
@@ -138,12 +139,14 @@ namespace CaptainPinkTurd.BulletHell
                 .WithPosition(transform.position).WithRandomPitch().Play(damagedSfx);
             ObjectPoolManager.Instance.SpawnObject(impactShockwavePrefab.gameObject, transform.position, 
                 Quaternion.identity, ObjectPoolManager.PoolType.VFX);
+            //multiplier is equal to enemy current health before they died
+            if(ScoreConfig.useMultiplier) ScoreConfig.runtimeMultiplier = CurrentHealth;
             CurrentHealth -= damageData.Amount;
             
             HitStop.Stop(hitStopDuration, () =>
             {
                 damageSource = null;
-                OnDamagedTaken.Raise();
+                OnDamagedTaken.Invoke();
 
                 if (CurrentHealth > 0) return;
                 

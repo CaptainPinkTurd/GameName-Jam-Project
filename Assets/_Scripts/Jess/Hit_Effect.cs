@@ -4,6 +4,7 @@ using DG.Tweening;
 public class Hit_Effect : MonoBehaviour
 {
     [SerializeField] private float _duration = 0.25f;
+    [SerializeField] private bool isPlayer = true;
 
     private int _hitEffectAmount = Shader.PropertyToID("_HitEffectAmount");
     private SpriteRenderer[] _spriteRenderers;
@@ -12,13 +13,22 @@ public class Hit_Effect : MonoBehaviour
 
     private void Awake()
     {
-        // Grab all SpriteRenderers from children (red / blue character)
-        _spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
-
-        _materials = new Material[_spriteRenderers.Length];
-        for (int i = 0; i < _materials.Length; i++)
+        if (isPlayer)
         {
-            _materials[i] = _spriteRenderers[i].material;
+            // Grab all SpriteRenderers from children (red / blue character)
+            _spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+
+            _materials = new Material[_spriteRenderers.Length];
+            for (int i = 0; i < _materials.Length; i++)
+            {
+                _materials[i] = _spriteRenderers[i].material;
+            }
+        }
+        else
+        {
+            var sr = GetComponent<SpriteRenderer>();
+            _materials = new Material[1];
+            _materials[0] = sr.material;
         }
     }
 

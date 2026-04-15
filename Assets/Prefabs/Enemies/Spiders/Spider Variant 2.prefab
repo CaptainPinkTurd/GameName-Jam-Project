@@ -169,66 +169,6 @@ MonoBehaviour:
     ignoreListenerVolume: 0
     ignoreListenerPause: 0
     rolloffMode: 0
---- !u!1 &4297340459076491177
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8770021153717224219}
-  - component: {fileID: 3582702793785384692}
-  m_Layer: 9
-  m_Name: Spider Event Listeners
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8770021153717224219
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4297340459076491177}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4412864726864036986}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3582702793785384692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4297340459076491177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb243ffb9c8644f0b92a742bb85ecf5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Core::CaptainPinkTurd.Core.DesignPattern.SOAP.Events.VoidEventListener
-  gameEvent: {fileID: 11400000, guid: d144196b9b862134b9a1422e54f18482, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2767799597975838365}
-        m_TargetAssemblyTypeName: BulletHell.ProjectileEmitterAdvanced, BulletHell
-        m_MethodName: ClearAllProjectiles
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &6199118164756025744
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,6 +339,7 @@ GameObject:
   - component: {fileID: 8746202632299261302}
   - component: {fileID: 6764855719321519453}
   - component: {fileID: 2735313986314859329}
+  - component: {fileID: 2840361814295611001}
   m_Layer: 9
   m_Name: Spider Variant 2
   m_TagString: Untagged
@@ -420,7 +361,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7621934670855013681}
-  - {fileID: 8770021153717224219}
   - {fileID: 2025314548402611856}
   - {fileID: 6858359448397410470}
   m_Father: {fileID: 0}
@@ -451,7 +391,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 3cf1d4dfa64c4d542a4613ddd616bd1f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -552,7 +492,33 @@ MonoBehaviour:
   hitStopDuration: 0.2
   impactShockwavePrefab: {fileID: 6386854355507245172, guid: ddf39c5a02e34294bbbf17bc54ca2410, type: 3}
   explosionVfx: {fileID: 8568515182452555486, guid: 15ac99202f515cc48a44d70e6f90e965, type: 3}
-  OnDamagedTaken: {fileID: 11400000, guid: d144196b9b862134b9a1422e54f18482, type: 2}
+  OnDamagedTaken:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2767799597975838365}
+        m_TargetAssemblyTypeName: BulletHell.ProjectileEmitterAdvanced, BulletHell
+        m_MethodName: ClearAllProjectiles
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2840361814295611001}
+        m_TargetAssemblyTypeName: Hit_Effect, Assembly-CSharp
+        m_MethodName: PlayHitEffect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   startUpSfx:
     clip: {fileID: 8300000, guid: ba33330282899784d9e78b52136a367d, type: 3}
     overrideMixerGroup: 0
@@ -602,7 +568,7 @@ MonoBehaviour:
     ignoreListenerPause: 0
     rolloffMode: 0
   colorChangeAlertSfx:
-    clip: {fileID: 8300000, guid: 1883c6eb5bc12ae4fa75360ab186aaa7, type: 3}
+    clip: {fileID: 8300000, guid: 61abc559cf1b17946bc7835c5dd68a24, type: 3}
     overrideMixerGroup: 0
     mixerGroup: {fileID: 0}
     loop: 0
@@ -677,6 +643,20 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1.35}
   m_EdgeRadius: 0
+--- !u!114 &2840361814295611001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7226157533494396228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d917c6082fd03ff4794831c0195128de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Hit_Effect
+  _duration: 0.25
+  isPlayer: 0
 --- !u!1001 &2422698507933495328
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -552,6 +552,7 @@ GameObject:
   - component: {fileID: 8356694713729827462}
   - component: {fileID: 1668157012871067855}
   - component: {fileID: 3531303280415311179}
+  - component: {fileID: 3297889303660464729}
   m_Layer: 6
   m_Name: Event Listeners
   m_TagString: Untagged
@@ -635,6 +636,34 @@ MonoBehaviour:
           NewAssembly
         m_MethodName: ToggleMovement
         m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3297889303660464729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3518547388238554232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb243ffb9c8644f0b92a742bb85ecf5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Core::CaptainPinkTurd.Core.DesignPattern.SOAP.Events.VoidEventListener
+  gameEvent: {fileID: 11400000, guid: 219050c2331ebfb46a108fe9038b2076, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9197272154470192743}
+        m_TargetAssemblyTypeName: Hit_Effect, Assembly-CSharp
+        m_MethodName: PlayHitEffect
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6036,6 +6065,7 @@ GameObject:
   - component: {fileID: 753241521699506584}
   - component: {fileID: 4878204597234212767}
   - component: {fileID: 8241885074861361187}
+  - component: {fileID: 9197272154470192743}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -6251,9 +6281,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e8b7edc22c9f24ea32a3c10d0faf36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CaptainPinkTurd.TopDownController2D.MoveEffect
-  playerController: {fileID: 0}
+  playerController: {fileID: 512697344728614187}
   moveParticles: {fileID: 879004221266223198}
   runTrail: {fileID: 1927167857680007285}
+--- !u!114 &9197272154470192743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8869195972812015716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d917c6082fd03ff4794831c0195128de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Hit_Effect
+  _duration: 0.25
 --- !u!1001 &2257470727333886670
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -16,5 +16,5 @@ MonoBehaviour:
   useRandomRange: 0
   minScore: 5
   maxScore: 20
-  useMultiplier: 0
+  useMultiplier: 1
   multiplier: 1

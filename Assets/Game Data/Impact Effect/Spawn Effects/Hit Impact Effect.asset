@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499258bbbd424f498c81f772697a8126, type: 3}
   m_Name: Hit Impact Effect
   m_EditorClassIdentifier: 
-  prefab: {fileID: 355960459147790135, guid: 9c7665f9bec00b84fb93ad166bf4f1a6, type: 3}
+  prefab: {fileID: 4439204296533364052, guid: 56e8d234f7111c6479e0158de6d866d9, type: 3}
   probability: 1
   isAttachedToImpactSurface: 1
-  canRotate: 0
-  randomizeRotation: 0
-  randomizedRotationMultiplier: {x: 0, y: 0, z: 0}
+  canRotate: 1
+  randomizeRotation: 1
+  randomizedRotationMultiplier: {x: 0, y: 0, z: 2}

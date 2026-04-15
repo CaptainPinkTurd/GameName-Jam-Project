@@ -326,6 +326,7 @@ MonoBehaviour:
   OnDamagedTaken: {fileID: 11400000, guid: d144196b9b862134b9a1422e54f18482, type: 2}
   startUpSfx:
     clip: {fileID: 8300000, guid: ba33330282899784d9e78b52136a367d, type: 3}
+    overrideMixerGroup: 0
     mixerGroup: {fileID: 0}
     loop: 0
     playOnAwake: 0
@@ -349,6 +350,7 @@ MonoBehaviour:
     rolloffMode: 0
   damagedSfx:
     clip: {fileID: 8300000, guid: 53e976d48b2d6584d97c91ae2cc488e9, type: 3}
+    overrideMixerGroup: 0
     mixerGroup: {fileID: 0}
     loop: 0
     playOnAwake: 0
@@ -372,6 +374,7 @@ MonoBehaviour:
     rolloffMode: 0
   colorChangeAlertSfx:
     clip: {fileID: 8300000, guid: 1883c6eb5bc12ae4fa75360ab186aaa7, type: 3}
+    overrideMixerGroup: 0
     mixerGroup: {fileID: 0}
     loop: 0
     playOnAwake: 0
@@ -380,7 +383,7 @@ MonoBehaviour:
     bypassEffects: 0
     bypassListenerEffects: 0
     bypassReverbZones: 0
-    priority: 128
+    priority: 130
     volume: 1
     pitch: 1
     panStereo: 0
@@ -652,6 +655,7 @@ MonoBehaviour:
   spawnFromPool: 0
   vfxSfx:
     clip: {fileID: 0}
+    overrideMixerGroup: 0
     mixerGroup: {fileID: 0}
     loop: 0
     playOnAwake: 0

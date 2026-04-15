@@ -45,8 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6ff0ee7d1314e4aa248e16d0c43b020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: SceneArchitectureSystem::CaptainPinkTurd.Scene.Manager.LevelManager
+  isTutorialLevel: 0
+  isLastTutorialLevel: 0
+  nextTutorialLevel: 0
   levelData: {fileID: 11400000, guid: b94deda448ba1a34dab047a95af0cb66, type: 2}
   onRestart: {fileID: 11400000, guid: 3ec71fb60040c654482533b59d27fe85, type: 2}
+  levelTheme: {fileID: 8300000, guid: 3b08bebd46c64c94fa4d81bba97b8ff2, type: 3}
 --- !u!114 &939603651343298171
 MonoBehaviour:
   m_ObjectHideFlags: 0

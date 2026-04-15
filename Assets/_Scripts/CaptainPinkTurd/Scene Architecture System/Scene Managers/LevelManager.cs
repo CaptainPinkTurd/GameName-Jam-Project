@@ -1,8 +1,11 @@
+using System;
+using CaptainPinkTurd.AudioSystem;
 using CaptainPinkTurd.Core.Attributes;
 using CaptainPinkTurd.Core.DesignPattern.SOAP.Events;
 using CaptainPinkTurd.Core.Enum;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 namespace CaptainPinkTurd.Scene.Manager
 {
@@ -19,15 +22,23 @@ namespace CaptainPinkTurd.Scene.Manager
         [SerializeField] private LevelData levelData;
         [ShowIf(nameof(isTutorialLevel), false)]
         [SerializeField] private VoidEvent onRestart;
+        
+        [SerializeField] private AudioClip levelTheme;
+
+        private void Start()
+        {
+            MusicManager.Instance.Play(levelTheme, loop: true);
+        }
 
         public void NextLevel()
         {
-            if (isTutorialLevel)
+            if (isTutorialLevel && !levelData.hasDoneTutorial)
             {
                 if (isLastTutorialLevel)
                 {
+                    PlayerPrefs.SetInt("HasDoneTutorial", 1);
                     levelData.hasDoneTutorial = true;
-                    EndSession();
+                    NextLevel();
                     return;
                 }
                 SceneController.Instance

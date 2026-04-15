@@ -2733,6 +2733,14 @@ PrefabInstance:
       propertyPath: Target
       value: 
       objectReference: {fileID: 860899244}
+    - target: {fileID: 1819079855417741543, guid: 6fec9d3036bb47542b95fefb7133b457, type: 3}
+      propertyPath: CoolOffTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819079855417741543, guid: 6fec9d3036bb47542b95fefb7133b457, type: 3}
+      propertyPath: Acceleration
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2297502924798621319, guid: 6fec9d3036bb47542b95fefb7133b457, type: 3}
       propertyPath: spawnFromPool
       value: 0

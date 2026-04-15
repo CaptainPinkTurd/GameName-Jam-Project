@@ -372,9 +372,9 @@ namespace BulletHell
                         if (hit && hit.collider.gameObject.TryGetComponentInHierarchy(out IDamageable damageable))
                         {
                             damageableHit = true;
-                            SurfaceManager.Instance.HandleImpact(hit.collider.gameObject, hit.point, hit.normal, ImpactType, 0);
                             damageable.TakeDamage(new SDamageData(Damage, gameObject));
                         }
+                        SurfaceManager.Instance.HandleImpact(hit.collider.gameObject, hit.point, hit.normal, ImpactType, 0);
 
                         // Collision was detected, should we bounce off or destroy the projectile?
                         if (BounceOffSurfaces && !damageableHit)

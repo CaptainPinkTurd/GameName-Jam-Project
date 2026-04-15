@@ -15,6 +15,6 @@ MonoBehaviour:
   prefab: {fileID: 8537188723701173872, guid: 9dc0832442246f54daf2935c1f4d4c4c, type: 3}
   probability: 1
   isAttachedToImpactSurface: 0
-  canRotate: 1
-  randomizeRotation: 0
-  randomizedRotationMultiplier: {x: 0, y: 0, z: 0}
+  canRotate: 0
+  randomizeRotation: 1
+  randomizedRotationMultiplier: {x: 0, y: 0, z: 2}

@@ -9,7 +9,7 @@ namespace CaptainPinkTurd.EffectSystem.ImpactEffect
     {
         [Header("Spawn Object Configurations")]
         public GameObjectBase prefab;
-        public float probability = 1;
+        [Range(0f, 1f)] public float probability = 1;
         public bool isAttachedToImpactSurface;
         
         [Header("Rotation Configurations")]

@@ -1725,8 +1725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: AudioSystem::CaptainPinkTurd.AudioSystem.MusicManager
   AutoUnparentOnAwake: 0
-  initialPlaylist:
-  - {fileID: 8300000, guid: 3b08bebd46c64c94fa4d81bba97b8ff2, type: 3}
+  initialPlaylist: []
 --- !u!1 &1699948364
 GameObject:
   m_ObjectHideFlags: 0

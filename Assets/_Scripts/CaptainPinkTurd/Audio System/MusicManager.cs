@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace CaptainPinkTurd.AudioSystem
 {
-    [RequireComponent(typeof(MusicManager))]
     public class MusicManager : PersistentSingleton<MusicManager>
     {
         [SerializeField] private List<AudioClip> initialPlaylist;
@@ -44,13 +43,13 @@ namespace CaptainPinkTurd.AudioSystem
             }
         }
 
-        public void Play(AudioClip clip) 
+        public void Play(AudioClip clip, bool loop = false) 
         {
-            if (current && current.clip == clip) return;
+            if (current && current.clip == clip && current.isPlaying) return;
 
             if (previous)
             {
-                Destroy(previous);
+                previous.Stop();
                 previous = null;
             }
 
@@ -59,7 +58,7 @@ namespace CaptainPinkTurd.AudioSystem
             current = gameObject.GetOrAdd<AudioSource>();
             current.clip = clip;
             current.outputAudioMixerGroup = AudioManager.Instance.MusicMixerGroup; // Set mixer group
-            current.loop = false; // For playlist functionality, we want tracks to play once
+            current.loop = loop; // For playlist functionality, we want tracks to play once
             current.volume = 0;
             current.bypassListenerEffects = true;
             current.Play();
@@ -95,9 +94,9 @@ namespace CaptainPinkTurd.AudioSystem
             
             fading = 0.0f;
             
-            if (!previous) return;
+            if (!previous || previous == current) return; // will need to come back to this shit later
             
-            Destroy(previous);
+            previous.Stop();
             previous = null;
         }
     }

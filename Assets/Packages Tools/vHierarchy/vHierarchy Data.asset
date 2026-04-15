@@ -293,6 +293,7 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-40fe46b68cd1a594f9e442311d0385c4-745014550-0
         - globalObjectIdString: GlobalObjectId_V1-2-40fe46b68cd1a594f9e442311d0385c4-570021912-0
         - globalObjectIdString: GlobalObjectId_V1-2-40fe46b68cd1a594f9e442311d0385c4-1873202547-0
+        - globalObjectIdString: GlobalObjectId_V1-2-40fe46b68cd1a594f9e442311d0385c4-1669298323-0
         values:
         - colorIndex: 0
           iconNameOrGuid: Camera Icon
@@ -362,6 +363,10 @@ MonoBehaviour:
           iconNameOrGuid: 
           isIconRecursive: 0
           isColorRecursive: 1
+        - colorIndex: 0
+          iconNameOrGuid: Rigidbody Icon
+          isIconRecursive: 1
+          isColorRecursive: 0
     - goDatas_byGlobalId:
         keys:
         - globalObjectIdString: GlobalObjectId_V1-2-e105501382fefff498ad0a378ed2d37a-1605926864-0

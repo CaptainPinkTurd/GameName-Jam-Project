@@ -247,6 +247,15 @@ namespace BulletHell
                 break;
             }
         }
+        public void ClearAllEmittersProjectiles()
+        {
+            foreach (var emitter in EmittersArray)
+            {
+                if (!emitter) continue;
+                
+                emitter.ClearAllProjectiles();
+            }
+        }
         public ProjectilePrefab GetProjectilePrefab(int index)
         {
             return ProjectilePrefabs[index];

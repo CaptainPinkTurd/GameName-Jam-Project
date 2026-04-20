@@ -325,5 +325,9 @@ namespace BulletHell
 
             ActiveProjectileIndexesPosition = 0;
         }
+        public void ClearAllActiveEmittersProjectiles()
+        {
+            ProjectileManager.ClearAllEmittersProjectiles();
+        }
     }
 }

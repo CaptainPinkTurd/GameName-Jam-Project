@@ -75,7 +75,6 @@ namespace CaptainPinkTurd.Game.Player
             GameManager.Instance.StartCoroutine(CoroutineUtils.WaitForSeconds(delayOnDeath,
                 GameManager.Instance.OnGameOver.Raise));
         }
-
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (!enemyLayers.Contains(other.gameObject.layer)) return;

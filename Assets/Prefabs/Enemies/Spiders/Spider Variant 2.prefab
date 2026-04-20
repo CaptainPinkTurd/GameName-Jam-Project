@@ -498,7 +498,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2767799597975838365}
         m_TargetAssemblyTypeName: BulletHell.ProjectileEmitterAdvanced, BulletHell
-        m_MethodName: ClearAllProjectiles
+        m_MethodName: ClearAllActiveEmittersProjectiles
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

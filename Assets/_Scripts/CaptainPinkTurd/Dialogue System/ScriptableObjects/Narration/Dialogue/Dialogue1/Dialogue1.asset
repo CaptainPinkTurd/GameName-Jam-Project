@@ -1,0 +1,267 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8244271910292760157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 348e86a6bfb552b4fa7bcc19139ebc9a, type: 3}
+  m_Name: Nodal Graph
+  m_EditorClassIdentifier: Assembly-CSharp::FluffyGameDev.Dialogue.NodalEditor.DialogueNodalEditorGraph
+  nodes:
+  - {fileID: 6770394476986888257}
+  - {fileID: 1211987402751545258}
+  - {fileID: 6048569852812562880}
+  - {fileID: 2332888202333395264}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d150190ca6408f1418b81dcb81e9f740, type: 3}
+  m_Name: Dialogue1
+  m_EditorClassIdentifier: 
+  m_NodeList: []
+  m_StartNode:
+    rid: 7228327337817538655
+  m_EditorGraph: {fileID: -8244271910292760157}
+  m_FirstNode: {fileID: 0}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 7228327337817538655
+      type: {class: BasicDialogueNode, ns: FluffyGameDev.Dialogue.Nodes, asm: Assembly-CSharp}
+      data:
+        Speaker: {fileID: 11400000, guid: 9dd3082631238414f8db3e72be080f21, type: 2}
+        Text: Hello World!
+        NextNode:
+          rid: 7228327337817538656
+    - rid: 7228327337817538656
+      type: {class: BasicDialogueNode, ns: FluffyGameDev.Dialogue.Nodes, asm: Assembly-CSharp}
+      data:
+        Speaker: {fileID: 11400000, guid: 9dd3082631238414f8db3e72be080f21, type: 2}
+        Text: Test number 2
+        NextNode:
+          rid: 7228327337817538657
+    - rid: 7228327337817538657
+      type: {class: BasicDialogueNode, ns: FluffyGameDev.Dialogue.Nodes, asm: Assembly-CSharp}
+      data:
+        Speaker: {fileID: 11400000, guid: 9dd3082631238414f8db3e72be080f21, type: 2}
+        Text: This is a dialogue text.
+        NextNode:
+          rid: -2
+--- !u!114 &1211987402751545258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790fe03278040db428919ba58b992eeb, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: Assembly-CSharp::FluffyGameDev.Dialogue.NodalEditor.DialogueNode
+  graph: {fileID: -8244271910292760157}
+  position: {x: 0, y: 0}
+  ports:
+    keys:
+    - m_Input
+    - m_Output
+    - m_Answers
+    values:
+    - _fieldName: m_Input
+      _node: {fileID: 1211987402751545258}
+      _typeQualifiedName: FluffyGameDev.Dialogue.NodalEditor.DialogueNode, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: m_FirstNode
+        node: {fileID: 6770394476986888257}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: m_Output
+      _node: {fileID: 1211987402751545258}
+      _typeQualifiedName: FluffyGameDev.Dialogue.NodalEditor.DialogueNode, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: m_Input
+        node: {fileID: 6048569852812562880}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: m_Answers
+      _node: {fileID: 1211987402751545258}
+      _typeQualifiedName: System.Collections.Generic.List`1[[FluffyGameDev.Dialogue.NodalEditor.DialogueNode+Answer,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  m_Input: {fileID: 0}
+  m_Output: {fileID: 0}
+  m_Character: {fileID: 11400000, guid: 9dd3082631238414f8db3e72be080f21, type: 2}
+  m_Text: Hello World!
+  m_Answers: []
+--- !u!114 &2332888202333395264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790fe03278040db428919ba58b992eeb, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: Assembly-CSharp::FluffyGameDev.Dialogue.NodalEditor.DialogueNode
+  graph: {fileID: -8244271910292760157}
+  position: {x: 0, y: 0}
+  ports:
+    keys:
+    - m_Input
+    - m_Output
+    - m_Answers
+    values:
+    - _fieldName: m_Input
+      _node: {fileID: 2332888202333395264}
+      _typeQualifiedName: FluffyGameDev.Dialogue.NodalEditor.DialogueNode, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: m_Output
+        node: {fileID: 6048569852812562880}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: m_Output
+      _node: {fileID: 2332888202333395264}
+      _typeQualifiedName: FluffyGameDev.Dialogue.NodalEditor.DialogueNode, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: m_Answers
+      _node: {fileID: 2332888202333395264}
+      _typeQualifiedName: System.Collections.Generic.List`1[[FluffyGameDev.Dialogue.NodalEditor.DialogueNode+Answer,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  m_Input: {fileID: 0}
+  m_Output: {fileID: 0}
+  m_Character: {fileID: 11400000, guid: 9dd3082631238414f8db3e72be080f21, type: 2}
+  m_Text: This is a dialogue text.
+  m_Answers: []
+--- !u!114 &6048569852812562880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790fe03278040db428919ba58b992eeb, type: 3}
+  m_Name: DialogueNode
+  m_EditorClassIdentifier: Assembly-CSharp::FluffyGameDev.Dialogue.NodalEditor.DialogueNode
+  graph: {fileID: -8244271910292760157}
+  position: {x: 0, y: 0}
+  ports:
+    keys:
+    - m_Input
+    - m_Output
+    - m_Answers
+    values:
+    - _fieldName: m_Input
+      _node: {fileID: 6048569852812562880}
+      _typeQualifiedName: FluffyGameDev.Dialogue.NodalEditor.DialogueNode, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: m_Output
+        node: {fileID: 1211987402751545258}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: m_Output
+      _node: {fileID: 6048569852812562880}
+      _typeQualifiedName: FluffyGameDev.Dialogue.NodalEditor.DialogueNode, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: m_Input
+        node: {fileID: 2332888202333395264}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: m_Answers
+      _node: {fileID: 6048569852812562880}
+      _typeQualifiedName: System.Collections.Generic.List`1[[FluffyGameDev.Dialogue.NodalEditor.DialogueNode+Answer,
+        Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  m_Input: {fileID: 0}
+  m_Output: {fileID: 0}
+  m_Character: {fileID: 11400000, guid: 9dd3082631238414f8db3e72be080f21, type: 2}
+  m_Text: Test number 2
+  m_Answers: []
+--- !u!114 &6770394476986888257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f34c079ebfb28b44a1b53d663d555db, type: 3}
+  m_Name: Start
+  m_EditorClassIdentifier: Assembly-CSharp::FluffyGameDev.Dialogue.NodalEditor.StartNode
+  graph: {fileID: -8244271910292760157}
+  position: {x: 0, y: 0}
+  ports:
+    keys:
+    - m_FirstNode
+    values:
+    - _fieldName: m_FirstNode
+      _node: {fileID: 6770394476986888257}
+      _typeQualifiedName: FluffyGameDev.Dialogue.NodalEditor.DialogueNode, Assembly-CSharp,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: m_Input
+        node: {fileID: 1211987402751545258}
+        reroutePoints: []
+      _direction: 1
+      _connectionType: 1
+      _typeConstraint: 0
+      _dynamic: 0
+  m_FirstNode: {fileID: 0}

@@ -1,6 +1,6 @@
 using CaptainPinkTurd.AudioSystem;
 using CaptainPinkTurd.Core;
-using CaptainPinkTurd.Core.DesignPattern;
+using CaptainPinkTurd.Core.DesignPattern.Command;
 using CaptainPinkTurd.Core.Enum;
 using CaptainPinkTurd.UI.Components;
 using TMPro;

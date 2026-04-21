@@ -1,5 +1,5 @@
 using CaptainPinkTurd.Core;
-using CaptainPinkTurd.Core.DesignPattern;
+using CaptainPinkTurd.Core.DesignPattern.Command;
 using CaptainPinkTurd.Core.Enum;
 using CaptainPinkTurd.Core.Extensions;
 using CaptainPinkTurd.Core.Utilities;

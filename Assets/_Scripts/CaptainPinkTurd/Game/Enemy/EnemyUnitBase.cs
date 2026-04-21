@@ -1,4 +1,4 @@
-using CaptainPinkTurd.Core.DesignPattern;
+using CaptainPinkTurd.Core.DesignPattern.State;
 using CaptainPinkTurd.Core.DesignPattern.SOAP.Events;
 using CaptainPinkTurd.Core.Extensions;
 using CaptainPinkTurd.Core.Struct;

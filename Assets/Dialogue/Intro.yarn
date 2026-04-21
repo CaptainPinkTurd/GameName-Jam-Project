@@ -1,0 +1,11 @@
+﻿title: Start
+position: -8,47
+---
+Speaker: Testing dialogue... Say something for me.
+-> Hello?
+    Speaker: Yes, hello there player.
+    Speaker: I welcome you to the dialogue test space.
+-> No
+    Speaker: Ah, quite a contrarian are we?
+    Speaker: Regardless, this should be more than enough for me to know that the system is working as intended now.
+===

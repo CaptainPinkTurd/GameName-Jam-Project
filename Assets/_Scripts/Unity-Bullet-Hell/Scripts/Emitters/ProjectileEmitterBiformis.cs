@@ -1,23 +1,14 @@
-﻿using UnityEngine;
+﻿using CaptainPinkTurd.Core.Enum;
+using CaptainPinkTurd.Core.Extensions;
+using CaptainPinkTurd.Core.Interfaces;
+using CaptainPinkTurd.Core.Struct;
+using CaptainPinkTurd.EffectSystem.ImpactEffect;
+using UnityEngine;
 
 namespace BulletHell
 {
-    public enum FollowTargetType
+    public class ProjectileEmitterBiformis : ProjectileEmitterBase
     {
-        Homing,
-        LockOnShot
-    };
-
-    public class ProjectileEmitterAdvanced : ProjectileEmitterBase
-    {
-        ColorPulse StaticOutlinePulse;
-        ColorPulse StaticPulse;
-
-        [Foldout("Appearance", true)]
-        [SerializeField] public bool UseColorPulse;
-        [ConditionalField(nameof(UseColorPulse)), SerializeField] protected float PulseSpeed;
-        [ConditionalField(nameof(UseColorPulse)), SerializeField] protected bool UseStaticPulse;
-
         [Foldout("Spokes", true)]
         [Range(1, 10), SerializeField] protected int GroupCount = 1;
         [Range(0, 1), SerializeField] protected float GroupSpacing = 1;
@@ -32,27 +23,18 @@ namespace BulletHell
         [ConditionalField(nameof(UseFollowTarget))] public FollowTargetType FollowTargetType = FollowTargetType.Homing;
         [ConditionalField(nameof(UseFollowTarget)), Range(0, 5)] public float FollowIntensity;
 
-        [Foldout("Outline", true)]
-        [SerializeField] protected bool UseOutlineColorPulse;
-        [ConditionalField(nameof(UseOutlineColorPulse)), SerializeField] protected float OutlinePulseSpeed;
-        [ConditionalField(nameof(UseOutlineColorPulse)), SerializeField] protected bool UseOutlineStaticPulse;
-
         private EmitterGroup[] Groups;
+        
         private int LastGroupCountPoll = -1;
         private bool PreviousMirrorPairRotation = false;
         private bool PreviousPairGroupDirection = false;
 
-        public new void Awake()
+        public override void Awake()
         {
             base.Awake();
-
+            
             Groups = new EmitterGroup[10];
             RefreshGroups();
-        }
-
-        void Start()
-        {
-            // To allow for the enable / disable checkbox in Inspector
         }
 
         private void RefreshGroups()
@@ -261,12 +243,6 @@ namespace BulletHell
             return currentRotation;
         }
 
-        protected override void UpdateProjectiles(float tick)
-        {
-            UpdateStaticPulses(tick);
-            base.UpdateProjectiles(tick);
-        }
-
         protected override void UpdateProjectile(ref Pool<ProjectileData>.Node node, float tick)
         {          
             if (node.Active)
@@ -276,8 +252,6 @@ namespace BulletHell
                 // Projectile is active
                 if (node.Item.TimeToLive > 0)
                 {
-                    UpdateProjectileNodePulse(tick, ref node.Item);
-
                     // apply acceleration
                     node.Item.Velocity *= (1 + node.Item.Acceleration * tick);
 
@@ -328,21 +302,34 @@ namespace BulletHell
                     UpdateProjectileColor(ref node.Item);
 
                     int result = -1;
+                    RaycastHit2D hit;
+                    ContactFilter.useLayerMask = true;
+                    ContactFilter.layerMask = DamageableMasks;
                     if (CollisionDetection == CollisionDetectionType.Raycast)
                     {
                         result = Physics2D.Raycast(node.Item.Position, deltaPosition, ContactFilter, RaycastHitBuffer, distance);
+                        hit = Physics2D.Raycast(node.Item.Position, deltaPosition, distance, DamageableMasks);
                     }
-                    else if (CollisionDetection == CollisionDetectionType.CircleCast)
+                    else //if (CollisionDetection == CollisionDetectionType.CircleCast)
                     {
                         result = Physics2D.CircleCast(node.Item.Position, radius, deltaPosition, ContactFilter, RaycastHitBuffer, distance);
+                        hit = Physics2D.CircleCast(node.Item.Position, radius, deltaPosition, distance, DamageableMasks);
                     }
 
                     if (result > 0)
                     {
                         // Put whatever hit code you want here such as damage events
+                        bool damageableHit = false;
+                        if (hit && hit.collider.gameObject.TryGetComponentInHierarchy(out IDamageable damageable))
+                        {
+                            damageableHit = true;
+                            damageable.TakeDamage(new SDamageData(Damage, gameObject));
+                        }
+                        
+                        SurfaceManager.Instance.HandleImpact(hit.collider.gameObject, hit.point, hit.normal, ImpactType, 0);
 
                         // Collision was detected, should we bounce off or destroy the projectile?
-                        if (BounceOffSurfaces)
+                        if (BounceOffSurfaces && !damageableHit)
                         {
                             // Calculate the position the projectile is bouncing off the wall at
                             Vector2 projectedNewPosition = node.Item.Position + (deltaPosition * RaycastHitBuffer[0].fraction);
@@ -396,74 +383,20 @@ namespace BulletHell
                 }
             }
         }
-
-        private void UpdateProjectileNodePulse(float tick, ref ProjectileData data)
+        public void SyncStateFrom(ProjectileEmitterBiformis activeEmitter)
         {
-            if (UseColorPulse && !UseStaticPulse)
-            {
-                data.Pulse.Update(tick, PulseSpeed);
-            }
+            Interval = activeEmitter.Interval;
 
-            if (UseOutlineColorPulse && !UseOutlineStaticPulse)
+            if (Groups == null || activeEmitter.Groups == null) return;
+            
+            for (int i = 0; i < Groups.Length; i++)
             {
-                data.OutlinePulse.Update(tick, OutlinePulseSpeed);
-            }
-        }
-
-        private void UpdateStaticPulses(float tick)
-        {
-            //projectile pulse
-            if (UseColorPulse && UseStaticPulse)
-            {
-                StaticPulse.Update(tick, PulseSpeed);
-            }
-
-            //outline pulse
-            if (UseOutlineColorPulse && UseOutlineStaticPulse)
-            {
-                StaticOutlinePulse.Update(tick, OutlinePulseSpeed);
-            }
-        }
-
-        protected override void UpdateProjectileColor(ref ProjectileData data)
-        {
-            // foreground
-            if (UseColorPulse)
-            {
-                if (UseStaticPulse)
+                if (Groups[i] != null && activeEmitter.Groups[i] != null)
                 {
-                    data.Color = Color.Evaluate(StaticPulse.Fraction);
-                }
-                else
-                {
-                    data.Color = Color.Evaluate(data.Pulse.Fraction);
-                }
-            }
-            else
-            {
-                data.Color = Color.Evaluate(1 - data.TimeToLive / TimeToLive);
-            }
-
-            //outline
-            if (data.Outline.Item != null)
-            {
-                if (UseOutlineColorPulse)
-                {
-                    if (UseOutlineStaticPulse)
-                    {
-                        data.Outline.Item.Color = OutlineColor.Evaluate(StaticOutlinePulse.Fraction);
-                    }
-                    else
-                    {
-                        data.Outline.Item.Color = OutlineColor.Evaluate(data.OutlinePulse.Fraction);
-                    }
-                }
-                else
-                {
-                    data.Outline.Item.Color = OutlineColor.Evaluate(1 - data.TimeToLive / TimeToLive);
+                    // Copy the exact firing angle of each spoke
+                    Groups[i].Direction = activeEmitter.Groups[i].Direction;
                 }
             }
         }
-
     }
 }

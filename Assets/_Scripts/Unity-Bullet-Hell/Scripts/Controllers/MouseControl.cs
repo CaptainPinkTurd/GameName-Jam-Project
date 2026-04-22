@@ -3,7 +3,7 @@ using BulletHell;
 
 public class MouseControl : MonoBehaviour
 {
-    ProjectileEmitterAdvanced Emitter;
+    ProjectileEmitterBiformis Emitter;
     Camera Camera;
 
     float Charge;
@@ -17,7 +17,7 @@ public class MouseControl : MonoBehaviour
     {
         Camera = Camera.main;
 
-        Emitter = transform.GetComponent<ProjectileEmitterAdvanced>();
+        Emitter = transform.GetComponent<ProjectileEmitterBiformis>();
         if (Emitter == null)
             Debug.Log("MouseControl script must be attached to a gameobject that contains a ProjectileEmitterAdvanced component.");
 

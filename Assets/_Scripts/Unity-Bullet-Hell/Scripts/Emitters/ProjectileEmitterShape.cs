@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace BulletHell
 {
     // Emitter to fire pre-defined shape patterns
-    public class ProjectileEmitterShape : ProjectileEmitterAdvanced
+    public class ProjectileEmitterShape : ProjectileEmitterBiformis
     {
         [SerializeField]
         public GameObject ShapeTemplate;

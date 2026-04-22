@@ -16,27 +16,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a42981e95a2d4534592b76567c3ef780, type: 2}
   - {fileID: 11400000, guid: 1f0ae3818173bd2449ada19c75fde422, type: 2}
   randomizedOneAudio: 0
-  playAudioEffects:
-  - clip: {fileID: 8300000, guid: fc0a92857b614be449eab7e7e7010ba8, type: 3}
-    overrideMixerGroup: 0
-    mixerGroup: {fileID: 0}
-    loop: 0
-    playOnAwake: 0
-    frequentSound: 0
-    mute: 0
-    bypassEffects: 0
-    bypassListenerEffects: 0
-    bypassReverbZones: 0
-    priority: 127
-    volume: 0.1
-    pitch: 1
-    panStereo: 0
-    spatialBlend: 0
-    reverbZoneMix: 1
-    dopplerLevel: 1
-    spread: 0
-    minDistance: 1
-    maxDistance: 500
-    ignoreListenerVolume: 0
-    ignoreListenerPause: 0
-    rolloffMode: 0
+  playAudioEffects: []

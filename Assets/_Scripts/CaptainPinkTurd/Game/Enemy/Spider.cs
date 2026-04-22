@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace CaptainPinkTurd.Game.Enemy
 {
-    public class Spider : ProjectileEmitterCenter
+    public class Spider : BiformisEmitterController
     {
         [Header("Spider Movement Configs")]
         [SerializeField] private float speed = 5;

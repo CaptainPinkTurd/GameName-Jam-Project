@@ -155,7 +155,7 @@ MonoBehaviour:
   scoreTextTargetHeight: 2.25
   scoreConfig: {fileID: 11400000, guid: 4950b534e467ab94687c490b0fff3e80, type: 2}
   spawnFromPool: 1
-  advancedEmitter: {fileID: 7693137463700984482}
+  emitter: {fileID: 7693137463700984482}
   projectileColorChangeIntervalMin: 2.5
   projectileColorChangeIntervalMax: 5
   alertModel: {fileID: 6942143980147055686}
@@ -428,20 +428,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2bc4bb09dfa0bc4aa26ec6beb158f09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectilePrefab: {fileID: 8841699598713729355, guid: 0f551be8e27b097479e5473b72406f5b, type: 3}
-  Scale: 0.5
+  ProjectilePrefab: {fileID: 0}
+  Scale: 1
   Color:
     serializedVersion: 2
-    key0: {r: 0.94509804, g: 0.18901959, b: 0.20757373, a: 1}
-    key1: {r: 0.4392157, g: 0.8784314, b: 0.7613072, a: 1}
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
     key2: {r: 0.039215505, g: 0.039215505, b: 0.039215505, a: 1}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 32112
-    ctime1: 33423
+    ctime0: 0
+    ctime1: 65535
     ctime2: 33423
     ctime3: 0
     ctime4: 0
@@ -456,7 +456,7 @@ MonoBehaviour:
     atime5: 0
     atime6: 0
     atime7: 0
-    m_Mode: 1
+    m_Mode: 0
     m_ColorSpace: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
@@ -505,42 +505,34 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   Damage: 1
-  DamageableMasks:
-  - Value:
-      serializedVersion: 2
-      m_Bits: 65
-    Key:
-      serializedVersion: 2
-      rgba: 4290961520
-  - Value:
-      serializedVersion: 2
-      m_Bits: 129
-    Key:
-      serializedVersion: 2
-      rgba: 4281676017
   ImpactType: {fileID: 11400000, guid: da20da27d490bcc4f8b3c09ada4615f5, type: 2}
   Gravity: {x: 0, y: 0}
   BounceAbsorbtionY: 0
   BounceAbsorbtionX: 0
   Acceleration: 6
-  UseColorPulse: 1
-  PulseSpeed: 2.5
-  UseStaticPulse: 1
-  leftSidePulseAlertStart: 0.3
-  rightSidePulseAlertStart: 0.7
+  redProjectile: {fileID: 8841699598713729355, guid: 64ec19a3d31e5f241aa939e66bb7f926, type: 3}
+  blueProjectile: {fileID: 8841699598713729355, guid: 894605070e37d6647acc46d3dafe889d, type: 3}
+  colorSwapInterval: 0
+  swapAlertTimePercentage: 0.85
   GroupCount: 1
   GroupSpacing: 1
   SpokeCount: 1
   SpokeSpacing: 0
   MirrorPairRotation: 1
   PairGroupDirection: 1
+  DamageableMasks:
+  - Value:
+      serializedVersion: 2
+      m_Bits: 65
+    Key: 1
+  - Value:
+      serializedVersion: 2
+      m_Bits: 129
+    Key: 0
   UseFollowTarget: 1
   Target: {fileID: 0}
   FollowTargetType: 1
   FollowIntensity: 1
-  UseOutlineColorPulse: 1
-  OutlinePulseSpeed: 2.5
-  UseOutlineStaticPulse: 1
 --- !u!1 &8042581250757037359
 GameObject:
   m_ObjectHideFlags: 0

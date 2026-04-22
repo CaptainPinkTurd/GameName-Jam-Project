@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace CaptainPinkTurd.Game.Enemy
 {
-    public class Turret : ProjectileEmitterCenter
+    public class Turret : BiformisEmitterController
     {
         [Header("Turret Animations")]
         [SerializeField] private AnimationClip idleAnimationClip;

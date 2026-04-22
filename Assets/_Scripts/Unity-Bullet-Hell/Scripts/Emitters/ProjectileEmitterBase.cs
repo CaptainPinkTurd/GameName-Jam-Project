@@ -1,8 +1,5 @@
-﻿using System;
-using CaptainPinkTurd.Core.CustomDataStructure;
-using CaptainPinkTurd.EffectSystem.ImpactEffect;
+﻿using CaptainPinkTurd.EffectSystem.ImpactEffect;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace BulletHell
 {
@@ -47,7 +44,7 @@ namespace BulletHell
         [Foldout("Modifiers", true)]
         [Header("Projectile Damage")]
         public int Damage = 1;
-        public SerializeKeyValuePair<Color32, LayerMask>[] DamageableMasks;
+        public LayerMask DamageableMasks;
         public ImpactType ImpactType;
         
         [Header("Projectile Physics")]
@@ -93,13 +90,13 @@ namespace BulletHell
             if (!ProjectilePrefab) ProjectilePrefab = ProjectileManager.Instance.GetProjectilePrefab(0);
         }
 
-        private void OnEnable()
+        public virtual void OnEnable()
         {
             ProjectileManager.RegisterEmitter(this);
             Camera = Camera.main;
         }
 
-        void OnDisable()
+        public virtual void OnDisable()
         {
             ProjectileManager.RefreshEmitters();
         }

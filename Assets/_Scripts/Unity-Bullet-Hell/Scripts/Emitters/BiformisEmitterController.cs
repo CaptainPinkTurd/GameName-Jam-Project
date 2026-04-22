@@ -3,12 +3,12 @@ using CaptainPinkTurd.AnimationSystem;
 using CaptainPinkTurd.AudioSystem;
 using CaptainPinkTurd.Core;
 using CaptainPinkTurd.Core.CustomDataStructure;
-using CaptainPinkTurd.Core.DesignPattern.SOAP.Events;
 using CaptainPinkTurd.Core.Enum;
 using CaptainPinkTurd.Core.Extensions;
 using CaptainPinkTurd.Core.Interfaces;
 using CaptainPinkTurd.Core.Struct;
 using CaptainPinkTurd.Core.Utilities;
+using CaptainPinkTurd.Core.Utils;
 using CaptainPinkTurd.ScoreSystem;
 using CaptainPinkTurd.UI.Popup;
 using UnityEngine;
@@ -17,9 +17,9 @@ using UnityEngine.Events;
 namespace CaptainPinkTurd.BulletHell
 {
     [RequireComponent(typeof(Collider2D))]
-    public abstract class ProjectileEmitterCenter : AnimationControllerBase, IDamageable, IScorable
+    public abstract class BiformisEmitterController : AnimationControllerBase, IDamageable, IScorable
     {
-        [Header("Projectile Center Configs")]
+        [Header("Biformis Entity Configs")]
         [SerializeField] private int maxHealth = 3;
         [SerializeField] private float knockbackForce = 10f;
         [SerializeField] private PopupText scorePopup;
@@ -28,11 +28,16 @@ namespace CaptainPinkTurd.BulletHell
         [SerializeField] private bool spawnFromPool = true;
         
         [Header("Projectile Emitter Configs")]
-        [SerializeField] protected ProjectileEmitterAdvanced advancedEmitter;
+        [SerializeField] private ProjectileEmitterBiformis redEmitter;
+        [SerializeField] private ProjectileEmitterBiformis blueEmitter;
         [SerializeField] private float projectileColorChangeIntervalMin = 2.5f;
         [SerializeField] private float projectileColorChangeIntervalMax = 5f;
         [SerializeField] private GameObject alertModel;
         [SerializeField] private SerializeKeyValuePair<EColor, GameObject>[] colorAlertModels;
+        
+        [Header("Swap Settings")]
+        [SerializeField] private float colorSwapInterval = 3f;
+        [SerializeField][Range(0f, 1f)] private float swapAlertTimePercentage = .85f;
         
         [Header("Impact Configs")]
         [SerializeField] private float hitStopDuration = 0.2f;
@@ -44,17 +49,22 @@ namespace CaptainPinkTurd.BulletHell
         [SerializeField] protected SoundData startUpSfx;
         [SerializeField] private SoundData damagedSfx;
         [SerializeField] private SoundData colorChangeAlertSfx;
-
+        
+        private EColor currentColor;
         private GameObject damageSource;
+        
         public Collider2D Coll { get; private set; }
         
+        //IDamageable Variables
         public int CurrentHealth { get; private set; }
         public int MaxHealth => maxHealth;
         public GameEvent<SDamageData> OnTakeDamage { get; } = new GameEvent<SDamageData>();
         public GameEvent<SDamageData> OnDeath { get; } = new GameEvent<SDamageData>();
 
+        //IScorable Variables
         public ScoreConfig ScoreConfig => scoreConfig;
 
+        //AnimationControllerBase Variables
         public override int DefaultAnimationHash { get; set; }
 
         protected override void Awake()
@@ -70,20 +80,52 @@ namespace CaptainPinkTurd.BulletHell
             base.OnEnable();
             
             alertModel.SetActive(false);
-            advancedEmitter.OnProjectilePulseChangeAlert.Subscribe(OnProjectileColorChangeAlert);
-            advancedEmitter.OnProjectileColorPulseChange.Subscribe(OnColorChangeEvent);
             
             CurrentHealth = maxHealth;
 
-            ProjectileEmitterSetup();
+            ProjectileEmitterSetup(redEmitter);
+            ProjectileEmitterSetup(blueEmitter);
+            
+            // Randomize starting state
+            var probability = Random.value;
+            currentColor = probability <= .5f ? EColor.Red : EColor.Blue;
+            
+            ApplyEmitterStates();
+            StartColorCycle();
+        }
+        
+        private void StartColorCycle()
+        {
+            // Trigger the alert just before the swap
+            StartCoroutine(CoroutineUtils.WaitForSeconds(colorSwapInterval * swapAlertTimePercentage, OnProjectileColorChangeAlert));
+
+            // Trigger the actual swap
+            StartCoroutine(CoroutineUtils.WaitForSeconds(colorSwapInterval, () => 
+            {
+                currentColor = currentColor == EColor.Red ? EColor.Blue : EColor.Red;
+                OnColorChangeEvent(currentColor);
+                
+                ApplyEmitterStates();
+                StartColorCycle(); // Loop
+            }));
         }
 
-        protected override void OnDisable()
+        private void ApplyEmitterStates()
         {
-            base.OnDisable();
-            
-            advancedEmitter.OnProjectilePulseChangeAlert.Unsubscribe(OnProjectileColorChangeAlert);
-            advancedEmitter.OnProjectileColorPulseChange.Unsubscribe(OnColorChangeEvent);
+            if (currentColor == EColor.Red)
+            {
+                redEmitter.SyncStateFrom(blueEmitter);
+        
+                redEmitter.AutoFire = true;
+                blueEmitter.AutoFire = false;
+            }
+            else
+            {
+                blueEmitter.SyncStateFrom(redEmitter);
+        
+                blueEmitter.AutoFire = true;
+                redEmitter.AutoFire = false;
+            }
         }
 
         private void OnColorChangeEvent(EColor color)
@@ -105,15 +147,23 @@ namespace CaptainPinkTurd.BulletHell
 
         protected void ToggleEmitter(bool on)
         {
-            advancedEmitter.enabled = on;
-            advancedEmitter.AutoFire = on;
+            if (!on)
+            {
+                redEmitter.enabled = false;
+                redEmitter.AutoFire = false;
+                blueEmitter.enabled = false;
+                blueEmitter.AutoFire = false;
+            }
+            else
+            {
+                ApplyEmitterStates();
+                redEmitter.enabled = true;
+                blueEmitter.enabled = true;
+            }
         }
-        private void ProjectileEmitterSetup()
+        private void ProjectileEmitterSetup(ProjectileEmitterBiformis emitter)
         {
-            advancedEmitter.PulseSpeed = Random.Range(projectileColorChangeIntervalMin, projectileColorChangeIntervalMax);
-            advancedEmitter.OutlinePulseSpeed = advancedEmitter.PulseSpeed;
-
-            if (!advancedEmitter.UseFollowTarget) return;
+            if (!emitter.UseFollowTarget) return;
             
             var target = FindAnyObjectByType<Target>();
             if (!target)
@@ -121,7 +171,7 @@ namespace CaptainPinkTurd.BulletHell
                 Debug.LogError("No target found in scene");
                 return;
             }
-            advancedEmitter.Target = target.transform;
+            emitter.Target = target.transform;
         }
         
         public void TakeDamage(SDamageData damageData)
@@ -139,6 +189,7 @@ namespace CaptainPinkTurd.BulletHell
                 .WithPosition(transform.position).WithRandomPitch().Play(damagedSfx);
             ObjectPoolManager.Instance.SpawnObject(impactShockwavePrefab.gameObject, transform.position, 
                 Quaternion.identity, ObjectPoolManager.PoolType.VFX);
+            
             //multiplier is equal to enemy current health before they died
             if(ScoreConfig.useMultiplier) ScoreConfig.runtimeMultiplier = CurrentHealth;
             CurrentHealth -= damageData.Amount;

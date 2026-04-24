@@ -407,8 +407,16 @@ MonoBehaviour:
     ignoreListenerVolume: 0
     ignoreListenerPause: 0
     rolloffMode: 0
-  idleAnimationClip: {fileID: -3100369314251171874, guid: 8e15af905e652054da853af51c4081c3, type: 3}
-  spawnAnimationClip: {fileID: 457796991906702257, guid: 8e15af905e652054da853af51c4081c3, type: 3}
+  idleAnimationClips:
+  - Value: {fileID: -3100369314251171874, guid: 8e15af905e652054da853af51c4081c3, type: 3}
+    Key: 0
+  - Value: {fileID: 7081779063173502867, guid: 8e15af905e652054da853af51c4081c3, type: 3}
+    Key: 1
+  spawnAnimationClips:
+  - Value: {fileID: 457796991906702257, guid: 8e15af905e652054da853af51c4081c3, type: 3}
+    Key: 0
+  - Value: {fileID: -5980578193890230126, guid: 8e15af905e652054da853af51c4081c3, type: 3}
+    Key: 1
 --- !u!61 &8729577052288307070
 BoxCollider2D:
   m_ObjectHideFlags: 0

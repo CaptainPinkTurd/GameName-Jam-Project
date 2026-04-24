@@ -15,9 +15,9 @@ MonoBehaviour:
   itemDebugVisualize: 0
   lootDropTable:
     lootDropItems:
-    - item: {fileID: 9036194906693391910, guid: bab6d3e55813704409128e8c08f80527, type: 3}
+    - item: {fileID: 2769086437950624153, guid: 6268ee0fc961be74bb65a8ca9a75afe4, type: 3}
       probabilityWeight: 1
       probabilityPercent: 100
       placementRadius: 1.5
       spawnRandomRotation: 0
-      gizmoColor: {r: 1, g: 0.054088086, b: 0, a: 1}
+      gizmoColor: {r: 0, g: 1, b: 0, a: 1}

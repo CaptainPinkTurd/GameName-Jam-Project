@@ -583,8 +583,16 @@ MonoBehaviour:
   speed: 5
   rotateAlongPath: 0
   distanceTravelled: 0
-  idleAnimationClip: {fileID: -3100369314251171874, guid: 9b9e47e648e4ba5439c4a468d90fc289, type: 3}
-  moveAnimationClip: {fileID: 5522812681064789136, guid: 9b9e47e648e4ba5439c4a468d90fc289, type: 3}
+  idleAnimationClips:
+  - Value: {fileID: -3100369314251171874, guid: 9b9e47e648e4ba5439c4a468d90fc289, type: 3}
+    Key: 0
+  - Value: {fileID: -3100369314251171874, guid: 9b9e47e648e4ba5439c4a468d90fc289, type: 3}
+    Key: 1
+  moveAnimationClips:
+  - Value: {fileID: 5522812681064789136, guid: 9b9e47e648e4ba5439c4a468d90fc289, type: 3}
+    Key: 0
+  - Value: {fileID: 5522812681064789136, guid: 9b9e47e648e4ba5439c4a468d90fc289, type: 3}
+    Key: 1
   spawnVfx: {fileID: 3280562368088107363}
 --- !u!61 &1213967996921598584
 BoxCollider2D:

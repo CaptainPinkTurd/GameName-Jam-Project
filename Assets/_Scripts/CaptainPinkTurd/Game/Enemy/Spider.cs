@@ -2,6 +2,9 @@ using CaptainPinkTurd.AnimationSystem;
 using CaptainPinkTurd.AudioSystem;
 using CaptainPinkTurd.BulletHell;
 using CaptainPinkTurd.Core.Attributes;
+using CaptainPinkTurd.Core.CustomDataStructure;
+using CaptainPinkTurd.Core.Enum;
+using CaptainPinkTurd.Core.Extensions;
 using PathCreation;
 using UnityEngine;
 
@@ -15,14 +18,17 @@ namespace CaptainPinkTurd.Game.Enemy
         [SerializeField][ReadOnly] private float distanceTravelled;
         
         [Header("Spider Animation Clips")]
-        [SerializeField] private AnimationClip idleAnimationClip;
-        [SerializeField] private AnimationClip moveAnimationClip;
+        [SerializeField] private SerializeKeyValuePair<EColor, AnimationClip>[] idleAnimationClips;
+        [SerializeField] private SerializeKeyValuePair<EColor, AnimationClip>[] moveAnimationClips;
         [SerializeField] private BasicVfxAnimationController spawnVfx;
         
         private PathCreator pathCreator;
         private SpriteRenderer sr;
+        private AnimationClip currentIdleAnim;
+        private AnimationClip currentMoveAnim;
         private readonly EndOfPathInstruction[] closedPathInstruction = { EndOfPathInstruction.Loop, EndOfPathInstruction.Reverse };
         private EndOfPathInstruction endOfPathInstruction;
+        
         private float initialDistanceTravelledOffset;
         private bool runAnimationIsPlaying;
         private bool isRunning;
@@ -33,7 +39,6 @@ namespace CaptainPinkTurd.Game.Enemy
             
             sr = GetComponent<SpriteRenderer>();
             Coll.isTrigger = true;
-            DefaultAnimationHash = Animator.StringToHash(idleAnimationClip.name);
         }
 
         protected override void OnEnable()
@@ -59,7 +64,7 @@ namespace CaptainPinkTurd.Game.Enemy
             if (!runAnimationIsPlaying)
             {
                 runAnimationIsPlaying = true;
-                PlayAnimation(Animator.StringToHash(moveAnimationClip.name),
+                PlayAnimation(Animator.StringToHash(currentMoveAnim.name),
                     onAnimationEnd: () => runAnimationIsPlaying = false);
             }
             
@@ -119,6 +124,27 @@ namespace CaptainPinkTurd.Game.Enemy
         void OnPathChanged()
         {
             distanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(transform.position);
+        }
+        protected override void OnColorChangeEvent(EColor color)
+        {
+            base.OnColorChangeEvent(color);
+
+            if (idleAnimationClips.TryGetValue(color, out var idleAnim))
+            {
+                currentIdleAnim = idleAnim;
+            }
+            else
+            {
+                Debug.LogError($"No idle animation found for color: {color}");
+            }
+            if (moveAnimationClips.TryGetValue(color, out var moveAnim))
+            {
+                currentMoveAnim = moveAnim;
+            }
+            else
+            {
+                Debug.LogError($"No spawn animation found for color: {color}");
+            }
         }
     }
 }

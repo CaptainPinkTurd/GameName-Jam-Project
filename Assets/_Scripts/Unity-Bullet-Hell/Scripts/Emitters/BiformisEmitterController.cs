@@ -30,13 +30,12 @@ namespace CaptainPinkTurd.BulletHell
         [Header("Projectile Emitter Configs")]
         [SerializeField] private ProjectileEmitterBiformis redEmitter;
         [SerializeField] private ProjectileEmitterBiformis blueEmitter;
-        [SerializeField] private float projectileColorChangeIntervalMin = 2.5f;
-        [SerializeField] private float projectileColorChangeIntervalMax = 5f;
         [SerializeField] private GameObject alertModel;
         [SerializeField] private SerializeKeyValuePair<EColor, GameObject>[] colorAlertModels;
         
         [Header("Swap Settings")]
-        [SerializeField] private float colorSwapInterval = 3f;
+        [SerializeField] private float colorSwapIntervalMin = 2.5f;
+        [SerializeField] private float colorSwapIntervalMax = 5f;
         [SerializeField][Range(0f, 1f)] private float swapAlertTimePercentage = .85f;
         
         [Header("Impact Configs")]
@@ -50,8 +49,9 @@ namespace CaptainPinkTurd.BulletHell
         [SerializeField] private SoundData damagedSfx;
         [SerializeField] private SoundData colorChangeAlertSfx;
         
-        private EColor currentColor;
+        protected EColor currentColor;
         private GameObject damageSource;
+        private float colorSwapInterval;
         
         public Collider2D Coll { get; private set; }
         
@@ -79,6 +79,7 @@ namespace CaptainPinkTurd.BulletHell
         {
             base.OnEnable();
             
+            colorSwapInterval = Random.Range(colorSwapIntervalMin, colorSwapIntervalMax);
             alertModel.SetActive(false);
             
             CurrentHealth = maxHealth;
@@ -103,7 +104,6 @@ namespace CaptainPinkTurd.BulletHell
             StartCoroutine(CoroutineUtils.WaitForSeconds(colorSwapInterval, () => 
             {
                 currentColor = currentColor == EColor.Red ? EColor.Blue : EColor.Red;
-                OnColorChangeEvent(currentColor);
                 
                 ApplyEmitterStates();
                 StartColorCycle(); // Loop
@@ -126,9 +126,10 @@ namespace CaptainPinkTurd.BulletHell
                 blueEmitter.AutoFire = true;
                 redEmitter.AutoFire = false;
             }
+            OnColorChangeEvent(currentColor);
         }
 
-        private void OnColorChangeEvent(EColor color)
+        protected virtual void OnColorChangeEvent(EColor color)
         {
             alertModel.SetActive(false);
             foreach (var colorModel in colorAlertModels)

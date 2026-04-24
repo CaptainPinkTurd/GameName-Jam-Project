@@ -1,4 +1,7 @@
-﻿using CaptainPinkTurd.Core.Enum;
+﻿using System.Collections;
+using System.Collections.Generic;
+using CaptainPinkTurd.Core.Attributes;
+using CaptainPinkTurd.Core.Enum;
 using CaptainPinkTurd.Core.Extensions;
 using CaptainPinkTurd.Core.Interfaces;
 using CaptainPinkTurd.Core.Struct;
@@ -18,16 +21,23 @@ namespace BulletHell
         [ConditionalField(nameof(MirrorPairRotation)), SerializeField] protected bool PairGroupDirection;       
 
         [Foldout("Modifiers", true)]
+        [Header("Projectile Burst Configs")]
+        [SerializeField] internal bool burstFire;
+        [ShowIf(nameof(burstFire))]
+        [SerializeField] private float timeBetweenBursts = 3f;
+        
+        [Header("Projectiles Follow Target Configs")]
         [SerializeField] public bool UseFollowTarget;       
         [ConditionalField(nameof(UseFollowTarget))] public Transform Target;
         [ConditionalField(nameof(UseFollowTarget))] public FollowTargetType FollowTargetType = FollowTargetType.Homing;
         [ConditionalField(nameof(UseFollowTarget)), Range(0, 5)] public float FollowIntensity;
-
+        
         private EmitterGroup[] Groups;
         
         private int LastGroupCountPoll = -1;
         private bool PreviousMirrorPairRotation = false;
         private bool PreviousPairGroupDirection = false;
+        private bool isWaitingForBurst = false;
 
         public override void Awake()
         {
@@ -37,6 +47,33 @@ namespace BulletHell
             RefreshGroups();
         }
 
+        public override void OnEnable()
+        {
+            base.OnEnable();
+            
+            StartCoroutine(BurstFire());
+        }
+
+        public override void OnDisable()
+        {
+            base.OnDisable();
+            
+            isWaitingForBurst = false;
+            StopAllCoroutines();
+        }
+
+        private IEnumerator BurstFire()
+        {
+            if (!burstFire) yield break;
+            
+            while (true)
+            {
+                yield return new WaitForSeconds(1f);
+                isWaitingForBurst = true;
+                yield return new WaitForSeconds(timeBetweenBursts);
+                isWaitingForBurst = false;
+            }
+        }
         private void RefreshGroups()
         {
             if (GroupCount > 10)
@@ -96,6 +133,8 @@ namespace BulletHell
 
         public override Pool<ProjectileData>.Node FireProjectile(Vector2 direction, float leakedTime)
         {
+            if (burstFire && isWaitingForBurst) return new Pool<ProjectileData>.Node();
+            
             Pool<ProjectileData>.Node node = new Pool<ProjectileData>.Node();
 
             Direction = direction;
@@ -386,6 +425,7 @@ namespace BulletHell
         public void SyncStateFrom(ProjectileEmitterBiformis activeEmitter)
         {
             Interval = activeEmitter.Interval;
+            isWaitingForBurst = activeEmitter.isWaitingForBurst;
 
             if (Groups == null || activeEmitter.Groups == null) return;
             

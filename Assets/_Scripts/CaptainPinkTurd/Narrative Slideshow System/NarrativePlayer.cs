@@ -1,8 +1,8 @@
-using System;
 using CaptainPinkTurd.Core.Utilities;
+using CaptainPinkTurd.Input;
 using DG.Tweening;
-using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace CaptainPinkTurd.NarrativeSlideshow
@@ -13,7 +13,33 @@ namespace CaptainPinkTurd.NarrativeSlideshow
         [SerializeField] private TypewriterText  typewriterText;
         [SerializeField] private StorySequence sequence;
         
+        private InputSystemActions playerInput;
         private int currentIndex = 0;
+        private bool isFading;
+        private bool slideCurrentImage;
+        private bool isSliding;
+
+        private void Awake()
+        {
+            playerInput = new InputSystemActions();
+        }
+
+        private void OnEnable()
+        {
+            playerInput.Player.Enable();
+            playerInput.Player.Confirm.performed += Next;
+        }
+
+        private void OnDisable()
+        {
+            playerInput.Player.Confirm.performed -= Next;
+            playerInput.Player.Disable();
+        }
+
+        private void OnDestroy()
+        {
+            playerInput.Dispose();
+        }
 
         private void Start()
         {
@@ -24,31 +50,75 @@ namespace CaptainPinkTurd.NarrativeSlideshow
         {
             sequence = seq;
             currentIndex = 0;
-            ShowPanel(true);
+            ShowPanel();
         }
 
-        void ShowPanel(bool isFirst)
+        private void ShowPanel()
         {
             var panel = sequence.panels[currentIndex];
             displayImage.sprite = panel.image;
-
-            displayImage.DOFade(1, isFirst ? 0f : panel.fadeTime).OnComplete(() =>
+            displayImage.SetNativeSize();
+            slideCurrentImage = panel.slidingImage;
+            displayImage.transform.localPosition = panel.slidingImage ? panel.slideFromLocalPos : Vector3.zero;
+            
+            //if sprite is null then show a black screen
+            isFading = true;
+            displayImage.DOFade(displayImage.sprite ? 1 : 0, panel.fadeInTime).OnComplete(() =>
             {
-                typewriterText.StartTyping(panel.text, Next);
+                isFading = false;
             });
+            typewriterText.StartTyping(panel.text, panel.alignment);
         }
 
-        public void Next()
+        public void Next(InputAction.CallbackContext ctx)
         {
-            displayImage.DOFade(0, sequence.panels[currentIndex].fadeTime).OnComplete(() =>
+            if (isFading || currentIndex >= sequence.panels.Count) return;
+            
+            var panel = sequence.panels[currentIndex];
+            if(typewriterText.IsTyping)
             {
-                currentIndex++;
-                Debug.Log($"Showing next panel: {currentIndex}");
-
-                if (currentIndex >= sequence.panels.Count) return;
+                typewriterText.SkipTyping();
+            }
+            else if (panel.slidingImage && slideCurrentImage)
+            {
+                if (!isSliding)
+                {
+                    isSliding = true;
+                    displayImage.transform.DOLocalMove(panel.slideToLocalPos, panel.slideDuration).OnComplete(() =>
+                    {
+                        isSliding = false;
+                        slideCurrentImage = false;
+                    });
+                }
+                else
+                {
+                    DOTween.Kill(displayImage.transform, true);
+                }
+            }
+            else 
+            {
+                typewriterText.SetTextUIActive(!panel.disableTextOnFadeOut);
                 
-                ShowPanel(false);
-            });
+                isFading = true;
+                displayImage.DOFade(0, panel.fadeOutTime).OnComplete(() =>
+                {
+                    isFading = false;
+                    currentIndex++;
+
+                    if (currentIndex >= sequence.panels.Count)
+                    {
+                        EndSequenceEvents();
+                        return;
+                    }
+                    
+                    ShowPanel();
+                });
+            }
+        }
+
+        private void EndSequenceEvents()
+        {
+            //To be implemented later
         }
     }
 }

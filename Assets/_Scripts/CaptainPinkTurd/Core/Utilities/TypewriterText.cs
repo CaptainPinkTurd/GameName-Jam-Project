@@ -9,36 +9,46 @@ using Random = UnityEngine.Random;
 
 namespace CaptainPinkTurd.Core.Utilities
 {
+    [RequireComponent(typeof(AudioSource))]
     public class TypewriterText : MonoBehaviour
     {
         [Header("Typewriter Configs")]
-        public TMP_Text textUI;
-        public float typingSpeed = 0.03f;
+        [SerializeField] private TMP_Text textUI;
+        [SerializeField] private float typingSpeed = 0.03f;
         
         [Header("Voice")]
-        public AudioSource audioSource;
-        public AudioClip[] voiceClips;
-        public float minPitch = 0.9f;
-        public float maxPitch = 1.1f;
+        [SerializeField] private AudioClip[] voiceClips;
+        [SerializeField] private float minPitch = 0.9f;
+        [SerializeField] private float maxPitch = 1.1f;
         [Tooltip("Play sound every X characters")]
-        public int soundFrequency = 1;
+        [SerializeField] private int soundFrequency = 1;
 
+        private AudioSource audioSource;
         private Coroutine typingCoroutine;
         private Action onTypingEnd;
 
         private bool isTyping;
         private string currentLine;
         
-        public void StartTyping(string line, Action onTypingEnd = null)
+        public bool IsTyping => isTyping;
+        
+        private void Awake()
         {
+            audioSource = GetComponent<AudioSource>();
+        }
+        public void SetTextUIActive(bool active) => textUI.gameObject.SetActive(active);
+        public void StartTyping(string line, TextAlignmentOptions textAlignment, Action onTypingEnd = null)
+        {
+            SetTextUIActive(true);
             currentLine = line;
 
             if (typingCoroutine != null)
             {
                 StopCoroutine(typingCoroutine);
             }
-
             this.onTypingEnd = onTypingEnd;
+
+            textUI.alignment = textAlignment;
             typingCoroutine = StartCoroutine(TypeText(line));
         }
 
@@ -165,9 +175,16 @@ namespace CaptainPinkTurd.Core.Utilities
 
             string key = parts[0];
             string valueStr = parts[1];
+            float value;
 
-            if (!float.TryParse(valueStr, NumberStyles.Float, CultureInfo.InvariantCulture, out float value))
+            if (valueStr is "default" or "Default" or "DEFAULT" && key is "speed" or "Speed" or "SPEED")
+            {
+                value = typingSpeed;
+            }
+            else if (!float.TryParse(valueStr, NumberStyles.Float, CultureInfo.InvariantCulture, out value))
+            {
                 return false;
+            }
 
             switch (key)
             {
@@ -205,7 +222,7 @@ namespace CaptainPinkTurd.Core.Utilities
             if (!isTyping) return;
 
             StopCoroutine(typingCoroutine);
-            textUI.text = currentLine;
+            textUI.maxVisibleCharacters = textUI.text.Length;
             onTypingEnd?.Invoke();
             isTyping = false;
         }

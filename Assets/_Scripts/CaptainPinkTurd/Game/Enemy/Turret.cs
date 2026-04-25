@@ -16,6 +16,8 @@ namespace CaptainPinkTurd.Game.Enemy
         
         private AnimationClip currentIdleAnim;
         private AnimationClip currentSpawnAnim;
+        
+        private bool isSpawning;
 
         protected override void Awake()
         {
@@ -26,6 +28,8 @@ namespace CaptainPinkTurd.Game.Enemy
 
         protected override void OnEnable()
         {
+            isSpawning = true;
+            
             base.OnEnable();
 
             StartCoroutine(CoroutineUtils.WaitForCondition(() => SoundManager.Instance.didAwake,
@@ -38,6 +42,7 @@ namespace CaptainPinkTurd.Game.Enemy
             PlayAnimation(Animator.StringToHash(currentSpawnAnim.name),
                 onAnimationEnd: () =>
                 {
+                    isSpawning = false;
                     Coll.isTrigger = true;
                     ToggleEmitter(true);
                     PlayAnimation(Animator.StringToHash(currentIdleAnim.name));
@@ -69,7 +74,7 @@ namespace CaptainPinkTurd.Game.Enemy
             {
                 currentIdleAnim = idleAnim;
 
-                if (!didStart) return;
+                if (!didStart || isSpawning) return;
                 PlayAnimation(Animator.StringToHash(currentIdleAnim.name));
             }
             else

@@ -24,7 +24,7 @@ namespace BulletHell
         [Header("Projectile Burst Configs")]
         [SerializeField] internal bool burstFire;
         [ShowIf(nameof(burstFire))]
-        [SerializeField] private float timeBetweenBursts = 3f;
+        [SerializeField] private float timeBetweenBursts = 3f; //color swap interval needs to be timeBetweenBursts + 1 for the burst to be in sync with the emitter's current color ?
         
         [Header("Projectiles Follow Target Configs")]
         [SerializeField] public bool UseFollowTarget;       
@@ -59,7 +59,6 @@ namespace BulletHell
             base.OnDisable();
             
             isWaitingForBurst = false;
-            StopAllCoroutines();
         }
 
         private IEnumerator BurstFire()

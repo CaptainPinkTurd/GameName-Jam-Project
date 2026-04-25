@@ -135,6 +135,8 @@ MonoBehaviour:
   SpokeSpacing: 20
   MirrorPairRotation: 1
   PairGroupDirection: 1
+  burstFire: 0
+  timeBetweenBursts: 3
   UseFollowTarget: 0
   Target: {fileID: 0}
   FollowTargetType: 0
@@ -307,6 +309,8 @@ MonoBehaviour:
   SpokeSpacing: 20
   MirrorPairRotation: 1
   PairGroupDirection: 1
+  burstFire: 0
+  timeBetweenBursts: 3
   UseFollowTarget: 0
   Target: {fileID: 0}
   FollowTargetType: 0
@@ -420,7 +424,7 @@ Animator:
   m_GameObject: {fileID: 4564287098680374756}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 5212161942193373829, guid: 9b9e47e648e4ba5439c4a468d90fc289, type: 3}
+  m_Controller: {fileID: 2422321453650792977, guid: 9b9e47e648e4ba5439c4a468d90fc289, type: 3}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -468,15 +472,14 @@ MonoBehaviour:
   spawnFromPool: 1
   redEmitter: {fileID: 7339542877474813584}
   blueEmitter: {fileID: 1962031332461982658}
-  projectileColorChangeIntervalMin: 2.5
-  projectileColorChangeIntervalMax: 5
   alertModel: {fileID: 8940576606443567126}
   colorAlertModels:
   - Value: {fileID: 4340624650453664041}
     Key: 0
   - Value: {fileID: 8897439386370901824}
     Key: 1
-  colorSwapInterval: 3
+  colorSwapIntervalMin: 2.5
+  colorSwapIntervalMax: 5
   swapAlertTimePercentage: 0.85
   hitStopDuration: 0.2
   impactShockwavePrefab: {fileID: 6386854355507245172, guid: ddf39c5a02e34294bbbf17bc54ca2410, type: 3}
@@ -586,12 +589,12 @@ MonoBehaviour:
   idleAnimationClips:
   - Value: {fileID: -3100369314251171874, guid: 9b9e47e648e4ba5439c4a468d90fc289, type: 3}
     Key: 0
-  - Value: {fileID: -3100369314251171874, guid: 9b9e47e648e4ba5439c4a468d90fc289, type: 3}
+  - Value: {fileID: 7081779063173502867, guid: 9b9e47e648e4ba5439c4a468d90fc289, type: 3}
     Key: 1
   moveAnimationClips:
   - Value: {fileID: 5522812681064789136, guid: 9b9e47e648e4ba5439c4a468d90fc289, type: 3}
     Key: 0
-  - Value: {fileID: 5522812681064789136, guid: 9b9e47e648e4ba5439c4a468d90fc289, type: 3}
+  - Value: {fileID: 4817875597194297245, guid: 9b9e47e648e4ba5439c4a468d90fc289, type: 3}
     Key: 1
   spawnVfx: {fileID: 3280562368088107363}
 --- !u!61 &1213967996921598584

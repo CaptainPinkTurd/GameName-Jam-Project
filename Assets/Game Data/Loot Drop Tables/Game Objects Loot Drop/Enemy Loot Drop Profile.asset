@@ -17,37 +17,43 @@ MonoBehaviour:
     lootDropItems:
     - item: {fileID: 4054407043497097032, guid: 6fec9d3036bb47542b95fefb7133b457, type: 3}
       probabilityWeight: 1
-      probabilityPercent: 16.666666
+      probabilityPercent: 14.285714
       placementRadius: 1.5
       spawnRandomRotation: 0
       gizmoColor: {r: 0, g: 1, b: 0, a: 1}
     - item: {fileID: 4338639542720592328, guid: 842bb43cb9698b14a9b9d4dd8f62d5de, type: 3}
       probabilityWeight: 1
-      probabilityPercent: 16.666666
+      probabilityPercent: 14.285714
       placementRadius: 1.5
       spawnRandomRotation: 0
       gizmoColor: {r: 1, g: 0.054088086, b: 0, a: 1}
     - item: {fileID: 3603879645543089829, guid: f9f0d7fb10d7a2646a4dc1c447bd0fd5, type: 3}
       probabilityWeight: 1
-      probabilityPercent: 16.666666
+      probabilityPercent: 14.285714
+      placementRadius: 1.5
+      spawnRandomRotation: 0
+      gizmoColor: {r: 1, g: 0.054088086, b: 0, a: 1}
+    - item: {fileID: 2769086437950624153, guid: 6268ee0fc961be74bb65a8ca9a75afe4, type: 3}
+      probabilityWeight: 1
+      probabilityPercent: 14.285714
       placementRadius: 1.5
       spawnRandomRotation: 0
       gizmoColor: {r: 1, g: 0.054088086, b: 0, a: 1}
     - item: {fileID: 4564287098680374756, guid: d0a2fe8aa72fd5f40a4550cfc55efed0, type: 3}
       probabilityWeight: 1
-      probabilityPercent: 16.666666
+      probabilityPercent: 14.285714
       placementRadius: 1
       spawnRandomRotation: 0
       gizmoColor: {r: 1, g: 0.054088086, b: 0, a: 1}
     - item: {fileID: 5626915248032822960, guid: 0f588bbf0c91b3b4883bcf8fd23bab30, type: 3}
       probabilityWeight: 1
-      probabilityPercent: 16.666666
+      probabilityPercent: 14.285714
       placementRadius: 1
       spawnRandomRotation: 0
       gizmoColor: {r: 1, g: 0.054088086, b: 0, a: 1}
     - item: {fileID: 2173157091316545834, guid: 47a7143d0fb993f40a9ced471a002114, type: 3}
       probabilityWeight: 1
-      probabilityPercent: 16.666666
+      probabilityPercent: 14.285714
       placementRadius: 1
       spawnRandomRotation: 0
       gizmoColor: {r: 1, g: 0.054088086, b: 0, a: 1}

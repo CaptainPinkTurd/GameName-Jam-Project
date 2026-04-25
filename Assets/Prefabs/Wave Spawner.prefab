@@ -67,7 +67,7 @@ MonoBehaviour:
   rejectionThreshold: 30
   displayRadius: 0.25
   lootDropTableProfiles:
-  - {fileID: 11400000, guid: 3e32726a70b329449987b50ac7cf967d, type: 2}
+  - {fileID: 11400000, guid: 356577d1d86205c489b3887c40643730, type: 2}
   chosenLootDropIndex: 0
   blockingMask:
     serializedVersion: 2

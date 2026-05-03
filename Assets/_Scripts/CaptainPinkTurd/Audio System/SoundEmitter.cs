@@ -69,7 +69,7 @@ namespace CaptainPinkTurd.AudioSystem
             playingCoroutine = StartCoroutine(WaitForSoundToEnd());
         }
 
-        IEnumerator WaitForSoundToEnd()
+        private IEnumerator WaitForSoundToEnd()
         {
             yield return new WaitWhile(() => audioSource.isPlaying);
             Stop();

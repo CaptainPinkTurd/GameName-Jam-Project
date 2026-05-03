@@ -24,7 +24,7 @@ namespace CaptainPinkTurd.Game
         [SerializeField] private EDirection2D moveDirection; 
         [SerializeField] private SerializeKeyValuePair<EDirection2D, RoundUpType>[] roundUpTypeOnStopForDirections;
         [SerializeField] private bool moveOnStart;
-        [SerializeField] private SoundData moveSfx;
+        [SerializeField] private SoundData movingSfx;
         [SerializeField] private SoundData crushSfx;
 
         [Header("Collision")]
@@ -40,10 +40,10 @@ namespace CaptainPinkTurd.Game
         private Rigidbody2D rb;
         private GameObject player;
         private Vector3 startPoint;
+        private SoundBuilder movingSfxBuilder;
         
         private bool isMoving;
         private bool isBacktrack;
-        private bool isPlayingMoveSfx;
         
         private void Awake()
         {
@@ -57,21 +57,12 @@ namespace CaptainPinkTurd.Game
         private void Start()
         {
             isMoving = moveOnStart;
+            movingSfxBuilder = SoundManager.Instance.CreateSoundBuilder();
         }
 
         private void FixedUpdate()
         {
             if (!isMoving) return;
-
-            if (!isPlayingMoveSfx)
-            {
-                isPlayingMoveSfx = true;
-                SoundManager.Instance.CreateSoundBuilder().WithPosition(rb.position).WithRandomPitch()
-                    .Play(moveSfx, () =>
-                    {
-                        isPlayingMoveSfx = false;
-                    });
-            }
             
             Vector2 moveDir = GetMoveDirection();
             Vector2 newPos = rb.position + moveDir * (speed * Time.fixedDeltaTime);
@@ -133,6 +124,8 @@ namespace CaptainPinkTurd.Game
             transform.localPosition = new Vector3(x, y, 0);
             
             isMoving = false;
+            movingSfxBuilder.StopCurrentSoundEmitter();
+            
             moveDirection = moveDirection.GetOpposite();
             isBacktrack = !isBacktrack;
             ExcludeCollisionOnIgnoredLayerMask(false);
@@ -190,6 +183,7 @@ namespace CaptainPinkTurd.Game
             
             ExcludeCollisionOnIgnoredLayerMask(true);
             isMoving = true;
+            movingSfxBuilder.WithPosition(rb.position).WithRandomPitch().Play(movingSfx);
             EnableSortingGroups(true);
         }
     }

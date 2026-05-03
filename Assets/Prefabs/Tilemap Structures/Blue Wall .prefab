@@ -402,10 +402,11 @@ MonoBehaviour:
   - Value: 0
     Key: 3
   moveOnStart: 0
-  moveSfx:
-    clip: {fileID: 8300000, guid: bc8909c31620b0f40ad25a536b50cc7d, type: 3}
+  movingSfx:
+    clip: {fileID: 8300000, guid: 303045f146679fa498b0f01e44dbb7c5, type: 3}
+    overrideMixerGroup: 0
     mixerGroup: {fileID: 0}
-    loop: 0
+    loop: 1
     playOnAwake: 0
     frequentSound: 0
     mute: 0
@@ -427,6 +428,7 @@ MonoBehaviour:
     rolloffMode: 0
   crushSfx:
     clip: {fileID: 8300000, guid: fc0a92857b614be449eab7e7e7010ba8, type: 3}
+    overrideMixerGroup: 0
     mixerGroup: {fileID: 0}
     loop: 0
     playOnAwake: 0

@@ -8,6 +8,7 @@ namespace CaptainPinkTurd.AudioSystem
         private readonly SoundManager soundManager;
         private Vector3 position = Vector3.zero;
         
+        private SoundEmitter currentSoundEmitter;  
         private bool randomPitch;
         private float minPitch;
         private float maxPitch;
@@ -27,7 +28,7 @@ namespace CaptainPinkTurd.AudioSystem
         {
             minPitch = min;
             maxPitch = max;
-            this.randomPitch = true;
+            randomPitch = true;
             return this;
         }
 
@@ -41,30 +42,38 @@ namespace CaptainPinkTurd.AudioSystem
             
             if (soundManager && !soundManager.CanPlaySound(soundData)) return;
 
-            SoundEmitter soundEmitter = soundManager.Get();
+            currentSoundEmitter = soundManager.Get();
             
-            if (!soundEmitter)
+            if (!currentSoundEmitter)
             {
                 Debug.LogError("No sound emitters available");
                 return;
             }
             
-            soundEmitter.Initialize(soundData, AudioManager.Instance.SfxMixerGroup);
-            soundEmitter.transform.position = position;
-            soundEmitter.transform.parent = soundManager.transform;
+            currentSoundEmitter.Initialize(soundData, AudioManager.Instance.SfxMixerGroup);
+            currentSoundEmitter.transform.position = position;
+            currentSoundEmitter.transform.parent = soundManager.transform;
 
             if (randomPitch) 
             {
-                soundEmitter.WithRandomPitch(minPitch, maxPitch);
+                currentSoundEmitter.WithRandomPitch(minPitch, maxPitch);
             }
 
             if (soundData.frequentSound) 
             {
-                soundEmitter.Node = soundManager.FrequentSoundEmitters.AddLast(soundEmitter);
+                currentSoundEmitter.Node = soundManager.FrequentSoundEmitters.AddLast(currentSoundEmitter);
             }
             
-            soundEmitter.onSoundEnd = onSoundEnd;
-            soundEmitter.Play();
+            currentSoundEmitter.onSoundEnd = onSoundEnd;
+            currentSoundEmitter.onSoundEnd += () => currentSoundEmitter = null; //to make sure the sound emitter doesn't get mixed up with other builders once it's done playing sound
+            currentSoundEmitter.Play();
+        }
+
+        public void StopCurrentSoundEmitter()
+        {
+            if (!currentSoundEmitter) return;
+            
+            currentSoundEmitter.Stop();
         }
     }
 }

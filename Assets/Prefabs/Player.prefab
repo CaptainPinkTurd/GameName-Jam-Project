@@ -6066,6 +6066,7 @@ GameObject:
   - component: {fileID: 4878204597234212767}
   - component: {fileID: 8241885074861361187}
   - component: {fileID: 9197272154470192743}
+  - component: {fileID: 5001747532074944154}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -6297,6 +6298,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hit_Effect
   _duration: 0.25
+  isPlayer: 1
+--- !u!114 &5001747532074944154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8869195972812015716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4fd9ed43ea5464f9f8fb308cf61ca50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EffectSystem::CaptainPinkTurd.EffectSystem.AdaptiveFootstepSFX.FootstepAudio
+  terrainDatabase:
+  - terrainType: Lab Ground
+    footsteps: []
 --- !u!1001 &2257470727333886670
 PrefabInstance:
   m_ObjectHideFlags: 0

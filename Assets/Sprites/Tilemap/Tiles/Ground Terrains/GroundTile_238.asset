@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Tile_239 1
-  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.Tilemaps.Tile
-  m_Sprite: {fileID: 725953541, guid: 5e6701590d0541f449b9cc7bcdfd86d8, type: 3}
+  m_Script: {fileID: 11500000, guid: 03f204fdb1c547a28a9e9bc7da52a21c, type: 3}
+  m_Name: GroundTile_238
+  m_EditorClassIdentifier: TilemapSystem::CaptainPinkTurd.TilemapSystem.TerrainTile
+  m_Sprite: {fileID: -1341808214, guid: 5e6701590d0541f449b9cc7bcdfd86d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
@@ -34,3 +34,4 @@ MonoBehaviour:
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
   m_ColliderType: 1
+  terrain: {fileID: 11400000, guid: fad9d62e3debf064eb13a6a29649107e, type: 2}

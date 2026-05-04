@@ -3,8 +3,7 @@
     "rootNamespace": "CaptainPinkTurd.TilemapSystem",
     "references": [
         "GUID:4379980e305684f4bbea58f0a9e24506",
-        "GUID:613783dc1674e844b87788ea74ede0f6",
-        "GUID:5dadfd2ef22a03c409c1d4a74e0ea477"
+        "GUID:613783dc1674e844b87788ea74ede0f6"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -169,6 +169,37 @@ MonoBehaviour:
     ignoreListenerVolume: 0
     ignoreListenerPause: 0
     rolloffMode: 0
+--- !u!1 &1315261882898115331
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5360161557459843202}
+  m_Layer: 6
+  m_Name: Foot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5360161557459843202
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315261882898115331}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7931349063343861280}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1373221394262879483
 GameObject:
   m_ObjectHideFlags: 0
@@ -388,6 +419,7 @@ GameObject:
   - component: {fileID: 2464235167397491275}
   - component: {fileID: 3690620413437612204}
   - component: {fileID: 6954391910646960681}
+  - component: {fileID: 668147809688098349}
   m_Layer: 6
   m_Name: Red
   m_TagString: Untagged
@@ -539,8 +571,98 @@ MonoBehaviour:
     Key: 3
   spriteFlipDirections: 03000000
   currentMovementInput: {fileID: 11400000, guid: 8c16d940aae91804b838e76399cff9f1, type: 2}
+  currentPlayerSpeed: {fileID: 11400000, guid: bedb67a39e6f79441aa7b289b3c9099a, type: 2}
   directionMode: 0
   playerCurrentDirectionState: 0
+--- !u!114 &668147809688098349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2770929056912956708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4fd9ed43ea5464f9f8fb308cf61ca50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EffectSystem::CaptainPinkTurd.EffectSystem.AdaptiveFootstepSFX.FootstepAudio
+  terrainMask:
+    serializedVersion: 2
+    m_Bits: 8
+  footPosition: {fileID: 5360161557459843202}
+  gamePerspective: 0
+  terrainDatabase:
+  - terrainType: Lab Ground
+    footsteps:
+    - clip: {fileID: 8300000, guid: 123d5ee66eb9b4c4ba01bd57d60d7409, type: 3}
+      overrideMixerGroup: 0
+      mixerGroup: {fileID: 0}
+      loop: 0
+      playOnAwake: 0
+      frequentSound: 0
+      mute: 0
+      bypassEffects: 0
+      bypassListenerEffects: 0
+      bypassReverbZones: 0
+      priority: 128
+      volume: 1
+      pitch: 1
+      panStereo: 0
+      spatialBlend: 0
+      reverbZoneMix: 1
+      dopplerLevel: 1
+      spread: 0
+      minDistance: 1
+      maxDistance: 500
+      ignoreListenerVolume: 0
+      ignoreListenerPause: 0
+      rolloffMode: 0
+    - clip: {fileID: 8300000, guid: 005c891eff87bca40a7d36e0a0d078d2, type: 3}
+      overrideMixerGroup: 0
+      mixerGroup: {fileID: 0}
+      loop: 0
+      playOnAwake: 0
+      frequentSound: 0
+      mute: 0
+      bypassEffects: 0
+      bypassListenerEffects: 0
+      bypassReverbZones: 0
+      priority: 128
+      volume: 1
+      pitch: 1
+      panStereo: 0
+      spatialBlend: 0
+      reverbZoneMix: 1
+      dopplerLevel: 1
+      spread: 0
+      minDistance: 1
+      maxDistance: 500
+      ignoreListenerVolume: 0
+      ignoreListenerPause: 0
+      rolloffMode: 0
+    - clip: {fileID: 8300000, guid: c46f5c427d75f0a40af4df8c39306115, type: 3}
+      overrideMixerGroup: 0
+      mixerGroup: {fileID: 0}
+      loop: 0
+      playOnAwake: 0
+      frequentSound: 0
+      mute: 0
+      bypassEffects: 0
+      bypassListenerEffects: 0
+      bypassReverbZones: 0
+      priority: 128
+      volume: 1
+      pitch: 1
+      panStereo: 0
+      spatialBlend: 0
+      reverbZoneMix: 1
+      dopplerLevel: 1
+      spread: 0
+      minDistance: 1
+      maxDistance: 500
+      ignoreListenerVolume: 0
+      ignoreListenerPause: 0
+      rolloffMode: 0
 --- !u!1 &3518547388238554232
 GameObject:
   m_ObjectHideFlags: 0
@@ -5622,6 +5744,7 @@ GameObject:
   - component: {fileID: 5345127168576346828}
   - component: {fileID: 3819604520413791682}
   - component: {fileID: 6490001173509022234}
+  - component: {fileID: 406226696519497675}
   m_Layer: 6
   m_Name: Blue
   m_TagString: Untagged
@@ -5773,8 +5896,98 @@ MonoBehaviour:
     Key: 3
   spriteFlipDirections: 03000000
   currentMovementInput: {fileID: 11400000, guid: 8c16d940aae91804b838e76399cff9f1, type: 2}
+  currentPlayerSpeed: {fileID: 11400000, guid: bedb67a39e6f79441aa7b289b3c9099a, type: 2}
   directionMode: 0
   playerCurrentDirectionState: 0
+--- !u!114 &406226696519497675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5256482818957638276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4fd9ed43ea5464f9f8fb308cf61ca50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: EffectSystem::CaptainPinkTurd.EffectSystem.AdaptiveFootstepSFX.FootstepAudio
+  terrainMask:
+    serializedVersion: 2
+    m_Bits: 8
+  footPosition: {fileID: 5360161557459843202}
+  gamePerspective: 0
+  terrainDatabase:
+  - terrainType: Lab Ground
+    footsteps:
+    - clip: {fileID: 8300000, guid: 123d5ee66eb9b4c4ba01bd57d60d7409, type: 3}
+      overrideMixerGroup: 0
+      mixerGroup: {fileID: 0}
+      loop: 0
+      playOnAwake: 0
+      frequentSound: 0
+      mute: 0
+      bypassEffects: 0
+      bypassListenerEffects: 0
+      bypassReverbZones: 0
+      priority: 128
+      volume: 1
+      pitch: 1
+      panStereo: 0
+      spatialBlend: 0
+      reverbZoneMix: 1
+      dopplerLevel: 1
+      spread: 0
+      minDistance: 1
+      maxDistance: 500
+      ignoreListenerVolume: 0
+      ignoreListenerPause: 0
+      rolloffMode: 0
+    - clip: {fileID: 8300000, guid: 005c891eff87bca40a7d36e0a0d078d2, type: 3}
+      overrideMixerGroup: 0
+      mixerGroup: {fileID: 0}
+      loop: 0
+      playOnAwake: 0
+      frequentSound: 0
+      mute: 0
+      bypassEffects: 0
+      bypassListenerEffects: 0
+      bypassReverbZones: 0
+      priority: 128
+      volume: 1
+      pitch: 1
+      panStereo: 0
+      spatialBlend: 0
+      reverbZoneMix: 1
+      dopplerLevel: 1
+      spread: 0
+      minDistance: 1
+      maxDistance: 500
+      ignoreListenerVolume: 0
+      ignoreListenerPause: 0
+      rolloffMode: 0
+    - clip: {fileID: 8300000, guid: c46f5c427d75f0a40af4df8c39306115, type: 3}
+      overrideMixerGroup: 0
+      mixerGroup: {fileID: 0}
+      loop: 0
+      playOnAwake: 0
+      frequentSound: 0
+      mute: 0
+      bypassEffects: 0
+      bypassListenerEffects: 0
+      bypassReverbZones: 0
+      priority: 128
+      volume: 1
+      pitch: 1
+      panStereo: 0
+      spatialBlend: 0
+      reverbZoneMix: 1
+      dopplerLevel: 1
+      spread: 0
+      minDistance: 1
+      maxDistance: 500
+      ignoreListenerVolume: 0
+      ignoreListenerPause: 0
+      rolloffMode: 0
 --- !u!1 &5675562097887508859
 GameObject:
   m_ObjectHideFlags: 0
@@ -6048,6 +6261,7 @@ Transform:
   m_Children:
   - {fileID: 3969076873426127695}
   - {fileID: 6929061631498099169}
+  - {fileID: 5360161557459843202}
   m_Father: {fileID: 5453090795503190856}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8869195972812015716
@@ -6066,7 +6280,6 @@ GameObject:
   - component: {fileID: 4878204597234212767}
   - component: {fileID: 8241885074861361187}
   - component: {fileID: 9197272154470192743}
-  - component: {fileID: 5001747532074944154}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -6112,6 +6325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: NewAssembly::CaptainPinkTurd.TopDownController2D.PlayerFreeMovementTopDownController2D
   referenceMoveStats: {fileID: 11400000, guid: 5d10a3b50aa317c44a7659a06488188e, type: 2}
   movementInput: {fileID: 11400000, guid: 8c16d940aae91804b838e76399cff9f1, type: 2}
+  currentPlayerSpeed: {fileID: 11400000, guid: bedb67a39e6f79441aa7b289b3c9099a, type: 2}
   playerPosition: {fileID: 11400000, guid: 248e153abaa18f04cbb09ca24ff80b9b, type: 2}
 --- !u!114 &378778959457206378
 MonoBehaviour:
@@ -6299,21 +6513,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Hit_Effect
   _duration: 0.25
   isPlayer: 1
---- !u!114 &5001747532074944154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8869195972812015716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4fd9ed43ea5464f9f8fb308cf61ca50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: EffectSystem::CaptainPinkTurd.EffectSystem.AdaptiveFootstepSFX.FootstepAudio
-  terrainDatabase:
-  - terrainType: Lab Ground
-    footsteps: []
 --- !u!1001 &2257470727333886670
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,4 +1,4 @@
-using CaptainPinkTurd.EffectSystem.AdaptiveFootstepSFX;
+using CaptainPinkTurd.Core.SO;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 

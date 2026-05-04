@@ -35,7 +35,8 @@ namespace CaptainPinkTurd.AnimationSystem
         }
         
         public void PlayAnimation(int animationHash, float midEventTimer = 0f, 
-            Action onMidAnimation = null, Action onAnimationEnd = null, bool playInReverse = false, bool isClamp = false)
+            Action onMidAnimation = null, Action onAnimationEnd = null,
+            bool playInReverse = false, bool isClamp = false, float speed = 1f)
         {
             if (!gameObject.activeInHierarchy || !gameObject.activeSelf) return;
             
@@ -45,7 +46,7 @@ namespace CaptainPinkTurd.AnimationSystem
                 var graph = PlayableGraph.Create();
                 var playable = AnimationClipPlayable.Create(graph, clip);
                 playable.SetTime(clip.length);
-                playable.SetSpeed(-1);
+                playable.SetSpeed(-1 * speed);
 
                 var output = AnimationPlayableOutput.Create(graph, "Anim", animator);
                 output.SetSourcePlayable(playable);
@@ -71,7 +72,11 @@ namespace CaptainPinkTurd.AnimationSystem
             else
             {
                 timer = new CountdownTimer(GetAnimationClipLength(animationHash) - crossfadeTime, midEventTimer);
-                timer.OnTimerStart += () => animator.CrossFade(animationHash, crossfadeTime, 0, 0f);
+                timer.OnTimerStart += () =>
+                {
+                    animator.speed = speed;
+                    animator.CrossFade(animationHash, crossfadeTime, 0, 0f);
+                };
                 timer.OnMidTimer += onMidAnimation;
                 timer.OnTimerStop += () =>
                 {

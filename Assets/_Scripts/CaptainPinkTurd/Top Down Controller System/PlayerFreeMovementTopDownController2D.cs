@@ -12,6 +12,7 @@ namespace CaptainPinkTurd.TopDownController2D
         [Header("References")]
         [SerializeField] private PlayerTopDownMovementStats referenceMoveStats; 
         [SerializeField] private Vector2VariableSO movementInput;
+        [SerializeField] private FloatVariableSO currentPlayerSpeed;
         [SerializeField] private Vector3VariableSO playerPosition;
         
         private PlayerTopDownMovementStats runtimeMoveStats;
@@ -23,6 +24,7 @@ namespace CaptainPinkTurd.TopDownController2D
         
         private bool isDashing;
         private bool dashOnCooldown;
+        private bool movementDisabled;
 
         private void Awake()
         {
@@ -53,7 +55,7 @@ namespace CaptainPinkTurd.TopDownController2D
 
         private void Update()
         {
-            if (isDashing) return;
+            if (isDashing || movementDisabled) return;
 
             movementInput.Value = playerInputs.Player.Move.ReadValue<Vector2>();
 
@@ -66,6 +68,8 @@ namespace CaptainPinkTurd.TopDownController2D
 
         private void FixedUpdate()
         {
+            if (movementDisabled) return;
+            
             if (!isDashing)
             {
                 UpdateMovement();
@@ -78,7 +82,7 @@ namespace CaptainPinkTurd.TopDownController2D
         
         //Movement is meant to be disabled when something else is active in the scene (like perhaps Dialogue box, knockback or a cutscene)
         //hence why we're setting it with not toggle
-        public void ToggleMovement(bool toggle) => enabled = !toggle;
+        public void ToggleMovement(bool toggle) => movementDisabled = toggle;
         
         private void UpdateMovement()
         {
@@ -99,6 +103,8 @@ namespace CaptainPinkTurd.TopDownController2D
             float speed = playerInputs.Player.Run.IsPressed()
                 ? runtimeMoveStats.runSpeed
                 : runtimeMoveStats.walkSpeed;
+            
+            currentPlayerSpeed.Value = speed / runtimeMoveStats.walkSpeed; 
 
             rb.linearVelocity = smoothedMovementInput * speed + externalVelocity;
         }

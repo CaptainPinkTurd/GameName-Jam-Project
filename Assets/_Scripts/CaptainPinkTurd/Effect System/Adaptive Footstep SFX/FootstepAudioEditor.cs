@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using CaptainPinkTurd.Core.SO;
 using CaptainPinkTurd.Core.Utils;
 using UnityEditor;
 

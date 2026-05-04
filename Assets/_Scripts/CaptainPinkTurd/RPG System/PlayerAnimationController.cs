@@ -21,6 +21,7 @@ namespace CaptainPinkTurd.RPG
         
         [Header("Input Events")]
         [SerializeField] private Vector2VariableSO currentMovementInput;
+        [SerializeField] private FloatVariableSO currentPlayerSpeed;
         [SerializeField] private EDirectionMode directionMode;
         [SerializeField][ReadOnly] private EDirection2D playerCurrentDirectionState;
         
@@ -118,7 +119,7 @@ namespace CaptainPinkTurd.RPG
             if (walkAnimationClips.TryGetValue(playerCurrentDirectionState, out var walkAnim))
             {
                 isMoving = true;
-                PlayAnimation(Animator.StringToHash(walkAnim.name));
+                PlayAnimation(Animator.StringToHash(walkAnim.name), speed: currentPlayerSpeed.Value);
             }
             else
             {

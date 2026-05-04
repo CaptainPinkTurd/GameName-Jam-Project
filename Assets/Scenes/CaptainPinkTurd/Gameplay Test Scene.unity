@@ -31937,6 +31937,70 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4532637099831993434, guid: dbf470d33fc70e84ea5a7e43fbba4606, type: 3}
+      propertyPath: GroupCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532637099831993434, guid: dbf470d33fc70e84ea5a7e43fbba4606, type: 3}
+      propertyPath: SpokeCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532637099831993434, guid: dbf470d33fc70e84ea5a7e43fbba4606, type: 3}
+      propertyPath: CoolOffTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532637099831993434, guid: dbf470d33fc70e84ea5a7e43fbba4606, type: 3}
+      propertyPath: GroupSpacing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532637099831993434, guid: dbf470d33fc70e84ea5a7e43fbba4606, type: 3}
+      propertyPath: SpokeSpacing
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532637099831993434, guid: dbf470d33fc70e84ea5a7e43fbba4606, type: 3}
+      propertyPath: UseFollowTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532637099831993434, guid: dbf470d33fc70e84ea5a7e43fbba4606, type: 3}
+      propertyPath: FollowTargetType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4532637099831993434, guid: dbf470d33fc70e84ea5a7e43fbba4606, type: 3}
+      propertyPath: BounceOffSurfaces
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4613633438992916744, guid: dbf470d33fc70e84ea5a7e43fbba4606, type: 3}
+      propertyPath: GroupCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4613633438992916744, guid: dbf470d33fc70e84ea5a7e43fbba4606, type: 3}
+      propertyPath: SpokeCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4613633438992916744, guid: dbf470d33fc70e84ea5a7e43fbba4606, type: 3}
+      propertyPath: CoolOffTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4613633438992916744, guid: dbf470d33fc70e84ea5a7e43fbba4606, type: 3}
+      propertyPath: GroupSpacing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4613633438992916744, guid: dbf470d33fc70e84ea5a7e43fbba4606, type: 3}
+      propertyPath: SpokeSpacing
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4613633438992916744, guid: dbf470d33fc70e84ea5a7e43fbba4606, type: 3}
+      propertyPath: UseFollowTarget
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4613633438992916744, guid: dbf470d33fc70e84ea5a7e43fbba4606, type: 3}
+      propertyPath: FollowTargetType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4613633438992916744, guid: dbf470d33fc70e84ea5a7e43fbba4606, type: 3}
+      propertyPath: BounceOffSurfaces
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

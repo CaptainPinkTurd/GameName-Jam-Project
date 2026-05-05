@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Unit Shake Profile
   m_EditorClassIdentifier: 
   useWithHitStop: 1
-  hitStopDuration: 0.1
   shakeDuration: 0.05
   shakeStrength: {x: -0.5, y: -1, z: 0}
   vibration: 20

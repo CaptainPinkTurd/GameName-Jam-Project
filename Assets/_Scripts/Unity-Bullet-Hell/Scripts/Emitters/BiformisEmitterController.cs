@@ -9,8 +9,10 @@ using CaptainPinkTurd.Core.Interfaces;
 using CaptainPinkTurd.Core.Struct;
 using CaptainPinkTurd.Core.Utilities;
 using CaptainPinkTurd.Core.Utils;
+using CaptainPinkTurd.EffectSystem.ShakeEffect;
 using CaptainPinkTurd.ScoreSystem;
 using CaptainPinkTurd.UI.Popup;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -40,6 +42,7 @@ namespace CaptainPinkTurd.BulletHell
         
         [Header("Impact Configs")]
         [SerializeField] private float hitStopDuration = 0.2f;
+        [SerializeField] private GameObjectShakeProfile shakeProfile;
         [SerializeField] private ShockwaveScreen impactShockwavePrefab;
         [SerializeField] private BasicVfxAnimationController explosionVfx;
         [SerializeField] private UnityEvent OnDamagedTaken;
@@ -50,7 +53,8 @@ namespace CaptainPinkTurd.BulletHell
         [SerializeField] private SoundData colorChangeAlertSfx;
         
         protected EColor currentColor;
-        private GameObject damageSource;
+        protected GameObject damageSource;
+        
         private float colorSwapInterval;
         
         public Collider2D Coll { get; private set; }
@@ -194,6 +198,14 @@ namespace CaptainPinkTurd.BulletHell
             //multiplier is equal to enemy current health before they died
             if(ScoreConfig.useMultiplier) ScoreConfig.runtimeMultiplier = CurrentHealth;
             CurrentHealth -= damageData.Amount;
+
+            transform.DOShakePosition(shakeProfile.useWithHitStop ? hitStopDuration : shakeProfile.defaultShakeDuration,
+                    shakeProfile.shakeStrength,
+                    shakeProfile.vibration,
+                    shakeProfile.randomness,
+                    shakeProfile.snapping,
+                    shakeProfile.fadeOut)
+                .SetUpdate(UpdateType.Normal, true);
             
             HitStop.Stop(hitStopDuration, () =>
             {

@@ -26,7 +26,7 @@ namespace CaptainPinkTurd.EffectSystem.ShakeEffect
                 UnityEngine.Random.InitState(synchronizedRandomSeed);
                 bool isLast = index == shakeObjects.Count - 1;
         
-                shakeObj.DOShakePosition(shakeProfile.shakeDuration,
+                shakeObj.DOShakePosition(shakeProfile.defaultShakeDuration,
                         shakeProfile.shakeStrength,
                         shakeProfile.vibration,
                         shakeProfile.randomness,

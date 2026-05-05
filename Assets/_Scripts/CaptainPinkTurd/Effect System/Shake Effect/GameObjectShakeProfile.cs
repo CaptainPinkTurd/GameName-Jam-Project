@@ -3,12 +3,28 @@ using UnityEngine;
 
 namespace CaptainPinkTurd.EffectSystem.ShakeEffect
 {
+    /// <summary>
+    /// Applies a position shake using DOShakePosition with values from a shake profile.
+    /// 
+    /// If `useWithHitStop` is enabled, the shake duration will match the hit-stop duration;
+    /// otherwise, it uses the profile's default shake duration.
+    /// 
+    /// Example:
+    /// transform.DOShakePosition(
+    ///     shakeProfile.useWithHitStop ? hitStopDuration : shakeProfile.defaultShakeDuration,
+    ///     shakeProfile.shakeStrength,
+    ///     shakeProfile.vibration,
+    ///     shakeProfile.randomness,
+    ///     shakeProfile.snapping,
+    ///     shakeProfile.fadeOut)
+    /// .SetUpdate(UpdateType.Normal, true);
+    /// </summary>
     [CreateAssetMenu(fileName = "GameObjectShakeProfile", menuName ="Scriptable Objects/Shake Profiles/GameObject Shake Profile")]
-    public class GameObjectShakeProfile : ScriptableObject
+    public class GameObjectShakeProfile : ScriptableObject 
     {
         public bool useWithHitStop;
-        [ShowIf("useWithHitStop")] public float hitStopDuration;
-        public float shakeDuration;
+        [ShowIf(nameof(useWithHitStop), false)] 
+        public float defaultShakeDuration = 0.2f;
         [Tooltip("The shake strength on each axis")] 
         public Vector3 shakeStrength;
         [Tooltip("Indicates how much will the shake vibrate")]

@@ -482,6 +482,7 @@ MonoBehaviour:
   colorSwapIntervalMax: 5
   swapAlertTimePercentage: 0.85
   hitStopDuration: 0.2
+  shakeProfile: {fileID: 11400000, guid: 484ec0819d268ef4e8ded07b65e3080e, type: 2}
   impactShockwavePrefab: {fileID: 6386854355507245172, guid: ddf39c5a02e34294bbbf17bc54ca2410, type: 3}
   explosionVfx: {fileID: 8568515182452555486, guid: 15ac99202f515cc48a44d70e6f90e965, type: 3}
   OnDamagedTaken:

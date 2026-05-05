@@ -59,7 +59,8 @@ namespace CaptainPinkTurd.Game.Enemy
 
         void Update()
         {
-            if (!pathCreator || !isRunning) return;
+            //having a damageSource means Spider is currently being impacted by taking damage, so it should stop its movement for a moment
+            if (!pathCreator || !isRunning || damageSource) return;
 
             if (!runAnimationIsPlaying)
             {

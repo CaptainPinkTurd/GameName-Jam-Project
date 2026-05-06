@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca6e5250efae4c499aaf4aeda063ac3, type: 3}
   m_Name: Unit Screen Shake Profile
   m_EditorClassIdentifier: 
-  impulseTime: 0.1
-  impulseForce: 1
+  impulseTime: 0.75
+  impulseForce: 0.5
   defaultVelocity: {x: 0.5, y: -0.5, z: 0}
-  impulseShape: 1
+  impulseShape: 4
   impulseCustomShape:
     serializedVersion: 2
     m_Curve: []

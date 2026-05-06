@@ -9,8 +9,10 @@ using CaptainPinkTurd.Core.Interfaces;
 using CaptainPinkTurd.Core.Struct;
 using CaptainPinkTurd.Core.Utilities;
 using CaptainPinkTurd.Core.Utils;
+using CaptainPinkTurd.EffectSystem.ShakeEffect;
 using CaptainPinkTurd.Game.Enemy;
 using CaptainPinkTurd.UnitSystem;
+using DG.Tweening;
 using UnityEngine;
 
 namespace CaptainPinkTurd.Game.Player
@@ -20,6 +22,7 @@ namespace CaptainPinkTurd.Game.Player
     {
         [Header("Player Unit Properties")]
         [SerializeField] private VoidEvent onPlayerDamaged;
+        [SerializeField] private VoidEvent onPlayerDeath;
         [SerializeField] private SerializeKeyValuePair<EColor, PlayerStateInfo>[] playerStates;
         [SerializeField] private LayerMask enemyLayers;
         [SerializeField] private BasicVfxAnimationController colorSwitchVfx;
@@ -52,28 +55,46 @@ namespace CaptainPinkTurd.Game.Player
         public override void OnDamaged(SDamageData damageData)
         {
             onPlayerDamaged.Raise();
+            
+            if(unitHealth.CurrentHealth <= 0) return;
+            
+            transform.DOShakePosition(gameObjectShakeProfile.useWithHitStop ? hitStopDuration : gameObjectShakeProfile.defaultShakeDuration,
+                    gameObjectShakeProfile.shakeStrength,
+                    gameObjectShakeProfile.vibration,
+                    gameObjectShakeProfile.randomness,
+                    gameObjectShakeProfile.snapping,
+                    gameObjectShakeProfile.fadeOut)
+                .SetUpdate(UpdateType.Normal, true);
+
+            HitStop.Stop(hitStopDuration);
         }
 
         public override void OnDeath(SDamageData damageData)
         {
             StopAllCoroutines();
             
-            ObjectPoolManager.Instance.SpawnObject(explosionVfx.gameObject, transform.position, Quaternion.identity,
-                ObjectPoolManager.PoolType.VFX);
+            onPlayerDeath.Raise();
             
-            var source = damageData.Source;
-            if (source.TryGetComponentInHierarchy(out EnemyUnitBase enemyUnit))
+            HitStop.Stop(deathHitStopDuration, () =>
             {
-                enemyUnit.OnDamageableKill.Raise();
-            }
-            
-            gameObject.SetActive(false);
-            
-            if (delayOnDeath < 0) return;
-            
-            //order matter for this one cause the game over popup needs to be enabled first to get the high score
-            GameManager.Instance.StartCoroutine(CoroutineUtils.WaitForSeconds(delayOnDeath,
-                GameManager.Instance.OnGameOver.Raise));
+                ObjectPoolManager.Instance.SpawnObject(explosionVfx.gameObject, transform.position,
+                    Quaternion.identity,
+                    ObjectPoolManager.PoolType.VFX);
+
+                var source = damageData.Source;
+                if (source.TryGetComponentInHierarchy(out EnemyUnitBase enemyUnit))
+                {
+                    enemyUnit.OnDamageableKill.Raise();
+                }
+
+                gameObject.SetActive(false);
+
+                if (delayOnDeath < 0) return;
+
+                //order matter for this one cause the game over popup needs to be enabled first to get the high score
+                GameManager.Instance.StartCoroutine(CoroutineUtils.WaitForSeconds(delayOnDeath,
+                    GameManager.Instance.OnGameOver.Raise));
+            });
         }
         private void OnTriggerEnter2D(Collider2D other)
         {

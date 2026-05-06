@@ -1,3 +1,4 @@
+using System;
 using CaptainPinkTurd.AudioSystem;
 using CaptainPinkTurd.Core.DesignPattern.SOAP.Variables;
 using CaptainPinkTurd.Core.Utils;
@@ -24,7 +25,7 @@ namespace CaptainPinkTurd.TopDownController2D
         
         private bool isDashing;
         private bool dashOnCooldown;
-        private bool movementDisabled;
+        private bool movementEnabled;
 
         private void Awake()
         {
@@ -32,6 +33,11 @@ namespace CaptainPinkTurd.TopDownController2D
             rb = GetComponent<Rigidbody2D>();
 
             GenerateRuntimeMoveStats();
+        }
+
+        private void Start()
+        {
+            ToggleMovement(true);
         }
 
         private void GenerateRuntimeMoveStats()
@@ -55,7 +61,7 @@ namespace CaptainPinkTurd.TopDownController2D
 
         private void Update()
         {
-            if (isDashing || movementDisabled) return;
+            if (isDashing || !movementEnabled) return;
 
             movementInput.Value = playerInputs.Player.Move.ReadValue<Vector2>();
 
@@ -68,7 +74,7 @@ namespace CaptainPinkTurd.TopDownController2D
 
         private void FixedUpdate()
         {
-            if (movementDisabled) return;
+            if (!movementEnabled) return;
             
             if (!isDashing)
             {
@@ -80,9 +86,7 @@ namespace CaptainPinkTurd.TopDownController2D
 
         #region Movement
         
-        //Movement is meant to be disabled when something else is active in the scene (like perhaps Dialogue box, knockback or a cutscene)
-        //hence why we're setting it with not toggle
-        public void ToggleMovement(bool toggle) => movementDisabled = toggle;
+        public void ToggleMovement(bool toggle) => movementEnabled = toggle;
         
         private void UpdateMovement()
         {

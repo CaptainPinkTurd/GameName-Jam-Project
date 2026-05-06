@@ -58,5 +58,30 @@ namespace CaptainPinkTurd.Core.Utils
             
             onAwaitComplete?.Invoke();
         }
+
+        /// <summary>
+        /// Waits until the next frame and then executes the callback.
+        /// </summary>
+        /// <param name="onAwaitComplete">The action to call on the next n frame.</param>
+        /// <param name="framesToWait">The number of frames needed to wait for</param>
+        /// <param name="cancelCondition">Optional cancellation condition. If true before next frame, stops early.</param>
+        /// <returns>An IEnumerator to be used in a coroutine.</returns>
+        public static IEnumerator WaitForNextFrames(Action onAwaitComplete, int framesToWait = 1, Func<bool> cancelCondition = null)
+        {
+            // Check cancellation immediately (same behavior pattern as your other methods)
+            if (cancelCondition?.Invoke() == true)
+                yield break;
+
+            for (int i = 0; i < framesToWait; i++)
+            {
+                yield return null;
+            }
+        
+            // Check again in case something changed during the frame
+            if (cancelCondition?.Invoke() == true)
+                yield break;
+        
+            onAwaitComplete?.Invoke();
+        }
     }
 }

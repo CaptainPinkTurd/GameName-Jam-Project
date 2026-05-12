@@ -1,9 +1,9 @@
-using System;
 using CaptainPinkTurd.AudioSystem;
 using CaptainPinkTurd.Core.DesignPattern.SOAP.Variables;
 using CaptainPinkTurd.Core.Utils;
 using CaptainPinkTurd.Input;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace CaptainPinkTurd.TopDownController2D
 {
@@ -61,6 +61,10 @@ namespace CaptainPinkTurd.TopDownController2D
 
         private void Update()
         {
+            if (Keyboard.current.kKey.wasPressedThisFrame)
+            {
+                ToggleMovement(!movementEnabled);
+            }
             if (isDashing || !movementEnabled) return;
 
             movementInput.Value = playerInputs.Player.Move.ReadValue<Vector2>();
@@ -86,7 +90,16 @@ namespace CaptainPinkTurd.TopDownController2D
 
         #region Movement
         
-        public void ToggleMovement(bool toggle) => movementEnabled = toggle;
+        public void ToggleMovement(bool toggle) 
+        {
+            movementEnabled = toggle;
+            
+            if(movementEnabled) return;
+            
+            rb.linearVelocity = Vector2.zero;
+            movementInput.Value = Vector2.zero;
+            currentPlayerSpeed.Value = 1f;
+        }
         
         private void UpdateMovement()
         {

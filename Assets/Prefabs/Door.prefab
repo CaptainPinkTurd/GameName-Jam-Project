@@ -208,8 +208,10 @@ MonoBehaviour:
   playerLayers:
     serializedVersion: 2
     m_Bits: 1024
+  onDoorEnter: {fileID: 11400000, guid: 3942ba581b0e8b74083c4b775736dfa9, type: 2}
   openSfx:
     clip: {fileID: 8300000, guid: daffd0ef6ba17d2469f8543b31b166c3, type: 3}
+    overrideMixerGroup: 0
     mixerGroup: {fileID: 0}
     loop: 0
     playOnAwake: 0
@@ -231,10 +233,34 @@ MonoBehaviour:
     ignoreListenerVolume: 0
     ignoreListenerPause: 0
     rolloffMode: 0
-  onDoorEnter: {fileID: 11400000, guid: 3942ba581b0e8b74083c4b775736dfa9, type: 2}
+  enterSfx:
+    clip: {fileID: 0}
+    overrideMixerGroup: 0
+    mixerGroup: {fileID: 0}
+    loop: 0
+    playOnAwake: 0
+    frequentSound: 0
+    mute: 0
+    bypassEffects: 0
+    bypassListenerEffects: 0
+    bypassReverbZones: 0
+    priority: 128
+    volume: 1
+    pitch: 1
+    panStereo: 0
+    spatialBlend: 0
+    reverbZoneMix: 1
+    dopplerLevel: 1
+    spread: 0
+    minDistance: 1
+    maxDistance: 500
+    ignoreListenerVolume: 0
+    ignoreListenerPause: 0
+    rolloffMode: 0
   doorCloseAnimation: {fileID: 1007095770567677685, guid: 8056416d7b5ccef4db9e27e86f0dc2d4, type: 3}
   doorOpeningAnimation: {fileID: 7118053101115055034, guid: 8056416d7b5ccef4db9e27e86f0dc2d4, type: 3}
   doorOpenAnimation: {fileID: 4873981333490874974, guid: 8056416d7b5ccef4db9e27e86f0dc2d4, type: 3}
+  playerInput: {fileID: 11400000, guid: 8c16d940aae91804b838e76399cff9f1, type: 2}
 --- !u!61 &8848695884739299914
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -269,7 +295,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.95}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.49999997, y: 0.25806448}
@@ -279,5 +305,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.875, y: 1.75}
+  m_Size: {x: 0.05, y: 1}
   m_EdgeRadius: 0

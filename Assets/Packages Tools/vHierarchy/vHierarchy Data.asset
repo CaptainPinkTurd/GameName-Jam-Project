@@ -36,6 +36,7 @@ MonoBehaviour:
     - 88733b1553510d8409a42ee15eba5910
     - ba93373d9b7bd8e4dac9b8efbaed319b
     - 67d9b71e9e2f45149a40c827d0ad1caf
+    - 12934a1fb8a81eb4192a2c3a1ca04401
     values:
     - goDatas_byGlobalId:
         keys:
@@ -1383,6 +1384,74 @@ MonoBehaviour:
           iconNameOrGuid: 
           isIconRecursive: 0
           isColorRecursive: 1
+    - goDatas_byGlobalId:
+        keys:
+        - globalObjectIdString: GlobalObjectId_V1-2-12934a1fb8a81eb4192a2c3a1ca04401-1605926864-0
+        - globalObjectIdString: GlobalObjectId_V1-2-12934a1fb8a81eb4192a2c3a1ca04401-1157547465-0
+        - globalObjectIdString: GlobalObjectId_V1-2-12934a1fb8a81eb4192a2c3a1ca04401-1182088841-0
+        - globalObjectIdString: GlobalObjectId_V1-2-12934a1fb8a81eb4192a2c3a1ca04401-2080685436-0
+        - globalObjectIdString: GlobalObjectId_V1-2-12934a1fb8a81eb4192a2c3a1ca04401-1727938692-0
+        - globalObjectIdString: GlobalObjectId_V1-2-12934a1fb8a81eb4192a2c3a1ca04401-860899243-0
+        - globalObjectIdString: GlobalObjectId_V1-2-12934a1fb8a81eb4192a2c3a1ca04401-1694511361-0
+        - globalObjectIdString: GlobalObjectId_V1-2-12934a1fb8a81eb4192a2c3a1ca04401-1516249911-0
+        - globalObjectIdString: GlobalObjectId_V1-2-12934a1fb8a81eb4192a2c3a1ca04401-1052389563-0
+        - globalObjectIdString: GlobalObjectId_V1-2-12934a1fb8a81eb4192a2c3a1ca04401-348972318-0
+        - globalObjectIdString: GlobalObjectId_V1-2-12934a1fb8a81eb4192a2c3a1ca04401-1716422564-0
+        - globalObjectIdString: GlobalObjectId_V1-2-12934a1fb8a81eb4192a2c3a1ca04401-1411467361-0
+        - globalObjectIdString: GlobalObjectId_V1-2-12934a1fb8a81eb4192a2c3a1ca04401-6753622627740537954-0
+        values:
+        - colorIndex: 0
+          iconNameOrGuid: Camera Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 7
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 6
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 4
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 2
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: AvatarMask On Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: PreMatCube
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 1
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Settings Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: AudioSource Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: cs Script Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Prefab Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 8
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
   bookmarks:
   - _go: {fileID: 0}
     globalId:

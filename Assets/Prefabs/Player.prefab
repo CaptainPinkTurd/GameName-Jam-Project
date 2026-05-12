@@ -676,6 +676,7 @@ GameObject:
   - component: {fileID: 3297889303660464729}
   - component: {fileID: 684445519993067171}
   - component: {fileID: 5116390115784308964}
+  - component: {fileID: 778022923980724638}
   m_Layer: 6
   m_Name: Event Listeners
   m_TagString: Untagged
@@ -823,6 +824,35 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &778022923980724638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3518547388238554232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e583f7ac93604eafab14f13fdfaed2e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Core::CaptainPinkTurd.Core.DesignPattern.SOAP.Events.BoolEventListener
+  gameEvent: {fileID: 11400000, guid: 81e5a692e6d26cc4e93d4f8619c61c7f, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 512697344728614187}
+        m_TargetAssemblyTypeName: CaptainPinkTurd.TopDownController2D.PlayerFreeMovementTopDownController2D,
+          NewAssembly
+        m_MethodName: ToggleMovement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!1 &5095359734278078896
 GameObject:
@@ -6390,7 +6420,7 @@ MonoBehaviour:
   unitHealth: {fileID: 713105100355585551}
   onKnockbackStart: {fileID: 11400000, guid: 15fcd17dc2026524abe7c5aac587e5f3, type: 2}
   onKnockbackEnd: {fileID: 11400000, guid: 47fe826253a8ed342bdcbeeea37f4b49, type: 2}
-  hitStopDuration: 0.2
+  hitStopDuration: 0.25
   deathHitStopDuration: 1
   gameObjectShakeProfile: {fileID: 11400000, guid: 484ec0819d268ef4e8ded07b65e3080e, type: 2}
   screenShakeProfile: {fileID: 11400000, guid: 8447b1a12c8906f4b88f7bcac74c70ce, type: 2}

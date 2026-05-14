@@ -6,7 +6,6 @@ using CaptainPinkTurd.Core.Interfaces;
 using CaptainPinkTurd.Core.Struct;
 using CaptainPinkTurd.TopDownController2D;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 namespace CaptainPinkTurd.Game
 {
@@ -15,9 +14,8 @@ namespace CaptainPinkTurd.Game
         Ceil,
         Floor
     }
-
-    [RequireComponent(typeof(Rigidbody2D))]
-    public class Wall : MonoBehaviour
+    
+    public class MovingWallTrap : BiformisWall
     {
         [Header("Movement")]
         [SerializeField] private float speed;
@@ -26,29 +24,17 @@ namespace CaptainPinkTurd.Game
         [SerializeField] private bool moveOnStart;
         [SerializeField] private SoundData movingSfx;
         [SerializeField] private SoundData crushSfx;
-
-        [Header("Collision")]
-        [SerializeField] private Collider2D[] collisionColliders;
-        [SerializeField] private LayerMask targetPlayerLayer;
-        [SerializeField] private LayerMask ignorePlayerLayer;
-        [SerializeField] private LayerMask blockingLayer;
-        [SerializeField] private LayerMask instantKillLayers;
+        [SerializeField] private LayerMask crushKillLayers;
         
-        [Header("Sorting Groups")]
-        [SerializeField] private SortingGroup[] wallSortingGroups;
-
-        private Rigidbody2D rb;
-        private GameObject player;
         private Vector3 startPoint;
         private SoundBuilder movingSfxBuilder;
         
         private bool isMoving;
         private bool isBacktrack;
         
-        private void Awake()
+        protected override void Awake()
         {
-            rb = GetComponent<Rigidbody2D>();
-            ExcludeCollisionOnIgnoredLayerMask(false);
+            base.Awake();
             
             EnableSortingGroups(false);
 
@@ -81,22 +67,6 @@ namespace CaptainPinkTurd.Game
             EnableSortingGroups(false);
             rb.position = startPoint;
         }
-        private void ExcludeCollisionOnIgnoredLayerMask(bool exclude)
-        {
-            foreach(var collisionCollider in collisionColliders)
-            {
-                collisionCollider.excludeLayers = exclude ?
-                    collisionCollider.excludeLayers.AddMask(ignorePlayerLayer) : 
-                    collisionCollider.excludeLayers.RemoveMask(ignorePlayerLayer);
-            }
-        }
-        private void EnableSortingGroups(bool enable)
-        {
-            foreach (var sortingGroup in wallSortingGroups)
-            {
-                sortingGroup.enabled = enable;
-            }
-        }
 
         private Vector2 GetMoveDirection()
         {
@@ -128,7 +98,6 @@ namespace CaptainPinkTurd.Game
             
             moveDirection = moveDirection.GetOpposite();
             isBacktrack = !isBacktrack;
-            ExcludeCollisionOnIgnoredLayerMask(false);
         }
         private void CheckIfPlayerIsCrushed()
         {
@@ -147,12 +116,11 @@ namespace CaptainPinkTurd.Game
             CheckIfPlayerIsCrushed();
         }
 
-        private void OnCollisionStay2D(Collision2D other)
+        protected override void OnCollisionStay2D(Collision2D other)
         {
-            if (!targetPlayerLayer.Contains(other.gameObject.layer)) return;
-            player = other.gameObject;
+            base.OnCollisionStay2D(other);
             
-            if (!isMoving || !player.TryGetComponentInHierarchy(out PlayerFreeMovementTopDownController2D playerController)) return;
+            if (!isMoving || !player || !player.TryGetComponentInHierarchy(out PlayerFreeMovementTopDownController2D playerController)) return;
 
             Vector2 pushDir = GetMoveDirection();
             Vector2 dirToPlayer = ((Vector2)player.transform.position - rb.position).normalized;
@@ -162,16 +130,11 @@ namespace CaptainPinkTurd.Game
             playerController.AddExternalVelocity(pushDir);
         }
 
-        private void OnCollisionExit2D(Collision2D other)
+        protected override void OnTriggerStay2D(Collider2D other) //wall could potentially call this twice because it have 2 colliders
         {
-            if (!targetPlayerLayer.Contains(other.gameObject.layer) && player != other.gameObject) return;
+            base.OnTriggerStay2D(other);
             
-            player = null;
-        }
-
-        private void OnTriggerStay2D(Collider2D other) //wall could potentially call this twice because it have 2 colliders
-        {
-            if (instantKillLayers.Contains(other.gameObject.layer) && 
+            if (crushKillLayers.Contains(other.gameObject.layer) && 
                 other.gameObject.TryGetComponentInHierarchy(out IDamageable damageable) &&
                 isMoving)
             {
@@ -179,9 +142,8 @@ namespace CaptainPinkTurd.Game
                 damageable.TakeDamage(new SDamageData(damageable.MaxHealth, gameObject));
             }
             
-            if (!targetPlayerLayer.Contains(other.gameObject.layer) || moveOnStart || isMoving) return;
+            if (!tangibleLayer.Contains(other.gameObject.layer) || moveOnStart || isMoving) return;
             
-            ExcludeCollisionOnIgnoredLayerMask(true);
             isMoving = true;
             movingSfxBuilder.WithPosition(rb.position).WithRandomPitch().Play(movingSfx);
             EnableSortingGroups(true);

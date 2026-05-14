@@ -396,6 +396,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddbcc766ac6741ca9dd6870e0d32d1fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Game::CaptainPinkTurd.Game.Wall
+  collisionColliders:
+  - {fileID: 488884105275720733}
+  - {fileID: 3036985859712096223}
+  targetPlayerLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  ignorePlayerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  blockingLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  wallSortingGroups:
+  - {fileID: 5238581342726832588}
   speed: 15
   moveDirection: 4
   roundUpTypeOnStopForDirections:
@@ -450,23 +464,9 @@ MonoBehaviour:
     ignoreListenerVolume: 0
     ignoreListenerPause: 0
     rolloffMode: 0
-  collisionColliders:
-  - {fileID: 488884105275720733}
-  - {fileID: 3036985859712096223}
-  targetPlayerLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  ignorePlayerLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  blockingLayer:
-    serializedVersion: 2
-    m_Bits: 1
-  instantKillLayers:
+  crushKillLayers:
     serializedVersion: 2
     m_Bits: 512
-  wallSortingGroups:
-  - {fileID: 5238581342726832588}
 --- !u!19719996 &488884105275720733
 TilemapCollider2D:
   m_ObjectHideFlags: 0

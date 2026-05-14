@@ -26,6 +26,8 @@ namespace CaptainPinkTurd.TopDownController2D
         private bool isDashing;
         private bool dashOnCooldown;
         private bool movementEnabled;
+        
+        public bool MovementEnabled => movementEnabled;
 
         private void Awake()
         {
@@ -65,9 +67,9 @@ namespace CaptainPinkTurd.TopDownController2D
             {
                 ToggleMovement(!movementEnabled);
             }
-            if (isDashing || !movementEnabled) return;
-
             movementInput.Value = playerInputs.Player.Move.ReadValue<Vector2>();
+            
+            if (isDashing || !movementEnabled) return;
 
             DashCheck();
             

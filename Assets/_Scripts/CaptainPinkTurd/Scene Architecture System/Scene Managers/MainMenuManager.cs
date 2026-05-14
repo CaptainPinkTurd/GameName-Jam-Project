@@ -11,7 +11,7 @@ namespace CaptainPinkTurd.Scene.Manager
         [SerializeField] private bool randomizedInitialLevel;
         
         [ShowIf(nameof(randomizedInitialLevel), false)]
-        [SerializeField] private int initialLevel = 1;
+        [SerializeField] private string initialLevel = "1";
         [ShowIf(nameof(randomizedInitialLevel))]
         [SerializeField] private LevelData levelData;
         
@@ -45,7 +45,7 @@ namespace CaptainPinkTurd.Scene.Manager
             }
             else
             {
-                var level = randomizedInitialLevel ? Random.Range(1, levelData.totalLevelInGame + 1) : initialLevel;
+                var level = randomizedInitialLevel ? Random.Range(1, levelData.totalLevelInGame + 1).ToString() : initialLevel;
             
                 SceneController.Instance
                     .NewTransition()

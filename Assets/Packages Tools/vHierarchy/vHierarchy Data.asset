@@ -37,6 +37,8 @@ MonoBehaviour:
     - ba93373d9b7bd8e4dac9b8efbaed319b
     - 67d9b71e9e2f45149a40c827d0ad1caf
     - 12934a1fb8a81eb4192a2c3a1ca04401
+    - 2566fbc4745ff544bb3b42d6055a8cce
+    - b64b657e44ab107498501388f43cb1fc
     values:
     - goDatas_byGlobalId:
         keys:
@@ -1452,6 +1454,142 @@ MonoBehaviour:
           iconNameOrGuid: 
           isIconRecursive: 0
           isColorRecursive: 0
+    - goDatas_byGlobalId:
+        keys:
+        - globalObjectIdString: GlobalObjectId_V1-2-2566fbc4745ff544bb3b42d6055a8cce-1605926864-0
+        - globalObjectIdString: GlobalObjectId_V1-2-2566fbc4745ff544bb3b42d6055a8cce-1157547465-0
+        - globalObjectIdString: GlobalObjectId_V1-2-2566fbc4745ff544bb3b42d6055a8cce-1182088841-0
+        - globalObjectIdString: GlobalObjectId_V1-2-2566fbc4745ff544bb3b42d6055a8cce-2080685436-0
+        - globalObjectIdString: GlobalObjectId_V1-2-2566fbc4745ff544bb3b42d6055a8cce-1727938692-0
+        - globalObjectIdString: GlobalObjectId_V1-2-2566fbc4745ff544bb3b42d6055a8cce-860899243-0
+        - globalObjectIdString: GlobalObjectId_V1-2-2566fbc4745ff544bb3b42d6055a8cce-1694511361-0
+        - globalObjectIdString: GlobalObjectId_V1-2-2566fbc4745ff544bb3b42d6055a8cce-1516249911-0
+        - globalObjectIdString: GlobalObjectId_V1-2-2566fbc4745ff544bb3b42d6055a8cce-1052389563-0
+        - globalObjectIdString: GlobalObjectId_V1-2-2566fbc4745ff544bb3b42d6055a8cce-348972318-0
+        - globalObjectIdString: GlobalObjectId_V1-2-2566fbc4745ff544bb3b42d6055a8cce-1716422564-0
+        - globalObjectIdString: GlobalObjectId_V1-2-2566fbc4745ff544bb3b42d6055a8cce-1411467361-0
+        - globalObjectIdString: GlobalObjectId_V1-2-2566fbc4745ff544bb3b42d6055a8cce-4560532499181982198-141435763
+        values:
+        - colorIndex: 0
+          iconNameOrGuid: Camera Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 7
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 6
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 5
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 2
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: AvatarMask On Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: PreMatCube
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 1
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Settings Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: AudioSource Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: cs Script Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Prefab Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 8
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
+    - goDatas_byGlobalId:
+        keys:
+        - globalObjectIdString: GlobalObjectId_V1-2-b64b657e44ab107498501388f43cb1fc-1605926864-0
+        - globalObjectIdString: GlobalObjectId_V1-2-b64b657e44ab107498501388f43cb1fc-1157547465-0
+        - globalObjectIdString: GlobalObjectId_V1-2-b64b657e44ab107498501388f43cb1fc-1182088841-0
+        - globalObjectIdString: GlobalObjectId_V1-2-b64b657e44ab107498501388f43cb1fc-2080685436-0
+        - globalObjectIdString: GlobalObjectId_V1-2-b64b657e44ab107498501388f43cb1fc-1727938692-0
+        - globalObjectIdString: GlobalObjectId_V1-2-b64b657e44ab107498501388f43cb1fc-860899243-0
+        - globalObjectIdString: GlobalObjectId_V1-2-b64b657e44ab107498501388f43cb1fc-1694511361-0
+        - globalObjectIdString: GlobalObjectId_V1-2-b64b657e44ab107498501388f43cb1fc-1516249911-0
+        - globalObjectIdString: GlobalObjectId_V1-2-b64b657e44ab107498501388f43cb1fc-1052389563-0
+        - globalObjectIdString: GlobalObjectId_V1-2-b64b657e44ab107498501388f43cb1fc-348972318-0
+        - globalObjectIdString: GlobalObjectId_V1-2-b64b657e44ab107498501388f43cb1fc-1716422564-0
+        - globalObjectIdString: GlobalObjectId_V1-2-b64b657e44ab107498501388f43cb1fc-1411467361-0
+        - globalObjectIdString: GlobalObjectId_V1-2-b64b657e44ab107498501388f43cb1fc-8211255599306960355-0
+        values:
+        - colorIndex: 0
+          iconNameOrGuid: Camera Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 7
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 6
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 5
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 2
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: AvatarMask On Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: PreMatCube
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 1
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Settings Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: AudioSource Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: cs Script Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Prefab Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 8
+          iconNameOrGuid: 
+          isIconRecursive: 0
+          isColorRecursive: 0
   bookmarks:
   - _go: {fileID: 0}
     globalId:
@@ -1477,7 +1615,6 @@ MonoBehaviour:
   bookmarkedScenePaths:
   - Assets/Scenes/CaptainPinkTurd/Bootstrap Scenes/Core.unity
   - Assets/Scenes/CaptainPinkTurd/MainMenu/MainMenu.unity
-  - Assets/Scenes/CaptainPinkTurd/Gameplay Test Scene.unity
   - Assets/Scenes/CaptainPinkTurd/Tutorial Level/Level 1 Tutorial.unity
   - Assets/Scenes/CaptainPinkTurd/Tutorial Level/Level 2 Tutorial.unity
   - Assets/Scenes/CaptainPinkTurd/Tutorial Level/Level 3 Tutorial.unity

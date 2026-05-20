@@ -2,11 +2,11 @@
 color: purple
 position: -8,47
 ---
-Speaker: Testing dialogue... Say something for me.
--> Hello?
-    Speaker: Yes, hello there player.
-    Speaker: I welcome you to the dialogue test space.
--> No
-    Speaker: Ah, quite a contrarian are we?
-    Speaker: Regardless, this should be more than enough for me to know that the system is working as intended now.
+Speaker: Testing dialogue... Say something for me. #line:0dcc319 
+-> Hello? #line:0915ae5 
+    Speaker: Yes, hello there player. #line:0fc6934 
+    Speaker: I welcome you to the dialogue test space. #line:076f59c 
+-> No #line:0276cd7 
+    Speaker: Ah, quite a contrarian are we? #line:03cf8ef 
+    Speaker: Regardless, this should be more than enough for me to know that the system is working as intended now. #line:0f23c1a 
 ===

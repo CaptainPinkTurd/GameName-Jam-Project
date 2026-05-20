@@ -182,7 +182,7 @@ namespace BulletHell
                         }
 
                         // Setup outline if we have one
-                        if (ProjectilePrefab.Outline != null && DrawOutlines)
+                        if (ProjectilePrefab.Outline && DrawOutlines)
                         {
                             Pool<ProjectileData>.Node outlineNode = ProjectileOutlines.Get();
 

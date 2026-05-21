@@ -27217,7 +27217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: SceneArchitectureSystem::CaptainPinkTurd.Scene.Manager.MainMenuManager
   randomizedInitialLevel: 0
-  initialLevel: Test
+  initialLevel: Obstacle Test
   levelData: {fileID: 11400000, guid: b94deda448ba1a34dab047a95af0cb66, type: 2}
   menuMusic: {fileID: 8300000, guid: 9c1e3346a86a23c4989678ed9c7db33c, type: 3}
 --- !u!1001 &1963307500

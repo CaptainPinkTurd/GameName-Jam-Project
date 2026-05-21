@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__unityMCP__read_console",
+      "Skill(unity-mcp-skill)",
+      "Skill(unity-mcp-skill:*)",
+      "mcp__unityMCP__manage_scene",
+      "mcp__unityMCP__batch_execute",
+      "mcp__unityMCP__manage_camera",
+      "mcp__unityMCP__execute_code",
+      "Bash(Select-Object FullName)",
+      "PowerShell(Copy-Item \"C:\\\\Users\\\\domin\\\\Unity Projects\\\\GameName Jam Project\\\\Assets\\\\Scenes\\\\CaptainPinkTurd\\\\Levels\\\\Level 1.unity\" \"C:\\\\Users\\\\domin\\\\Unity Projects\\\\GameName Jam Project\\\\Assets\\\\Scenes\\\\CaptainPinkTurd\\\\Levels\\\\Level 7.unity\")",
+      "PowerShell(Copy-Item \"C:\\\\Users\\\\domin\\\\Unity Projects\\\\GameName Jam Project\\\\Assets\\\\Scenes\\\\CaptainPinkTurd\\\\Levels\\\\Level 1.unity.meta\" \"C:\\\\Users\\\\domin\\\\Unity Projects\\\\GameName Jam Project\\\\Assets\\\\Scenes\\\\CaptainPinkTurd\\\\Levels\\\\Level 7.unity.meta\")",
+      "PowerShell($newGuid = [System.Guid]::NewGuid\\(\\).ToString\\(\"N\"\\); $meta = Get-Content \"C:\\\\Users\\\\domin\\\\Unity Projects\\\\GameName Jam Project\\\\Assets\\\\Scenes\\\\CaptainPinkTurd\\\\Levels\\\\Level 7.unity.meta\" -Raw; $meta = $meta -replace 'guid: [a-f0-9]{32}', \"guid: $newGuid\"; Set-Content \"C:\\\\Users\\\\domin\\\\Unity Projects\\\\GameName Jam Project\\\\Assets\\\\Scenes\\\\CaptainPinkTurd\\\\Levels\\\\Level 7.unity.meta\" $meta -Encoding utf8; Write-Output \"New GUID: $newGuid\")",
+      "mcp__unityMCP__refresh_unity",
+      "mcp__unityMCP__find_gameobjects"
+    ]
+  }
+}

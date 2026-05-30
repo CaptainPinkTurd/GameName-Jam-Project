@@ -63,10 +63,10 @@ namespace CaptainPinkTurd.TopDownController2D
 
         private void Update()
         {
-            if (Keyboard.current.kKey.wasPressedThisFrame)
-            {
-                ToggleMovement(!movementEnabled);
-            }
+            // if (Keyboard.current.kKey.wasPressedThisFrame)
+            // {
+            //     ToggleMovement(!movementEnabled);
+            // }
             movementInput.Value = playerInputs.Player.Move.ReadValue<Vector2>();
             
             if (isDashing || !movementEnabled) return;

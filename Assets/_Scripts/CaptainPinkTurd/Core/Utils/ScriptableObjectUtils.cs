@@ -8,6 +8,7 @@ namespace CaptainPinkTurd.Core.Utils
 {
     public static class ScriptableObjectUtils
     {
+        #if UNITY_EDITOR
         public static T[] GetAllScriptableObjects<T>() where T : ScriptableObject
         {
             //In Unity search syntax, "t:Something" means: “Find all assets of type Something”
@@ -22,5 +23,6 @@ namespace CaptainPinkTurd.Core.Utils
 
             return assets;
         }
+        #endif
     }
 }

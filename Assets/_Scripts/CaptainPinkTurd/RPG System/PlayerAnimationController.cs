@@ -26,6 +26,7 @@ namespace CaptainPinkTurd.RPG
         [SerializeField][ReadOnly] private EDirection2D playerCurrentDirectionState;
         
         private bool isMoving;
+        private bool canChangeDirectionState = true;
         
         public override int DefaultAnimationHash { get; set; }
 
@@ -71,8 +72,11 @@ namespace CaptainPinkTurd.RPG
 
             return input;
         }
+        public void SetCanChangeDirectionState(bool value) => canChangeDirectionState = value;
         private void OnMovementInputChangeEvent(Vector2 input)
         {
+            if(!canChangeDirectionState) return;
+            
             input = SnapDiagonal(input, directionMode);
             
             var directions = directionMode.GetDirections();

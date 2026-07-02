@@ -25,7 +25,8 @@ namespace CaptainPinkTurd.Core.DesignPattern.SOAP.Variables
 
         protected override void OnReset()
         {
-            OnValueChanged.Invoke(value = initialValue); //yes you can set value to initialValue while invoking it apparently
+            OnValueChanged = null;
+            value = initialValue;
         }
     }
 }

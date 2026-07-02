@@ -1,0 +1,12 @@
+using System.Collections.Generic;
+using Ink.Runtime;
+
+namespace CaptainPinkTurd.InkDialogue
+{
+    public struct DialogueInfo
+    {
+        public string speaker;
+        public string line;
+        public List<Choice> choices;
+    }
+}

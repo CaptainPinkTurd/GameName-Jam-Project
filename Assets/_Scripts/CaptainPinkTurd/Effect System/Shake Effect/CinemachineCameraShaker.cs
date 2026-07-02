@@ -22,6 +22,14 @@ namespace CaptainPinkTurd.EffectSystem.ShakeEffect
             base.Shake();
         }
 
+        public override void ShakeWithProfile(GameObjectShakeProfile shakeProfile)
+        {
+            followTarget = cinemachineCamera.Follow;
+            cinemachineCamera.Follow = null;
+            
+            base.ShakeWithProfile(shakeProfile);
+        }
+
         protected override void OnShakeComplete()
         {
             base.OnShakeComplete();

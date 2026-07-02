@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace CaptainPinkTurd.Core.Extensions
@@ -37,6 +38,23 @@ namespace CaptainPinkTurd.Core.Extensions
             return false;
         }
         
+        /// <summary>
+        /// Gets all components of type T on this GameObject, its parents, and its children.
+        /// Each component is included only once, even if reachable via multiple paths.
+        /// </summary>
+        public static List<T> GetComponentsInHierarchy<T>(this GameObject obj, bool includeInactive = false)
+        {
+            HashSet<T> results = new HashSet<T>();
+
+            results.UnionWith(obj.GetComponents<T>());
+            results.UnionWith(obj.GetComponentsInParent<T>(includeInactive));
+            results.UnionWith(obj.GetComponentsInChildren<T>(includeInactive));
+
+            List<T> list = new List<T>(results.Count);
+            list.AddRange(results);
+            return list;
+        }
+
         /// <summary>
         /// Tries to get a component of type T from the parents of this GameObject.
         /// Does NOT check the GameObject itself.

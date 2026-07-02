@@ -140,6 +140,8 @@ namespace CaptainPinkTurd.SpawnSystem.Procedural
                 //assign auto remove from list if it's GameObjectBase
                 if (spawnedObject.TryGetComponent<GameObjectBase>(out var goBase))
                 {
+                    goBase.SetSpawnedFromPool(true);
+                    
                     goBase.OnDisableEvents.RefreshWithCachedListeners();
                     goBase.OnDisableEvents.Subscribe(() =>
                     {

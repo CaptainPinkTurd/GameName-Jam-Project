@@ -32,11 +32,26 @@ namespace CaptainPinkTurd.Core.DesignPattern.Singleton
                 return instance;
             }
         }
+        static RegulatorSingleton()
+        {
+            SingletonResetRegistry.Register(ResetStaticState);
+        }
+
+        // Clears the cached instance (and destroys any leftover DontDestroyOnLoad/auto-generated
+        // GameObject) from a previous Play session. See SingletonResetRegistry.
+        private static void ResetStaticState()
+        {
+            if (instance)
+            {
+                Destroy(instance.gameObject);
+            }
+            instance = null;
+        }
 
         /// <summary>
         /// Make sure to call base.Awake() in override if you need awake.
         /// </summary>
-        protected virtual void Awake() 
+        protected virtual void Awake()
         {
             InitializeSingleton();
         }

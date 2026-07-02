@@ -27,7 +27,6 @@ namespace CaptainPinkTurd.BulletHell
         [SerializeField] private PopupText scorePopup;
         [SerializeField] private float scoreTextTargetHeight = 1.5f;
         [SerializeField] private ScoreConfig scoreConfig;
-        [SerializeField] private bool spawnFromPool = true;
         
         [Header("Projectile Emitter Configs")]
         [SerializeField] private ProjectileEmitterBiformis redEmitter;
@@ -217,7 +216,7 @@ namespace CaptainPinkTurd.BulletHell
                 ScoreManager.Instance.AddScore(this);
                 ObjectPoolManager.Instance.SpawnObject(explosionVfx.gameObject, transform.position, Quaternion.identity,
                     ObjectPoolManager.PoolType.VFX);
-                if (spawnFromPool)
+                if (SpawnedFromPool)
                 {
                     ObjectPoolManager.Instance.ReturnObjectToPool(gameObject);
                 }

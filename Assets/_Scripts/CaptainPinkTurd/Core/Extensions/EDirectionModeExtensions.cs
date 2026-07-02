@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using CaptainPinkTurd.Core.Enum;
+using UnityEngine;
 
 namespace CaptainPinkTurd.Core.Extensions
 {
@@ -22,6 +24,19 @@ namespace CaptainPinkTurd.Core.Extensions
                     break;
             }
             
+            return result;
+        }
+
+        public static List<Vector2> GetVectorDirections(this EDirectionMode directionMode)
+        {
+            var directions = GetDirections(directionMode);
+            
+            List<Vector2> result = new List<Vector2>();
+            foreach (var dir in directions)
+            {
+                result.Add(dir.ToVector2());
+            }
+
             return result;
         }
     }

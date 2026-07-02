@@ -21,7 +21,6 @@ namespace CaptainPinkTurd.UnitSystem
         [SerializeField] protected float hitStopDuration = 0.2f;
         [SerializeField] protected float deathHitStopDuration = 1f;
         [SerializeField] protected GameObjectShakeProfile gameObjectShakeProfile;
-        [SerializeField] protected ScreenShakeProfile screenShakeProfile;
 
         public Knockback Knockback;
         

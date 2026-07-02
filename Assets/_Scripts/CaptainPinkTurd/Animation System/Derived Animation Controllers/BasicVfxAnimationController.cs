@@ -9,7 +9,6 @@ namespace CaptainPinkTurd.AnimationSystem
     {
         [Header("Vfx Animation Controller Configs")]
         [SerializeField] private AnimationClip vfxAnimation;
-        [SerializeField] private bool spawnFromPool;
         [SerializeField] private SoundData vfxSfx;
 
         public GameEvent OnAnimationEnd = new GameEvent();
@@ -42,7 +41,7 @@ namespace CaptainPinkTurd.AnimationSystem
                 OnAnimationEnd.Raise();
                 OnAnimationEnd.Clear();
                 
-                if(spawnFromPool)
+                if(SpawnedFromPool)
                 {
                     ObjectPoolManager.Instance.ReturnObjectToPool(gameObject);
                 }

@@ -45,6 +45,7 @@ namespace CaptainPinkTurd.AudioSystem
 
         public void Play(AudioClip clip, bool loop = false) 
         {
+            if (!clip) return;
             if (current && current.clip == clip && current.isPlaying) return;
 
             if (previous)
@@ -65,6 +66,7 @@ namespace CaptainPinkTurd.AudioSystem
 
             fading = 0.001f;
         }
+        public void StopCurrentTrack() => current?.Stop();
 
         private void Update() 
         {

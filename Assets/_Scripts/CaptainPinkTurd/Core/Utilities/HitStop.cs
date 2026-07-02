@@ -63,27 +63,40 @@ namespace CaptainPinkTurd.Core.Utilities
 
         private static IEnumerator WaitLoop()
         {
-            while (remainingTime > 0f)
+            do
             {
-                remainingTime -= Time.unscaledDeltaTime;
-                yield return null;
-            }
+                while (remainingTime > 0f)
+                {
+                    remainingTime -= Time.unscaledDeltaTime;
+                    yield return null;
+                }
 
-            Time.timeScale = oldTimeScale;
+                Time.timeScale = oldTimeScale;
 
-            // Execute ALL queued callbacks safely
-            try
-            {
-                pendingCallbacks?.Invoke();
-            }
-            catch (Exception e)
-            {
-                Debug.LogError($"HitStop callback error: {e}");
-            }
+                // Snapshot and clear before invoking so a Stop() call made
+                // re-entrantly from within a callback (e.g. OnDeath triggered
+                // by this callback's damage) queues into a fresh delegate
+                // instead of being wiped out by the reset below.
+                var callbacksToRun = pendingCallbacks;
+                pendingCallbacks = null;
 
-            // Reset state
-            pendingCallbacks = null;
-            remainingTime = 0f;
+                try
+                {
+                    callbacksToRun?.Invoke();
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"HitStop callback error: {e}");
+                }
+
+                // If a re-entrant Stop() requested another hit-stop window,
+                // re-pause and loop again instead of resetting now.
+                if (remainingTime > 0f)
+                {
+                    Time.timeScale = 0f;
+                }
+            } while (remainingTime > 0f || pendingCallbacks != null);
+
             running = false;
         }
     }

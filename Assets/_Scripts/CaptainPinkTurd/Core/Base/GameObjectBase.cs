@@ -1,3 +1,4 @@
+using CaptainPinkTurd.Core.Attributes;
 using CaptainPinkTurd.Core.CustomDataStructure;
 using CaptainPinkTurd.Core.Enum;
 using UnityEngine;
@@ -13,9 +14,14 @@ namespace CaptainPinkTurd.Core.Base
         [SerializeField] private SerializeKeyValuePair<EPriority, UnityEvent> onDisableEvents;
         [SerializeField] private UnityEvent onStartEvents;
         
+        [Header("Debug")]
+        [SerializeField][ReadOnly] private bool spawnedFromPool;
+        
         public GameEvent OnEnableEvents = new GameEvent();
         [Tooltip("Remember to manually clear this before you subscribe")]
         public GameEvent OnDisableEvents = new GameEvent();
+        
+        public bool SpawnedFromPool => spawnedFromPool;
         
         protected virtual void Awake()
         {
@@ -37,6 +43,10 @@ namespace CaptainPinkTurd.Core.Base
         protected virtual void Start()
         {
             onStartEvents.Invoke();
+        }
+        public void SetSpawnedFromPool(bool spawnedFromPool)
+        {
+            this.spawnedFromPool = spawnedFromPool;
         }
     }
 }

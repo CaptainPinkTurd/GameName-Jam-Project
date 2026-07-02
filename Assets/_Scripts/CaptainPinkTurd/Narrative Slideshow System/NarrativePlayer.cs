@@ -67,7 +67,7 @@ namespace CaptainPinkTurd.NarrativeSlideshow
             {
                 isFading = false;
             });
-            typewriterText.StartTyping(panel.text, panel.alignment);
+            typewriterText.StartTyping("Default", panel.text, panel.alignment);
         }
 
         public void Next(InputAction.CallbackContext ctx)

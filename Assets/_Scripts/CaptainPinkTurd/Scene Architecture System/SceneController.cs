@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using CaptainPinkTurd.Core.DesignPattern.Singleton;
@@ -10,8 +9,9 @@ namespace CaptainPinkTurd.Scene
 {
     public class SceneController : Singleton<SceneController>
     {
-        [SerializeField] private VoidEvent onSceneLoaded;
         [SerializeField] private LoadingOverlay loadingOverlay;
+        [SerializeField] private VoidEvent onSceneLoaded;
+        [SerializeField] private VoidEvent onBeforeSceneUnload;
 
         private Dictionary<string, string> loadedSceneBySlot = new();
         private bool isBusy = false;
@@ -117,6 +117,7 @@ namespace CaptainPinkTurd.Scene
             if(!loadedSceneBySlot.TryGetValue(slotKey, out string sceneName)) yield break;
             if(string.IsNullOrEmpty(sceneName)) yield break;
             
+            onBeforeSceneUnload.Raise();
             AsyncOperation unloadOp = SceneManager.UnloadSceneAsync(sceneName);
             if (unloadOp != null)
             {

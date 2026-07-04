@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 898548a9cf6b470e88783b78cea3cdbe, type: 3}
-  m_Name: Longest Time Leaderboard
-  m_EditorClassIdentifier: 
-  leaderboardId: 2
-  maxEntries: 3
-  ruleType: 0
+  m_Script: {fileID: 11500000, guid: 76064f342aa244949794e143caeb8079, type: 3}
+  m_Name: On Before Scene Unload
+  m_EditorClassIdentifier: Core::CaptainPinkTurd.Core.DesignPattern.SOAP.Events.VoidEvent

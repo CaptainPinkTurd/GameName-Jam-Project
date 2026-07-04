@@ -1,13 +1,9 @@
 using CaptainPinkTurd.Core.Interfaces;
-using CaptainPinkTurd.ScoreSystem.Data;
 
 namespace CaptainPinkTurd.ScoreSystem.Rule
 {
     public class LowScoreRule : IScoreRule
     {
-        public bool IsBetter(ScoreEntry newScore, ScoreEntry existingScore)
-        {
-            return newScore.Score.Value < existingScore.Score.Value;
-        }
+        public bool IsBetter(int newScore, int currentBest) => newScore < currentBest;
     }
 }

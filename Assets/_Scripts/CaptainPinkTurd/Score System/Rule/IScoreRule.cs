@@ -1,9 +1,7 @@
-using CaptainPinkTurd.ScoreSystem.Data;
-
 namespace CaptainPinkTurd.Core.Interfaces
 {
     public interface IScoreRule
     {
-        bool IsBetter(ScoreEntry newScore, ScoreEntry existingScore);
+        bool IsBetter(int newScore, int currentBest);
     }
 }

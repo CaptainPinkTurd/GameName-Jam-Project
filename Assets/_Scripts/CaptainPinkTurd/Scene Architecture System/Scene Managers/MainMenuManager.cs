@@ -1,4 +1,3 @@
-using System;
 using CaptainPinkTurd.AudioSystem;
 using CaptainPinkTurd.Core.Attributes;
 using UnityEngine;
@@ -9,14 +8,14 @@ namespace CaptainPinkTurd.Scene.Manager
     public class MainMenuManager : MonoBehaviour
     {
         [SerializeField] private bool randomizedInitialLevel;
-        
+
         [ShowIf(nameof(randomizedInitialLevel), false)]
         [SerializeField] private string initialLevel = "1";
         [ShowIf(nameof(randomizedInitialLevel))]
         [SerializeField] private LevelData levelData;
-        
+
         [SerializeField] private AudioClip menuMusic;
-        
+
         private void OnEnable()
         {
             Cursor.visible = true;
@@ -27,7 +26,6 @@ namespace CaptainPinkTurd.Scene.Manager
         }
         private void Start()
         {
-            levelData.hasDoneTutorial = PlayerPrefs.GetInt("HasDoneTutorial", 0) == 1;
             MusicManager.Instance.Play(menuMusic, loop: true);
         }
 

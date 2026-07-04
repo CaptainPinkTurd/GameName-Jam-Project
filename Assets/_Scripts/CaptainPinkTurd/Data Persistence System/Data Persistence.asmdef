@@ -1,11 +1,8 @@
 {
-    "name": "ScoreSystem",
-    "rootNamespace": "CaptainPinkTurd.HighScoreSystem",
+    "name": "DataPersistence",
+    "rootNamespace": "CaptainPinkTurd.DataPersistence",
     "references": [
-        "GUID:4379980e305684f4bbea58f0a9e24506",
-        "GUID:e98deedda116a3b41bd4dc7d9a4907f0",
-        "GUID:6055be8ebefd69e48b49212b09b47b2f",
-        "GUID:4e3d7ae76ace4464d8eea86502360e7f"
+        "GUID:4379980e305684f4bbea58f0a9e24506"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

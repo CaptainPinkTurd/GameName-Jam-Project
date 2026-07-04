@@ -209,6 +209,7 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-5786d324a650511438ae3e6db5ee13a6-2030473605-0
         - globalObjectIdString: GlobalObjectId_V1-2-5786d324a650511438ae3e6db5ee13a6-1642773085-0
         - globalObjectIdString: GlobalObjectId_V1-2-5786d324a650511438ae3e6db5ee13a6-1837773772-0
+        - globalObjectIdString: GlobalObjectId_V1-2-5786d324a650511438ae3e6db5ee13a6-175865078-0
         values:
         - colorIndex: 0
           iconNameOrGuid: Camera Icon
@@ -280,6 +281,10 @@ MonoBehaviour:
           isColorRecursive: 0
         - colorIndex: 0
           iconNameOrGuid: Camera Icon
+          isIconRecursive: 0
+          isColorRecursive: 0
+        - colorIndex: 0
+          iconNameOrGuid: Folder Icon
           isIconRecursive: 0
           isColorRecursive: 0
     - goDatas_byGlobalId:

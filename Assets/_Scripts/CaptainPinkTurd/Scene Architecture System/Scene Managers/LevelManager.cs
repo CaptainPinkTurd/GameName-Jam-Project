@@ -3,6 +3,8 @@ using CaptainPinkTurd.AudioSystem;
 using CaptainPinkTurd.Core.Attributes;
 using CaptainPinkTurd.Core.DesignPattern.SOAP.Events;
 using CaptainPinkTurd.Core.Enum;
+using CaptainPinkTurd.DataPersistence;
+using CaptainPinkTurd.DataPersistence.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -36,7 +38,6 @@ namespace CaptainPinkTurd.Scene.Manager
             {
                 if (isLastTutorialLevel)
                 {
-                    PlayerPrefs.SetInt("HasDoneTutorial", 1);
                     levelData.hasDoneTutorial = true;
                     NextLevel();
                     return;

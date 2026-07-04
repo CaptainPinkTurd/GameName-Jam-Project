@@ -1,22 +1,22 @@
 using System.Globalization;
 using CaptainPinkTurd.Core.DesignPattern.Singleton;
 using CaptainPinkTurd.Core.DesignPattern.SOAP.Events;
-using CaptainPinkTurd.Core.Extensions;
-using CaptainPinkTurd.Core.Struct;
-using CaptainPinkTurd.ScoreSystem.Data;
-using CaptainPinkTurd.ScoreSystem.Storage;
+using CaptainPinkTurd.Core.Enum;
+using CaptainPinkTurd.DataPersistence;
+using CaptainPinkTurd.DataPersistence.Data;
+using CaptainPinkTurd.ScoreSystem.Rule;
 using UnityEngine;
 
 namespace CaptainPinkTurd.ScoreSystem
 {
-    public class ScoreManager : Singleton<ScoreManager> //Logic change depending on the game
+    public class ScoreManager : Singleton<ScoreManager>, IDataPersistence //Logic change depending on the game
     {
         [Header("Score Config")]
-        [SerializeField] private LeaderboardConfig scoreLeaderboardConfig;
+        [SerializeField] private EScoreRuleType scoreRule;
         [SerializeField] private StringEvent onScoreUpdate;
         [SerializeField] private StringEvent onHighScoreUpdate;
 
-        private ScoreService highScoreService;
+        private int bestScore;
         private string scoreText;
         
         public int Score { get; private set; }
@@ -25,7 +25,6 @@ namespace CaptainPinkTurd.ScoreSystem
         {
             base.Awake();
                 
-            highScoreService = new ScoreService(new LocalScoreStorage());
             scoreText = "000000";
         }
 
@@ -41,13 +40,20 @@ namespace CaptainPinkTurd.ScoreSystem
         }
         private void FinalizeScores()
         {
-            highScoreService.SubmitScore(scoreLeaderboardConfig, 
-                new ScoreEntry(scoreLeaderboardConfig.leaderboardId.ToKey(), "Player", new SScoreValue(Score)));
+            var rule = ScoreRuleFactory.Create(scoreRule);
+            if (rule.IsBetter(Score, bestScore))
+            {
+                bestScore = Score;
+            }
+
+            onHighScoreUpdate.Raise(GetScoreDisplayText(bestScore));
             
-            var currentHighScore = highScoreService.GetScores(scoreLeaderboardConfig)[0].Score.Value;
-            var highScoreText = GetScoreDisplayText((int)currentHighScore);
-            
-            onHighScoreUpdate.Raise(highScoreText);
+            if(!DataPersistenceManager.HasInstance || !DataPersistenceManager.Instance.HasGameData)
+            {
+                Debug.LogError("ScoreManager: DataPersistenceManager.HasInstance == false or has no game data available to save ");
+                return;
+            }
+            DataPersistenceManager.Instance.SaveGame();
         }
 
         private string GetScoreDisplayText(int score)
@@ -83,6 +89,18 @@ namespace CaptainPinkTurd.ScoreSystem
             
             scoreText = "000000";
             Score = 0;
+        }
+
+        public string Name => name;
+
+        public void LoadData(GameData data)
+        {
+            bestScore = data.highScore;
+        }
+
+        public void SaveData(GameData data)
+        {
+            data.highScore = bestScore;
         }
     }
 }

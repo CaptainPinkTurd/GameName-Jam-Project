@@ -241,6 +241,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   killCounter: {fileID: 0}
+--- !u!1 &175865078
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 175865079}
+  - component: {fileID: 175865080}
+  m_Layer: 0
+  m_Name: Data Persistence Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &175865079
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175865078}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 614735546}
+  m_Father: {fileID: 1182088842}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &175865080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175865078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c70c11666d278b4a835c228f4f96f54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: DataPersistence::CaptainPinkTurd.DataPersistence.DataPersistenceManager
+  fileName: data.game
+  useEncryption: 0
+  initializeDataIfNull: 1
 --- !u!1 &348972318
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,6 +591,67 @@ Canvas:
   m_SortingLayerID: -154939913
   m_SortingOrder: 9999
   m_TargetDisplay: 0
+--- !u!1 &614735545
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 614735546}
+  - component: {fileID: 614735547}
+  m_Layer: 0
+  m_Name: Data Persistence Manager Event Listeners
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &614735546
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614735545}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 175865079}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &614735547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614735545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb243ffb9c8644f0b92a742bb85ecf5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Core::CaptainPinkTurd.Core.DesignPattern.SOAP.Events.VoidEventListener
+  gameEvent: {fileID: 11400000, guid: 59d395d7d06faee43a603b75ab49a1c7, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 175865080}
+        m_TargetAssemblyTypeName: CaptainPinkTurd.DataPersistence.DataPersistenceManager,
+          DataPersistence
+        m_MethodName: SaveGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &625832924
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,8 +1024,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8557525f4d7e43f595b5054f922463c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: SceneArchitectureSystem::CaptainPinkTurd.Scene.SceneController
-  onSceneLoaded: {fileID: 11400000, guid: f615d61eb7793464cad5a31655f65fbb, type: 2}
   loadingOverlay: {fileID: 629850893}
+  onSceneLoaded: {fileID: 11400000, guid: f615d61eb7793464cad5a31655f65fbb, type: 2}
+  onBeforeSceneUnload: {fileID: 11400000, guid: 59d395d7d06faee43a603b75ab49a1c7, type: 2}
 --- !u!1 &1037341439
 GameObject:
   m_ObjectHideFlags: 0
@@ -1187,6 +1297,7 @@ Transform:
   - {fileID: 1429123443}
   - {fileID: 945786714}
   - {fileID: 1548040088}
+  - {fileID: 175865079}
   - {fileID: 1387242474}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1679,7 +1790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 622c4520262a43742800bd1833b09f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: HighScoreSystem::CaptainPinkTurd.HighScoreSystem.HighScoreManager
-  scoreLeaderboardConfig: {fileID: 11400000, guid: b0d49790d95518c4e971a0a9d5e716bd, type: 2}
+  scoreRule: 0
   onScoreUpdate: {fileID: 11400000, guid: b9721b2613d343b4ea56e1345aa87672, type: 2}
   onHighScoreUpdate: {fileID: 11400000, guid: d46158245b526e2478e04d4a2b57306f, type: 2}
 --- !u!1 &1642773085

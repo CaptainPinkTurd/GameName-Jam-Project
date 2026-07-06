@@ -26,6 +26,8 @@ namespace CaptainPinkTurd.DataPersistence
         private List<IDataPersistence> dataPersistenceObjects;
         private FileDataHandler dataHandler;
         
+        private string selectedProfileId = "Default"; //for multiple save slots, haven't implemented yet
+        
         public bool HasGameData => gameData != null; //should be used to disable continue or new game button on menu
 
         protected override void Awake()
@@ -67,7 +69,7 @@ namespace CaptainPinkTurd.DataPersistence
         }
         public void LoadGame()
         {
-            gameData = dataHandler.Load();
+            gameData = dataHandler.Load(selectedProfileId);
             
             if (gameData == null)
             {
@@ -102,7 +104,19 @@ namespace CaptainPinkTurd.DataPersistence
             }
             
             //save that data to a file using the data handler
-            dataHandler.Save(gameData);
+            dataHandler.Save(gameData, selectedProfileId);
+        }
+
+        public void ChangeSelectedProfileId(string newProfileId)
+        {
+            selectedProfileId = newProfileId;
+            
+            //load the game, which will use that profile, updating our game data accordingly 
+            LoadGame();
+        }
+        public Dictionary<string, GameData> GetAllProfilesGameData()
+        {
+            return dataHandler.LoadAllProfiles();
         }
 
         private void OnApplicationQuit()
@@ -115,7 +129,7 @@ namespace CaptainPinkTurd.DataPersistence
         public void OpenSaveFileFolderLocation()
         {
             // Opens the folder or highlights the specified item native to the OS
-            EditorUtility.RevealInFinder(Path.Combine(Application.persistentDataPath, fileName)); 
+            EditorUtility.RevealInFinder(Path.Combine(Application.persistentDataPath)); 
         }
 #endif
     }

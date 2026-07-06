@@ -1,10 +1,7 @@
-using System;
 using CaptainPinkTurd.AudioSystem;
 using CaptainPinkTurd.Core.Attributes;
 using CaptainPinkTurd.Core.DesignPattern.SOAP.Events;
 using CaptainPinkTurd.Core.Enum;
-using CaptainPinkTurd.DataPersistence;
-using CaptainPinkTurd.DataPersistence.Data;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;

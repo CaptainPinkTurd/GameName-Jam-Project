@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using CaptainPinkTurd.DataPersistence.Data;
 using UnityEngine;
@@ -19,10 +20,10 @@ namespace CaptainPinkTurd.DataPersistence
             this.useEncryption = useEncryption;
         }
 
-        public GameData Load()
+        public GameData Load(string profileId)
         {
             //use Path.Combine to account for different OS's having different path separators
-            string fullPath = Path.Combine(dataDirPath, dataFileName);
+            string fullPath = Path.Combine(dataDirPath, profileId, dataFileName);
             GameData loadedData = null;
             if (File.Exists(fullPath))
             {
@@ -55,10 +56,10 @@ namespace CaptainPinkTurd.DataPersistence
             return loadedData;
         }
 
-        public void Save(GameData gameData)
+        public void Save(GameData gameData, string profileId)
         {
             //use Path.Combine to account for different OS's having different path separators
-            string fullPath = Path.Combine(dataDirPath, dataFileName);
+            string fullPath = Path.Combine(dataDirPath, profileId, dataFileName);
             try
             {
                 // create the directory the file will be written to if it doesn't already exist 
@@ -89,6 +90,34 @@ namespace CaptainPinkTurd.DataPersistence
             }
         }
 
+        public Dictionary<string, GameData> LoadAllProfiles()
+        {
+            var profileDict = new Dictionary<string, GameData>();
+
+            IEnumerable<DirectoryInfo> dirInfos = new DirectoryInfo(dataDirPath).EnumerateDirectories();
+            foreach(var dirInfo in dirInfos)
+            {
+                string profileId = dirInfo.Name;
+                string fullPath = Path.Combine(dataDirPath, profileId, dataFileName);
+                if (!File.Exists(fullPath))
+                {
+                    Debug.LogWarning("Save profile does not exist at ID: " + profileId + "\nSkip instead");
+                    continue;
+                }
+
+                GameData profileData = Load(profileId);
+                if (profileData != null)
+                {
+                    profileDict.Add(profileId, profileData);
+                }
+                else
+                {
+                    Debug.LogError("Tried to load profile but something went wrong. ProfileID " + profileId);
+                }
+            }
+            
+            return profileDict;
+        }
         //simple implementation of XOR encryption
         private string EncryptDecrypt(string data)
         {

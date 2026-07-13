@@ -28,6 +28,19 @@ namespace CaptainPinkTurd.Core.Extensions
             }
         }
         /// <summary>
+        /// Deletes all children objects from target transform
+        /// </summary>
+        /// <param name="t">Transform reference</param>
+        /// <returns>World Space Coordinates of rect transform</returns>
+        public static void DeleteChildren(this Transform t)
+        {
+	        foreach(Transform child in t)
+	        {
+		        Object.Destroy(child.gameObject);
+	        }
+        }
+		
+        /// <summary>
         /// Rotates a transform to face a target position (2D).
         /// </summary>
         public static void LookAt2D(this Transform transform, Vector3 targetPosition,
@@ -50,5 +63,27 @@ namespace CaptainPinkTurd.Core.Extensions
             transform.rotation = snap ? targetRot :
                 Quaternion.Lerp(transform.rotation, targetRot,Time.deltaTime * rotateSpeed);
         }
+        
+        public static Vector3 ChangeXPos (this Transform transform, float x) 
+		{
+			Vector3 position = transform.position;
+			position.x = x;
+			transform.position = position;
+			return position;
+		}
+		public static Vector3 ChangeYPos (this Transform transform, float y) 
+		{
+			Vector3 position = transform.position;
+			position.y = y;
+			transform.position = position;
+			return position;
+		}
+		public static Vector3 ChangeZPos (this Transform transform, float z) 
+		{
+			Vector3 position = transform.position;
+			position.z = z;
+			transform.position = position;
+			return position;
+		}
     }
 }

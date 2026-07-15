@@ -3,10 +3,11 @@ using CaptainPinkTurd.Core.DesignPattern.SOAP.Variables;
 using CaptainPinkTurd.Core.Utils;
 using CaptainPinkTurd.Input;
 using UnityEngine;
+
 namespace CaptainPinkTurd.TopDownControllerSystem
 {
-    [RequireComponent(typeof(Rigidbody2D))]
-    public class PlayerFreeMovementTopDownController2D : MonoBehaviour
+    [RequireComponent(typeof(Rigidbody))]
+    public class PlayerFreeMovementTopDownController : MonoBehaviour
     {
         [Header("References")]
         [SerializeField] private PlayerTopDownMovementStats referenceMoveStats; 
@@ -16,10 +17,10 @@ namespace CaptainPinkTurd.TopDownControllerSystem
         
         private PlayerTopDownMovementStats runtimeMoveStats;
         public InputSystemActions playerInputs;
-        private Rigidbody2D rb;
-        private Vector2 smoothedMovementInput;
-        private Vector2 movementSmoothVelocity;
-        private Vector2 externalVelocity = Vector2.zero;
+        private Rigidbody rb;
+        private Vector3 smoothedMovementInput;
+        private Vector3 movementSmoothVelocity;
+        private Vector3 externalVelocity = Vector3.zero;
         
         private bool isDashing;
         private bool dashOnCooldown;
@@ -30,7 +31,7 @@ namespace CaptainPinkTurd.TopDownControllerSystem
         private void Awake()
         {
             playerInputs = new InputSystemActions();
-            rb = GetComponent<Rigidbody2D>();
+            rb = GetComponent<Rigidbody>();
 
             GenerateRuntimeMoveStats();
         }
@@ -85,7 +86,7 @@ namespace CaptainPinkTurd.TopDownControllerSystem
                 UpdateMovement();
             }
             
-            externalVelocity = Vector2.Lerp(externalVelocity, Vector2.zero, 10f * Time.fixedDeltaTime);
+            externalVelocity = Vector3.Lerp(externalVelocity, Vector3.zero, 10f * Time.fixedDeltaTime);
         }
 
         #region Movement
@@ -96,16 +97,17 @@ namespace CaptainPinkTurd.TopDownControllerSystem
             
             if(movementEnabled) return;
             
-            rb.linearVelocity = Vector2.zero;
-            movementInput.Value = Vector2.zero;
-            currentPlayerSpeed.Value = 1f;
+            rb.linearVelocity = Vector3.zero;
+            movementInput.Value = Vector3.zero;
+            currentPlayerSpeed.Value = 0f;
         }
         
         private void UpdateMovement()
         {
             if (runtimeMoveStats.smoothMovement)
             {
-                smoothedMovementInput = Vector2.SmoothDamp(
+                //not usable yet
+                smoothedMovementInput = Vector3.SmoothDamp(
                     smoothedMovementInput,
                     movementInput.Value,
                     ref movementSmoothVelocity,
@@ -114,19 +116,24 @@ namespace CaptainPinkTurd.TopDownControllerSystem
             }
             else
             {
-                smoothedMovementInput = movementInput.Value;
+                smoothedMovementInput.x = movementInput.Value.x;
+                smoothedMovementInput.z = movementInput.Value.y;
             }
 
-            float speed = playerInputs.Player.Run.IsPressed()
-                ? runtimeMoveStats.runSpeed
-                : runtimeMoveStats.walkSpeed;
+            float speed = 0f;
+            if (movementInput.Value != Vector2.zero)
+            {
+                speed = playerInputs.Player.Run.IsPressed()
+                    ? runtimeMoveStats.runSpeed
+                    : runtimeMoveStats.walkSpeed;
+            }
             
             currentPlayerSpeed.Value = speed / runtimeMoveStats.walkSpeed; 
 
             rb.linearVelocity = smoothedMovementInput * speed + externalVelocity;
         }
 
-        public void AddExternalVelocity(Vector2 velocity) => externalVelocity += velocity;
+        public void AddExternalVelocity(Vector3 velocity) => externalVelocity += velocity;
         
         #endregion
 
@@ -147,9 +154,9 @@ namespace CaptainPinkTurd.TopDownControllerSystem
                 .Play(runtimeMoveStats.dashSfx);
 
             // Direction input handling
-            Vector2 dashDir = movementInput.Value.sqrMagnitude < runtimeMoveStats.dashInputThreshold *
+            Vector3 dashDir = movementInput.Value.sqrMagnitude < runtimeMoveStats.dashInputThreshold *
                               runtimeMoveStats.dashInputThreshold
-                ? Vector2.zero
+                ? Vector3.zero
                 : movementInput.Value.normalized;
 
             // running increases dash speed and reduces dash duration

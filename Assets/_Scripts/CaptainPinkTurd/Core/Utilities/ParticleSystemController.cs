@@ -59,9 +59,19 @@ namespace CaptainPinkTurd.Core.Utilities
                             finishedParticles++;
                         }))));
             }
-
+            
             StartCoroutine(CoroutineUtils.WaitForCondition(() => finishedParticles == particles.Count,
-                () => ObjectPoolManager.Instance.ReturnObjectToPool(gameObject)));
+                () =>
+                {
+                    if(SpawnedFromPool)
+                    {
+                        ObjectPoolManager.Instance.ReturnObjectToPool(gameObject);
+                    }
+                    else
+                    {
+                        gameObject.SetActive(false);    
+                    }
+                }));
         }
     }
 }

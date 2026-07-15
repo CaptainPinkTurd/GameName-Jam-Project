@@ -2,7 +2,7 @@ using System;
 using CaptainPinkTurd.Core.DesignPattern.SOAP.Variables;
 using CaptainPinkTurd.Core.Extensions;
 using CaptainPinkTurd.Core.Utils;
-using CaptainPinkTurd.TopDownController2D;
+using CaptainPinkTurd.TopDownControllerSystem;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Serialization;

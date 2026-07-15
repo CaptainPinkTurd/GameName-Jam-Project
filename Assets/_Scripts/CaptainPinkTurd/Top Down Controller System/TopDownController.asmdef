@@ -1,6 +1,6 @@
 {
-    "name": "NewAssembly",
-    "rootNamespace": "CaptainPinkTurd.TopDownController2D",
+    "name": "TopDownController",
+    "rootNamespace": "CaptainPinkTurd.TopDownControllerSystem",
     "references": [
         "GUID:4379980e305684f4bbea58f0a9e24506",
         "GUID:75469ad4d38634e559750d17036d5f7c",

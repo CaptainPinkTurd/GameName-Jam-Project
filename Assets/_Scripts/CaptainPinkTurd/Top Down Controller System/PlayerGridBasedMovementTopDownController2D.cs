@@ -3,7 +3,7 @@ using CaptainPinkTurd.Core.Movement;
 using CaptainPinkTurd.Input;
 using UnityEngine;
 
-namespace CaptainPinkTurd.TopDownController2D
+namespace CaptainPinkTurd.TopDownControllerSystem
 {
     public class PlayerGridBasedMovementTopDownController2D : GridBasedMovement
     {

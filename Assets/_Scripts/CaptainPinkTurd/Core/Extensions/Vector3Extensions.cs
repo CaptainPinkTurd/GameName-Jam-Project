@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace CaptainPinkTurd.Core.Extensions
@@ -51,7 +52,7 @@ namespace CaptainPinkTurd.Core.Extensions
         {
             return (current - target).sqrMagnitude <= range * range;
         }
-        public static Quaternion ToRotation2D(this Vector3 direction, float zOffsetDegrees = 0)
+        public static Quaternion ToRotationZ(this Vector3 direction, float zOffsetDegrees = 0)
         {
             if (direction.sqrMagnitude < Mathf.Epsilon)
                 return Quaternion.identity;
@@ -80,6 +81,66 @@ namespace CaptainPinkTurd.Core.Extensions
             return Mathf.Abs(dir.x) > Mathf.Abs(dir.y) ? 
                 new Vector2(Mathf.Sign(dir.x), 0f) : 
                 new Vector2(0f, Mathf.Sign(dir.y));
+        }
+        
+        public static Vector3 NearestPointOnAxis(this Vector3 axisDirection, Vector3 point, bool isNormalized = false)
+        {
+            if (!isNormalized) axisDirection.Normalize();
+            float d = Vector3.Dot(point, axisDirection);
+            
+            return axisDirection * d;
+        }
+        
+        public static Vector3 GetClosestVector3From(this Vector3 vector, Vector3[] otherVectors)
+        {
+            if (otherVectors.Length == 0) throw new Exception("The list of other vectors is empty");
+            float minDistance = Vector3.Distance(vector, otherVectors[0]);
+            Vector3 minVector = otherVectors[0];
+            for (int i = otherVectors.Length - 1; i > 0; i--)
+            {
+                float newDistance = Vector3.Distance(vector, otherVectors[i]);
+		    
+                if (!(newDistance < minDistance)) continue;
+		    
+                minDistance = newDistance;
+                minVector = otherVectors[i];
+            }
+            return minVector;
+        }
+    
+        public static T GetClosestMonoBehaviourOfType<T>(this Vector3 vector, T[] otherMonoBehaviours) where T : MonoBehaviour
+        {
+            if (otherMonoBehaviours.Length == 0) throw new Exception("The list of other transforms is empty");
+	    
+            float minDistance = Vector3.Distance(vector, otherMonoBehaviours[0].transform.position);
+            T closestMonoBehaviour = otherMonoBehaviours[0];
+            for (int i = otherMonoBehaviours.Length - 1; i > 0; i--)
+            {
+                float newDistance = Vector3.Distance(vector, otherMonoBehaviours[i].transform.position);
+		    
+                if (!(newDistance < minDistance)) continue;
+		    
+                minDistance = newDistance;
+                closestMonoBehaviour = otherMonoBehaviours[i];
+            }
+            return closestMonoBehaviour;
+        }
+        public static T GetFurthestMonoBehaviourOfType<T>(this Vector3 vector, T[] otherMonoBehaviours) where T : MonoBehaviour
+        {
+            if (otherMonoBehaviours.Length == 0) throw new Exception("The list of other transforms is empty");
+	    
+            float maxDistance = Vector3.Distance(vector, otherMonoBehaviours[0].transform.position);
+            T furthestMonoBehaviour = otherMonoBehaviours[0];
+            for (int i = otherMonoBehaviours.Length - 1; i > 0; i--)
+            {
+                float newDistance = Vector3.Distance(vector, otherMonoBehaviours[i].transform.position);
+		    
+                if (!(newDistance > maxDistance)) continue;
+		    
+                maxDistance = newDistance;
+                furthestMonoBehaviour = otherMonoBehaviours[i];
+            }
+            return furthestMonoBehaviour;
         }
     }
 }

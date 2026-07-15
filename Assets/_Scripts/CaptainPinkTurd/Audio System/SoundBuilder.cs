@@ -50,7 +50,8 @@ namespace CaptainPinkTurd.AudioSystem
                 return;
             }
             
-            currentSoundEmitter.Initialize(soundData, AudioManager.Instance.SfxMixerGroup);
+            currentSoundEmitter.Initialize(soundData, 
+                AudioManager.HasInstance ? AudioManager.Instance.SfxMixerGroup : null);
             currentSoundEmitter.transform.position = position;
             currentSoundEmitter.transform.parent = soundManager.transform;
 

@@ -3,7 +3,7 @@ using CaptainPinkTurd.Core.Extensions;
 using CaptainPinkTurd.Core.Utilities;
 using UnityEngine;
 
-namespace CaptainPinkTurd.TopDownController2D.Modifier
+namespace CaptainPinkTurd.TopDownControllerSystem.Modifier
 {
     public abstract class PlayerControllerValueModifier : AbstractValueModifier<PlayerFreeMovementTopDownController2D>
     {

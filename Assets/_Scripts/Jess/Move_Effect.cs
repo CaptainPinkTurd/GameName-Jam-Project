@@ -1,56 +1,54 @@
+using CaptainPinkTurd.TopDownControllerSystem;
 using UnityEngine;
 
-namespace CaptainPinkTurd.TopDownController2D
+public class MoveEffect : MonoBehaviour
 {
-    public class MoveEffect : MonoBehaviour
+    [Header("References")]
+    [SerializeField] private PlayerFreeMovementTopDownController2D playerController;
+    [SerializeField] private ParticleSystem moveParticles;
+    [SerializeField] private TrailRenderer runTrail;
+
+    private Rigidbody2D rb;
+
+    private void Awake()
     {
-        [Header("References")]
-        [SerializeField] private PlayerFreeMovementTopDownController2D playerController;
-        [SerializeField] private ParticleSystem moveParticles;
-        [SerializeField] private TrailRenderer runTrail;
+        playerController = GetComponent<PlayerFreeMovementTopDownController2D>();
+        rb = playerController.GetComponent<Rigidbody2D>();
+    }
 
-        private Rigidbody2D rb;
+    private void Update()
+    {
+        HandleParticles();
+        HandleTrail();
+    }
 
-        private void Awake()
+    private void HandleParticles()
+    {
+        // Play particles when moving, stop when idle
+        if (rb.linearVelocity.magnitude > 0.1f)
         {
-            playerController = GetComponent<PlayerFreeMovementTopDownController2D>();
-            rb = playerController.GetComponent<Rigidbody2D>();
+            if (!moveParticles.isPlaying)
+                moveParticles.Play();
         }
-
-        private void Update()
+        else
         {
-            HandleParticles();
-            HandleTrail();
+            if (moveParticles.isPlaying)
+                moveParticles.Stop();
         }
+    }
 
-        private void HandleParticles()
+    private void HandleTrail()
+    {
+        // Enable trail only when Run (Shift) is pressed
+        if (playerController.playerInputs.Player.Run.IsPressed())
         {
-            // Play particles when moving, stop when idle
-            if (rb.linearVelocity.magnitude > 0.1f)
-            {
-                if (!moveParticles.isPlaying)
-                    moveParticles.Play();
-            }
-            else
-            {
-                if (moveParticles.isPlaying)
-                    moveParticles.Stop();
-            }
+            if (!runTrail.emitting)
+                runTrail.emitting = true;
         }
-
-        private void HandleTrail()
+        else
         {
-            // Enable trail only when Run (Shift) is pressed
-            if (playerController.playerInputs.Player.Run.IsPressed())
-            {
-                if (!runTrail.emitting)
-                    runTrail.emitting = true;
-            }
-            else
-            {
-                if (runTrail.emitting)
-                    runTrail.emitting = false;
-            }
+            if (runTrail.emitting)
+                runTrail.emitting = false;
         }
     }
 }

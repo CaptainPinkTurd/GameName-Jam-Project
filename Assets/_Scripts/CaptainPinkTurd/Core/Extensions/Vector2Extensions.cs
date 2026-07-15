@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace CaptainPinkTurd.Core.Extensions
 {
@@ -63,6 +65,24 @@ namespace CaptainPinkTurd.Core.Extensions
                 return Quaternion.identity;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             return Quaternion.Euler(0f, 0f, angle + zOffsetDegrees);
+        }
+        
+        public static Vector2 GetClosestVector2From(this Vector2 vector, Vector2[] otherVectors)
+        {
+            if (otherVectors.Length == 0) throw new Exception("The list of other vectors is empty");
+            
+            float minDistance = Vector2.Distance(vector, otherVectors[0]);
+            Vector2 minVector = otherVectors[0];
+            for (int i = otherVectors.Length - 1; i > 0; i--)
+            {
+                float newDistance = Vector2.Distance(vector, otherVectors[i]);
+		    
+                if (!(newDistance < minDistance)) continue;
+		    
+                minDistance = newDistance;
+                minVector = otherVectors[i];
+            }
+            return minVector;
         }
     }
 }

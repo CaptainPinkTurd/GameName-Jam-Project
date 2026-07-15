@@ -4,7 +4,7 @@ using CaptainPinkTurd.Core.Enum;
 using CaptainPinkTurd.Core.Extensions;
 using CaptainPinkTurd.Core.Interfaces;
 using CaptainPinkTurd.Core.Struct;
-using CaptainPinkTurd.TopDownController2D;
+using CaptainPinkTurd.TopDownControllerSystem;
 using UnityEngine;
 
 namespace CaptainPinkTurd.Game

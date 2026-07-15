@@ -4,7 +4,7 @@ using CaptainPinkTurd.Core.Attributes;
 using CaptainPinkTurd.Core.SO;
 using UnityEngine;
 
-namespace CaptainPinkTurd.TopDownController2D
+namespace CaptainPinkTurd.TopDownControllerSystem
 {
     [CreateAssetMenu(fileName = "PlayerTopDownMovementStats", menuName = "Scriptable Objects/Player Movement Stats/Topdown")]
     public class PlayerTopDownMovementStats : RuntimeScriptableObject

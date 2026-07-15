@@ -19,13 +19,13 @@ namespace CaptainPinkTurd.Core.DesignPattern.SOAP.Variables
                 if (Equals(this.value, value)) return;
                 
                 this.value = value;
-                OnValueChanged.Invoke(value);
+                OnValueChanged?.Invoke(value);
             }
         }
 
         protected override void OnReset()
         {
-            OnValueChanged = null;
+            OnValueChanged = delegate { };
             value = initialValue;
         }
     }

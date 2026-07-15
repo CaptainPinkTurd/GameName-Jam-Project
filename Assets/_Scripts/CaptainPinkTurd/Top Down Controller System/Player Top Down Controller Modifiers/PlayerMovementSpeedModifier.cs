@@ -2,7 +2,7 @@ using System.Reflection;
 using CaptainPinkTurd.Core.Exceptions;
 using UnityEngine;
 
-namespace CaptainPinkTurd.TopDownController2D.Modifier
+namespace CaptainPinkTurd.TopDownControllerSystem.Modifier
 {
     public class PlayerFloatValueModifier : PlayerControllerValueModifier
     {

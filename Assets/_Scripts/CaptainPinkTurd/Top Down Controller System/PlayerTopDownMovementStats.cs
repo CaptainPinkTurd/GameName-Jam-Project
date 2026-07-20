@@ -28,6 +28,12 @@ namespace CaptainPinkTurd.TopDownControllerSystem
         [Tooltip("How long the dash lasts (seconds).")]
         [ShowIf(nameof(canDash))]
         [Range(0f, 1f)] public float dashDuration = 0.25f;
+        
+        [Tooltip("Speed scale across the dash's normalized lifetime (x: 0→1 time, y: speed multiplier). " +
+                 "Only shapes the easing - total dash distance is preserved regardless of curve shape.")]
+        [ShowIf(nameof(canDash))]
+        public AnimationCurve dashSpeedCurve = new AnimationCurve(
+            new Keyframe(0f, 1f), new Keyframe(1f, 0f));   // burst then ease-out to a clean stop
 
         [Tooltip("Cooldown before dashing again.")]
         [ShowIf(nameof(canDash))]
@@ -36,7 +42,8 @@ namespace CaptainPinkTurd.TopDownControllerSystem
         [Tooltip("Minimum input magnitude needed to dash.")]
         [ShowIf(nameof(canDash))]
         [Range(0f, 1f)] public float dashInputThreshold = 0.15f;
-        [ShowIf(nameof(canDash))] 
+
+        [ShowIf(nameof(canDash))]
         public SoundData dashSfx;
 
         internal GameEvent OnValueChange;

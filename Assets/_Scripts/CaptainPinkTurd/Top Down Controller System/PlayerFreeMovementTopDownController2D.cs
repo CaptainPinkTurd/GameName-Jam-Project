@@ -1,8 +1,11 @@
+using System.Collections;
 using CaptainPinkTurd.AudioSystem;
 using CaptainPinkTurd.Core.DesignPattern.SOAP.Variables;
+using CaptainPinkTurd.Core.Extensions;
 using CaptainPinkTurd.Core.Utils;
 using CaptainPinkTurd.Input;
 using UnityEngine;
+
 namespace CaptainPinkTurd.TopDownControllerSystem
 {
     [RequireComponent(typeof(Rigidbody2D))]
@@ -23,7 +26,9 @@ namespace CaptainPinkTurd.TopDownControllerSystem
         private Vector2 movementSmoothVelocity;
         private Vector2 externalVelocity = Vector2.zero;
         private Vector2 lastNonZeroMovementInput = Vector2.down;
+        private Coroutine dashRoutine;
         
+        private float dashCurveArea = 1f;
         private bool dashOnCooldown;
         private bool movementEnabled;
         
@@ -47,6 +52,8 @@ namespace CaptainPinkTurd.TopDownControllerSystem
             // Create a runtime clone of movement stats
             runtimeMoveStats = ScriptableObject.CreateInstance<PlayerTopDownMovementStats>();
             TypeUtils.CopyValues(referenceMoveStats, runtimeMoveStats);
+
+            CacheDashCurveArea();
         }
 
         private void OnEnable()
@@ -59,6 +66,12 @@ namespace CaptainPinkTurd.TopDownControllerSystem
         {
             playerInputs.Disable();
             referenceMoveStats.OnValueChange.Unsubscribe(GenerateRuntimeMoveStats);
+
+            if (dashRoutine != null)
+            {
+                StopCoroutine(dashRoutine);
+                dashRoutine = null;
+            }
             isDashing.Value = false; // ensure dash never survives a deactivate/reload
         }
 
@@ -163,17 +176,38 @@ namespace CaptainPinkTurd.TopDownControllerSystem
                 ? lastNonZeroMovementInput.normalized
                 : movementInput.Value.normalized;
 
-            // running increases dash speed and reduces dash duration
+            // running increases dash speed and reduces dash duration (net distance is unchanged)
             float dashSpeedMultiplier = playerInputs.Player.Run.IsPressed()
                 ? runtimeMoveStats.runSpeed / runtimeMoveStats.walkSpeed
                 : 1f;
 
-            rb.linearVelocity = dashDir * (runtimeMoveStats.dashSpeed * dashSpeedMultiplier);
+            if (dashRoutine != null) StopCoroutine(dashRoutine);
+            dashRoutine = StartCoroutine(DashRoutine(dashDir, dashSpeedMultiplier));
+        }
 
-            StartCoroutine(CoroutineUtils.WaitForSeconds(
-                runtimeMoveStats.dashDuration / dashSpeedMultiplier,
-                EndDash
-            ));
+        private IEnumerator DashRoutine(Vector2 dashDir, float speedMultiplier)
+        {
+            float duration = runtimeMoveStats.dashDuration / speedMultiplier;
+            float peakSpeed = runtimeMoveStats.dashSpeed * speedMultiplier;
+
+            float elapsed = 0f;
+            while (elapsed < duration)
+            {
+                // Dividing by the curve's area keeps total distance == peakSpeed * duration
+                // for any curve shape; the curve only redistributes speed across the dash.
+                AnimationCurve curve = runtimeMoveStats.dashSpeedCurve;
+                float t = elapsed / duration;
+                float curveValue = curve is { length: > 0 } ? curve.Evaluate(t) : 1f; // flat fallback
+                float speed = peakSpeed * curveValue / dashCurveArea;
+                
+                rb.linearVelocity = dashDir * speed;
+
+                elapsed += Time.fixedDeltaTime;
+                yield return new WaitForFixedUpdate();
+            }
+
+            dashRoutine = null;
+            EndDash();
         }
 
         private void EndDash()
@@ -185,6 +219,17 @@ namespace CaptainPinkTurd.TopDownControllerSystem
                 runtimeMoveStats.dashCooldown,
                 () => dashOnCooldown = false
             ));
+        }
+
+        /// <summary>
+        /// Precomputes the mean height (area) of the dash speed curve over [0,1] so the dash can
+        /// normalize by it and preserve a constant travel distance regardless of the curve's shape.
+        /// </summary>
+        private void CacheDashCurveArea()
+        {
+            dashCurveArea = runtimeMoveStats.dashSpeedCurve.CalculateArea(32);
+            
+            if(dashCurveArea == 0) dashCurveArea = 1f;
         }
         #endregion
     }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CaptainPinkTurd.Core.Extensions
 {
-    public static class TransformExtensions
+	public static class TransformExtensions
     {
 	    public static Vector3 ChangeXPos (this Transform transform, float x) 
 	    {

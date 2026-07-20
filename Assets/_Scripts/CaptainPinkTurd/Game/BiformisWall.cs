@@ -42,11 +42,15 @@ namespace CaptainPinkTurd.Game
 
         private void OnEnable()
         {
+            //guard against an unassigned/missing SO reference; without a valid asset the wall
+            //simply won't track player input (reassign playerCurrentInput to fix the behaviour)
+            if (!playerCurrentInput) return;
             playerCurrentInput.OnValueChanged += OnPlayerMovementInputChangeEvent;
         }
 
         private void OnDisable()
         {
+            if (!playerCurrentInput) return;
             playerCurrentInput.OnValueChanged -= OnPlayerMovementInputChangeEvent;
         }
 

@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304e45cd1aaa4c5999577451b76b105f, type: 3}
   m_Name: Player TopDown Movement Stats
   m_EditorClassIdentifier: NewAssembly::CaptainPinkTurd.TopDownController2D.PlayerTopDownMovementStats
-  walkSpeed: 6
-  runSpeed: 12
+  walkSpeed: 7.5
+  runSpeed: 7.5
   smoothMovement: 0
   smoothTime: 0.08
-  canDash: 0
-  dashSpeed: 30
-  dashDuration: 0.15
-  dashCooldown: 0.5
+  canDash: 1
+  dashSpeed: 20
+  dashDuration: 0.2
+  dashCooldown: 0.35
   dashInputThreshold: 0.15
   dashSfx:
     clip: {fileID: 8300000, guid: 8e9580cb8531abe498e173a556f67e84, type: 3}

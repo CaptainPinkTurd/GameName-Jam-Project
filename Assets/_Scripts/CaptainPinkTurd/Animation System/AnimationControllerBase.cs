@@ -28,6 +28,15 @@ namespace CaptainPinkTurd.AnimationSystem
             animator = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
         }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            
+            //stop the timer from ticking after this object is disabled/destroyed (e.g. scene unload),
+            //otherwise the static TimerManager keeps ticking it and its callback touches a destroyed Animator
+            timer?.Dispose();
+        }
         public void PlayAnimation(string animationName)
         {
             Debug.Log("Playing animation: " + animationName);
@@ -60,7 +69,7 @@ namespace CaptainPinkTurd.AnimationSystem
                     graph.Destroy();
                     animator.Rebind(); // Reset animator state
                     animator.Update(0f); // Force immediate update
-                    if (!isClamp && !isAnimationPaused)
+                    if (animator && !isClamp && !isAnimationPaused)
                     {
                         animator.CrossFade(DefaultAnimationHash, crossfadeTime, 0, 0f);
                     }
@@ -80,7 +89,7 @@ namespace CaptainPinkTurd.AnimationSystem
                 timer.OnMidTimer += onMidAnimation;
                 timer.OnTimerStop += () =>
                 {
-                    if (!isClamp && !isAnimationPaused)
+                    if (animator && !isClamp && !isAnimationPaused)
                     {
                         animator.CrossFade(DefaultAnimationHash, crossfadeTime);
                     }

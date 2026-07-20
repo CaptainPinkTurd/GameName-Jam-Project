@@ -146,7 +146,9 @@ namespace CaptainPinkTurd.BulletHell
             alertModel.SetActive(true);
             SoundManager.Instance.CreateSoundBuilder()
                 .WithPosition(transform.position).WithRandomPitch().Play(colorChangeAlertSfx,
-                    () => alertModel.SetActive(false));
+                    //the SoundEmitter outlives this object, so guard against alertModel being
+                    //destroyed (e.g. scene unload) before the sound finishes and this callback fires
+                    () => { if (alertModel) alertModel.SetActive(false); });
         }
 
         protected void ToggleEmitter(bool on)

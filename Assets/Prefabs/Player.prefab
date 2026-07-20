@@ -143,8 +143,8 @@ MonoBehaviour:
   onStartEvents:
     m_PersistentCalls:
       m_Calls: []
+  spawnedFromPool: 0
   vfxAnimation: {fileID: 6951144708542005987, guid: 3a6bc966bdf25c947b806abf35e9d24f, type: 3}
-  spawnFromPool: 0
   vfxSfx:
     clip: {fileID: 8300000, guid: 731aa8f5ba0fe394ca439d072bfc09dd, type: 3}
     overrideMixerGroup: 0
@@ -551,6 +551,7 @@ MonoBehaviour:
   onStartEvents:
     m_PersistentCalls:
       m_Calls: []
+  spawnedFromPool: 0
   idleAnimationClips:
   - Value: {fileID: -1331522051837801268, guid: 061563945c8d5b444adc94291377af3a, type: 3}
     Key: 2
@@ -5962,6 +5963,7 @@ MonoBehaviour:
   onStartEvents:
     m_PersistentCalls:
       m_Calls: []
+  spawnedFromPool: 0
   idleAnimationClips:
   - Value: {fileID: -1331522051837801268, guid: ac5806b678f6f6a458eee1abd902fc1c, type: 3}
     Key: 2
@@ -6414,6 +6416,7 @@ MonoBehaviour:
   movementInput: {fileID: 11400000, guid: 8c16d940aae91804b838e76399cff9f1, type: 2}
   currentPlayerSpeed: {fileID: 11400000, guid: bedb67a39e6f79441aa7b289b3c9099a, type: 2}
   playerPosition: {fileID: 11400000, guid: 248e153abaa18f04cbb09ca24ff80b9b, type: 2}
+  isDashing: {fileID: 11400000, guid: 0bfed71a2a6d12746b6d93c4dab0c0ca, type: 2}
 --- !u!114 &378778959457206378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6442,6 +6445,7 @@ MonoBehaviour:
   onStartEvents:
     m_PersistentCalls:
       m_Calls: []
+  spawnedFromPool: 0
   unitInfo: {fileID: 11400000, guid: 863e3985fd61c3d479ce6fb4d0060a02, type: 2}
   unitHealth: {fileID: 713105100355585551}
   onKnockbackStart: {fileID: 11400000, guid: 15fcd17dc2026524abe7c5aac587e5f3, type: 2}
@@ -6449,9 +6453,6 @@ MonoBehaviour:
   hitStopDuration: 0.25
   deathHitStopDuration: 1
   gameObjectShakeProfile: {fileID: 11400000, guid: 484ec0819d268ef4e8ded07b65e3080e, type: 2}
-  screenShakeProfile: {fileID: 11400000, guid: 8447b1a12c8906f4b88f7bcac74c70ce, type: 2}
-  onPlayerDamaged: {fileID: 11400000, guid: 219050c2331ebfb46a108fe9038b2076, type: 2}
-  onPlayerDeath: {fileID: 11400000, guid: 030c197b88fb20543a39e2a8d07ac7a1, type: 2}
   playerStates:
   - Value:
       model: {fileID: 2770929056912956708}
@@ -6461,12 +6462,16 @@ MonoBehaviour:
       model: {fileID: 5256482818957638276}
       layerValue: 7
     Key: 1
+  invincibilityLayer: 11
   enemyLayers:
     serializedVersion: 2
     m_Bits: 512
   colorSwitchVfx: {fileID: 300991733349106856}
   explosionVfx: {fileID: 8568515182452555486, guid: 15ac99202f515cc48a44d70e6f90e965, type: 3}
   delayOnDeath: 1
+  onPlayerDamaged: {fileID: 11400000, guid: 219050c2331ebfb46a108fe9038b2076, type: 2}
+  onPlayerDeath: {fileID: 11400000, guid: 030c197b88fb20543a39e2a8d07ac7a1, type: 2}
+  isDashing: {fileID: 11400000, guid: 0bfed71a2a6d12746b6d93c4dab0c0ca, type: 2}
 --- !u!114 &713105100355585551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6589,7 +6594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e8b7edc22c9f24ea32a3c10d0faf36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CaptainPinkTurd.TopDownController2D.MoveEffect
-  playerController: {fileID: 512697344728614187}
+  isPlayerDashing: {fileID: 11400000, guid: 0bfed71a2a6d12746b6d93c4dab0c0ca, type: 2}
   moveParticles: {fileID: 879004221266223198}
   runTrail: {fileID: 1927167857680007285}
 --- !u!114 &9197272154470192743

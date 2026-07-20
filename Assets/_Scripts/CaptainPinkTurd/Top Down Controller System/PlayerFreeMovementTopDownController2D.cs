@@ -13,15 +13,17 @@ namespace CaptainPinkTurd.TopDownControllerSystem
         [SerializeField] private Vector2VariableSO movementInput;
         [SerializeField] private FloatVariableSO currentPlayerSpeed;
         [SerializeField] private Vector3VariableSO playerPosition;
+        [SerializeField] private BoolVariableSO isDashing;
+        
+        public InputSystemActions playerInputs;
         
         private PlayerTopDownMovementStats runtimeMoveStats;
-        public InputSystemActions playerInputs;
         private Rigidbody2D rb;
         private Vector2 smoothedMovementInput;
         private Vector2 movementSmoothVelocity;
         private Vector2 externalVelocity = Vector2.zero;
+        private Vector2 lastNonZeroMovementInput = Vector2.down;
         
-        private bool isDashing;
         private bool dashOnCooldown;
         private bool movementEnabled;
         
@@ -57,6 +59,7 @@ namespace CaptainPinkTurd.TopDownControllerSystem
         {
             playerInputs.Disable();
             referenceMoveStats.OnValueChange.Unsubscribe(GenerateRuntimeMoveStats);
+            isDashing.Value = false; // ensure dash never survives a deactivate/reload
         }
 
         private void Update()
@@ -66,8 +69,12 @@ namespace CaptainPinkTurd.TopDownControllerSystem
             //     ToggleMovement(!movementEnabled);
             // }
             movementInput.Value = playerInputs.Player.Move.ReadValue<Vector2>();
+            if(movementInput.Value != Vector2.zero) 
+            {
+                lastNonZeroMovementInput = movementInput.Value;
+            }
             
-            if (isDashing || !movementEnabled) return;
+            if (isDashing.Value || !movementEnabled) return;
 
             DashCheck();
             
@@ -80,7 +87,7 @@ namespace CaptainPinkTurd.TopDownControllerSystem
         {
             if (!movementEnabled) return;
             
-            if (!isDashing)
+            if (!isDashing.Value)
             {
                 UpdateMovement();
             }
@@ -98,7 +105,7 @@ namespace CaptainPinkTurd.TopDownControllerSystem
             
             rb.linearVelocity = Vector2.zero;
             movementInput.Value = Vector2.zero;
-            currentPlayerSpeed.Value = 1f;
+            currentPlayerSpeed.Value = 0f;
         }
         
         private void UpdateMovement()
@@ -117,9 +124,13 @@ namespace CaptainPinkTurd.TopDownControllerSystem
                 smoothedMovementInput = movementInput.Value;
             }
 
-            float speed = playerInputs.Player.Run.IsPressed()
-                ? runtimeMoveStats.runSpeed
-                : runtimeMoveStats.walkSpeed;
+            float speed = 0f;
+            if (movementInput.Value != Vector2.zero)
+            {
+                speed = playerInputs.Player.Run.IsPressed()
+                    ? runtimeMoveStats.runSpeed
+                    : runtimeMoveStats.walkSpeed;
+            }
             
             currentPlayerSpeed.Value = speed / runtimeMoveStats.walkSpeed; 
 
@@ -141,7 +152,7 @@ namespace CaptainPinkTurd.TopDownControllerSystem
 
         private void StartDash()
         {
-            isDashing = true;
+            isDashing.Value = true;
 
             SoundManager.Instance.CreateSoundBuilder().WithPosition(transform.position).WithRandomPitch()
                 .Play(runtimeMoveStats.dashSfx);
@@ -149,7 +160,7 @@ namespace CaptainPinkTurd.TopDownControllerSystem
             // Direction input handling
             Vector2 dashDir = movementInput.Value.sqrMagnitude < runtimeMoveStats.dashInputThreshold *
                               runtimeMoveStats.dashInputThreshold
-                ? Vector2.zero
+                ? lastNonZeroMovementInput.normalized
                 : movementInput.Value.normalized;
 
             // running increases dash speed and reduces dash duration
@@ -159,14 +170,15 @@ namespace CaptainPinkTurd.TopDownControllerSystem
 
             rb.linearVelocity = dashDir * (runtimeMoveStats.dashSpeed * dashSpeedMultiplier);
 
-            StartCoroutine(CoroutineUtils.WaitForSeconds( runtimeMoveStats.dashDuration / dashSpeedMultiplier,
+            StartCoroutine(CoroutineUtils.WaitForSeconds(
+                runtimeMoveStats.dashDuration / dashSpeedMultiplier,
                 EndDash
             ));
         }
 
         private void EndDash()
         {
-            isDashing = false;
+            isDashing.Value = false;
             dashOnCooldown = true;
 
             StartCoroutine(CoroutineUtils.WaitForSeconds(

@@ -41,6 +41,10 @@ namespace CaptainPinkTurd.SpawnSystem.Wave
         
         private void Spawn()
         {
+            //guard against the despawn event re-entering during scene unload/teardown,
+            //when this GameObject is already inactive and StartCoroutine would throw
+            if (!gameObject) return;
+
             int numberToSpawn = Random.Range(minSpawnNumber, maxSpawnNumber + 1);
             StartCoroutine(proceduralSpawner.SpawnObjects(numberToSpawn));
         }

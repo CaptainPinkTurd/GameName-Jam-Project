@@ -3,13 +3,13 @@ using BulletHell;
 using CaptainPinkTurd.AnimationSystem;
 using CaptainPinkTurd.Core.CustomDataStructure;
 using CaptainPinkTurd.Core.DesignPattern.SOAP.Events;
+using CaptainPinkTurd.Core.DesignPattern.SOAP.Variables;
 using CaptainPinkTurd.Core.Enum;
 using CaptainPinkTurd.Core.Extensions;
 using CaptainPinkTurd.Core.Interfaces;
 using CaptainPinkTurd.Core.Struct;
 using CaptainPinkTurd.Core.Utilities;
 using CaptainPinkTurd.Core.Utils;
-using CaptainPinkTurd.EffectSystem.ShakeEffect;
 using CaptainPinkTurd.Game.Enemy;
 using CaptainPinkTurd.UnitSystem;
 using DG.Tweening;
@@ -21,14 +21,37 @@ namespace CaptainPinkTurd.Game.Player
     public class PlayerUnit : UnitBase
     {
         [Header("Player Unit Properties")]
-        [SerializeField] private VoidEvent onPlayerDamaged;
-        [SerializeField] private VoidEvent onPlayerDeath;
         [SerializeField] private SerializeKeyValuePair<EColor, PlayerStateInfo>[] playerStates;
+        [SerializeField] private int invincibilityLayer;
         [SerializeField] private LayerMask enemyLayers;
         [SerializeField] private BasicVfxAnimationController colorSwitchVfx;
         [SerializeField] private BasicVfxAnimationController explosionVfx;
         [SerializeField] private float delayOnDeath = 1f;
         
+        [Header("Player Events")]
+        [SerializeField] private VoidEvent onPlayerDamaged;
+        [SerializeField] private VoidEvent onPlayerDeath;
+        [SerializeField] private BoolVariableSO isDashing;
+        
+        private int currentColorLayer;
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+
+            isDashing.OnValueChanged += OnDash;
+        }
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            
+            isDashing.OnValueChanged -= OnDash;
+        }
+
+        private void OnDash(bool isDashing)
+        {
+            ApplyLayer(isDashing ? invincibilityLayer : currentColorLayer);
+        }
         public void OnColorChangeEvents(EColor color)
         {
             if(playerStates.TryGetValue(color, out var playerState))
@@ -40,15 +63,23 @@ namespace CaptainPinkTurd.Game.Player
                 colorSwitchVfx.gameObject.SetActive(true);
                 playerState.model.SetActive(true);
 
-                gameObject.layer = playerState.layerValue;
-                foreach (Transform child in transform)
-                {
-                    child.gameObject.layer = playerState.layerValue;
-                }
+                currentColorLayer = playerState.layerValue;
+
+                // if the player color-swaps mid-dash, don't drop the phase layer —
+                // it'll be restored to currentColorLayer when the dash ends
+                if (!isDashing.Value) ApplyLayer(currentColorLayer);
             }
             else
             {
                 Debug.LogError($"Player State for dimension {color} not found");
+            }
+        }
+        private void ApplyLayer(int layer)
+        {
+            gameObject.layer = layer;
+            foreach (Transform child in transform)
+            {
+                child.gameObject.layer = layer;
             }
         }
 

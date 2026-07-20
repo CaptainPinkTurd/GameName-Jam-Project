@@ -1,10 +1,11 @@
-using CaptainPinkTurd.TopDownControllerSystem;
+using System;
+using CaptainPinkTurd.Core.DesignPattern.SOAP.Variables;
 using UnityEngine;
 
 public class MoveEffect : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] private PlayerFreeMovementTopDownController2D playerController;
+    [Header("References")] 
+    [SerializeField] private BoolVariableSO isPlayerDashing;
     [SerializeField] private ParticleSystem moveParticles;
     [SerializeField] private TrailRenderer runTrail;
 
@@ -12,14 +13,22 @@ public class MoveEffect : MonoBehaviour
 
     private void Awake()
     {
-        playerController = GetComponent<PlayerFreeMovementTopDownController2D>();
-        rb = playerController.GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void OnEnable()
+    {
+        isPlayerDashing.OnValueChanged += HandleTrail;
+    }
+
+    private void OnDisable()
+    {
+        isPlayerDashing.OnValueChanged -= HandleTrail;
     }
 
     private void Update()
     {
         HandleParticles();
-        HandleTrail();
     }
 
     private void HandleParticles()
@@ -37,10 +46,10 @@ public class MoveEffect : MonoBehaviour
         }
     }
 
-    private void HandleTrail()
+    private void HandleTrail(bool isDashing)
     {
         // Enable trail only when Run (Shift) is pressed
-        if (playerController.playerInputs.Player.Run.IsPressed())
+        if (isDashing)
         {
             if (!runTrail.emitting)
                 runTrail.emitting = true;
